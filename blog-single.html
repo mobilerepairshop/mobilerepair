@@ -36,7 +36,7 @@
   <!--/ Nav Star /-->
   <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll" href="#page-top">BlasterUp</a>
+      <a class="navbar-brand js-scroll" href="#page-top">Mobile Repair Service</a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
         aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
@@ -75,15 +75,14 @@
     <div class="intro-content display-table">
       <div class="table-cell">
         <div class="container">
-          <h2 class="intro-title mb-4">Blog Details</h2>
+          <h2 class="intro-title mb-4">Service Details</h2>
           <ol class="breadcrumb d-flex justify-content-center">
             <li class="breadcrumb-item">
-              <a href="#">Home</a>
+              <a href="#">Services</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="#">Library</a>
+              <a href="#">Mobile Repairing</a>
             </li>
-            <li class="breadcrumb-item active">Data</li>
           </ol>
         </div>
       </div>
@@ -96,11 +95,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <div class="post-box">
+          <!-- <div class="post-box">
             <div class="post-thumb">
               <img src="img/post-1.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="post-meta">
+            </div> -->
+            <!-- <div class="post-meta">
               <h1 class="article-title">Lorem ipsum dolor sit amet consec tetur adipisicing</h1>
               <ul>
                 <li>
@@ -156,8 +155,8 @@
                 consectetur adipiscing elit. Donec sollicitudin molestie malesuada.
               </p>
             </div>
-          </div>
-          <div class="box-comments">
+          </div> -->
+          <!-- <div class="box-comments">
             <div class="title-box-2">
               <h4 class="title-comments title-left">Comments (34)</h4>
             </div>
@@ -224,36 +223,253 @@
                 </div>
               </li>
             </ul>
-          </div>
+          </div> -->
           <div class="form-comments">
             <div class="title-box-2">
               <h3 class="title-left">
-                Leave a Reply
+                Request a Service
               </h3>
             </div>
             <form class="form-mf">
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
-                    <input type="text" class="form-control input-mf" id="inputName" placeholder="Name *" required>
+                    <input type="text" class="form-control input-mf" id="pincode" placeholder="Pincode *" required>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
-                    <input type="email" class="form-control input-mf" id="inputEmail1" placeholder="Email *" required>
+                    <input type="button" class="button button-a button-small button-rouded" id="check" value="Check Availability">
                   </div>
                 </div>
-                <div class="col-md-12 mb-3">
-                  <div class="form-group">
-                    <input type="url" class="form-control input-mf" id="inputUrl" placeholder="Website">
+                <br><br><br><br>
+                <div class="col-md-6 mb-3">
+                    <div class="dropdown">
+                      <button id="mobilecompany" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Mobile Company
+                      <span class="caret"></span></button>
+                      <ul id="companyname" class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">HTML</a></li>
+                        <li><a class="dropdown-item" href="#">CSS</a></li>
+                        <li><a class="dropdown-item" href="#">JavaScript</a></li>
+                      </ul>
                   </div>
                 </div>
-                <div class="col-md-12 mb-3">
-                  <div class="form-group">
-                    <textarea id="textMessage" class="form-control input-mf" placeholder="Comment *" name="message"
-                      cols="45" rows="8" required></textarea>
+                <div class="col-md-6 mb-3">
+                  <div class="dropdown">
+                    <button id="mobilemodel" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Mobile Model
+                    <span class="caret"></span></button>
+                    <ul id="modelname" class="dropdown-menu">
+                      <li><a class="dropdown-item">HTML</a></li>
+                      <li><a class="dropdown-item">CSS</a></li>
+                      <li><a class="dropdown-item">JavaScript</a></li>
+                    </ul>
+                </div>
+              </div>
+              <br><br><br><br>
+              <div class="col-md-6 mb-2 border border-secondary">
+                <div class="form-group ">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="damageproblem">
+                    <label class="form-check-label" for="damageproblem">Damage Problem</label>
+                  </div>
+                  <div id="damageproblemlist">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="damageradio" id="waterdamage" value="waterdamage">
+                      <label class="form-check-label" for="waterdamage">
+                        Water Damage
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="damageradio" id="mobiledead" value="mobiledead">
+                      <label class="form-check-label" for="mobiledead">
+                        Mobile is Dead
+                      </label>
+                    </div>
                   </div>
                 </div>
+              </div>
+              <div class="col-md-6 mb-2 border border-secondary">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="touchdisplayproblem">
+                    <label class="form-check-label" for="touchdisplayproblem">Touch & Display Problem</label>
+                  </div>
+                  <div id="touchdisplaylist">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="touchradio" id="toucherror" value="toucherror">
+                      <label class="form-check-label" for="toucherror">
+                        Display is OK but partial/full touch not working
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="touchradio" id="displayerror" value="displayerror">
+                      <label class="form-check-label" for="displayerror">
+                        Touch is OK display damaged
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="touchradio" id="touchdisplayerror" value="touchdisplayerror">
+                      <label class="form-check-label" for="touchdisplayerror">
+                        Touch and display both not working
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+              <div class="col-md-6 mb-2 border border-secondary">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="hardwareproblem">
+                    <label class="form-check-label" for="hardwareproblem">Common Hardware Problem</label>
+                  </div>
+                  <div id="hardwarelist">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="hardwareradio" id="micerror" value="micerror">
+                      <label class="form-check-label" for="micerror">
+                        Mic problem
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="hardwareradio" id="speakererror" value="speakererror">
+                      <label class="form-check-label" for="speakererror">
+                        Speaker problem
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="hardwareradio" id="speakererror" value="speakererror">
+                      <label class="form-check-label" for="speakererror">
+                        Loud speaker problem
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="hardwareradio" id="vibratorerror" value="vibratorerror">
+                      <label class="form-check-label" for="vibratorerror">
+                        Ringer/Vibrator problem
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2 border border-secondary">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="batteryproblem">
+                    <label class="form-check-label" for="batteryproblem">Battery Problem</label>
+                  </div>
+                  <div id="batterylist">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="batteryradio" id="faultybattery" value="faultybattery">
+                      <label class="form-check-label" for="faultybattery">
+                        Battery is faulty
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="batteryradio" id="chargingerror" value="chargingerror">
+                      <label class="form-check-label" for="chargingerror">
+                        Mobile is not charging
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2 border border-secondary">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="networkproblem">
+                    <label class="form-check-label" for="networkproblem">Network Related Problem</label>
+                  </div>
+                  <div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="networkradio" id="networkerror" value="networkerror">
+                      <label class="form-check-label" for="networkerror">
+                        Network not showing
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="networkradio" id="towererror" value="towererror">
+                      <label class="form-check-label" for="towererror">
+                        Only 1-2 tower showing in mobile
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="networkradio" id="simerror" value="simerror">
+                      <label class="form-check-label" for="simerror">
+                        SIM not detecting
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+              <div class="col-md-6 mb-2 border border-secondary">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="memorycardproblem">
+                    <label class="form-check-label" for="memorycardproblem">Memory Card Problem</label>
+                  </div>
+                  <div id="memorycardlist">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="memorycardradio" id="detectionerror" value="detectionerror">
+                      <label class="form-check-label" for="detectionerror">
+                        Memory card not detecting
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>   
+              <div class="col-md-6 mb-2 border border-secondary">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="otherproblem">
+                    <label class="form-check-label" for="otherproblem">Other Problems</label>
+                  </div>
+                  <div id="otherlist">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="otherradio" id="powererror" value="powererror">
+                      <label class="form-check-label" for="powererror">
+                        Power ON button not working
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="otherradio" id="volumerror" value="volumerror">
+                      <label class="form-check-label" for="volumerror">
+                        Volume buttons are not working
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="otherradio" id="cameraerror" value="cameraerror">
+                      <label class="form-check-label" for="cameraerror">
+                        Camera not working
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="otherradio" id="lockerror" value="lockerror">
+                      <label class="form-check-label" for="lockerror">
+                        Forgot screen lock/Password
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="otherradio" id="flasherror" value="flasherror">
+                      <label class="form-check-label" for="flasherror">
+                        Flash new software
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2 border border-secondary">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="ownproblem">
+                    <label class="form-check-label" for="ownproblem">Specify Own Problem</label>
+                  </div>
+                  <br>
+                  <div>
+                    <div class="form-check">
+                      <input type="text" class="form-control input-mf" id="ownerror" placeholder="Mention Your Problem Here *" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
                 <div class="col-md-12">
                   <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
                 </div>
@@ -299,7 +515,7 @@
               </ul>
             </div>
           </div>
-          <div class="widget-sidebar">
+          <!-- <div class="widget-sidebar">
             <h5 class="sidebar-title">Archives</h5>
             <div class="sidebar-content">
               <ul class="list-sidebar">
@@ -345,7 +561,7 @@
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
