@@ -22,16 +22,13 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  
+  <script src="https://apis.google.com/js/platform.js" ></script>
+  <meta name="google-signin-client_id" content="411937557386-8fdmnh35is2oo4bckud4bgmg8okeanql.apps.googleusercontent.com">
+
   <link href="css/style.css" rel="stylesheet">
   <link href="./login/css/login.css" rel="stylesheet">
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   
-  <!-- =======================================================
-    Theme Name: DevFolio
-    Theme URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
   <style>
     
 .botnavbar {
@@ -70,6 +67,9 @@
   .botnavbar{
     display:block;
   }
+  .botnavbar a{
+    width:19.5%;
+  }
 }
   </style>
 </head>
@@ -107,13 +107,33 @@
             <a class="nav-link js-scroll" href="#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" onclick="openLoginModal()">Login</a>
+            <a class="nav-link js-scroll" id="login_button" onclick="openLoginModal()">Login</a>
+          </li>
+          <li>
+            
+            <div class="collapse navbar-collapse" id="navbar-list-4 prodrop">
+              <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="name" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Dashboard</a>
+                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a class="dropdown-item" onclick="signout()">Log Out</a>
+                  </div>
+                </li>   
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <!--/ Nav End /-->
+
+
+
+
 
   <!--/ Intro Skew Star /-->
   <div id="home" class="intro route bg-image" style="background-image: url(img/intro-bg.jpg)">
@@ -132,83 +152,36 @@
   </div>
   <!--/ Intro Skew End /-->
 
-  <section id="about" class="about-mf sect-pt4 route">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="box-shadow-full">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="row">
-                  <div class="col-sm-6 col-md-5">
-                    <div class="about-img">
-                      <img src="img/testimonial-2.jpg" class="img-fluid rounded b-shadow-a" alt="">
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-7">
-                    <div class="about-info">
-                      <p><span class="title-s">Name: </span> <span>Morgan Freeman</span></p>
-                      <p><span class="title-s">Profile: </span> <span>full stack developer</span></p>
-                      <p><span class="title-s">Email: </span> <span>contact@example.com</span></p>
-                      <p><span class="title-s">Phone: </span> <span>(617) 557-0089</span></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="skill-mf">
-                  <p class="title-s">Skill</p>
-                  <span>HTML</span> <span class="pull-right">85%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>CSS3</span> <span class="pull-right">75%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>PHP</span> <span class="pull-right">50%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>JAVASCRIPT</span> <span class="pull-right">90%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="about-me pt-4 pt-md-0">
-                  <div class="title-box-2">
-                    <h5 class="title-left">
-                      About me
-                    </h5>
-                  </div>
-                  <p class="lead">
-                    Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id
-                    imperdiet et, porttitor
-                    at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla
-                    porttitor accumsan tincidunt.
-                  </p>
-                  <p class="lead">
-                    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis
-                    porttitor volutpat. Vestibulum
-                    ac diam sit amet quam vehicula elementum sed sit amet dui. porttitor at sem.
-                  </p>
-                  <p class="lead">
-                    Nulla porttitor accumsan tincidunt. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
-                    Nulla porttitor accumsan
-                    tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+ 
+  <!-- Advertisement -->
+<br>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:50%;margin-left:25%;">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="./storage/banner5.jpg" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="./storage/banner6.jpg" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="./storage/banner7.jpg" alt="Third slide">
       </div>
     </div>
-  </section>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+<!-- Advertisement Carousel -->
 
    <!--/ Section Portfolio Star /-->
    <section id="work" class="portfolio-mf sect-pt4 route">
@@ -226,7 +199,8 @@
           </div>
         </div>
       </div>
-      <div class="row">
+    
+      <div class="row" >
         <div class="col-md-4">
           <div class="work-box">
             <a href="img/work-1.jpg" data-lightbox="gallery-mf">
@@ -342,11 +316,11 @@
 <!-- Floating Div  -->
 
 <div class="botnavbar">
-  <a href="#home" ><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
-  <a href="#news"><i class="fa fa-cart-arrow-down fa-2x" aria-hidden="true"></i>  </a>
-  <a href="#contact"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></a>
-  <a href="#contact"><i class="fa fa-address-card-o fa-2x" aria-hidden="true"></i></a>
-
+  <a href="#home" ><i class="fa fa-home fa-2x" aria-hidden="true"></i>Home</a>
+  <a href="#news"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i>Orders</a>
+  <a href="#contact"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>Profile</a>
+  <a href="#contact"><i class="fa fa-shield fa-2x" aria-hidden="true"></i>Insurance</a>
+  <a href="#contact"><i class="fa fa-credit-card-alt fa-2x" aria-hidden="true"></i>Payment</a>
 </div>
 <!-- Floating Div  -->
 
@@ -513,15 +487,23 @@
                 <div class="box">
                      <div class="content">
                         <div class="social">
-                            <a class="circle github" href="#">
+                            <!-- <a class="circle github" href="#">
                                 <i class="fa fa-github fa-fw"></i>
-                            </a>
-                            <a id="google_login" class="circle google" href="#">
-                                <i class="fa fa-google-plus fa-fw"></i>
-                            </a>
-                            <a id="facebook_login" class="circle facebook" href="#">
+                            </a> -->
+          
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-sm">
+                                  <div onclick="googleSignin()" ><img src="google.png" style="cursor:pointer;"></img></div>
+                                </div>
+                                <div class="col-sm">
+                                  <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- <a id="facebook_login" class="circle facebook" href="#">
                                 <i class="fa fa-facebook fa-fw"></i>
-                            </a>
+                            </a> -->
                         </div>
                         <div class="division">
                             <div class="line l"></div>
@@ -542,6 +524,7 @@
                     <div class="content registerBox" style="display:none;">
                      <div class="form">
                         <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                        <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username">
                         <input id="emailreg" class="form-control" type="text" placeholder="Email" name="email">
                         <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password">
                         <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
@@ -583,11 +566,230 @@
   <script src="lib/typed/typed.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+ 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
 
 <script>
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDyQhgM0Q5UUIt-MbIIDzPpbpLVudkmKK4",
+    authDomain: "hopeful-summer-292810.firebaseapp.com",
+    databaseURL: "https://hopeful-summer-292810.firebaseio.com",
+    projectId: "hopeful-summer-292810",
+    storageBucket: "hopeful-summer-292810.appspot.com",
+    messagingSenderId: "411937557386",
+    appId: "1:411937557386:web:838b8dd854ca6d9a165673"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  function fbSignin()
+  {
+    const provider =  new firebase.auth.FacebookAuthProvider();
+    provider.setCustomParameters({
+      prompt: 'select_account',
+      display: 'popup'
+
+    }); 
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      console.log(user)
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+
+  }
+  function googleSignin(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      prompt: 'select_account'
+    });
+    firebase.auth().signInWithPopup(provider).then
+    (
+      function(result) 
+      {
+        console.log("Google linked")
+        console.log(result.additionalUserInfo.profile.email)
+        id = result.id;
+        // Ajax Google sign in
+            $.ajax({
+                url:'./login/api/login.php',
+                type:'POST',
+                data:{
+                  'email':result.additionalUserInfo.profile.email,
+                  'pwd':result.additionalUserInfo.profile.id,
+                  'username':result.additionalUserInfo.profile.name,
+                  'authtype':'google'
+                },
+                success:function(para)
+                {
+                    console.log("This is - ",para)
+                    para = JSON.parse(para)
+                    if(para[0]=='200')
+                    {
+                      location.reload()   
+                    }
+                    else
+                    {
+                      shakeModal(); 
+                    }
+                }
+            })
+
+      }
+   )
+
+  }
+
+  function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+    
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null;
+}
+
+  var sid = getCookie("sid");
+  console.log(sid)
+  $.ajax({
+        url:'./login/api/checksession.php',
+        type:'POST',
+        data:{'sid':sid},
+        success:function(para)
+        {
+            console.log(para)
+            para = $.parseJSON(para)
+            if(para[0]=='200')
+            {
+              $("#login_button").hide()
+              $("#name").show()
+              $("#name").html(para[1])
+            }
+            else
+            {
+              $("#login_button").show()
+            }
+        }
+        
+    })
+
+
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log("User Signed in")
+    // name = user.displayName;
+    // email = user.email;
+    // photoUrl = user.photoURL;
+    // $("#login_button").hide()
+    // $("#name").html(name)
+  } else {
+    console.log("User Signed out")
+    $("#login_button").show()
+    $("#name").hide()
+
+  }
+});
+
+function signout()
+{
+  var user = firebase.auth().currentUser;
+  if(user)
+  {
+      firebase.auth().signOut().then(function() {
+        console.log("SIgnout success")
+        $.ajax({
+            url:'./login/api/logout.php',
+            type:'POST',
+            success:function(para)
+            {
+                console.log(para)
+                if(para=='200')
+                {
+                    alert("Successfully logged out")
+                    window.location.reload();
+                }
+                else
+                {
+                    alert("Cannot log out")
+                    window.location.reload();
+                }
+            }
+        })
+
+
+
+      }).catch(function(error) {
+        // An error happened.
+      });
+  }
+  else
+  {
+    $.ajax({
+            url:'./login/api/logout.php',
+            type:'POST',
+            success:function(para)
+            {
+                console.log(para)
+                if(para=='200')
+                {
+                    alert("Successfully logged out")
+                    window.location.reload();
+                }
+                else
+                {
+                    alert("Cannot log out")
+                    // window.location.reload();
+                }
+            }
+        })
+  }
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   $("#password_confirmationreg").keyup(function(){
     pwd = String($('#passwordreg').val())   
@@ -639,6 +841,7 @@ function showLoginForm(){
 
 function registerAjax()
 {
+        username = $('#userreg').val();
         email = $('#emailreg').val();
         pwd = String($('#passwordreg').val());
         pwdcnf = String($('#password_confirmationreg').val());
@@ -648,6 +851,7 @@ function registerAjax()
                 url:'./login/api/register.php',
                 type:'POST',
                 data:{
+                  'username':username,
                   'email':email,
                   'pwd':pwd
                 },
@@ -660,7 +864,7 @@ function registerAjax()
                     }
                     else
                     {
-                      // shakeModal(); 
+                      shakeModal(); 
                     }
                 }
             })
@@ -683,14 +887,17 @@ function loginAjax(){
             type:'POST',
             data:{
               'email':email,
-              'pwd':pwd
+              'pwd':pwd,
+              'authtype':'emailpass'
             },
             success:function(para)
             {
-                // console.log("This is - ",para)
-                if(para=='200')
+                console.log("This is - ",para)
+               
+                if(para==200)
                 {
-                  window.location.replace("/index.html");   
+                  $("#login_button").hide()
+                  location.reload()
                 }
                 else
                 {
@@ -698,18 +905,11 @@ function loginAjax(){
                 }
             }
         })
-    // Remove this comments when moving to server
-    // $.post( "./login/api/login.php", function(data) {
-    //         if(data == 1){
-    //             window.location.replace("/home");            
-    //         } else {
-    //              shakeModal(); 
-    //         }
-    //     });
+   
     
 
 /*   Simulate error message from the server   */
-     shakeModal();
+    //  shakeModal();
 }
 
 function shakeModal(){
@@ -720,6 +920,8 @@ function shakeModal(){
                 $('#loginModal .modal-dialog').removeClass('shake'); 
     }, 1000 ); 
 }
+
+
 </script>
 </body>
 </html>

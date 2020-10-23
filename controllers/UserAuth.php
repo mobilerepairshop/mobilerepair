@@ -5,8 +5,6 @@ class UserAuth{
     public $username;
     public $email;
     public $password;  
-    public $location; 
-    public $phonenum;  
     public $create_datetime;  
 
     public function __construct($db){
@@ -24,6 +22,7 @@ class UserAuth{
             $stmt->bind_result($userid); 
             if($no==0)
             {
+               
                     return array('400',99);;
             }
             else
@@ -42,12 +41,13 @@ class UserAuth{
     public function registerUser()
     {
         $this->create_datetime = date('Y-m-d h:i:sa');
-        $query = 'insert into users(email,password,create_datetime)values(?,?,?)';
+        $query = 'insert into users(email,password,create_datetime,username)values(?,?,?,?)';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('sss',
+        $stmt->bind_param('ssss',
             $this->email,
             $this->password,
             $this->create_datetime,
+            $this->username
            );
            if($stmt->execute())
            {
@@ -125,6 +125,30 @@ class UserAuth{
          {
              return '400';
          }
+        
+    }
+    public function getinfo_from_user($uid)
+    {
+        $query = 'select username from users where uid=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('i',$uid);
+        if($stmt->execute())
+        {
+            $result = $stmt->get_result();   // <--- add this instead
+            $userinfo = array();
+            while ($data = $result->fetch_assoc()) 
+            {
+                $username = $data["username"];
+            }
+            return $username;
+        }
+        else
+        {
+            return 400;
+        }
+        
+        // Get name and mobile number to display for first message
+       
         
     }
 }

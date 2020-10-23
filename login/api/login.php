@@ -6,6 +6,7 @@
     $success = $database->connect_db();
     if($success == '200')
     {
+
         if (isset($_POST['email'])) 
         {
             $email = $database->sanitize($_REQUEST['email']);    // removes backslashes
@@ -28,12 +29,32 @@
             }
             else
             {
-                echo '400';
+                if($_POST['authtype']=="google")
+                {
+                    $auth = new UserAuth($conn);
+                    $auth->email = $database->sanitize($_REQUEST['email']);
+                    $auth->password = md5($database->sanitize($_REQUEST['pwd']));
+                    $auth->username = $database->sanitize($_REQUEST['username']);
+                    if($auth->registerUser()=='200')
+                    {
+                        echo '200';
+                    }
+                    else
+                    {
+                        echo '400';
+                    }
+                }
+                else
+                {echo "Wrong1";
+                    echo '400';
+                }
+                
             }
 
         }
         else
         {
+            echo "Wrong2";
             echo '400';
         }
     }

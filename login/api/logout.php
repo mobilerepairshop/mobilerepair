@@ -1,5 +1,5 @@
 <?php 
-        require('../../database/sqlconnection.php');
+        require('../../controllers/Database.php');
         require('../../controllers/UserAuth.php');
         
         
