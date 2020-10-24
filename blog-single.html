@@ -269,18 +269,18 @@
               <div class="col-md-6 mb-2 border border-secondary">
                 <div class="form-group ">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="damageproblem">
+                    <input type="checkbox" class="form-check-input" id="damageproblem" onclick="showproblems(this.id)">
                     <label class="form-check-label" for="damageproblem">Damage Problem</label>
                   </div>
                   <div id="damageproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="damageradio" id="waterdamage" value="waterdamage">
+                      <input class="form-check-input" type="radio" name="damageproblemradio" id="waterdamage" value="waterdamage">
                       <label class="form-check-label" for="waterdamage">
                         Water Damage
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="damageradio" id="mobiledead" value="mobiledead">
+                      <input class="form-check-input" type="radio" name="damageproblemradio" id="mobiledead" value="mobiledead">
                       <label class="form-check-label" for="mobiledead">
                         Mobile is Dead
                       </label>
@@ -291,24 +291,24 @@
               <div class="col-md-6 mb-2 border border-secondary">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="touchdisplayproblem">
+                    <input type="checkbox" class="form-check-input" id="touchdisplayproblem" onclick="showproblems(this.id)">
                     <label class="form-check-label" for="touchdisplayproblem">Touch & Display Problem</label>
                   </div>
-                  <div id="touchdisplaylist">
+                  <div id="touchdisplayproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="touchradio" id="toucherror" value="toucherror">
+                      <input class="form-check-input" type="radio" name="touchdisplayproblemradio" id="toucherror" value="toucherror">
                       <label class="form-check-label" for="toucherror">
                         Display is OK but partial/full touch not working
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="touchradio" id="displayerror" value="displayerror">
+                      <input class="form-check-input" type="radio" name="touchdisplayproblemradio" id="displayerror" value="displayerror">
                       <label class="form-check-label" for="displayerror">
                         Touch is OK display damaged
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="touchradio" id="touchdisplayerror" value="touchdisplayerror">
+                      <input class="form-check-input" type="radio" name="touchdisplayproblemradio" id="touchdisplayerror" value="touchdisplayerror">
                       <label class="form-check-label" for="touchdisplayerror">
                         Touch and display both not working
                       </label>
@@ -319,30 +319,30 @@
               <div class="col-md-6 mb-2 border border-secondary">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="hardwareproblem">
+                    <input type="checkbox" class="form-check-input" id="hardwareproblem" onclick="showproblems(this.id)">
                     <label class="form-check-label" for="hardwareproblem">Common Hardware Problem</label>
                   </div>
-                  <div id="hardwarelist">
+                  <div id="hardwareproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="hardwareradio" id="micerror" value="micerror">
+                      <input class="form-check-input" type="radio" name="hardwareproblemradio" id="micerror" value="micerror">
                       <label class="form-check-label" for="micerror">
                         Mic problem
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="hardwareradio" id="speakererror" value="speakererror">
+                      <input class="form-check-input" type="radio" name="hardwareproblemradio" id="speakererror" value="speakererror">
                       <label class="form-check-label" for="speakererror">
                         Speaker problem
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="hardwareradio" id="speakererror" value="speakererror">
+                      <input class="form-check-input" type="radio" name="hardwareproblemradio" id="speakererror" value="speakererror">
                       <label class="form-check-label" for="speakererror">
                         Loud speaker problem
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="hardwareradio" id="vibratorerror" value="vibratorerror">
+                      <input class="form-check-input" type="radio" name="hardwareproblemradio" id="vibratorerror" value="vibratorerror">
                       <label class="form-check-label" for="vibratorerror">
                         Ringer/Vibrator problem
                       </label>
@@ -353,18 +353,18 @@
               <div class="col-md-6 mb-2 border border-secondary">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="batteryproblem">
+                    <input type="checkbox" class="form-check-input" id="batteryproblem" onclick="showproblems(this.id)">
                     <label class="form-check-label" for="batteryproblem">Battery Problem</label>
                   </div>
-                  <div id="batterylist">
+                  <div id="batteryproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="batteryradio" id="faultybattery" value="faultybattery">
+                      <input class="form-check-input" type="radio" name="batteryproblemradio" id="faultybattery" value="faultybattery">
                       <label class="form-check-label" for="faultybattery">
                         Battery is faulty
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="batteryradio" id="chargingerror" value="chargingerror">
+                      <input class="form-check-input" type="radio" name="batteryproblemradio" id="chargingerror" value="chargingerror">
                       <label class="form-check-label" for="chargingerror">
                         Mobile is not charging
                       </label>
@@ -375,24 +375,24 @@
               <div class="col-md-6 mb-2 border border-secondary">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="networkproblem">
+                    <input type="checkbox" class="form-check-input" id="networkproblem" onclick="showproblems(this.id)">
                     <label class="form-check-label" for="networkproblem">Network Related Problem</label>
                   </div>
-                  <div id="networklist">
+                  <div id="networkproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="networkradio" id="networkerror" value="networkerror">
+                      <input class="form-check-input" type="radio" name="networkproblemradio" id="networkerror" value="networkerror">
                       <label class="form-check-label" for="networkerror">
                         Network not showing
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="networkradio" id="towererror" value="towererror">
+                      <input class="form-check-input" type="radio" name="networkproblemradio" id="towererror" value="towererror">
                       <label class="form-check-label" for="towererror">
                         Only 1-2 tower showing in mobile
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="networkradio" id="simerror" value="simerror">
+                      <input class="form-check-input" type="radio" name="networkproblemradio" id="simerror" value="simerror">
                       <label class="form-check-label" for="simerror">
                         SIM not detecting
                       </label>
@@ -403,12 +403,12 @@
               <div class="col-md-6 mb-2 border border-secondary">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="memorycardproblem">
+                    <input type="checkbox" class="form-check-input" id="memorycardproblem" onclick="showproblems(this.id)">
                     <label class="form-check-label" for="memorycardproblem">Memory Card Problem</label>
                   </div>
-                  <div id="memorycardlist">
+                  <div id="memorycardproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="memorycardradio" id="detectionerror" value="detectionerror">
+                      <input class="form-check-input" type="radio" name="memorycardproblemradio" id="detectionerror" value="detectionerror">
                       <label class="form-check-label" for="detectionerror">
                         Memory card not detecting
                       </label>
@@ -419,36 +419,36 @@
               <div class="col-md-6 mb-2 border border-secondary">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="otherproblem">
+                    <input type="checkbox" class="form-check-input" id="otherproblem" onclick="showproblems(this.id)">
                     <label class="form-check-label" for="otherproblem">Other Problems</label>
                   </div>
-                  <div id="otherlist">
+                  <div id="otherproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="otherradio" id="powererror" value="powererror">
+                      <input class="form-check-input" type="radio" name="otherproblemradio" id="powererror" value="powererror">
                       <label class="form-check-label" for="powererror">
                         Power ON button not working
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="otherradio" id="volumerror" value="volumerror">
+                      <input class="form-check-input" type="radio" name="otherproblemradio" id="volumerror" value="volumerror">
                       <label class="form-check-label" for="volumerror">
                         Volume buttons are not working
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="otherradio" id="cameraerror" value="cameraerror">
+                      <input class="form-check-input" type="radio" name="otherproblemradio" id="cameraerror" value="cameraerror">
                       <label class="form-check-label" for="cameraerror">
                         Camera not working
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="otherradio" id="lockerror" value="lockerror">
+                      <input class="form-check-input" type="radio" name="otherproblemradio" id="lockerror" value="lockerror">
                       <label class="form-check-label" for="lockerror">
                         Forgot screen lock/Password
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="otherradio" id="flasherror" value="flasherror">
+                      <input class="form-check-input" type="radio" name="otherproblemradio" id="flasherror" value="flasherror">
                       <label class="form-check-label" for="flasherror">
                         Flash new software
                       </label>
@@ -459,13 +459,13 @@
               <div class="col-md-6 mb-2 border border-secondary">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="ownproblem">
+                    <input type="checkbox" class="form-check-input" id="ownproblem" onclick="showproblems(this.id)">
                     <label class="form-check-label" for="ownproblem">Specify Own Problem</label>
                   </div>
-                  <div id="ownlist">
+                  <div id="ownproblemlist">
                     <br>
                     <div class="form-check">
-                      <input type="text" class="form-control input-mf" id="ownerror" placeholder="Mention Your Problem Here *" required>
+                      <input type="text" class="form-control input-mf" name="ownproblemradio" id="ownerror" placeholder="Mention Your Problem Here *">
                     </div>
                   </div>
                 </div>
@@ -616,17 +616,30 @@
 
 
   <script>
-    $(document).ready(function(){
+    $(document).ready(function()
+    {
       $("#damageproblemlist").hide()
-      $("#touchdisplaylist").hide()
-      $("#hardwarelist").hide()
-      $("#batterylist").hide()
-      $("#memorycardlist").hide()
-      $("#networklist").hide()
-      $("#otherlist").hide()
-      $("#ownlist").hide()
-
+      $("#touchdisplayproblemlist").hide()
+      $("#hardwareproblemlist").hide()
+      $("#batteryproblemlist").hide()
+      $("#memorycardproblemlist").hide()
+      $("#networkproblemlist").hide()
+      $("#otherproblemlist").hide()
+      $("#ownproblemlist").hide()
     })
+    function showproblems(id)
+    {
+      if($("#"+id).is(":checked"))
+      {
+        $("#"+id+"list").fadeIn(1000)
+        $('[name="'+id+'radio"]').attr("required", "true");
+      }
+      else
+      {
+        $("#"+id+"list").fadeOut(100)
+        $('[name="'+id+'radio"]').attr("required", "false");
+      }
+    }
   </script>
 </body>
 </html>
