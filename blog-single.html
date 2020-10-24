@@ -378,7 +378,7 @@
                     <input type="checkbox" class="form-check-input" id="networkproblem">
                     <label class="form-check-label" for="networkproblem">Network Related Problem</label>
                   </div>
-                  <div>
+                  <div id="networklist">
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="networkradio" id="networkerror" value="networkerror">
                       <label class="form-check-label" for="networkerror">
@@ -462,8 +462,8 @@
                     <input type="checkbox" class="form-check-input" id="ownproblem">
                     <label class="form-check-label" for="ownproblem">Specify Own Problem</label>
                   </div>
-                  <br>
-                  <div>
+                  <div id="ownlist">
+                    <br>
                     <div class="form-check">
                       <input type="text" class="form-control input-mf" id="ownerror" placeholder="Mention Your Problem Here *" required>
                     </div>
@@ -471,7 +471,7 @@
                 </div>
               </div>
                 <div class="col-md-12">
-                  <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                  <br><button type="submit" class="button button-a button-big button-rouded">Send Message</button>
                 </div>
               </div>
             </form>
@@ -614,5 +614,19 @@
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
 
+
+  <script>
+    $(document).ready(function(){
+      $("#damageproblemlist").hide()
+      $("#touchdisplaylist").hide()
+      $("#hardwarelist").hide()
+      $("#batterylist").hide()
+      $("#memorycardlist").hide()
+      $("#networklist").hide()
+      $("#otherlist").hide()
+      $("#ownlist").hide()
+
+    })
+  </script>
 </body>
 </html>
