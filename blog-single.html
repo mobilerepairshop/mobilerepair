@@ -20,7 +20,8 @@
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+  
+  <link href="jquery-editable-select/dist/jquery-editable-select.min.css" rel="stylesheet">
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
 
@@ -30,6 +31,74 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+  <style>
+    .containercheck {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.containercheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.containercheck:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containercheck input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.containercheck input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.containercheck .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+  </style>
 </head>
 
 <body>
@@ -245,116 +314,129 @@
                 <br><br><br><br>
                 <div class="col-md-6 mb-3">
                     <div class="dropdown">
-                      <button id="mobilecompany" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Mobile Company
-                      <span class="caret"></span></button>
-                      <ul id="companyname" class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">HTML</a></li>
-                        <li><a class="dropdown-item" href="#">CSS</a></li>
-                        <li><a class="dropdown-item" href="#">JavaScript</a></li>
-                      </ul>
-                  </div>
+                      <select id="editable-select">
+                        <option selected>Oppo A3s</option>
+                        <option>Samsung M31</option>
+                        <option>Redmi Note 9</option>
+                        <option>Samsung A50</option>
+                      </select>
+                    </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="dropdown">
-                    <button id="mobilemodel" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Mobile Model
-                    <span class="caret"></span></button>
-                    <ul id="modelname" class="dropdown-menu">
-                      <li><a class="dropdown-item">HTML</a></li>
-                      <li><a class="dropdown-item">CSS</a></li>
-                      <li><a class="dropdown-item">JavaScript</a></li>
-                    </ul>
-                </div>
+                    <select id="editable-select2">
+                      <option selected>Oppo A3s</option>
+                      <option>Samsung M31</option>
+                      <option>Redmi Note 9</option>
+                      <option>Samsung A50</option>
+                    </select>
+                  </div>
               </div>
+
+
+              
               <br><br><br><br>
-              <div class="col-md-6 mb-2 border border-secondary">
+              <div class="col-md-6 mb-2 ">
                 <div class="form-group ">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="damageproblem" onclick="showproblems(this.id)">
-                    <label class="form-check-label" for="damageproblem">Damage Problem</label>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="damageproblem"  onclick="showproblems(this.id)">
+                      <label class="custom-control-label" for="damageproblem">Damage Problem</label>
+                    </div>
                   </div>
                   <div id="damageproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="damageproblemradio" id="waterdamage" value="waterdamage">
-                      <label class="form-check-label" for="waterdamage">
-                        Water Damage
-                      </label>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="waterdamage" name="damageproblemradio" value="waterdamage">
+                        <label class="custom-control-label" for="waterdamage">Water Damage</label>
+                      </div>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="damageproblemradio" id="mobiledead" value="mobiledead">
-                      <label class="form-check-label" for="mobiledead">
-                        Mobile is Dead
-                      </label>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="mobiledead" name="damageproblemradio" value="mobiledead">
+                        <label class="custom-control-label" for="mobiledead">Mobile is Dead</label>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-2 border border-secondary">
+              <div class="col-md-6 mb-2 ">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="touchdisplayproblem" onclick="showproblems(this.id)">
-                    <label class="form-check-label" for="touchdisplayproblem">Touch & Display Problem</label>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="touchdisplayproblem"  onclick="showproblems(this.id)">
+                      <label class="custom-control-label" for="touchdisplayproblem">Touch & Display Problem</label>
+                    </div>
+
                   </div>
                   <div id="touchdisplayproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="touchdisplayproblemradio" id="toucherror" value="toucherror">
-                      <label class="form-check-label" for="toucherror">
-                        Display is OK but partial/full touch not working
-                      </label>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="toucherror" name="touchdisplayproblemradio" value="toucherror">
+                        <label class="custom-control-label" for="mobiledead">Display is OK but partial/full touch not working</label>
+                      </div>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="touchdisplayproblemradio" id="displayerror" value="displayerror">
-                      <label class="form-check-label" for="displayerror">
-                        Touch is OK display damaged
-                      </label>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="displayerror" name="touchdisplayproblemradio" value="displayerror">
+                        <label class="custom-control-label" for="mobiledead">Touch is OK display damaged</label>
+                      </div>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="touchdisplayproblemradio" id="touchdisplayerror" value="touchdisplayerror">
-                      <label class="form-check-label" for="touchdisplayerror">
-                        Touch and display both not working
-                      </label>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="touchdisplayerror" name="touchdisplayproblemradio" value="touchdisplayerror">
+                        <label class="custom-control-label" for="touchdisplayerror">Touch and display both not working</label>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div> 
-              <div class="col-md-6 mb-2 border border-secondary">
+              <div class="col-md-6 mb-2 ">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="hardwareproblem" onclick="showproblems(this.id)">
-                    <label class="form-check-label" for="hardwareproblem">Common Hardware Problem</label>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="hardwareproblem"  onclick="showproblems(this.id)">
+                      <label class="custom-control-label" for="hardwareproblem">Common Hardware Problem</label>
+                    </div>
                   </div>
                   <div id="hardwareproblemlist">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="hardwareproblemradio" id="micerror" value="micerror">
-                      <label class="form-check-label" for="micerror">
-                        Mic problem
-                      </label>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="micerror" name="hardwareproblemradio" value="micerror">
+                        <label class="custom-control-label" for="micerror">Mic problem</label>
+                      </div>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="hardwareproblemradio" id="speakererror" value="speakererror">
-                      <label class="form-check-label" for="speakererror">
-                        Speaker problem
-                      </label>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="speakererror" name="hardwareproblemradio" value="speakererror">
+                        <label class="custom-control-label" for="speakererror">Speaker problem</label>
+                      </div>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="hardwareproblemradio" id="speakererror" value="speakererror">
-                      <label class="form-check-label" for="speakererror">
-                        Loud speaker problem
-                      </label>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="speakererror" name="hardwareproblemradio" value="speakererror">
+                        <label class="custom-control-label" for="speakererror"> Loud speaker problem</label>
+                      </div>
+
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="hardwareproblemradio" id="vibratorerror" value="vibratorerror">
-                      <label class="form-check-label" for="vibratorerror">
-                        Ringer/Vibrator problem
-                      </label>
+            
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="vibratorerror" name="hardwareproblemradio" value="vibratorerror">
+                        <label class="custom-control-label" for="vibratorerror"> Ringer/Vibrator problem</label>
+                      </div>
+
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-2 border border-secondary">
+              <div class="col-md-6 mb-2 ">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="batteryproblem" onclick="showproblems(this.id)">
-                    <label class="form-check-label" for="batteryproblem">Battery Problem</label>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="batteryproblem"  onclick="showproblems(this.id)">
+                      <label class="custom-control-label" for="batteryproblem">Battery Problem</label>
+                    </div>
                   </div>
                   <div id="batteryproblemlist">
                     <div class="form-check">
@@ -372,11 +454,13 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-2 border border-secondary">
+              <div class="col-md-6 mb-2 ">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="networkproblem" onclick="showproblems(this.id)">
-                    <label class="form-check-label" for="networkproblem">Network Related Problem</label>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="networkproblem"  onclick="showproblems(this.id)">
+                      <label class="custom-control-label" for="networkproblem">Network Related Problem</label>
+                    </div>
                   </div>
                   <div id="networkproblemlist">
                     <div class="form-check">
@@ -400,11 +484,13 @@
                   </div>
                 </div>
               </div> 
-              <div class="col-md-6 mb-2 border border-secondary">
+              <div class="col-md-6 mb-2 ">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="memorycardproblem" onclick="showproblems(this.id)">
-                    <label class="form-check-label" for="memorycardproblem">Memory Card Problem</label>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="memorycardproblem"  onclick="showproblems(this.id)">
+                      <label class="custom-control-label" for="memorycardproblem">Memory Card Problem</label>
+                    </div>
                   </div>
                   <div id="memorycardproblemlist">
                     <div class="form-check">
@@ -416,11 +502,13 @@
                   </div>
                 </div>
               </div>   
-              <div class="col-md-6 mb-2 border border-secondary">
+              <div class="col-md-6 mb-2 ">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="otherproblem" onclick="showproblems(this.id)">
-                    <label class="form-check-label" for="otherproblem">Other Problems</label>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="otherproblem"  onclick="showproblems(this.id)">
+                      <label class="custom-control-label" for="otherproblem">Other Problems</label>
+                    </div>
                   </div>
                   <div id="otherproblemlist">
                     <div class="form-check">
@@ -456,11 +544,13 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-2 border border-secondary">
+              <div class="col-md-6 mb-2 ">
                 <div class="form-group">
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="ownproblem" onclick="showproblems(this.id)">
-                    <label class="form-check-label" for="ownproblem">Specify Own Problem</label>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="ownproblem"  onclick="showproblems(this.id)">
+                      <label class="custom-control-label" for="ownproblem">Specify Own Problem</label>
+                    </div>
                   </div>
                   <div id="ownproblemlist">
                     <br>
@@ -470,8 +560,12 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-12" style="box-shadow: 2px 5px 10px #e5e5e7;">
+                  Total estimated price - <p>Rs. 1,200</p>
+                  <p style="color:#0078ff;">This price is variable. It can change after mobile inspection</p>
+              </div>
                 <div class="col-md-12">
-                  <br><button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                  <br><button type="submit" class="button button-a button-big button-rouded">Book Service</button>
                 </div>
               </div>
             </form>
@@ -599,6 +693,8 @@
 
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
+  <script src="jquery-editable-select/dist/jquery-editable-select.min.js"></script>
+
   <script src="lib/jquery/jquery-migrate.min.js"></script>
   <script src="lib/popper/popper.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
@@ -618,6 +714,9 @@
   <script>
     $(document).ready(function()
     {
+      $('#editable-select').editableSelect();
+      $('#editable-select2').editableSelect();
+      
       $("#damageproblemlist").hide()
       $("#touchdisplayproblemlist").hide()
       $("#hardwareproblemlist").hide()
