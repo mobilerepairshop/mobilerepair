@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2020 at 09:55 AM
+-- Generation Time: Oct 25, 2020 at 11:30 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -87,7 +87,9 @@ CREATE TABLE `mobilemodel` (
 
 INSERT INTO `mobilemodel` (`mmid`, `mmname`, `mcid`) VALUES
 (1, 'Galaxy M30s', 6),
-(2, 'One Plus 6T', 8);
+(2, '6.1', 7),
+(3, 'One Plus 6T', 8),
+(5, 'iPhone 12 pro', 9);
 
 -- --------------------------------------------------------
 
@@ -119,7 +121,8 @@ INSERT INTO `session_admin` (`uid`, `sesid`) VALUES
 (0, '3dd77484350bbeed4711fc865d087fde'),
 (0, '79bba4ba3d0913878c7775527ac95f2f'),
 (0, 'd97acae31d606b38a498d5e32368303e'),
-(0, 'dd4d28375c51b97b0e559db89f6c79f0');
+(0, 'dd4d28375c51b97b0e559db89f6c79f0'),
+(0, 'e81863437dec2c1b189de3b52b56e1b8');
 
 --
 -- Indexes for dumped tables
@@ -172,13 +175,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `mobilecompany`
 --
 ALTER TABLE `mobilecompany`
-  MODIFY `mcid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `mcid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `mobilemodel`
 --
 ALTER TABLE `mobilemodel`
-  MODIFY `mmid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `mmid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
