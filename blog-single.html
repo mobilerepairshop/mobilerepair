@@ -315,20 +315,14 @@
                 <div class="col-md-6 mb-3">
                     <div class="dropdown">
                       <select id="editable-select">
-                        <option selected>Oppo A3s</option>
-                        <option>Samsung M31</option>
-                        <option>Redmi Note 9</option>
-                        <option>Samsung A50</option>
+                  
                       </select>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="dropdown">
                     <select id="editable-select2">
-                      <option selected>Oppo A3s</option>
-                      <option>Samsung M31</option>
-                      <option>Redmi Note 9</option>
-                      <option>Samsung A50</option>
+                     
                     </select>
                   </div>
               </div>
@@ -714,9 +708,7 @@
   <script>
     $(document).ready(function()
     {
-      $('#editable-select').editableSelect();
-      $('#editable-select2').editableSelect();
-      
+     
       $("#damageproblemlist").hide()
       $("#touchdisplayproblemlist").hide()
       $("#hardwareproblemlist").hide()
@@ -725,6 +717,65 @@
       $("#networkproblemlist").hide()
       $("#otherproblemlist").hide()
       $("#ownproblemlist").hide()
+
+      $.ajax(
+      {
+        url: "./api/getMobileFilter.php", 
+        method:"POST",
+        success: function(para)
+        {
+          console.log(para)
+          s1 = ""
+          para = JSON.parse(para)
+          for(i=0;i<para.length;i++)
+          {
+            
+            s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
+
+          }
+          $("#editable-select").html(s1)
+          $('#editable-select').editableSelect()
+          .on('select.editable-select', function (e, li) {
+            $.ajax(
+            {
+              url: "./api/getMobileModel.php", 
+              method:"POST",
+              data:{'id':li.val()},
+              success: function(para)
+              {
+                s1 = ""
+                console.log(para)
+                para = JSON.parse(para)
+                for(i=0;i<para.length;i++)
+                {
+                  console.log("Model - ",para[i][1])
+                  s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
+
+                }
+              
+                if($("#editable-select2").html(s1))
+                {
+                  console.log("Aftre - ",s1)
+                }
+                else
+                {
+                  console.log("Aftre false - ",s1)
+
+                }
+                $('#editable-select2').editableSelect();
+              }
+           });
+
+        });
+         
+        }
+
+      });
+
+    })
+    // $("#editable-select").on('change','select',function () { alert('hello'); });
+    $('#editable-select').on('select.editable-select', function (e, li) {
+      
     })
     function showproblems(id)
     {
@@ -739,6 +790,7 @@
         $('[name="'+id+'radio"]').attr("required", "false");
       }
     }
+
   </script>
 </body>
 </html>
