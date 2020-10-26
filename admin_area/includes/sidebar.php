@@ -138,9 +138,9 @@ else {
 
 </li><!-- li Ends -->
 
-<li><!-- Products li Starts -->
+<li><!-- Companies li Starts -->
 
-<a href="#" data-toggle="collapse" data-target="#products">
+<a href="#" data-toggle="collapse" data-target="#companies">
 
 <i class="fa fa-fw fa-table"></i> Mobile Companies
 
@@ -149,7 +149,7 @@ else {
 
 </a>
 
-<ul id="products" class="collapse">
+<ul id="companies" class="collapse">
 
 <li>
 <a href="index.php?insert_mcompanies"> Insert Mobile Companies </a>
@@ -161,12 +161,12 @@ else {
 
 </ul>
 
-</li><!-- Products li Ends -->
+</li><!-- companies li Ends -->
 
 
-<li><!-- Bulk Products li Starts -->
+<li><!-- Models li Starts -->
 
-<a href="#" data-toggle="collapse" data-target="#bulkproducts">
+<a href="#" data-toggle="collapse" data-target="#models">
 
 <i class="fa fa-fw fa-table"></i> Mobile Models
 
@@ -175,7 +175,7 @@ else {
 
 </a>
 
-<ul id="bulkproducts" class="collapse">
+<ul id="models" class="collapse">
 
 <li>
 <a href="index.php?insert_mmodels"> Insert Mobile Models </a>
@@ -187,7 +187,34 @@ else {
 
 </ul>
 
-</li><!-- Bulk Products li Ends -->
+</li><!-- Models li Ends -->
+
+
+<li><!-- Pincode li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#pincodes">
+
+<i class="fa fa-fw fa-table"></i> Available Pincodes
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="pincodes" class="collapse">
+
+<li>
+<a href="index.php?insert_pincodes"> Insert New Pincode </a>
+</li>
+
+<li>
+<a href="index.php?view_pincodes"> View Available Pincodes </a>
+</li>
+
+</ul>
+
+</li><!-- Pincode li Ends -->
+
 
 
 <li><!-- li Starts -->

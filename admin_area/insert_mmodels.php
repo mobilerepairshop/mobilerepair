@@ -159,11 +159,11 @@ $.ajax({
   type: 'POST',
   data: {"mmodel":arr},
   success: function(response){
-      alert(response)
     if(response != "400")
     {
       alert("Mobile Model Added Successfully")
-      window.setTimeout(function(){location.reload()},1000)
+      window.open('index.php?view_mmodels','_self');
+
     }
   }
 })
