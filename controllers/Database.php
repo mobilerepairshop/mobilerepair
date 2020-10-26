@@ -4,7 +4,7 @@ class Database{
 	
 	private $connection;
 	public function connect_db(){
-		$this->connection = mysqli_connect('localhost', 'root', '', 'mobilerep');
+		$this->connection = mysqli_connect('localhost', 'root', '', 'mobilerepair');
 		if(mysqli_connect_error()){
 			return die("Database Connection Failed" . mysqli_connect_error() . mysqli_connect_errno());
         }

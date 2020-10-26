@@ -154,6 +154,12 @@ if(isset($_GET['insert_pincodes'])){
 include("insert_pincodes.php");
 
 }
+
+if(isset($_GET['view_requests'])){
+
+include("view_requests.php");
+
+}
 ?>
 
 </div><!-- container-fluid Ends -->
