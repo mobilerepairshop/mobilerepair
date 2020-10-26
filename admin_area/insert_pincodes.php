@@ -6,7 +6,7 @@
 
 <li class="active" >
 
-<i class="fa fa-dashboard" ></i> Dashboard / Insert Mobile Companies
+<i class="fa fa-dashboard" ></i> Dashboard / Insert Available Pincode
 
 </li>
 
@@ -28,7 +28,7 @@
 
 <h3 class="panel-title" >
 
-<i class="fa fa-money fa-fw" ></i> Insert Mobile Companies
+<i class="fa fa-money fa-fw" ></i> Insert Available Pincode
 
 </h3>
 
@@ -42,11 +42,11 @@
 
 <form method="post" enctype="multipart/form-data" id="mcompany">
     <div class="form-container">
-        <p class="includedet">Please Enter Company Details</p><br>
+        <p class="includedet">Please Enter Pincode Details</p><br>
 
-        <input type="text" id="cname1" name="cname1" placeholder="Enter Company 1 Name*" onfocus="addCompany()"><br><br>
+        <input type="text" id="pincode1" name="pincode1" placeholder="Enter Pincode 1 *" onfocus="addPincode()"><br><br>
         
-        <div id="cdetails"> </div>
+        <div id="pdetails"> </div>
 
         <button class="form-btn" id="submit">Submit</button>
     </div>
@@ -66,11 +66,11 @@
    
 <script>
 var ctr = 2
-function addCompany()
+function addPincode()
 {
     // alert($("#"+id).val())
-    var s = '<input type="text" id="cname'+ctr+'" name="cname'+ctr+'" placeholder="Enter Company '+ctr+' Name*" onfocus="addCompany()"><br><br>'
-    $("#cdetails").append(s)
+    var s = '<input type="text" id="pincode'+ctr+'" name="pincode'+ctr+'" placeholder="Enter Pincode '+ctr+' *" onfocus="addPincode()"><br><br>'
+    $("#pdetails").append(s)
     ctr+=1
 }
 
@@ -106,25 +106,26 @@ if(sid==null)
 $("#submit").click(function() {
 
     var arr=[]
-    arr[0]= $('#cname1').val()
+    arr[0]= $('#pincode1').val()
     for(let i =1;i<ctr;i++)
     {
-        var x = '#cname'+(i+1)
+        var x = '#pincode'+(i+1)
         if($(x).val() != "" && $(x).val() != undefined)
         {
             arr.push($(x).val())
         }
     }
-
+alert(arr)
 $.ajax({
-  url: './api/submitcname.php',
+  url: './api/submitpincode.php',
   type: 'POST',
-  data: {"cname":arr},
+  data: {"pincodes":arr},
   success: function(response){
+      alert(response)
     if(response != "400")
     {
-      alert("Company Added Successfully")
-      window.open('index.php?view_mcompanies','_self');
+      alert("Pincode Added Successfully")
+      window.open('index.php?view_pincodes','_self');
     }
   }
 })

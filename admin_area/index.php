@@ -131,6 +131,29 @@ include("insert_mmodels.php");
 
 }
 
+if(isset($_GET['view_pincodes'])){
+
+include("view_pincodes.php");
+
+}
+
+if(isset($_GET['delete_pincodes'])){
+
+include("delete_pincodes.php");
+
+}
+
+if(isset($_GET['edit_pincodes'])){
+
+include("edit_pincodes.php");
+
+}
+    
+if(isset($_GET['insert_pincodes'])){
+
+include("insert_pincodes.php");
+
+}
 ?>
 
 </div><!-- container-fluid Ends -->

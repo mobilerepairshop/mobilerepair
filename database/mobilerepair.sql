@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2020 at 11:30 PM
+-- Generation Time: Oct 26, 2020 at 09:04 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -94,6 +94,25 @@ INSERT INTO `mobilemodel` (`mmid`, `mmname`, `mcid`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pincode`
+--
+
+CREATE TABLE `pincode` (
+  `pid` int(50) NOT NULL,
+  `pincode` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pincode`
+--
+
+INSERT INTO `pincode` (`pid`, `pincode`) VALUES
+(1, '411033'),
+(2, '411017');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `session`
 --
 
@@ -148,6 +167,12 @@ ALTER TABLE `mobilemodel`
   ADD KEY `mcid` (`mcid`);
 
 --
+-- Indexes for table `pincode`
+--
+ALTER TABLE `pincode`
+  ADD PRIMARY KEY (`pid`);
+
+--
 -- Indexes for table `session`
 --
 ALTER TABLE `session`
@@ -182,6 +207,12 @@ ALTER TABLE `mobilecompany`
 --
 ALTER TABLE `mobilemodel`
   MODIFY `mmid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `pincode`
+--
+ALTER TABLE `pincode`
+  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
