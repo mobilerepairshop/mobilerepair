@@ -7,6 +7,7 @@ $problems = $_POST['problems'];
 
 require_once("../admin_area/includes/db.php");
 
+// echo json_encode($problems);
 $query = "select * from requests";
 $res = mysqli_query($con,$query);
 $rid = mysqli_num_rows($res) + 1;
