@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2020 at 09:04 AM
+-- Generation Time: Oct 27, 2020 at 06:58 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -113,6 +113,51 @@ INSERT INTO `pincode` (`pid`, `pincode`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `problems`
+--
+
+CREATE TABLE `problems` (
+  `rid` int(100) NOT NULL,
+  `problem` varchar(500) NOT NULL,
+  `subproblem` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `problems`
+--
+
+INSERT INTO `problems` (`rid`, `problem`, `subproblem`) VALUES
+(1, 'Damage Problem', 'waterdamage'),
+(1, 'Memory Card Problem', 'detectionerror'),
+(2, 'Specify Own Problem', ''),
+(3, 'Network Related Problem', 'networkerror'),
+(3, 'Common Hardware Problem', 'micerror');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `rid` int(100) NOT NULL,
+  `pincode` varchar(50) NOT NULL,
+  `mcname` varchar(50) NOT NULL,
+  `mmodel` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`rid`, `pincode`, `mcname`, `mmodel`) VALUES
+(1, '411033', 'Samsung', 'Galaxy M30s'),
+(2, '411017', 'Nokia', '6.1'),
+(3, '411017', 'Apple', 'iPhone 12 pro');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `session`
 --
 
@@ -137,7 +182,9 @@ CREATE TABLE `session_admin` (
 --
 
 INSERT INTO `session_admin` (`uid`, `sesid`) VALUES
+(0, '0f5af3a7ba1e021970a5c1e41dec83ec'),
 (0, '3dd77484350bbeed4711fc865d087fde'),
+(0, '4b5b54ef1fc3344bb24ebf06bd9e90e1'),
 (0, '79bba4ba3d0913878c7775527ac95f2f'),
 (0, 'd97acae31d606b38a498d5e32368303e'),
 (0, 'dd4d28375c51b97b0e559db89f6c79f0'),
@@ -171,6 +218,12 @@ ALTER TABLE `mobilemodel`
 --
 ALTER TABLE `pincode`
   ADD PRIMARY KEY (`pid`);
+
+--
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`rid`);
 
 --
 -- Indexes for table `session`
