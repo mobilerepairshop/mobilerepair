@@ -282,6 +282,47 @@
 }
     var sid = getCookie("sid");
     console.log(sid)
+    function groupArrays(array)
+    {
+        groups = Object.create(null),
+        grouped = [];
+        
+        array.forEach(function (o) {
+            console.log(o)
+            if (!groups[o.rid]) {
+                groups[o.rid] = [[],[],[],[],[],[],[],[],[]];
+                
+                grouped.push({ 
+                  group: o.rid,
+                  problem: groups[o.rid][0],
+                  subproblem:groups[o.rid][1],
+                  mcname:groups[o.rid][2],
+                  mmodel:groups[o.rid][3],
+                  created_date:groups[o.rid][4],
+                  estprice:groups[o.rid][5],
+                  status:groups[o.rid][6],
+                  calprice:groups[o.rid][7],
+                  rid:groups[o.rid][8]
+                  });
+              
+            }
+            console.log(o.mcname)
+            groups[o.rid][0].push(o.problem);
+            groups[o.rid][1].push(o.subproblem);
+            
+
+
+            //console.log(groups[o.rid])
+        });
+        
+        return grouped
+    }
+    function groupArrayOfObjects(list, key) {
+      return list.reduce(function(rv, x) {
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv;
+      }, {});
+    };
     $(document).ready(function()
     {
         $.ajax({
@@ -291,58 +332,57 @@
         success:function(para)
         {
             $(".mycards").empty()
-            console.log(para)
             if(para==400)
             {
                 console.log(400)
             }
             else
             {
-                
-                para = $.parseJSON(para)
                 console.log(para)
+                para = $.parseJSON(para)
+                var groupedPeople=groupArrayOfObjects(para,"rid");
+                console.log("After process - ")
+                console.log(groupedPeople)
+               flag=0
                 s1 = ""
                 rids = []
-                for(let i=0;i<para.length;i++)
+                var size = Object.keys(groupedPeople).length;
+                console.log(size)
+                for(let i=1;i<=size;i++)
                 {
-                    if(!rids.includes(para[i][8]))
-                    {
-                        rids.push(para[i][8]); 
-                        s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:100%;">'
-                        s1+='<tr><td class="ordhead">Problem</td> <td>'+para[i][0]+'</td> </tr>'
-                        s1+='<tr><td class="ordhead">Sub-Problem</td> <td>'+para[i][1]+'</td> </tr>'
-                        s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+para[i][2]+'</td></tr>'
-                        s1+='<tr><td class="ordhead">Mobile Model</td><td>'+para[i][3]+'</td></tr>'
-                        s1+='<tr><td class="ordhead">Date Requested</td><td>'+para[i][4]+'</td> </tr>'
-                        s1+='<tr><td class="ordhead">Estimated Price</td><td>'+para[i][5]+'</td> </tr>'
-                        s1+='</table></div>'
-                        s1+='<div class="col-sm-6" ><table style="width:110%;">'
-                        s1+='<tr><td class="ordhead">Status</td> <td>'+para[i][6]+'</td></tr>'
-                        s1+='<tr><td class="ordhead">Calculated Price</td> <td>'+para[i][7]+'</td> </tr>'
-                        s1+='<tr><td class="ordhead">Delivery(days)</td><td>3</td></tr>'
-                        s1+='<tr><td><button class="btn btn-primary">View Note</button></td><td><button class="btn btn-success">Select Pay Method</button></td><td><button class="btn btn-danger">Cancel</button></td></tr>'
-                        s1+='</table></div></div></div>'
-                    }
-                    else
-                    {
-                        s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:100%;">'
-                        s1+='<tr><td class="ordhead">Problem</td> <td>'+para[i][0]+'</td> </tr>'
-                        s1+='<tr><td class="ordhead">Sub-Problem</td> <td>'+para[i][1]+'</td> </tr>'
-                        s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+para[i][2]+'</td></tr>'
-                        s1+='<tr><td class="ordhead">Mobile Model</td><td>'+para[i][3]+'</td></tr>'
-                        s1+='<tr><td class="ordhead">Date Requested</td><td>'+para[i][4]+'</td> </tr>'
-                        s1+='<tr><td class="ordhead">Estimated Price</td><td>'+para[i][5]+'</td> </tr>'
-                        s1+='</table></div>'
-                        s1+='<div class="col-sm-6" ><table style="width:110%;">'
-                        s1+='<tr><td class="ordhead">Status</td> <td>---</td></tr>'
-                        s1+='<tr><td class="ordhead">Calculated Price</td> <td>---</td> </tr>'
-                        s1+='<tr><td class="ordhead">Delivery(days)</td><td>---</td></tr>'
-                        s1+='<tr><td class="ordhead">Duplicate</td><td>Yes</td></tr>'
-                        s1+='</table></div></div></div>'
-                    }
-            
+                  flag=0
+                  var innersize = Object.keys(groupedPeople[i]).length;
+                  console.log("Inner Size - ",innersize)
+                  s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:100%;">'
+                  for(let j=0;j<innersize;j++)
+                  {
+                    // console.log(i,j)
+                      console.log(groupedPeople[i][j].problem)
+                       
+                        s1+='<tr><td class="ordhead">Problem'+j+'</td> <td>'+groupedPeople[i][j].problem+'</td> </tr>'
+                        s1+='<tr><td class="ordhead">Sub-Problem'+j+'</td> <td>'+groupedPeople[i][j].subproblem+'</td> </tr>'
+                        if(j==innersize-1)
+                        {
+                          s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+groupedPeople[i][j].mcname+'</td></tr>'
+                          s1+='<tr><td class="ordhead">Mobile Model</td><td>'+groupedPeople[i][j].mmodel+'</td></tr>'
+                          s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[i][j].created_date+'</td> </tr>'
+                          s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[i][j].estprice+'</td> </tr>'
+                          s1+='</table></div>'
+                          s1+='<div class="col-sm-6" ><table style="width:110%;">'
+                          s1+='<tr><td class="ordhead">Status</td> <td>'+groupedPeople[i][j].status+'</td></tr>'
+                          s1+='<tr><td class="ordhead">Calculated Price</td> <td>'+groupedPeople[i][j].calprice+'</td> </tr>'
+                          s1+='<tr><td class="ordhead">Delivery(days)</td><td>3</td></tr>'
+                          s1+='<tr><td><button class="btn btn-primary">View Note</button></td><td><button class="btn btn-success">Select Pay Method</button></td><td><button class="btn btn-danger">Cancel</button></td></tr>'
+                          s1+='</table></div></div>'
+                          flag=1
+                        }
+
+                  }
+                  s1+='</div>'
+
                 }
-                    $(".mycards").append(s1)
+                $(".mycards").append(s1)
+                              
             }
             
         }
@@ -352,10 +392,7 @@
 
 
     })
-    // $("#editable-select").on('change','select',function () { alert('hello'); });
-    // $('#editable-select').on('select.editable-select', function (e, li) {
-      
-    // })
+  
     
 
   </script>
