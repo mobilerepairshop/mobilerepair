@@ -19,17 +19,17 @@
                     while ($data = $result->fetch_assoc()) 
                     {
                         array_push($mc,
-                            array(
-                                $data["problem"],
-                                $data["subproblem"],
-                                $data["mcname"],
-                                $data["mmodel"],
-                                $data["created_date"],
-                                $data["estprice"],
-                                $data["status"],
-                                $data["calprice"],
-                                $data["rid"]
-                            ));
+                            [
+                                "problem"=>$data["problem"],
+                                "subproblem"=>$data["subproblem"],
+                                "mcname"=>$data["mcname"],
+                                "mmodel"=>$data["mmodel"],
+                                "created_date"=>$data["created_date"],
+                                "estprice"=>$data["estprice"],
+                                "status"=>$data["status"],
+                                "calprice"=>$data["calprice"],
+                                "rid"=>$data["rid"]
+                            ]);
                     }
                     return $mc;
                 }
