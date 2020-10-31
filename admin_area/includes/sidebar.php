@@ -259,7 +259,6 @@ else {
 
 <i class="fa fa-fw fa-caret-down"></i>
 
-
 </a>
 
 <ul id="enquiries" class="collapse">

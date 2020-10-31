@@ -57,19 +57,20 @@ else {
 <thead><!-- thead Starts -->
 
 <tr>
-<th>User Image</th>
-
 <th>User Name</th>
 
-<th>User Email</th>
+<th>Brand</th>
 
-<th>User Address</th>
+<th>Model</th>
 
-<th>User Contact</th>
+<th>Repair Price </th>
+
+<th>Area Pincode</th>
+
+<th>Request Date</th>
 
 <th>Action</th>
 
-<th>Delete Enquiry</th>
 
 
 </tr>
@@ -80,64 +81,43 @@ else {
 
 <?php
 
-$get_admin = "select * from admins";
 
-$run_admin = mysqli_query($con,$get_admin);
+$get_enquiries = "SELECT * FROM requests INNER JOIN users ON users.uid = requests.uid  where  requests.status=1";
+
+$run_admin = mysqli_query($con,$get_enquiries);
 
 while($row_admin = mysqli_fetch_array($run_admin)){
+    
+$username = $row_admin['username'];
 
-$admin_id = $row_admin['admin_id'];
+$Brand = $row_admin['mcname'];
 
-$admin_name = $row_admin['admin_name'];
+$Model = $row_admin['mmodel'];
 
-$admin_email = $row_admin['admin_email'];
+$price = $row_admin['estprice'];
 
-$admin_image = $row_admin['admin_image'];
+$Area_Pincode = $row_admin['pincode'];
 
-$admin_country = $row_admin['admin_address'];
-
-$admin_job = $row_admin['admin_contact'];
-
-
-
-
+$req_date = $row_admin['created_date'];
 
 ?>
 
 <tr>
-    
-<td><img src="admin_images/<?php echo $admin_image; ?>" width="60" height="60" ></td>
 
-<td><?php echo $admin_name; ?></td>
 
-<td><?php echo $admin_email; ?></td>
+<td><?php echo $username; ?></td>
 
-<td><?php echo $admin_country; ?></td>
+<td><?php echo $Brand; ?></td>
 
-<td><?php echo $admin_job; ?></td>
-<td>
-<input type="button" name="assign" value="Assign" class="btn btn-primary form-control"></td>
+<td><?php echo $Model; ?></td>
 
-<td>
-<?php 
-if($admin_id == 0)
-{
-    echo "<b>SuperAdmin</b>";
-}
-else
-{
-?>
+<td><?php echo $price; ?></td>
 
-<a href="index.php?user_delete=<?php echo $admin_id; ?>" >
+<td><?php echo $Area_Pincode; ?></td>
 
-<i class="fa fa-trash-o" ></i> Delete
+<td><?php echo $req_date; ?></td>
 
-</a>
-<?php
-}
-?>
-
-</td>
+<td><input type="button" name="assign" value="Assign" class="btn btn-primary form-control"></td>
 
 
 </tr>
