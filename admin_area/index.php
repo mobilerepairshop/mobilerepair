@@ -170,9 +170,14 @@ if(isset($_GET['insert_user'])){
     include("insert_user.php");
 }
     
-    if(isset($_GET['view_users'])){
+if(isset($_GET['view_users'])){
     
     include("view_users.php");
+}
+
+if(isset($_GET['view_enquiries'])){
+    
+    include("view_enquiries.php");
 }
     
 ?>

@@ -253,6 +253,31 @@ else {
 
 <li><!-- li Starts -->
 
+<a href="#" data-toggle="collapse" data-target="#enquiries">
+
+<i class="fa fa-envelope-o"></i> Active Enquiries 
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="enquiries" class="collapse">
+
+<li>
+<a href="index.php?view_enquiries"> View Enquiries </a>
+</li>
+
+<li>
+<a href="index.php?view_enquiries"> Track Enquiries </a>
+</li>
+
+</ul>
+
+</li><!-- li Ends -->
+
+<li><!-- li Starts -->
+
 <a href="./logout.php">
 
 <i class="fa fa-fw fa-power-off"></i> Log Out
