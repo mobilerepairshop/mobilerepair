@@ -1,21 +1,10 @@
 <?php
-
-if($_COOKIE['sid'] == null){
-
-echo "<script>window.open('login.php','_self')</script>";
-
-}
-
-else {
-
-
-?>
-
-<?php
+require_once('includes/db.php');
 
 if(isset($_GET['user_delete'])){
 
 $delete_id = $_GET['user_delete'];
+echo $delete_id;
 
 $delete_user = "delete from admins where admin_id='$delete_id'";
 
@@ -28,6 +17,10 @@ echo "<script>alert('One User Has Been Deleted')</script>";
 echo "<script>window.open('index.php?view_users','_self')</script>";
 
 }
+else{
+	echo "Error: " . $sql . "" . mysqli_error($con);
+ }
+
 
 
 }
@@ -35,4 +28,3 @@ echo "<script>window.open('index.php?view_users','_self')</script>";
 
 ?>
 
-<?php } ?>

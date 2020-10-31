@@ -160,6 +160,21 @@ if(isset($_GET['view_requests'])){
 include("view_requests.php");
 
 }
+if(isset($_GET['user_delete'])){
+
+    include("user_delete.php");
+    
+}
+if(isset($_GET['insert_user'])){
+
+    include("insert_user.php");
+}
+    
+    if(isset($_GET['view_users'])){
+    
+    include("view_users.php");
+}
+    
 ?>
 
 </div><!-- container-fluid Ends -->
