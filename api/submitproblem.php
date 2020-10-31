@@ -1,35 +1,57 @@
 <?php
-
-$pincode = $_POST['pincode'];
-$mcompany = $_POST['mcompany'];
-$mmodel = $_POST['mmodel'];
-$problems = $_POST['problems'];
+require('../controllers/Database.php');
+require('../controllers/UserAuth.php');
+require('../controllers/Orders.php');
 
 require_once("../admin_area/includes/db.php");
-
-// echo json_encode($problems);
-$query = "select * from requests";
-$res = mysqli_query($con,$query);
-$rid = mysqli_num_rows($res) + 1;
-
-$query = "insert into requests values(".$rid.",'".$pincode."','".$mcompany."','".$mmodel."')";
-$res = mysqli_query($con,$query);
-if($res)
+$success = $database->connect_db();
+if($success == '200')
 {
-    for($i=0;$i<count($problems);$i++)
+    
+    $pincode = $_POST['pincode'];
+    $mcompany = $_POST['mcompany'];
+    $mmodel = $_POST['mmodel'];
+    $problems = $_POST['problems'];
+    $estprice = $_POST['estprice'];
+    $created_date = date("d-m-Y");
+    $note = "NA";
+    $status = 0;
+    $calprice = '0';
+    $conn = $database->get_db();
+    $auth = new UserAuth($conn);
+    $id = $_POST['sid'];
+
+    $user = $auth->validateSession($id);
+    if($user[0]=='200')
     {
-        $query = "insert into problems values(".$rid.",'".$problems[$i][0]."','".$problems[$i][1]."')";
-        $res = mysqli_query($con,$query);
+        $query = "select * from requests";
+        $res = mysqli_query($conn,$query);
+        $rid = mysqli_num_rows($res) + 1;
+        
+        $query = "insert into requests values(".$rid.",'".$pincode."','".$mcompany."','".$mmodel."','".$user[1]."','".$estprice."','".$status."','".$calprice."','".$created_date."','".$note."')";
+        $res = mysqli_query($conn,$query);
+        if($res)
+        {
+            for($i=0;$i<count($problems);$i++)
+            {
+                $query = "insert into problems values(".$rid.",'".$problems[$i][0]."','".$problems[$i][1]."')";
+                $res = mysqli_query($conn,$query);
+            }
+            if($res)
+            {
+                echo "Request Sent Successfully";
+            }
+            else
+            {
+                echo "Error in Request";
+            }
+        }
     }
-    if($res)
-    {
-        echo "Request Sent Successfully";
-    }
-    else
-    {
-        echo "Error in Request";
-    }
+
+    
+
 }
+
 
 
 ?>

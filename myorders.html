@@ -240,6 +240,37 @@
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
 
+<!-- Note Modal -->
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Note from warehouse</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body note">
+           <p class="note-content"></p>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<!-- Note Modal End -->
+
+
+
+
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="jquery-editable-select/dist/jquery-editable-select.min.js"></script>
@@ -282,43 +313,44 @@
 }
     var sid = getCookie("sid");
     console.log(sid)
-    function groupArrays(array)
-    {
-        groups = Object.create(null),
-        grouped = [];
-        
-        array.forEach(function (o) {
-            console.log(o)
-            if (!groups[o.rid]) {
-                groups[o.rid] = [[],[],[],[],[],[],[],[],[]];
+    // function groupArrays(array)
+    // {
+    //     groups = Object.create(null),
+    //     grouped = [];
+    //     i=0
+    //     array.forEach(function (o) {
+    //         console.log(o)
+    //         if (!groups[i]) {
+    //             groups[i] = [[],[],[],[],[],[],[],[],[],[]];
                 
-                grouped.push({ 
-                  group: o.rid,
-                  problem: groups[o.rid][0],
-                  subproblem:groups[o.rid][1],
-                  mcname:groups[o.rid][2],
-                  mmodel:groups[o.rid][3],
-                  created_date:groups[o.rid][4],
-                  estprice:groups[o.rid][5],
-                  status:groups[o.rid][6],
-                  calprice:groups[o.rid][7],
-                  rid:groups[o.rid][8]
-                  });
+    //             grouped.push({ 
+    //               group: o.rid,
+    //               problem: groups[i][0],
+    //               subproblem:groups[i][1],
+    //               mcname:groups[i][2],
+    //               mmodel:groups[i][3],
+    //               created_date:groups[i][4],
+    //               estprice:groups[i][5],
+    //               status:groups[i][6],
+    //               calprice:groups[i][7],
+    //               rid:groups[i][8],
+    //               note:groups[i][9]
+    //               });
               
-            }
-            console.log(o.mcname)
-            groups[o.rid][0].push(o.problem);
-            groups[o.rid][1].push(o.subproblem);
-            
-
-
-            //console.log(groups[o.rid])
-        });
+    //         }
+          
+    //         groups[i][0].push(o.problem);
+    //         groups[i][1].push(o.subproblem);
+    //         i++;
+          
+    //     });
         
-        return grouped
-    }
+    //     return grouped
+    // }
     function groupArrayOfObjects(list, key) {
+      console.log("Key = ",key)
       return list.reduce(function(rv, x) {
+
         (rv[x[key]] = rv[x[key]] || []).push(x);
         return rv;
       }, {});
@@ -343,57 +375,85 @@
                 var groupedPeople=groupArrayOfObjects(para,"rid");
                 console.log("After process - ")
                 console.log(groupedPeople)
-               flag=0
+                flag=0
                 s1 = ""
                 rids = []
                 var size = Object.keys(groupedPeople).length;
                 console.log(size)
-                for(let i=1;i<=size;i++)
+                pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
+
+                console.log("Mapp - ",pro_desc.waterdamage)
+                for(x in groupedPeople)
                 {
-                  flag=0
-                  var innersize = Object.keys(groupedPeople[i]).length;
-                  console.log("Inner Size - ",innersize)
-                  s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:100%;">'
-                  for(let j=0;j<innersize;j++)
-                  {
-                    // console.log(i,j)
-                      console.log(groupedPeople[i][j].problem)
-                       
-                        s1+='<tr><td class="ordhead">Problem'+j+'</td> <td>'+groupedPeople[i][j].problem+'</td> </tr>'
-                        s1+='<tr><td class="ordhead">Sub-Problem'+j+'</td> <td>'+groupedPeople[i][j].subproblem+'</td> </tr>'
-                        if(j==innersize-1)
+                  if (groupedPeople.hasOwnProperty(x)) {
+                      console.log(x + " -> " + groupedPeople[x]);
+                      var innersize = Object.keys(groupedPeople[x]).length;
+                      console.log("Inner Size - ",innersize)
+                        s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:220%;">'
+                        for(let j=0;j<innersize;j++)
                         {
-                          s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+groupedPeople[i][j].mcname+'</td></tr>'
-                          s1+='<tr><td class="ordhead">Mobile Model</td><td>'+groupedPeople[i][j].mmodel+'</td></tr>'
-                          s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[i][j].created_date+'</td> </tr>'
-                          s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[i][j].estprice+'</td> </tr>'
-                          s1+='</table></div>'
-                          s1+='<div class="col-sm-6" ><table style="width:110%;">'
-                          s1+='<tr><td class="ordhead">Status</td> <td>'+groupedPeople[i][j].status+'</td></tr>'
-                          s1+='<tr><td class="ordhead">Calculated Price</td> <td>'+groupedPeople[i][j].calprice+'</td> </tr>'
-                          s1+='<tr><td class="ordhead">Delivery(days)</td><td>3</td></tr>'
-                          s1+='<tr><td><button class="btn btn-primary">View Note</button></td><td><button class="btn btn-success">Select Pay Method</button></td><td><button class="btn btn-danger">Cancel</button></td></tr>'
-                          s1+='</table></div></div>'
-                          flag=1
+                              console.log("Maps - ",pro_desc[groupedPeople[x][j].subproblem])
+                                s1+='<tr ><td class="ordhead">Problem'+j+'</td> <td>'+groupedPeople[x][j].problem+'</td> '
+                                s1+='<td class="ordhead">Sub-Problem'+j+'</td> <td>'+pro_desc[groupedPeople[x][j].subproblem]+'</td> </tr>'
+                                if(j==innersize-1)
+                                {
+                                    s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+groupedPeople[x][j].mcname+'</td>'
+                                    s1+='<td class="ordhead">Mobile Model</td><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
+
+                                    s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td> '  
+                                    s1+='<td class="ordhead">Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</td></tr>'
+
+                                    s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td>'
+                                    s1+='<td class="ordhead">Delivery(days)</td><td>3</td></tr>'
+
+                                    if(groupedPeople[x][j].status==0)
+                                    {
+                                        s1+='<tr><td class="ordhead">Status</td> <td>New Request</td></table></div><br>'
+                                    }
+                                    else
+                                    {
+                                        s1+='<tr><td class="ordhead">Status</td> <td>Price Calculated</td></table></div>'
+                                        s1+='<table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Warehouse Note</button></td><td><button class="btn btn-success">Select Payment Method</button></td><td><button class="btn btn-danger">Cancel Request</button></td></tr></table>'
+                                    }
+                                    
+                                    // s1+='</div></div>'
+                                    flag=1
+                                }
+                              
+                
+                              
                         }
-
+                        s1+='</div></div>'
+                  
                   }
-                  s1+='</div>'
-
                 }
                 $(".mycards").append(s1)
-                              
+                  
+
             }
             
         }
         
     })
         
+ 
+   
 
-
-    })
+  })
   
-    
+  function getnote(rid)
+  {
+    $.ajax({
+        url:'./api/getnote.php',
+        type:'POST',
+        data:{'rid':rid},
+        success:function(para)
+        {
+          console.log("This is note - ",para)
+          $('.note .note-content').html(para)
+        }
+    })
+  }
 
   </script>
 </body>
