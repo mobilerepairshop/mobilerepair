@@ -105,8 +105,15 @@ $run_r = mysqli_query($con,$get_r);
 
 $req = [];
 while($row_r=mysqli_fetch_array($run_r)){
-
-array_push($req,[$row_r['rid'],$row_r['pincode'],$row_r['mcname'],$row_r['mmodel'],$row_r['status']]);
+if($row_r['status'] == 0)
+{
+  $status = "Requested By User";
+}
+else if($row_r['status'] == 1)
+{
+  $status = "Quotation Sent";
+}
+array_push($req,[$row_r['rid'],$row_r['pincode'],$row_r['mcname'],$row_r['mmodel'],$status]);
 
 }
 
@@ -200,7 +207,7 @@ for($i=0;$i<count($req);$i++)
         {
             para = JSON.parse(para)
             $("#price").val(para[0])
-            // $("#note").append(para[1])
+            $("#note").val(para[1])
         }
     })
     }
