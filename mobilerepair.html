@@ -170,7 +170,7 @@
                 Request a Service
               </h3>
             </div>
-            <form class="form-mf">
+            <div class="form-mf">
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
@@ -432,10 +432,10 @@
                   <p style="color:#0078ff;">This price is variable. It can change after mobile inspection</p>
               </div> -->
                 <div class="col-md-12">
-                  <br><button type="submit" id="requestquotation" class="button button-a button-big button-rouded">Request Quotation</button>
+                  <br><button id="requestquotation" class="button button-a button-big button-rouded">Request Quotation</button>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
@@ -533,6 +533,25 @@
 
 
   <script>
+     function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+    
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null;
+    }
     $(document).ready(function()
     {
       $("#damageproblemlist").hide()
@@ -658,21 +677,32 @@ $("#requestquotation").click(function(){
   // alert($('[name="ownproblemradio"]').val())
   if(window.available)
   {
-    $.ajax(
+    var sid = getCookie("sid");
+    if(sid)
+    {
+      $.ajax(
       {
         url: "./api/submitproblem.php", 
         method:"POST",
         data:{
+          'sid':sid,
           'pincode':$("#pincode").val(),
           'mcompany':$("#editable-select").val(),
           'mmodel':$("#editable-select2").val(),
-          'problems':problems
+          'problems':problems,
+          'estprice':"1200",
           },
         success: function(para)
         {
           alert(para)
         }
       })
+    }
+    else
+    {
+
+    }
+ 
   }
   else
   {

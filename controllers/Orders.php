@@ -6,10 +6,26 @@
             public function __construct($db){
                 $this->conn = $db;
             }
+            public function getnote($rid)
+            {
+                $query = 'select note from requests where rid=?';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$rid);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $userinfo = array();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        $note = $data['note'];
+                    }
+                    return $note;
+                }
+            }
             public function getmyorders($uid)
             {
                 $mc = array();
-                $query = 'select problem,subproblem,mcname,mmodel,created_date,estprice,status,calprice,r.rid from requests as r inner join problems as p on r.rid=p.rid where r.uid=? order by r.rid desc';
+                $query = 'select problem,subproblem,mcname,mmodel,created_date,estprice,status,calprice,r.rid,note from requests as r inner join problems as p on r.rid=p.rid where r.uid=? order by r.rid desc';
                 $stmt = $this->conn->prepare($query);
                 $stmt->bind_param('i',$uid);
                 if($stmt->execute())
@@ -28,7 +44,8 @@
                                 "estprice"=>$data["estprice"],
                                 "status"=>$data["status"],
                                 "calprice"=>$data["calprice"],
-                                "rid"=>$data["rid"]
+                                "rid"=>$data["rid"],
+                                "note"=>$data["note"]
                             ]);
                     }
                     return $mc;
