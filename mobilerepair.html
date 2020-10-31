@@ -975,16 +975,15 @@ function shakeModal(){
 
     $(document).ready(function()
     {
-      $(".form-comments").hide()
 
       var sid = getCookie("sid");
       if(sid)
       {
-        alert(sid)
+        $(".form-comments").show()
       }
       else
       {
-        $("#form-comments").hide()
+        $(".form-comments").hide()
         openLoginModal()
         alert("not logged in")
       }
