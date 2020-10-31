@@ -142,7 +142,7 @@ else {
 
 <a href="#" data-toggle="collapse" data-target="#users">
 
-<i class="fa fa-fw fa-gear"></i> Users
+<i class="fa fa-user"></i>  Users
 
 <i class="fa fa-fw fa-caret-down"></i>
 
