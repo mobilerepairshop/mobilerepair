@@ -1,7 +1,7 @@
 <?php 
     // error_reporting(0);
     require_once('../includes/db.php');
-    require_once('../controllers/pincodes.php');
+    require_once('../controllers/problems.php');
     require('../../database/sqlconnection.php');
 
     $success = $database->connect_db();
@@ -9,11 +9,12 @@
     if($success == "200")
     {
         $connection = $database->get_db();
-        $post = new Pincode($connection);
-        for($i=0;$i<count($_POST['pincodes']);$i++)
+        $post = new Problems($connection);
+        for($i=0;$i<count($_POST['subproblems']);$i++)
         {
-            $post->pincode = $_POST['pincodes'][$i];
-            if($post->createPincode())
+            $post->problem_code = $_POST['subproblems'][$i][1];
+            $post->sub_problem = $_POST['subproblems'][$i][0];
+            if($post->createSubproblem())
             {
                 echo "200";
             }
