@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2020 at 06:56 AM
+-- Generation Time: Nov 01, 2020 at 07:21 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -149,7 +149,12 @@ CREATE TABLE `problem_master` (
 
 INSERT INTO `problem_master` (`problem_code`, `main_problem`) VALUES
 (2, 'Damage Problem'),
-(3, 'Touch &amp; Display Problem');
+(3, 'Touch &amp; Display Problem'),
+(5, 'Common Hardware Problem'),
+(6, 'Battery Problem'),
+(7, 'Network Related Problem'),
+(8, 'Memory Card Problem'),
+(9, 'Other Problems');
 
 -- --------------------------------------------------------
 
@@ -244,7 +249,25 @@ CREATE TABLE `subproblem_master` (
 
 INSERT INTO `subproblem_master` (`subproblem_code`, `problem_code`, `sub_problem`) VALUES
 (1, 2, 'Water Damage'),
-(2, 2, 'Mobile is Dead');
+(2, 2, 'Mobile is Dead'),
+(4, 3, 'Display is OK but partial/full touch not working'),
+(5, 3, 'Touch is OK display damaged'),
+(6, 3, 'Touch and display both not working'),
+(7, 5, 'Mic problem'),
+(8, 5, 'Speaker problem'),
+(9, 5, 'Loud speaker problem'),
+(10, 5, 'Ringer/Vibrator problem'),
+(11, 6, 'Battery is faulty'),
+(12, 6, 'Mobile is not charging'),
+(13, 7, 'Network not showing'),
+(14, 7, 'Only 1-2 tower showing in mobile'),
+(15, 7, 'SIM not detecting'),
+(16, 8, 'Memory card not detecting'),
+(17, 9, 'Power ON button not working'),
+(18, 9, 'Volume buttons are not working'),
+(19, 9, 'Camera not working'),
+(20, 9, 'Forgot screen lock/Password'),
+(21, 9, 'Flash new software');
 
 -- --------------------------------------------------------
 
@@ -376,13 +399,13 @@ ALTER TABLE `pincode`
 -- AUTO_INCREMENT for table `problem_master`
 --
 ALTER TABLE `problem_master`
-  MODIFY `problem_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `problem_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `subproblem_master`
 --
 ALTER TABLE `subproblem_master`
-  MODIFY `subproblem_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `subproblem_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
