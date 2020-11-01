@@ -11,6 +11,29 @@ echo "<script>window.open('login.php','_self')</script>";
 else {
 
 ?>
+<!-- Modal Start-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Delivery Boy<input type="text" placeholder="select Name" id="price">
+        Date<input type="text" placeholder="Enter Date " id="note">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="" name="quotes" class="btn btn-primary">Assign</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal End -->
 
 <div class="row" ><!-- 1 row Starts -->
 
@@ -117,7 +140,7 @@ $req_date = $row_admin['created_date'];
 
 <td><?php echo $req_date; ?></td>
 
-<td><input type="button" name="assign" value="Assign" class="btn btn-primary form-control"></td>
+<td><input type="button" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal"></td>
 
 
 </tr>
