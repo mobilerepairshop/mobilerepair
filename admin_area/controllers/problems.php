@@ -61,6 +61,37 @@ class Problems{
             }
 
         }
+
+        function createAllocations()
+        {
+            //write query
+            $query = 'insert into pricing_allocation(mmid,subproblem_code,price)
+            values(?,?,?)';
+
+            $stmt = $this->conn->prepare($query);
+            
+            // submitted values
+            $this->mmid=htmlspecialchars(strip_tags($this->mmid));
+            $this->subproblem_code=htmlspecialchars(strip_tags($this->subproblem_code));
+            $this->price=htmlspecialchars(strip_tags($this->price));
+
+
+            $stmt->bind_param('iis',
+            $this->mmid,
+            $this->subproblem_code,
+            $this->price
+           );
+        
+            if($stmt->execute())
+            {
+                return true;
+            }
+            else
+            {
+                return $this->conn->error;
+            }
+
+        }
 }
 
 
