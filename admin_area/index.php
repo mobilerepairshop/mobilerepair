@@ -209,6 +209,29 @@ include("view_subproblems.php");
 
 }
 
+if(isset($_GET['delete_allocation'])){
+
+include("delete_allocation.php");
+
+}
+
+if(isset($_GET['edit_allocation'])){
+
+include("edit_allocation.php");
+
+}
+    
+if(isset($_GET['insert_allocation'])){
+
+include("insert_allocation.php");
+
+}
+
+if(isset($_GET['view_allocation'])){
+
+include("view_allocation.php");
+
+}
 
 ?>
 

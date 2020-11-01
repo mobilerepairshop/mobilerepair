@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2020 at 07:21 AM
+-- Generation Time: Nov 01, 2020 at 11:12 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -109,6 +109,26 @@ CREATE TABLE `pincode` (
 INSERT INTO `pincode` (`pid`, `pincode`) VALUES
 (1, '411033'),
 (2, '411017');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pricing_allocation`
+--
+
+CREATE TABLE `pricing_allocation` (
+  `paid` int(255) NOT NULL,
+  `mmid` int(50) NOT NULL,
+  `subproblem_code` int(50) NOT NULL,
+  `price` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pricing_allocation`
+--
+
+INSERT INTO `pricing_allocation` (`paid`, `mmid`, `subproblem_code`, `price`) VALUES
+(3, 1, 1, '5500');
 
 -- --------------------------------------------------------
 
@@ -329,6 +349,12 @@ ALTER TABLE `pincode`
   ADD PRIMARY KEY (`pid`);
 
 --
+-- Indexes for table `pricing_allocation`
+--
+ALTER TABLE `pricing_allocation`
+  ADD PRIMARY KEY (`paid`);
+
+--
 -- Indexes for table `problem_master`
 --
 ALTER TABLE `problem_master`
@@ -394,6 +420,12 @@ ALTER TABLE `mobilemodel`
 --
 ALTER TABLE `pincode`
   MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pricing_allocation`
+--
+ALTER TABLE `pricing_allocation`
+  MODIFY `paid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `problem_master`

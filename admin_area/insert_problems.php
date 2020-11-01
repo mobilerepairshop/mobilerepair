@@ -121,7 +121,6 @@ $.ajax({
   type: 'POST',
   data: {"pname":arr},
   success: function(response){
-      alert(response)
     if(response != "400")
     {
       alert("Main Problem Added Successfully")

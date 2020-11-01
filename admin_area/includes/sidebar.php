@@ -266,6 +266,31 @@ else {
 </li><!-- Subproblems li Ends -->
 
 
+<li><!-- Allocation li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#allocation">
+
+<i class="fa fa-fw fa-table"></i> Pricing Allocation
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a>
+
+<ul id="allocation" class="collapse">
+
+<li>
+<a href="index.php?insert_allocation"> New Pricing Allocation </a>
+</li>
+
+<li>
+<a href="index.php?view_allocation"> View Pricing Allocations </a>
+</li>
+
+</ul>
+
+</li><!-- Allocation li Ends -->
+
+
 <li><!-- Requests li Starts -->
 
 <a href="index.php?view_requests" data-target="#requests">

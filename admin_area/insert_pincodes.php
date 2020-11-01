@@ -121,7 +121,6 @@ $.ajax({
   type: 'POST',
   data: {"pincodes":arr},
   success: function(response){
-      alert(response)
     if(response != "400")
     {
       alert("Pincode Added Successfully")

@@ -6,7 +6,7 @@
 
 <li class="active" >
 
-<i class="fa fa-dashboard" ></i> Dashboard / Insert Sub Problems
+<i class="fa fa-dashboard" ></i> Dashboard / New Allocation
 
 </li>
 
@@ -28,7 +28,7 @@
 
 <h3 class="panel-title" >
 
-<i class="fa fa-money fa-fw" ></i> Insert Sub Problems
+<i class="fa fa-money fa-fw" ></i> Create New Allocation
 
 </h3>
 
@@ -40,29 +40,34 @@
 
 <!-- Form Start -->
 
-<form method="post" enctype="multipart/form-data" id="subproblems">
+<form method="post" enctype="multipart/form-data" id="allocation">
     <div class="form-container">
-        <p class="includedet">Please Enter Sub Problem Details</p><br>
+        <p class="includedet">Please Enter All Details</p><br>
 
         <table class="table">
             <tr>
-                <th>Select Main Problem</th>
+                <th>Select Mobile Model</th>
                 <th>Select Sub Problem</th>
+                <th>Enter Pricing Details</th>
             </tr>
             <tr>
                 <td>
-                    <select name="problems1" id="problems1">
+                    <select name="models1" id="models1">
                     </select>
                 </td>
                 <td>
-                    <input type="text" id="subproblem1" name="subproblem1" placeholder="Enter Sub Problem 1 *" onfocus="addSubproblem()">
+                    <select name="subproblems1" id="subproblems1">
+                    </select>
+                </td>
+                <td>
+                    <input type="text" id="price1" name="price1" placeholder="Enter Price *" onfocus="addAllocation()">
                 </td>
             </tr>
         </table>
         
         
         
-        <div id="spdetails"> </div>
+        <div id="adetails"> </div>
 
         <button class="form-btn" id="submit">Submit</button>
     </div>
@@ -84,29 +89,49 @@
 $(document).ready(function(){
 
     $.ajax({
-        url:"api/getproblems.php",
+        url:"api/getmodels.php",
         type:"POST",
         success:function(para)
         {
             para = JSON.parse(para)
-            window.problems = para
+            window.models = para
             for(let i=0;i<para.length;i++)
             {
                 var str = '<option value="'+para[i][1]+'">'+para[i][0]+'</option>'
-                $("#problems1").append(str)
+                $("#models1").append(str)
             }
         }
-})
+    })
+
+    $.ajax({
+        url:"api/getsubproblems.php",
+        type:"POST",
+        success:function(para)
+        {
+            para = JSON.parse(para)
+            window.subproblems = para
+            for(let i=0;i<para.length;i++)
+            {
+                var str = '<option value="'+para[i][1]+'">'+para[i][0]+'</option>'
+                $("#subproblems1").append(str)
+            }
+        }
+    })
 })
 var ctr = 2
-function addSubproblem()
+function addAllocation()
 {
-    var s = '<tr><td><select name="problems'+ctr+'" id="problems'+ctr+'"></select></td><td><input type="text" id="subproblem'+ctr+'" name="subproblem'+ctr+'" placeholder="Enter Sub Problem '+ctr+' *" onfocus="addSubproblem()"></td></tr>'
+    var s = '<tr><td><select name="models'+ctr+'" id="models'+ctr+'"></select></td><td><select name="subproblems'+ctr+'" id="subproblems'+ctr+'"></select></td><td><input type="text" id="price'+ctr+'" name="price'+ctr+'" placeholder="Enter Price *" onfocus="addAllocation()"></td></tr>'
     $(".table").append(s)
-    for(let i=0;i<window.problems.length;i++)
+    for(let i=0;i<window.models.length;i++)
     {
-        var str = '<option value="'+window.problems[i][1]+'">'+window.problems[i][0]+'</option>'
-        $("#problems"+ctr).append(str)
+        var str = '<option value="'+window.models[i][1]+'">'+window.models[i][0]+'</option>'
+        $("#models"+ctr).append(str)
+    }
+    for(let i=0;i<window.subproblems.length;i++)
+    {
+        var str = '<option value="'+window.subproblems[i][1]+'">'+window.subproblems[i][0]+'</option>'
+        $("#subproblems"+ctr).append(str)
     }
     ctr+=1
 }
@@ -143,26 +168,30 @@ if(sid==null)
 $("#submit").click(function() {
 
     var arr=[]
-    arr[0]= [$('#subproblem1').val(),$('#problems1').val()]
+    arr[0]= [$('#models1').val(),$('#subproblems1').val(),$('#price1').val()]
     for(let i =1;i<ctr;i++)
     {
-        var x = '#subproblem'+(i+1)
-        var y = '#problems'+(i+1)
-        if($(x).val() != "" && $(x).val() != undefined)
+        var x = '#models'+(i+1)
+        var y = '#subproblems'+(i+1)
+        var z = '#price'+(i+1)
+
+        if($(x).val() != "" && $(x).val() != undefined && $(y).val() != "" && $(y).val() != undefined && $(z).val() != "" && $(z).val() != undefined)
         {
-            arr.push([$(x).val(),$(y).val()])
+            arr.push([$(x).val(),$(y).val(),$(z).val()])
         }
     }
     console.log(arr)
+    alert(arr)
 $.ajax({
-  url: './api/submitsubproblem.php',
+  url: './api/submitallocation.php',
   type: 'POST',
-  data: {"subproblems":arr},
+  data: {"allocations":arr},
   success: function(response){
+
     if(response != "400")
     {
-      alert("Sub Problem Added Successfully")
-      window.open('index.php?view_subproblems','_self');
+      alert("Allocation Done Successfully")
+      window.open('index.php?view_allocation','_self');
 
     }
   }
