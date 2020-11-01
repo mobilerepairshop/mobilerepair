@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2020 at 04:17 PM
+-- Generation Time: Nov 01, 2020 at 06:56 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -37,7 +37,14 @@ CREATE TABLE `admins` (
   `admin_contact` varchar(255) NOT NULL,
   `admin_address` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.admins: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`admins`' at line 1
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `admin_image`, `admin_contact`, `admin_address`) VALUES
+(0, 'Vinod Kumbhar', 'vk@gmail.com', '123', 'admin.jpg', '8421208111', 'Plot 34, NavVinayak Society, Jijai Nagar'),
+(5, 'Atharva ', 'atharvadeshpande99@gmail.com', '123', 'bed-1-2.jpg', '7218340969', 'KESHAV NAGAR, NEAR GULMOHAR MARKET');
 
 -- --------------------------------------------------------
 
@@ -49,7 +56,18 @@ CREATE TABLE `mobilecompany` (
   `mcid` int(50) NOT NULL,
   `mcname` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.mobilecompany: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`mobilecompany`' at line 1
+
+--
+-- Dumping data for table `mobilecompany`
+--
+
+INSERT INTO `mobilecompany` (`mcid`, `mcname`) VALUES
+(6, 'Samsung'),
+(7, 'Nokia'),
+(8, 'MI'),
+(9, 'Apple'),
+(10, 'LG'),
+(11, 'Lenovo');
 
 -- --------------------------------------------------------
 
@@ -62,7 +80,16 @@ CREATE TABLE `mobilemodel` (
   `mmname` varchar(500) NOT NULL,
   `mcid` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.mobilemodel: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`mobilemodel`' at line 1
+
+--
+-- Dumping data for table `mobilemodel`
+--
+
+INSERT INTO `mobilemodel` (`mmid`, `mmname`, `mcid`) VALUES
+(1, 'Galaxy M30s', 6),
+(2, '6.1', 7),
+(3, 'One Plus 6T', 8),
+(5, 'iPhone 12 pro', 9);
 
 -- --------------------------------------------------------
 
@@ -74,7 +101,14 @@ CREATE TABLE `pincode` (
   `pid` int(50) NOT NULL,
   `pincode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.pincode: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`pincode`' at line 1
+
+--
+-- Dumping data for table `pincode`
+--
+
+INSERT INTO `pincode` (`pid`, `pincode`) VALUES
+(1, '411033'),
+(2, '411017');
 
 -- --------------------------------------------------------
 
@@ -87,7 +121,35 @@ CREATE TABLE `problems` (
   `problem` varchar(500) NOT NULL,
   `subproblem` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.problems: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`problems`' at line 1
+
+--
+-- Dumping data for table `problems`
+--
+
+INSERT INTO `problems` (`rid`, `problem`, `subproblem`) VALUES
+(1, 'Damage Problem', 'waterdamage'),
+(1, 'Memory Card Problem', 'detectionerror'),
+(3, 'Network Related Problem', 'networkerror'),
+(3, 'Common Hardware Problem', 'micerror');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `problem_master`
+--
+
+CREATE TABLE `problem_master` (
+  `problem_code` int(11) NOT NULL,
+  `main_problem` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `problem_master`
+--
+
+INSERT INTO `problem_master` (`problem_code`, `main_problem`) VALUES
+(2, 'Damage Problem'),
+(3, 'Touch &amp; Display Problem');
 
 -- --------------------------------------------------------
 
@@ -104,9 +166,17 @@ CREATE TABLE `requests` (
   `estprice` varchar(100) DEFAULT NULL,
   `status` int(5) DEFAULT NULL,
   `calprice` varchar(100) DEFAULT NULL,
-  `created_date` date NOT NULL
+  `created_date` date NOT NULL,
+  `note` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.requests: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`requests`' at line 1
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`rid`, `pincode`, `mcname`, `mmodel`, `uid`, `estprice`, `status`, `calprice`, `created_date`, `note`) VALUES
+(1, '411033', 'Samsung', 'Galaxy M30s', 13, '1200', 1, '1200', '0000-00-00', ''),
+(3, '411017', 'Apple', 'iPhone 12 pro', 12, '500', 0, '600', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -118,7 +188,16 @@ CREATE TABLE `session` (
   `sesid` varchar(100) NOT NULL,
   `uid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.session: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`session`' at line 1
+
+--
+-- Dumping data for table `session`
+--
+
+INSERT INTO `session` (`sesid`, `uid`) VALUES
+('0b0b8346a7dce3087b22611ef6aca01c', 13),
+('1b3c38e1750ee8c2f26153653f00c06b', 13),
+('303a0123bfd52d744192ce9ee1b55ee4', 13),
+('97f45a691e6d058f9ffde46a9fad76e2', 13);
 
 -- --------------------------------------------------------
 
@@ -130,7 +209,42 @@ CREATE TABLE `session_admin` (
   `uid` int(10) NOT NULL,
   `sesid` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.session_admin: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`session_admin`' at line 1
+
+--
+-- Dumping data for table `session_admin`
+--
+
+INSERT INTO `session_admin` (`uid`, `sesid`) VALUES
+(0, '0f5af3a7ba1e021970a5c1e41dec83ec'),
+(0, '28393781e4aeab3ff0be23faedeac6c6'),
+(0, '3dd77484350bbeed4711fc865d087fde'),
+(0, '4b5b54ef1fc3344bb24ebf06bd9e90e1'),
+(0, '79bba4ba3d0913878c7775527ac95f2f'),
+(0, 'ce5cc8682656c72e0872efaf39cc01ac'),
+(0, 'd97acae31d606b38a498d5e32368303e'),
+(0, 'dd4d28375c51b97b0e559db89f6c79f0'),
+(0, 'e81863437dec2c1b189de3b52b56e1b8'),
+(0, 'fc64838637b86e6bbe6f8893569d65a0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subproblem_master`
+--
+
+CREATE TABLE `subproblem_master` (
+  `subproblem_code` int(11) NOT NULL,
+  `problem_code` int(11) NOT NULL,
+  `sub_problem` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subproblem_master`
+--
+
+INSERT INTO `subproblem_master` (`subproblem_code`, `problem_code`, `sub_problem`) VALUES
+(1, 2, 'Water Damage'),
+(2, 2, 'Mobile is Dead');
 
 -- --------------------------------------------------------
 
@@ -143,9 +257,24 @@ CREATE TABLE `users` (
   `password` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `create_datetime` date NOT NULL,
-  `username` varchar(50) DEFAULT NULL
+  `username` varchar(50) DEFAULT NULL,
+  `fullname` varchar(50) NOT NULL,
+  `phonenum` varchar(50) NOT NULL,
+  `address` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.users: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`users`' at line 1
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, `fullname`, `phonenum`, `address`) VALUES
+(8, '202cb962ac59075b964b07152d234b70', 'skbarshikar@mitaoe.ac.in', '2020-09-12', 'Sarang Barshikar', '', '', ''),
+(9, '202cb962ac59075b964b07152d234b70', 'ss@gmail.com', '2020-10-15', 'Swati Barshikar', '', '', ''),
+(11, '0acff50219f19374cc9f5c63ee8b76b7', 'sarang.barshikar123@gmail.com', '2020-10-17', 'Sarang Barshikar', '', '', ''),
+(12, 'da4c0997c1d9ca360671294a41769b68', 'barshikarswati@gmail.com', '2020-10-18', 'Swati Barshikar', '', '', ''),
+(13, 'bd7b470fe545c8a3d9d73f91afdb42b2', 'skbarshikar@mitaoe.ac.in', '2020-10-18', 'sarang kumar barshikar', '', '', ''),
+(14, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2020-10-31', 'Atharva Deshpande', '', '', ''),
+(16, 'a370453431cea129c9fcf1778c79e9a1', 'asdeshpande@mitaoe.ac.in', '2020-10-31', 'atharva deshpande', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -177,6 +306,12 @@ ALTER TABLE `pincode`
   ADD PRIMARY KEY (`pid`);
 
 --
+-- Indexes for table `problem_master`
+--
+ALTER TABLE `problem_master`
+  ADD PRIMARY KEY (`problem_code`);
+
+--
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
@@ -196,6 +331,12 @@ ALTER TABLE `session`
 ALTER TABLE `session_admin`
   ADD PRIMARY KEY (`sesid`),
   ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `subproblem_master`
+--
+ALTER TABLE `subproblem_master`
+  ADD PRIMARY KEY (`subproblem_code`);
 
 --
 -- Indexes for table `users`
@@ -229,13 +370,25 @@ ALTER TABLE `mobilemodel`
 -- AUTO_INCREMENT for table `pincode`
 --
 ALTER TABLE `pincode`
-  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `problem_master`
+--
+ALTER TABLE `problem_master`
+  MODIFY `problem_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `subproblem_master`
+--
+ALTER TABLE `subproblem_master`
+  MODIFY `subproblem_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
