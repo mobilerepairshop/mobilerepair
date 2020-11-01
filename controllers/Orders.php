@@ -55,7 +55,29 @@
                     return 400;
                 }
             }
-
+            public function getprobsubprobmap()
+            {
+                $mc = array();
+                // $query = 'select p.problem,p.subproblem,r.rid from requests as r inner join problems as p on r.rid=p.rid where r.uid=? AND r.rid=?';
+                $query = 'select p.problem_code,p.main_problem,s.subproblem_code,s.sub_problem from problem_master as p INNER JOIN subproblem_master as s on  p.problem_code=s.problem_code';
+                $stmt = $this->conn->prepare($query);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        
+                        array_push($mc,
+                            [
+                                "pcode"=>$data["problem_code"],
+                                "problem"=>$data["main_problem"],
+                                "spcode"=>$data["subproblem_code"],
+                                "subproblem"=>$data["sub_problem"],
+                            ]);
+                    }
+                    return $mc;
+                }
+            }
             public function getproblems($uid,$rid)
             {
                 $mc = array();
