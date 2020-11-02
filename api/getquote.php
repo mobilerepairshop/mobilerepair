@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require('../controllers/Database.php');
 require('../controllers/UserAuth.php');
 require('../controllers/Orders.php');
