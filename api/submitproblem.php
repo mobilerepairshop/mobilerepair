@@ -9,7 +9,6 @@ if($success == '200')
 {
     
     $pincode = $_POST['pincode'];
-    $mcompany = $_POST['mcompany'];
     $mmodel = $_POST['mmodel'];
     $problems = $_POST['problems'];
     $estprice = $_POST['estprice'];
@@ -24,12 +23,13 @@ if($success == '200')
     $user = $auth->validateSession($id);
     if($user[0]=='200')
     {
-        $query = "select * from requests";
+        $query = "select * from req";
         $res = mysqli_query($conn,$query);
         $rid = mysqli_num_rows($res) + 1;
         
-        $query = "insert into requests values(".$rid.",'".$pincode."','".$mcompany."','".$mmodel."','".$user[1]."','".$estprice."','".$status."','".$calprice."','".$created_date."','".$note."')";
+        $query = "insert into req values(".$rid.",'".$mmodel."','".$user[1]."','".$estprice."','".$status."','".$calprice."','".$created_date."','".$note."')";
         $res = mysqli_query($conn,$query);
+        echo $conn->error;
         if($res)
         {
             for($i=0;$i<count($problems);$i++)

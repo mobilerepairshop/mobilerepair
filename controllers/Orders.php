@@ -25,7 +25,7 @@
             public function getmyorders($uid)
             {
                 $mc = array();
-                $query = 'select problem,subproblem,mcname,mmodel,created_date,estprice,status,calprice,r.rid,note from requests as r inner join problems as p on r.rid=p.rid where r.uid=? order by r.rid desc';
+                $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmodel,created_date,estprice,status,calprice,r.rid,note from requests as r inner join problems as p on r.rid=p.rid where r.uid=? group by rid order by r.rid desc';
                 $stmt = $this->conn->prepare($query);
                 $stmt->bind_param('i',$uid);
                 if($stmt->execute())
@@ -46,6 +46,55 @@
                                 "calprice"=>$data["calprice"],
                                 "rid"=>$data["rid"],
                                 "note"=>$data["note"]
+                            ]);
+                    }
+                    return $mc;
+                }
+                else
+                {
+                    return 400;
+                }
+            }
+            public function getprobsubprobmap()
+            {
+                $mc = array();
+                // $query = 'select p.problem,p.subproblem,r.rid from requests as r inner join problems as p on r.rid=p.rid where r.uid=? AND r.rid=?';
+                $query = 'select p.problem_code,p.main_problem,s.subproblem_code,s.sub_problem from problem_master as p INNER JOIN subproblem_master as s on  p.problem_code=s.problem_code';
+                $stmt = $this->conn->prepare($query);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        
+                        array_push($mc,
+                            [
+                                "pcode"=>$data["problem_code"],
+                                "problem"=>$data["main_problem"],
+                                "spcode"=>$data["subproblem_code"],
+                                "subproblem"=>$data["sub_problem"],
+                            ]);
+                    }
+                    return $mc;
+                }
+            }
+            public function getproblems($uid,$rid)
+            {
+                $mc = array();
+                $query = 'select p.problem,p.subproblem,r.rid from requests as r inner join problems as p on r.rid=p.rid where r.uid=? AND r.rid=?';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('ii',$uid,$rid);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $userinfo = array();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        array_push($mc,
+                            [
+                                "problem"=>$data["problem"],
+                                "subproblem"=>$data["subproblem"],
+                                "rid"=>$data["rid"],
                             ]);
                     }
                     return $mc;

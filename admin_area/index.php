@@ -160,26 +160,78 @@ if(isset($_GET['view_requests'])){
 include("view_requests.php");
 
 }
-if(isset($_GET['user_delete'])){
+if(isset($_GET['delete_problems'])){
 
-    include("user_delete.php");
-    
-}
-if(isset($_GET['insert_user'])){
+include("delete_problems.php");
 
-    include("insert_user.php");
-}
-    
-if(isset($_GET['view_users'])){
-    
-    include("view_users.php");
 }
 
-if(isset($_GET['view_enquiries'])){
-    
-    include("view_enquiries.php");
+if(isset($_GET['edit_problems'])){
+
+include("edit_problems.php");
+
 }
     
+if(isset($_GET['insert_problems'])){
+
+include("insert_problems.php");
+
+}
+
+if(isset($_GET['view_problems'])){
+
+include("view_problems.php");
+
+}
+
+if(isset($_GET['delete_subproblems'])){
+
+include("delete_subproblems.php");
+
+}
+
+if(isset($_GET['edit_subproblems'])){
+
+include("edit_subproblems.php");
+
+}
+    
+if(isset($_GET['insert_subproblems'])){
+
+include("insert_subproblems.php");
+
+}
+
+if(isset($_GET['view_subproblems'])){
+
+include("view_subproblems.php");
+
+}
+
+if(isset($_GET['delete_allocation'])){
+
+include("delete_allocation.php");
+
+}
+
+if(isset($_GET['edit_allocation'])){
+
+include("edit_allocation.php");
+
+}
+    
+if(isset($_GET['insert_allocation'])){
+
+include("insert_allocation.php");
+
+}
+
+if(isset($_GET['view_allocation'])){
+
+include("view_allocation.php");
+
+}
+
 ?>
 
 </div><!-- container-fluid Ends -->

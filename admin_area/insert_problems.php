@@ -6,7 +6,7 @@
 
 <li class="active" >
 
-<i class="fa fa-dashboard" ></i> Dashboard / Insert Available Pincode
+<i class="fa fa-dashboard" ></i> Dashboard / Insert Main Problems
 
 </li>
 
@@ -28,7 +28,7 @@
 
 <h3 class="panel-title" >
 
-<i class="fa fa-money fa-fw" ></i> Insert Available Pincode
+<i class="fa fa-money fa-fw" ></i> Insert Main Problems
 
 </h3>
 
@@ -40,11 +40,11 @@
 
 <!-- Form Start -->
 
-<form method="post" enctype="multipart/form-data" id="mcompany">
+<form method="post" enctype="multipart/form-data" id="problems">
     <div class="form-container">
-        <p class="includedet">Please Enter Pincode Details</p><br>
+        <p class="includedet">Please Enter Main Problem</p><br>
 
-        <input type="text" id="pincode1" name="pincode1" placeholder="Enter Pincode 1 *" onfocus="addPincode()"><br><br>
+        <input type="text" id="pname1" name="pname1" placeholder="Enter Main Problem 1 *" onfocus="addProblem()"><br><br>
         
         <div id="pdetails"> </div>
 
@@ -66,10 +66,10 @@
    
 <script>
 var ctr = 2
-function addPincode()
+function addProblem()
 {
     // alert($("#"+id).val())
-    var s = '<input type="text" id="pincode'+ctr+'" name="pincode'+ctr+'" placeholder="Enter Pincode '+ctr+' *" onfocus="addPincode()"><br><br>'
+    var s = '<input type="text" id="pname'+ctr+'" name="pname'+ctr+'" placeholder="Enter Main Problem '+ctr+' *" onfocus="addProblem()"><br><br>'
     $("#pdetails").append(s)
     ctr+=1
 }
@@ -106,25 +106,25 @@ if(sid==null)
 $("#submit").click(function() {
 
     var arr=[]
-    arr[0]= $('#pincode1').val()
+    arr[0]= $('#pname1').val()
     for(let i =1;i<ctr;i++)
     {
-        var x = '#pincode'+(i+1)
+        var x = '#pname'+(i+1)
         if($(x).val() != "" && $(x).val() != undefined)
         {
             arr.push($(x).val())
         }
     }
-alert(arr)
+
 $.ajax({
-  url: './api/submitpincode.php',
+  url: './api/submitproblem.php',
   type: 'POST',
-  data: {"pincodes":arr},
+  data: {"pname":arr},
   success: function(response){
     if(response != "400")
     {
-      alert("Pincode Added Successfully")
-      window.open('index.php?view_pincodes','_self');
+      alert("Main Problem Added Successfully")
+      window.open('index.php?view_problems','_self');
     }
   }
 })

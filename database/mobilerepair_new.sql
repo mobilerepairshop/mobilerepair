@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2020 at 04:48 AM
+-- Generation Time: Nov 01, 2020 at 07:06 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -113,13 +113,34 @@ INSERT INTO `pincode` (`pid`, `pincode`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pricing_allocation`
+--
+
+CREATE TABLE `pricing_allocation` (
+  `paid` int(255) NOT NULL,
+  `mmid` int(50) NOT NULL,
+  `subproblem_code` int(50) NOT NULL,
+  `price` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pricing_allocation`
+--
+
+INSERT INTO `pricing_allocation` (`paid`, `mmid`, `subproblem_code`, `price`) VALUES
+(1, 1, 1, '1200'),
+(2, 1, 4, '1200');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `problems`
 --
 
 CREATE TABLE `problems` (
   `rid` int(100) NOT NULL,
-  `problem` varchar(500) NOT NULL,
-  `subproblem` varchar(500) NOT NULL
+  `problem` int(10) NOT NULL,
+  `subproblem` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -127,11 +148,56 @@ CREATE TABLE `problems` (
 --
 
 INSERT INTO `problems` (`rid`, `problem`, `subproblem`) VALUES
-(1, 'Damage Problem', 'waterdamage'),
-(1, 'Memory Card Problem', 'detectionerror'),
-(2, 'Specify Own Problem', ''),
-(3, 'Network Related Problem', 'networkerror'),
-(3, 'Common Hardware Problem', 'micerror');
+(1, 2, 1),
+(1, 3, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `problem_master`
+--
+
+CREATE TABLE `problem_master` (
+  `problem_code` int(11) NOT NULL,
+  `main_problem` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `problem_master`
+--
+
+INSERT INTO `problem_master` (`problem_code`, `main_problem`) VALUES
+(2, 'Damage Problem'),
+(3, 'Touch &amp; Display Problem'),
+(5, 'Common Hardware Problem'),
+(6, 'Battery Problem'),
+(7, 'Network Related Problem'),
+(8, 'Memory Card Problem'),
+(9, 'Other Problems');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `req`
+--
+
+CREATE TABLE `req` (
+  `rid` int(11) NOT NULL,
+  `mmid` int(11) DEFAULT NULL,
+  `uid` int(10) DEFAULT NULL,
+  `estprice` varchar(100) DEFAULT NULL,
+  `status` int(5) DEFAULT NULL,
+  `calprice` varchar(100) DEFAULT NULL,
+  `created_date` date NOT NULL ,
+  `note` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `req`
+--
+
+INSERT INTO `req` (`rid`, `mmid`, `uid`, `estprice`, `status`, `calprice`, `created_date`, `note`) VALUES
+(1, 1, 13, '1200', 0, '0', '0000-00-00', 'NA');
 
 -- --------------------------------------------------------
 
@@ -157,9 +223,8 @@ CREATE TABLE `requests` (
 --
 
 INSERT INTO `requests` (`rid`, `pincode`, `mcname`, `mmodel`, `uid`, `estprice`, `status`, `calprice`, `created_date`, `note`) VALUES
-(1, '411033', 'Samsung', 'Galaxy M30s', 13, '1200', 0, '1200', '0000-00-00', 'NA'),
-(2, '411017', 'Nokia', '6.1', 13, '1300', 0, '0', '0000-00-00', 'NA'),
-(3, '411017', 'Apple', 'iPhone 12 pro', 12, '500', 0, '600', '0000-00-00', 'NA');
+(1, '411033', 'Samsung', 'Galaxy M30s', 13, '1200', 1, '1200', '0000-00-00', ''),
+(3, '411017', 'Apple', 'iPhone 12 pro', 12, '500', 0, '600', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -180,6 +245,8 @@ INSERT INTO `session` (`sesid`, `uid`) VALUES
 ('0b0b8346a7dce3087b22611ef6aca01c', 13),
 ('1b3c38e1750ee8c2f26153653f00c06b', 13),
 ('303a0123bfd52d744192ce9ee1b55ee4', 13),
+('4d1755b0d74a40dab671ede7c8cd4a81', 13),
+('93336b98a5294fee4d50dfc5ed519c9d', 13),
 ('97f45a691e6d058f9ffde46a9fad76e2', 13);
 
 -- --------------------------------------------------------
@@ -199,13 +266,53 @@ CREATE TABLE `session_admin` (
 
 INSERT INTO `session_admin` (`uid`, `sesid`) VALUES
 (0, '0f5af3a7ba1e021970a5c1e41dec83ec'),
+(0, '28393781e4aeab3ff0be23faedeac6c6'),
 (0, '3dd77484350bbeed4711fc865d087fde'),
 (0, '4b5b54ef1fc3344bb24ebf06bd9e90e1'),
 (0, '79bba4ba3d0913878c7775527ac95f2f'),
 (0, 'ce5cc8682656c72e0872efaf39cc01ac'),
 (0, 'd97acae31d606b38a498d5e32368303e'),
 (0, 'dd4d28375c51b97b0e559db89f6c79f0'),
-(0, 'e81863437dec2c1b189de3b52b56e1b8');
+(0, 'e81863437dec2c1b189de3b52b56e1b8'),
+(0, 'fc64838637b86e6bbe6f8893569d65a0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subproblem_master`
+--
+
+CREATE TABLE `subproblem_master` (
+  `subproblem_code` int(11) NOT NULL,
+  `problem_code` int(11) NOT NULL,
+  `sub_problem` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subproblem_master`
+--
+
+INSERT INTO `subproblem_master` (`subproblem_code`, `problem_code`, `sub_problem`) VALUES
+(1, 2, 'Water Damage'),
+(2, 2, 'Mobile is Dead'),
+(4, 3, 'Display is OK but partial/full touch not working'),
+(5, 3, 'Touch is OK display damaged'),
+(6, 3, 'Touch and display both not working'),
+(7, 5, 'Mic problem'),
+(8, 5, 'Speaker problem'),
+(9, 5, 'Loud speaker problem'),
+(10, 5, 'Ringer/Vibrator problem'),
+(11, 6, 'Battery is faulty'),
+(12, 6, 'Mobile is not charging'),
+(13, 7, 'Network not showing'),
+(14, 7, 'Only 1-2 tower showing in mobile'),
+(15, 7, 'SIM not detecting'),
+(16, 8, 'Memory card not detecting'),
+(17, 9, 'Power ON button not working'),
+(18, 9, 'Volume buttons are not working'),
+(19, 9, 'Camera not working'),
+(20, 9, 'Forgot screen lock/Password'),
+(21, 9, 'Flash new software');
 
 -- --------------------------------------------------------
 
@@ -218,20 +325,24 @@ CREATE TABLE `users` (
   `password` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `create_datetime` date NOT NULL,
-  `username` varchar(50) DEFAULT NULL
+  `username` varchar(50) DEFAULT NULL,
+  `fullname` varchar(50) NOT NULL,
+  `phonenum` varchar(50) NOT NULL,
+  `address` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`) VALUES
-(7, '202cb962ac59075b964b07152d234b70', 'asdeshpande@mitaoe.ac.in', '2020-09-09', 'Atharva Deshpande'),
-(8, '202cb962ac59075b964b07152d234b70', 'skbarshikar@mitaoe.ac.in', '2020-09-12', 'Sarang Barshikar'),
-(9, '202cb962ac59075b964b07152d234b70', 'ss@gmail.com', '2020-10-15', 'Swati Barshikar'),
-(11, '0acff50219f19374cc9f5c63ee8b76b7', 'sarang.barshikar123@gmail.com', '2020-10-17', 'Sarang Barshikar'),
-(12, 'da4c0997c1d9ca360671294a41769b68', 'barshikarswati@gmail.com', '2020-10-18', 'Swati Barshikar'),
-(13, 'bd7b470fe545c8a3d9d73f91afdb42b2', 'skbarshikar@mitaoe.ac.in', '2020-10-18', 'sarang kumar barshikar');
+INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, `fullname`, `phonenum`, `address`) VALUES
+(8, '202cb962ac59075b964b07152d234b70', 'skbarshikar@mitaoe.ac.in', '2020-09-12', 'Sarang Barshikar', '', '', ''),
+(9, '202cb962ac59075b964b07152d234b70', 'ss@gmail.com', '2020-10-15', 'Swati Barshikar', '', '', ''),
+(11, '0acff50219f19374cc9f5c63ee8b76b7', 'sarang.barshikar123@gmail.com', '2020-10-17', 'Sarang Barshikar', '', '', ''),
+(12, 'da4c0997c1d9ca360671294a41769b68', 'barshikarswati@gmail.com', '2020-10-18', 'Swati Barshikar', '', '', ''),
+(13, 'bd7b470fe545c8a3d9d73f91afdb42b2', 'skbarshikar@mitaoe.ac.in', '2020-10-18', 'sarang kumar barshikar', '', '', ''),
+(14, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2020-10-31', 'Atharva Deshpande', '', '', ''),
+(16, 'a370453431cea129c9fcf1778c79e9a1', 'asdeshpande@mitaoe.ac.in', '2020-10-31', 'atharva deshpande', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -263,6 +374,24 @@ ALTER TABLE `pincode`
   ADD PRIMARY KEY (`pid`);
 
 --
+-- Indexes for table `pricing_allocation`
+--
+ALTER TABLE `pricing_allocation`
+  ADD PRIMARY KEY (`paid`);
+
+--
+-- Indexes for table `problem_master`
+--
+ALTER TABLE `problem_master`
+  ADD PRIMARY KEY (`problem_code`);
+
+--
+-- Indexes for table `req`
+--
+ALTER TABLE `req`
+  ADD PRIMARY KEY (`rid`);
+
+--
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
@@ -282,6 +411,12 @@ ALTER TABLE `session`
 ALTER TABLE `session_admin`
   ADD PRIMARY KEY (`sesid`),
   ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `subproblem_master`
+--
+ALTER TABLE `subproblem_master`
+  ADD PRIMARY KEY (`subproblem_code`);
 
 --
 -- Indexes for table `users`
@@ -315,13 +450,31 @@ ALTER TABLE `mobilemodel`
 -- AUTO_INCREMENT for table `pincode`
 --
 ALTER TABLE `pincode`
-  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pricing_allocation`
+--
+ALTER TABLE `pricing_allocation`
+  MODIFY `paid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `problem_master`
+--
+ALTER TABLE `problem_master`
+  MODIFY `problem_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `subproblem_master`
+--
+ALTER TABLE `subproblem_master`
+  MODIFY `subproblem_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

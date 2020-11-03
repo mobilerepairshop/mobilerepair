@@ -102,13 +102,13 @@
     <div class="container">
        <div class="col-md-8">
             <div class="row">
-                <div  style="width:30%;height:3vw;text-align: center;border:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('Active Order')">
+                <div class="active" style="width:30%;height:3vw;text-align: center;border:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('Active Order')">
                     Active Orders
                 </div>
-                <div style="width:30%;height:3vw;text-align: center;border-top:2px solid gray;border-bottom:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('Cancelled Order')">
+                <div class="cancel" style="width:30%;height:3vw;text-align: center;border-top:2px solid gray;border-bottom:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('Cancelled Order')">
                     Cancelled Orders
                 </div>
-                <div style="width:30%;height:3vw;text-align: center;border:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('History')">
+                <div class="history" style="width:30%;height:3vw;text-align: center;border:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('History')">
                     History
                 </div>
             </div>
@@ -266,7 +266,22 @@
     </div>
   </div>
 
-<!-- Note Modal End -->
+<!-- Problem Modal -->
+<div class="modal fade" id="problem">
+<div class="modal-dialog modal-dialog-centered modal-lg" >
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Your Request</h4>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body problem">
+    <table class="problem-content" style="width:110%;">
+
+    </table>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div></div></div></div>
 
 
 
@@ -313,128 +328,46 @@
 }
     var sid = getCookie("sid");
     console.log(sid)
-    // function groupArrays(array)
-    // {
-    //     groups = Object.create(null),
-    //     grouped = [];
-    //     i=0
-    //     array.forEach(function (o) {
-    //         console.log(o)
-    //         if (!groups[i]) {
-    //             groups[i] = [[],[],[],[],[],[],[],[],[],[]];
-                
-    //             grouped.push({ 
-    //               group: o.rid,
-    //               problem: groups[i][0],
-    //               subproblem:groups[i][1],
-    //               mcname:groups[i][2],
-    //               mmodel:groups[i][3],
-    //               created_date:groups[i][4],
-    //               estprice:groups[i][5],
-    //               status:groups[i][6],
-    //               calprice:groups[i][7],
-    //               rid:groups[i][8],
-    //               note:groups[i][9]
-    //               });
-              
-    //         }
-          
-    //         groups[i][0].push(o.problem);
-    //         groups[i][1].push(o.subproblem);
-    //         i++;
-          
-    //     });
-        
-    //     return grouped
-    // }
+    
     function groupArrayOfObjects(list, key) {
-      console.log("Key = ",key)
       return list.reduce(function(rv, x) {
 
         (rv[x[key]] = rv[x[key]] || []).push(x);
         return rv;
       }, {});
     };
-    $(document).ready(function()
+    function getproblems(rid)
     {
         $.ajax({
-        url:'./api/getmyorders.php',
-        type:'POST',
-        data:{'sid':sid},
-        success:function(para)
-        {
-            $(".mycards").empty()
-            if(para==400)
+            url:'./api/getproblems.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
             {
-                console.log(400)
-            }
-            else
-            {
-                console.log(para)
-                para = $.parseJSON(para)
-                var groupedPeople=groupArrayOfObjects(para,"rid");
-                console.log("After process - ")
-                console.log(groupedPeople)
-                flag=0
-                s1 = ""
-                rids = []
-                var size = Object.keys(groupedPeople).length;
-                console.log(size)
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
                 pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
 
-                console.log("Mapp - ",pro_desc.waterdamage)
-                for(x in groupedPeople)
-                {
-                  if (groupedPeople.hasOwnProperty(x)) {
-                      console.log(x + " -> " + groupedPeople[x]);
-                      var innersize = Object.keys(groupedPeople[x]).length;
-                      console.log("Inner Size - ",innersize)
-                        s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:220%;">'
-                        for(let j=0;j<innersize;j++)
-                        {
-                              console.log("Maps - ",pro_desc[groupedPeople[x][j].subproblem])
-                                s1+='<tr ><td class="ordhead">Problem'+j+'</td> <td>'+groupedPeople[x][j].problem+'</td> '
-                                s1+='<td class="ordhead">Sub-Problem'+j+'</td> <td>'+pro_desc[groupedPeople[x][j].subproblem]+'</td> </tr>'
-                                if(j==innersize-1)
-                                {
-                                    s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+groupedPeople[x][j].mcname+'</td>'
-                                    s1+='<td class="ordhead">Mobile Model</td><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
-
-                                    s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td> '  
-                                    s1+='<td class="ordhead">Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</td></tr>'
-
-                                    s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td>'
-                                    s1+='<td class="ordhead">Delivery(days)</td><td>3</td></tr>'
-
-                                    if(groupedPeople[x][j].status==0)
-                                    {
-                                        s1+='<tr><td class="ordhead">Status</td> <td>New Request</td></table></div><br>'
-                                    }
-                                    else
-                                    {
-                                        s1+='<tr><td class="ordhead">Status</td> <td>Price Calculated</td></table></div>'
-                                        s1+='<table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Warehouse Note</button></td><td><button class="btn btn-success">Accept and Pay</button></td><td><button class="btn btn-danger">Cancel Request</button></td></tr></table>'
-                                    }
-                                    
-                                    // s1+='</div></div>'
-                                    flag=1
-                                }
-                              
+               for(let i=0;i<para.length;i++)
+               {
+                    console.log(para[i].problem)
+                    
+                    s2+='<tr><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+pro_desc[para[i].subproblem]+'</td> </tr>'
+                    $('.problem-content').html(s2)
+               }
                 
-                              
-                        }
-                        s1+='</div></div>'
-                  
-                  }
-                }
-                $(".mycards").append(s1)
-                  
-
+                
             }
-            
-        }
-        
-    })
+        })
+    }
+    $(document).ready(function()
+    {
+        // if (screen.width <= 699) 
+        // {
+        //   document.location = "eg.html";
+        // }
+ 
         
  
    
@@ -455,6 +388,198 @@
     })
   }
 
+  var alterClass = function() {
+	  var ww = document.body.clientWidth;
+   
+	  if (ww < 600) {
+      $(".active").css("width","33%")
+      $(".active").css("height","15vw")
+      $(".cancel").css("width","33%")
+      $(".cancel").css("height","15vw")
+      $(".history").css("width","33%")
+      $(".history").css("height","15vw")
+      console.log("mobile")
+            $.ajax({
+              url:'./api/getmyorders.php',
+              type:'POST',
+              data:{'sid':sid},
+              success:function(para)
+              {
+                  $(".mycards").empty()
+                  if(para==400)
+                  {
+                      console.log(400)
+                  }
+                  else
+                  {
+                      console.log(para)
+                      para = $.parseJSON(para)
+                      var groupedPeople=groupArrayOfObjects(para,"rid");
+                      console.log("After process - ")
+                      console.log(groupedPeople)
+                      flag=0
+                      s1 = ""
+                      rids = []
+                      var size = Object.keys(groupedPeople).length;
+                      console.log(size)
+                      pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
+
+                      console.log("Mapp - ",pro_desc.waterdamage)
+                      for(x in groupedPeople)
+                      {
+                        if (groupedPeople.hasOwnProperty(x)) {
+                            console.log(x + " -> " + groupedPeople[x]);
+                            var innersize = Object.keys(groupedPeople[x]).length;
+                            console.log("Inner Size - ",innersize)
+                              s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:100%;">'
+                              for(let j=0;j<innersize;j++)
+                              {
+                                  console.log("Maps - ",groupedPeople[x][j].problem)
+                                      if(j==innersize-1)
+                                      {
+                                          s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+groupedPeople[x][j].mcname+'</td></tr>'
+                                          s1+='<tr><td class="ordhead">Mobile Model</td><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
+
+                                          s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td></tr>'  
+                                          s1+='<tr><td class="ordhead">Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</td></tr>'
+
+                                          s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td></tr>'
+                                          s1+='<tr><td class="ordhead">Delivery(days)</td><td>3</td></tr>'
+
+                                          if(groupedPeople[x][j].status==0)
+                                          {
+                                              s1+='<tr><td class="ordhead">Status</td> <td>New Request</td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                              s1+='<br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger">Cancel Request</button></td></tr></table></div></div>'
+                                          }
+                                          else
+                                          {
+                                              s1+='<tr><td class="ordhead">Status</td> <td>Price Calculated</td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                              s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success">Accept & Pay</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                          }
+                                          
+                                          // s1+='</div></div>'
+                                          flag=1
+                                      }
+                                    
+                      
+                                    
+                              }
+                              s1+='</div></div>'
+                        
+                        }
+                      }
+                      $(".mycards").append(s1)
+                        
+
+                  }
+                  
+              }
+              
+          })
+           	
+	  } 
+	  else if (ww >= 601) 
+	  {
+      $(".active").css("width","30%")
+      $(".active").css("height","3vw")
+      $(".cancel").css("width","30%")
+      $(".cancel").css("height","3vw")
+      $(".history").css("width","30%")
+      $(".history").css("height","3vw")
+        console.log("desktop")
+            $.ajax({
+            url:'./api/getmyorders.php',
+            type:'POST',
+            data:{'sid':sid},
+            success:function(para)
+            {
+                $(".mycards").empty()
+                if(para==400)
+                {
+                    console.log(400)
+                }
+                else
+                {
+                    console.log(para)
+                    para = $.parseJSON(para)
+                    var groupedPeople=groupArrayOfObjects(para,"rid");
+                    console.log("After process here is the thing - ")
+                    console.log(groupedPeople)
+                    flag=0
+                    s1 = ""
+                    rids = []
+                    var size = Object.keys(groupedPeople).length;
+                    console.log(size)
+                    pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
+
+                    console.log("Mapp - ",pro_desc.waterdamage)
+                    for(x in groupedPeople)
+                    {
+                      if (groupedPeople.hasOwnProperty(x)) {
+                          console.log(x + " -> " + groupedPeople[x]);
+                          var innersize = Object.keys(groupedPeople[x]).length;
+                          console.log("Inner Size - ",innersize)
+                            s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:220%;">'
+                            for(let j=0;j<innersize;j++)
+                            {
+                                console.log("Maps - ",groupedPeople[x][j].problem)
+                                    if(j==innersize-1)
+                                    {
+                                        s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+groupedPeople[x][j].mcname+'</td>'
+                                        s1+='<td class="ordhead">Mobile Model</td><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
+
+                                        s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td> '  
+                                        s1+='<td class="ordhead">Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</td></tr>'
+
+                                        s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td>'
+                                        s1+='<td class="ordhead">Delivery(days)</td><td>3</td></tr>'
+
+                                        if(groupedPeople[x][j].status==0)
+                                        {
+                                            s1+='<tr><td class="ordhead">Status</td> <td>New Request</td>'
+                                            s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
+                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger">Cancel Request</button></td></tr></table></div></div>'
+                                        }
+                                        else
+                                        {
+                                            s1+='<tr><td class="ordhead">Status</td> <td>Price Calculated</td>'
+                                            s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
+                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Warehouse Note</button></td><td><button class="btn btn-success">Select Payment Method</button></td><td><button class="btn btn-danger">Cancel Request</button></td></tr></table></div></div>'
+                                        }
+                                        
+                                        // s1+='</div></div>'
+                                        flag=1
+                                    }
+                                  
+                    
+                                  
+                            }
+                            s1+='</div></div>'
+                      
+                      }
+                    }
+                    $(".mycards").append(s1)
+                      
+
+                }
+                
+            }
+            
+        })
+    };
+      
+      var flag=0;
+      
+	};
+
+	$(window).resize(function(){
+      alterClass();
+      
+      	});
+	//Fire it when the page first loads:
+    alterClass();
   </script>
 </body>
 </html>

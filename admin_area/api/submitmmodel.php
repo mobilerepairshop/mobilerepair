@@ -1,7 +1,7 @@
 <?php 
     error_reporting(0);
     require_once('../includes/db.php');
-    require_once('./mobiles.php');
+    require_once('../controllers/mobiles.php');
     require('../../database/sqlconnection.php');
 
     $success = $database->connect_db();

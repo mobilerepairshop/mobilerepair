@@ -239,6 +239,81 @@ else {
 
 </li><!-- Pincode li Ends -->
 
+<li><!-- Problems li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#problems">
+
+<i class="fa fa-fw fa-table"></i> Main Problems
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="problems" class="collapse">
+
+<li>
+<a href="index.php?insert_problems"> Insert Main Problems </a>
+</li>
+
+<li>
+<a href="index.php?view_problems"> View Main Problems </a>
+</li>
+
+</ul>
+
+</li><!-- Problems li Ends -->
+
+<li><!-- Subproblems li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#subproblems">
+
+<i class="fa fa-fw fa-table"></i> Sub Problems
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="subproblems" class="collapse">
+
+<li>
+<a href="index.php?insert_subproblems"> Insert Sub Problems </a>
+</li>
+
+<li>
+<a href="index.php?view_subproblems"> View Sub Problems </a>
+</li>
+
+</ul>
+
+</li><!-- Subproblems li Ends -->
+
+
+<li><!-- Allocation li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#allocation">
+
+<i class="fa fa-fw fa-table"></i> Pricing Allocation
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a>
+
+<ul id="allocation" class="collapse">
+
+<li>
+<a href="index.php?insert_allocation"> New Pricing Allocation </a>
+</li>
+
+<li>
+<a href="index.php?view_allocation"> View Pricing Allocations </a>
+</li>
+
+</ul>
+
+</li><!-- Allocation li Ends -->
+
 
 <li><!-- Requests li Starts -->
 
