@@ -232,6 +232,22 @@ include("view_allocation.php");
 
 }
 
+if(isset($_GET['view_enquiries'])){
+
+    include("view_enquiries.php");
+    
+    }
+if(isset($_GET['insert_user'])){
+
+        include("insert_user.php");
+        
+    }
+if(isset($_GET['view_users'])){
+
+        include("view_users.php");
+            
+    }
+
 ?>
 
 </div><!-- container-fluid Ends -->
