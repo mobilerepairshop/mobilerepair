@@ -58,12 +58,11 @@ else {
 <thead><!-- thead Starts -->
 
 <tr>
+<th>User Image</th>
 
 <th>User Name</th>
 
 <th>User Email</th>
-
-<th>User Image</th>
 
 <th>User Address</th>
 
@@ -105,12 +104,12 @@ $admin_job = $row_admin['admin_contact'];
 ?>
 
 <tr>
+    
+<td><img src="admin_images/<?php echo $admin_image; ?>" width="60" height="60" ></td>
 
 <td><?php echo $admin_name; ?></td>
 
 <td><?php echo $admin_email; ?></td>
-
-<td><img src="admin_images/<?php echo $admin_image; ?>" width="60" height="60" ></td>
 
 <td><?php echo $admin_country; ?></td>
 

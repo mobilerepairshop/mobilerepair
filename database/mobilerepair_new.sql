@@ -188,7 +188,7 @@ CREATE TABLE `req` (
   `estprice` varchar(100) DEFAULT NULL,
   `status` int(5) DEFAULT NULL,
   `calprice` varchar(100) DEFAULT NULL,
-  `created_date` date NOT NULL DEFAULT current_timestamp(),
+  `created_date` date NOT NULL ,
   `note` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

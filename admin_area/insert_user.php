@@ -9,7 +9,7 @@ echo "<script>window.open('login.php','_self')</script>";
 }
 
 else {
-
+   
 ?>
 
 
@@ -157,6 +157,7 @@ else {
 </div><!-- 2 row Ends -->
 
 <?php
+require_once('includes/db.php');
 
 if(isset($_POST['submit'])){
 
@@ -176,7 +177,7 @@ $temp_admin_image = $_FILES['admin_image']['tmp_name'];
 
 move_uploaded_file($temp_admin_image,"admin_images/$admin_image");
 
-$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address) values ('$admin_name','$admin_email','$admin_pass','$admin_image','$admin_contact','$admin_address')";
+$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address,admin_role) values ('$admin_name','$admin_email','$admin_pass','$admin_image','$admin_contact','$admin_address','delivery_boy')";
 
 $run_admin = mysqli_query($con,$insert_admin);
 
@@ -187,7 +188,9 @@ echo "<script>alert('One User Has Been Inserted successfully')</script>";
 
 echo "<script>window.open('index.php?view_users','_self')</script>";
 
-}
+}else {
+	echo "Error: " . $sql . "" . mysqli_error($con);
+ }
 
 
 }

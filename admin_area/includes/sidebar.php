@@ -138,6 +138,30 @@ else {
 
 </li><!-- li Ends -->
 
+<li><!-- li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#users">
+
+<i class="fa fa-user"></i>  Users
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="users" class="collapse">
+
+<li>
+<a href="index.php?insert_user"> Insert User </a>
+</li>
+
+<li>
+<a href="index.php?view_users"> View Users </a>
+</li>
+
+</ul>
+
+</li><!-- li Ends -->
 <li><!-- Companies li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#companies">
@@ -301,6 +325,30 @@ else {
 
 </li><!-- Requests li Ends -->
 
+
+<li><!-- li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#enquiries">
+
+<i class="fa fa-envelope-o"></i> Active Enquiries 
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a>
+
+<ul id="enquiries" class="collapse">
+
+<li>
+<a href="index.php?view_enquiries"> View Enquiries </a>
+</li>
+
+<li>
+<a href="index.php?view_enquiries"> Track Enquiries </a>
+</li>
+
+</ul>
+
+</li><!-- li Ends -->
 
 <li><!-- li Starts -->
 

@@ -160,7 +160,6 @@ if(isset($_GET['view_requests'])){
 include("view_requests.php");
 
 }
-
 if(isset($_GET['delete_problems'])){
 
 include("delete_problems.php");
@@ -232,6 +231,22 @@ if(isset($_GET['view_allocation'])){
 include("view_allocation.php");
 
 }
+
+if(isset($_GET['view_enquiries'])){
+
+    include("view_enquiries.php");
+    
+    }
+if(isset($_GET['insert_user'])){
+
+        include("insert_user.php");
+        
+    }
+if(isset($_GET['view_users'])){
+
+        include("view_users.php");
+            
+    }
 
 ?>
 
