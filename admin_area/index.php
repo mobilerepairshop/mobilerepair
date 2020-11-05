@@ -237,6 +237,11 @@ if(isset($_GET['view_enquiries'])){
     include("view_enquiries.php");
     
     }
+if(isset($_GET['track_enquiries'])){
+
+        include("track_enquiries.php");
+        
+        }
 if(isset($_GET['insert_user'])){
 
         include("insert_user.php");

@@ -343,7 +343,7 @@ else {
 </li>
 
 <li>
-<a href="index.php?view_enquiries"> Track Enquiries </a>
+<a href="index.php?track_enquiries"> Track Enquiries </a>
 </li>
 
 </ul>
