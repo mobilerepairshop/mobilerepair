@@ -513,7 +513,7 @@
                         <div class="error"></div>
                         <div class="form loginBox">
                             <form method="" action="" accept-charset="UTF-8">
-                            <input id="emaillog" class="form-control" type="text" placeholder="Email" name="email">
+                            <input id="emaillog" class="form-control" type="text" placeholder="Email/Username" name="email">
                             <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
                             <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
                             </form>
@@ -639,7 +639,8 @@ var firebaseConfig = {
                   'email':result.additionalUserInfo.profile.email,
                   'pwd':result.additionalUserInfo.profile.id,
                   'username':result.additionalUserInfo.profile.name,
-                  'authtype':'google'
+                  'authtype':'google',
+                  'role':'user'
                 },
                 success:function(para)
                 {
@@ -886,37 +887,44 @@ function registerAjax()
 }
 function loginAjax(){
 
-        email = $('#emaillog').val();
-        pwd = $('#passwordlog').val();
-
-        $.ajax({
-            url:'./login/api/login.php',
-            type:'POST',
-            data:{
-              'email':email,
-              'pwd':pwd,
-              'authtype':'emailpass'
-            },
-            success:function(para)
-            {
-                console.log("This is - ",para)
-                if(para=="200")
-                {
-                  $("#login_button").hide()
-                  location.reload()
-                }
-                else
-                {
-                  shakeModal(); 
-                }
-            }
-        })
-   
-    
-
+  email = $('#emaillog').val();
+  pwd = $('#passwordlog').val();
+  if(email.split("_").length == 3 && email.split("_")[1] == "admin" && !isNaN(email.split("_")[2]))
+  {
+    role = "admin"
+  }
+  else
+  {
+    role = "user"
+  }
+  $.ajax({
+    url:'./login/api/login.php',
+    type:'POST',
+    data:{
+      'email':email,
+      'pwd':pwd,
+      'authtype':'emailpass',
+      'role':role
+    },
+    success:function(para)
+    {
+        console.log("This is - ",para)
+        
+        if(para=="200")
+        {
+          $("#login_button").hide()
+          location.reload()
+        }
+        else
+        {
+          shakeModal(); 
+        }
+    }
+  }) 
+}
 /*   Simulate error message from the server   */
     //  shakeModal();
-}
+
 
 function shakeModal(){
     $('#loginModal .modal-dialog').addClass('shake');

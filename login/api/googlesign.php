@@ -14,7 +14,7 @@
 
             $conn = $database->get_db();
             $auth = new UserAuth($conn);
-            $result = $auth->checkValidUser($email,$pwd);
+            $result = $auth->checkValidUser($email,$pwd,"google");
         }
     }
 
