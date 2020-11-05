@@ -57,11 +57,11 @@ else {
 
 <div class="form-group"><!-- form-group Starts -->
 
-<label class="col-md-3 control-label">User Name: </label>
+<label class="col-md-3 control-label">Full Name: </label>
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" name="admin_name" class="form-control" required>
+<input type="text" id="admin_name" name="admin_name" class="form-control" required>
 
 </div><!-- col-md-6 Ends -->
 
@@ -70,11 +70,11 @@ else {
 
 <div class="form-group"><!-- form-group Starts -->
 
-<label class="col-md-3 control-label">User Email: </label>
+<label class="col-md-3 control-label">Username: </label>
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" name="admin_email" class="form-control" required>
+<input type="text" id="username" name="username" class="form-control" readonly>
 
 </div><!-- col-md-6 Ends -->
 
@@ -153,6 +153,31 @@ else {
 
 </div><!-- col-lg-12 Ends -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+	$("#admin_name").change(function() {
+		var nm = $("#admin_name").val().split(" ")
+		var unm = nm[0]
+		for(let i=1;i<nm.length;i++)
+		{
+			unm += nm[i].substr(0,1)
+		}
+		unm += "_admin"
+
+		$.ajax({
+			url:"api/getusernames.php",
+			type:"POST",
+			success:function(para)
+			{
+				unm += "_"+para
+				$("#username").val(unm)
+			}
+		})
+
+
+	})
+</script>
 
 </div><!-- 2 row Ends -->
 
@@ -163,7 +188,7 @@ if(isset($_POST['submit'])){
 
 $admin_name = $_POST['admin_name'];
 
-$admin_email = $_POST['admin_email'];
+$username = $_POST['username'];
 
 $admin_pass = $_POST['admin_pass'];
 
@@ -177,7 +202,7 @@ $temp_admin_image = $_FILES['admin_image']['tmp_name'];
 
 move_uploaded_file($temp_admin_image,"admin_images/$admin_image");
 
-$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address,admin_role) values ('$admin_name','$admin_email','$admin_pass','$admin_image','$admin_contact','$admin_address','delivery_boy')";
+$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address,admin_role) values ('$admin_name','$username','$admin_pass','$admin_image','$admin_contact','$admin_address','delivery_boy')";
 
 $run_admin = mysqli_query($con,$insert_admin);
 

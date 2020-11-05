@@ -58,11 +58,20 @@ class UserAuth{
                return '400';
            }
     }
-    public function checkValidUser($email,$pwd)
+    public function checkValidUser($email,$pwd,$role)
     {
-        $query = 'select uid from users where email=? and password=?';
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ss',$email,md5($pwd));
+        if($role == "user")
+        {
+            $query = 'select uid from users where email=? and password=?';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param('ss',$email,md5($pwd));
+        }
+        else if($role == "admin")
+        {
+            $query = 'select admin_id from admins where admin_email=? and admin_pass=?';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param('ss',$email,$pwd);
+        }
         if($stmt->execute())
         {
             $stmt->store_result();
@@ -77,9 +86,7 @@ class UserAuth{
                 {  
                     return array('200',$userid); 
                 }
-            }
-            
-            
+            }   
         }
         else
         {
