@@ -5,16 +5,16 @@
 
     $success = $database->connect_db();
     if($success == '200')
-    {
-
+    {   
         if (isset($_POST['email'])) 
         {
             $email = $database->sanitize($_REQUEST['email']);    // removes backslashes
             $pwd = $database->sanitize($_REQUEST['pwd']);
+            $role = $database->sanitize($_POST['role']);
 
             $conn = $database->get_db();
             $auth = new UserAuth($conn);
-            $result = $auth->checkValidUser($email,$pwd);
+            $result = $auth->checkValidUser($email,$pwd,$role);
             if($result[0]=='200')
             {
                 // $result = $db->session->insertOne(array('uid'=>$_POST['uid'],'sid' => $session_id,'rg'=>$cursor["rg"],'dept'=>$cursor["dept"],'dsg'=>$cursor["dsg"],'mail'=>$cursor["mail"],'name'=>$cursor["name"]));
@@ -60,7 +60,7 @@
     }
     else
     {
-
+        echo "52103";
     }
 
 

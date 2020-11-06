@@ -24,7 +24,7 @@ if($success == "200")
             $res = $stmt->get_result();
             $row = $res->fetch_assoc();
             $result[0] = '200';
-            $result[1] = $row['username'];
+            $result[1] = $row['username']?$row['username']:"Admin_User";
             // $result = array('200',$row['username'],$row['userphoto']);
             echo json_encode($result);
         }

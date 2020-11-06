@@ -114,7 +114,7 @@
             <div class="collapse navbar-collapse" id="navbar-list-4 prodrop">
               <ul class="navbar-nav">
                   <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="name" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" id="username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Dashboard</a>
@@ -472,7 +472,7 @@
   </section>
   <!--/ Section Contact-footer End /-->
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <a href="#carouselExampleIndicators" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
 
 <!-- Login Modal -->
@@ -513,7 +513,7 @@
                         <div class="error"></div>
                         <div class="form loginBox">
                             <form method="" action="" accept-charset="UTF-8">
-                            <input id="emaillog" class="form-control" type="text" placeholder="Email" name="email">
+                            <input id="emaillog" class="form-control" type="text" placeholder="Email/Username" name="email">
                             <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
                             <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
                             </form>
@@ -575,9 +575,9 @@
   <script src="js/main.js"></script>
 
 <script>
-window.onunload = function () {
-  signout()
-}
+// window.onunload = function () {
+//   signout()
+// }
 
 
 var firebaseConfig = {
@@ -639,13 +639,14 @@ var firebaseConfig = {
                   'email':result.additionalUserInfo.profile.email,
                   'pwd':result.additionalUserInfo.profile.id,
                   'username':result.additionalUserInfo.profile.name,
-                  'authtype':'google'
+                  'authtype':'google',
+                  'role':'user'
                 },
                 success:function(para)
                 {
                     console.log("This is - ",para)
                     para = JSON.parse(para)
-                    if(para[0]=='200')
+                    if(para=='200')
                     {
                       location.reload()   
                     }
@@ -694,12 +695,14 @@ var firebaseConfig = {
             if(para[0]=='200')
             {
               $("#login_button").hide()
-              $("#name").show()
-              $("#name").html(para[1])
+              $("#username").show()
+              $("#username").html(para[1])
             }
             else
             {
               $("#login_button").show()
+              $("#username").hide()
+
             }
         }
         
@@ -716,8 +719,8 @@ var firebaseConfig = {
     // $("#name").html(name)
   } else {
     console.log("User Signed out")
-    $("#login_button").show()
-    $("#name").hide()
+    // $("#login_button").show()
+    // $("#username").hide()
 
   }
 });
@@ -765,6 +768,7 @@ function signout()
                 if(para=='200')
                 {
                     alert("Successfully logged out")
+                    $("#username").hide()
                     window.location.reload();
                 }
                 else
@@ -883,38 +887,44 @@ function registerAjax()
 }
 function loginAjax(){
 
-        email = $('#emaillog').val();
-        pwd = $('#passwordlog').val();
-
-        $.ajax({
-            url:'./login/api/login.php',
-            type:'POST',
-            data:{
-              'email':email,
-              'pwd':pwd,
-              'authtype':'emailpass'
-            },
-            success:function(para)
-            {
-                console.log("This is - ",para)
-               
-                if(para==200)
-                {
-                  $("#login_button").hide()
-                  location.reload()
-                }
-                else
-                {
-                  shakeModal(); 
-                }
-            }
-        })
-   
-    
-
+  email = $('#emaillog').val();
+  pwd = $('#passwordlog').val();
+  if(email.split("_").length == 3 && email.split("_")[1] == "admin" && !isNaN(email.split("_")[2]))
+  {
+    role = "admin"
+  }
+  else
+  {
+    role = "user"
+  }
+  $.ajax({
+    url:'./login/api/login.php',
+    type:'POST',
+    data:{
+      'email':email,
+      'pwd':pwd,
+      'authtype':'emailpass',
+      'role':role
+    },
+    success:function(para)
+    {
+        console.log("This is - ",para)
+        
+        if(para=="200")
+        {
+          $("#login_button").hide()
+          location.reload()
+        }
+        else
+        {
+          shakeModal(); 
+        }
+    }
+  }) 
+}
 /*   Simulate error message from the server   */
     //  shakeModal();
-}
+
 
 function shakeModal(){
     $('#loginModal .modal-dialog').addClass('shake');

@@ -112,7 +112,7 @@ else {
 <?php
 
 
-$get_enquiries = "SELECT * FROM requests INNER JOIN users ON users.uid = requests.uid  where  requests.status=1";
+$get_enquiries = "SELECT * FROM requests INNER JOIN users ON users.uid = requests.uid  where  requests.status=2";
 
 $run_admin = mysqli_query($con,$get_enquiries);
 
