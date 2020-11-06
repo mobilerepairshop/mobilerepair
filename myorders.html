@@ -388,6 +388,19 @@
     })
   }
 
+  function cancelRequest(rid)
+  {
+    $.ajax({
+        url:'./api/cancelrequest.php',
+        type:'POST',
+        data:{'rid':rid,'sid':sid},
+        success:function(para)
+        {
+          console.log("This is note - ",para)
+          alert("Cancelled Successfully")
+        }
+    })
+  }
   var alterClass = function() {
 	  var ww = document.body.clientWidth;
    
@@ -448,9 +461,10 @@
 
                                           if(groupedPeople[x][j].status==0)
                                           {
+                                            
                                               s1+='<tr><td class="ordhead">Status</td> <td>New Request</td></tr>'
                                               s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
-                                              s1+='<br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger">Cancel Request</button></td></tr></table></div></div>'
+                                              s1+='<br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger">Accept & Pay</button></td><td><button class="btn btn-danger">Cancel Request</button></td></tr></table></div></div>'
                                           }
                                           else
                                           {
@@ -540,7 +554,12 @@
                                         {
                                             s1+='<tr><td class="ordhead">Status</td> <td>New Request</td>'
                                             s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
-                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger">Cancel Request</button></td></tr></table></div></div>'
+                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-success">Accept & Pay</button></td><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel Request</button></td></tr></table></div></div>'
+                                        }
+                                        else if(groupedPeople[x][j].status==-1)
+                                        {
+                                            s1+='<tr><td class="ordhead">Status</td> <td>Request Cancelled</td>'
+                                            s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
                                         }
                                         else
                                         {

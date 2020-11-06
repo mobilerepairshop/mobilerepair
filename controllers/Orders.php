@@ -6,6 +6,18 @@
             public function __construct($db){
                 $this->conn = $db;
             }
+
+            public function cancelreq($rid)
+            {
+                $query = 'update req set status=-1 where rid=?';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$rid);
+                if($stmt->execute())
+                {
+                    return 200;
+                }
+            }
+            
             public function getnote($rid)
             {
                 $query = 'select note from requests where rid=?';
