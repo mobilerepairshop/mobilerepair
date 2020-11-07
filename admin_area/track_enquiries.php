@@ -6,7 +6,7 @@ echo "<script>window.open('login.php','_self')</script>";
 }
 
 else {
-  $get_boys = "SELECT admin_name FROM admins where admin_role='delivery_boy'";
+  $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_boy'";
   $run_boy = mysqli_query($con,$get_boys);
 ?>
 <!-- Modal Start-->
@@ -25,7 +25,9 @@ else {
       <?php 
         while($boy = mysqli_fetch_array($run_boy)){
           $namee=$boy['admin_name'];
-          echo "<option value='$namee'>" .$namee . "</option>";
+          $boy_id=$boy['admin_id'];
+
+          echo "<option value='$boy_id'>" .$namee . "</option>";
           }
       ?>
       <label>Time and Date</label>
