@@ -512,11 +512,7 @@
                 <div class="col-md-12">
                   <br><button id="getqoute" class="button button-a button-small button-rouded">Get Quotation</button>
                   <p class="pricing"></p>
-<<<<<<< HEAD
-                  <br><button id="requestquotation" class="button button-a button-small button-rouded" style="display:none;">Request Quotation</button>
-=======
                   <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
->>>>>>> 4a591266efa22691e94cc194dee786d6ef5e2f1c
                 
                 </div>
               </div>
@@ -818,7 +814,7 @@ function signout()
                 else
                 {
                     alert("Cannot log out")
-                    // window.location.reload();
+                    window.location.reload();
                 }
             }
         })
@@ -1297,6 +1293,7 @@ $("#requestquotation").click(function(){
         success: function(para)
         {
             alert(para)
+            window.location.replace("./myorders.html");
         }
         })
     }
