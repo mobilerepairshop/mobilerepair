@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2020 at 10:39 AM
+-- Generation Time: Nov 08, 2020 at 09:22 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -38,7 +38,28 @@ CREATE TABLE `admins` (
   `admin_address` text,
   `admin_role` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.admins: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`admins`' at line 1
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `admin_image`, `admin_contact`, `admin_address`, `admin_role`) VALUES
+(0, 'Vinod Kumbhar', 'vk@gmail.com', '123', 'admin.jpg', '8421208111', 'Plot 34, NavVinayak Society, Jijai Nagar', 'super_admin'),
+(5, 'Atharva ', 'atharvadeshpande99@gmail.com', '123', 'bed-1-2.jpg', '7218340969', 'KESHAV NAGAR, NEAR GULMOHAR MARKET', 'system_manager'),
+(6, 'Atharva Santosh Deshpande', 'AtharvaSD_admin_5', '123', 'Photograph.jpg', '7563210245', 'Pune', 'delivery_boy');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat`
+--
+
+CREATE TABLE `chat` (
+  `work` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `pin` int(20) NOT NULL,
+  `mobile` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -59,9 +80,7 @@ INSERT INTO `mobilecompany` (`mcid`, `mcname`) VALUES
 (6, 'Samsung'),
 (7, 'Nokia'),
 (8, 'MI'),
-(9, 'Apple'),
-(10, 'LG'),
-(11, 'Lenovo');
+(9, 'Apple');
 
 -- --------------------------------------------------------
 
@@ -143,7 +162,8 @@ CREATE TABLE `problems` (
 
 INSERT INTO `problems` (`rid`, `problem`, `subproblem`) VALUES
 (1, 2, 1),
-(1, 3, 4);
+(2, 2, 1),
+(1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -191,7 +211,7 @@ CREATE TABLE `req` (
 --
 
 INSERT INTO `req` (`rid`, `mmid`, `uid`, `estprice`, `status`, `calprice`, `created_date`, `note`) VALUES
-(1, 1, 13, '1200', 0, '0', '0000-00-00', 'NA');
+(1, 1, 14, '1200', 0, '0', '0000-00-00', 'NA');
 
 -- --------------------------------------------------------
 
@@ -211,7 +231,26 @@ CREATE TABLE `requests` (
   `created_date` date NOT NULL,
   `note` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.requests: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`requests`' at line 1
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scheduled_request`
+--
+
+CREATE TABLE `scheduled_request` (
+  `rid` int(10) NOT NULL,
+  `admin_id` int(50) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `scheduled_request`
+--
+
+INSERT INTO `scheduled_request` (`rid`, `admin_id`, `date`, `time`) VALUES
+(1, 6, '2020-11-08', '01:08:00');
 
 -- --------------------------------------------------------
 
@@ -223,7 +262,14 @@ CREATE TABLE `session` (
   `sesid` varchar(100) NOT NULL,
   `uid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.session: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`session`' at line 1
+
+--
+-- Dumping data for table `session`
+--
+
+INSERT INTO `session` (`sesid`, `uid`) VALUES
+('4dc10bdebfbbe8d9e5383de48324cffc', 6),
+('5119918a8496e900f431ff8b12ba547f', 14);
 
 -- --------------------------------------------------------
 
@@ -242,6 +288,7 @@ CREATE TABLE `session_admin` (
 
 INSERT INTO `session_admin` (`uid`, `sesid`) VALUES
 (0, '0f5af3a7ba1e021970a5c1e41dec83ec'),
+(0, '1a37ca65319336fd9c8fd70cdd018e0d'),
 (0, '28393781e4aeab3ff0be23faedeac6c6'),
 (0, '3dd77484350bbeed4711fc865d087fde'),
 (0, '4b5b54ef1fc3344bb24ebf06bd9e90e1'),
@@ -304,7 +351,7 @@ CREATE TABLE `users` (
   `email` varchar(150) NOT NULL,
   `create_datetime` date NOT NULL,
   `username` varchar(50) DEFAULT NULL,
-  `fullname` varchar(50) NOT NULL,
+  `pincode` varchar(50) NOT NULL,
   `phonenum` varchar(50) NOT NULL,
   `address` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -313,13 +360,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, `fullname`, `phonenum`, `address`) VALUES
+INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, `pincode`, `phonenum`, `address`) VALUES
 (8, '202cb962ac59075b964b07152d234b70', 'skbarshikar@mitaoe.ac.in', '2020-09-12', 'Sarang Barshikar', '', '', ''),
 (9, '202cb962ac59075b964b07152d234b70', 'ss@gmail.com', '2020-10-15', 'Swati Barshikar', '', '', ''),
 (11, '0acff50219f19374cc9f5c63ee8b76b7', 'sarang.barshikar123@gmail.com', '2020-10-17', 'Sarang Barshikar', '', '', ''),
 (12, 'da4c0997c1d9ca360671294a41769b68', 'barshikarswati@gmail.com', '2020-10-18', 'Swati Barshikar', '', '', ''),
 (13, 'bd7b470fe545c8a3d9d73f91afdb42b2', 'skbarshikar@mitaoe.ac.in', '2020-10-18', 'sarang kumar barshikar', '', '', ''),
-(14, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2020-10-31', 'Atharva Deshpande', '', '', ''),
+(14, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2020-10-31', 'Atharva Deshpande', '411033', '7218340969', 'Chinchwadgaon, Pune 33'),
 (16, 'a370453431cea129c9fcf1778c79e9a1', 'asdeshpande@mitaoe.ac.in', '2020-10-31', 'atharva deshpande', '', '', ''),
 (17, '202cb962ac59075b964b07152d234b70', 'aa@gmail.com', '2020-11-04', 'qweryuioihgf', '', '', ''),
 (18, '202cb962ac59075b964b07152d234b70', 'ad@gmail.com', '2020-11-05', 'AD', '', '', '');
@@ -418,7 +465,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `mobilecompany`
 --
 ALTER TABLE `mobilecompany`
-  MODIFY `mcid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `mcid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `mobilemodel`
@@ -459,12 +506,6 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `mobilemodel`
---
-ALTER TABLE `mobilemodel`
-  ADD CONSTRAINT `mobilemodel_ibfk_1` FOREIGN KEY (`mcid`) REFERENCES `mobilecompany` (`mcid`);
 
 --
 -- Constraints for table `requests`
