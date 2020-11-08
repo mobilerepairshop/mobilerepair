@@ -166,7 +166,7 @@ else {
 
 <a href="#" data-toggle="collapse" data-target="#companies">
 
-<i class="fa fa-fw fa-table"></i> Mobile Companies
+<i class="fa fa-mobile-phone" style="font-size:25px"></i> Mobile Companies
 
 <i class="fa fa-fw fa-caret-down"></i>
 
@@ -192,7 +192,7 @@ else {
 
 <a href="#" data-toggle="collapse" data-target="#models">
 
-<i class="fa fa-fw fa-table"></i> Mobile Models
+<i class="fa fa-mobile-phone" style="font-size:25px"></i> Mobile Models
 
 <i class="fa fa-fw fa-caret-down"></i>
 
@@ -218,7 +218,7 @@ else {
 
 <a href="#" data-toggle="collapse" data-target="#pincodes">
 
-<i class="fa fa-fw fa-table"></i> Available Pincodes
+<i class="fa fa-map-marker" style="font-size:20px"></i> Available Pincodes
 
 <i class="fa fa-fw fa-caret-down"></i>
 
@@ -294,7 +294,7 @@ else {
 
 <a href="#" data-toggle="collapse" data-target="#allocation">
 
-<i class="fa fa-fw fa-table"></i> Pricing Allocation
+<i class="fa fa-inr"></i> Pricing Allocation
 
 <i class="fa fa-fw fa-caret-down"></i>
 
@@ -349,6 +349,16 @@ else {
 </ul>
 
 </li><!-- li Ends -->
+
+<li><!-- Requests li Starts -->
+
+<a href="index.php?chat_response">
+
+<i class="fa fa-fw fa-table"></i> Chat Response
+
+</a>
+
+</li><!-- Requests li Ends -->
 
 <li><!-- li Starts -->
 

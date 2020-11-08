@@ -252,6 +252,11 @@ if(isset($_GET['view_users'])){
         include("view_users.php");
             
     }
+if(isset($_GET['chat_response'])){
+
+        include("chat_response.php");
+            
+    }
 
 ?>
 
