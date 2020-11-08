@@ -1,7 +1,5 @@
 <?php
 
-
-
 if($_COOKIE['sid'] == null){
 
 echo "<script>window.open('login.php','_self')</script>";
@@ -11,7 +9,6 @@ echo "<script>window.open('login.php','_self')</script>";
 else {
    
 ?>
-
 
 <div class="row" ><!-- 1  row Starts -->
 
@@ -75,6 +72,22 @@ else {
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
 <input type="text" id="username" name="username" class="form-control" readonly>
+
+</div><!-- col-md-6 Ends -->
+
+</div><!-- form-group Ends -->
+
+<div class="form-group"><!-- form-group Starts -->
+
+<label class="col-md-3 control-label">User Role: </label>
+
+<div class="col-md-6"><!-- col-md-6 Starts -->
+
+<select name="userrole" id="userrole">
+	<option value="delivery_boy">Delivery Boy</option>
+	<option value="system_manager">System Manager</option>
+	<option value="super_admin">Super Admin</option>
+</select>
 
 </div><!-- col-md-6 Ends -->
 
@@ -196,13 +209,15 @@ $admin_address = $_POST['admin_address'];
 
 $admin_contact = $_POST['admin_contact'];
 
+$admin_role = $_POST['userrole'];
+
 $admin_image = $_FILES['admin_image']['name'];
 
 $temp_admin_image = $_FILES['admin_image']['tmp_name'];
 
 move_uploaded_file($temp_admin_image,"admin_images/$admin_image");
 
-$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address,admin_role) values ('$admin_name','$username','$admin_pass','$admin_image','$admin_contact','$admin_address','delivery_boy')";
+$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address,admin_role) values ('$admin_name','$username','$admin_pass','$admin_image','$admin_contact','$admin_address','$admin_role')";
 
 $run_admin = mysqli_query($con,$insert_admin);
 
