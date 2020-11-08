@@ -196,8 +196,8 @@ for($i=0;$i<count($req);$i++)
 <script>
     function modaldata(id,rid)
     {
-        $("#exampleModalLabel").empty()
-        $("#exampleModalLabel").append("Quotation For Request No: "+id)
+        $("#exModalLabel").empty()
+        $("#exModalLabel").append("Quotation For Request No: "+id)
         $('[name="quotes"]').attr("id",rid)
         $.ajax({
         url:"api/getquote.php",
