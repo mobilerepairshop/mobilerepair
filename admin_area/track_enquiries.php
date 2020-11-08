@@ -224,10 +224,16 @@ if($statuss=="3"){
         url:"api/getprice.php",
         data:{"rid":rid},
         success:function(para)
-        {console.log(para);
+        {
+            console.log(para);
             para = JSON.parse(para)
             $("#price").val(para[0])
-            $("#note").val(para[1])
+            $("#note").val(para[2])
+            if(para[1]!="0"){
+              $("#price").val(para[1])
+            }
+            
+            
         }
     })
     }
