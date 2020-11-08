@@ -114,19 +114,12 @@ else {
 <?php
 
 
-$get_enquiries = "select * from req
-                  inner join mobilemodel on mobilemodel.mmid = req.mmid
-                  inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
-                  inner join users on users.uid = req.uid
-                  where req.status=0";
-
+$get_enquiries = "SELECT * FROM req INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid INNER JOIN users ON users.uid = req.uid  where  req.status=0";
 $run_admin = mysqli_query($con,$get_enquiries);
 
 
 
 while($row_admin = mysqli_fetch_array($run_admin)){
-
-
     
 $username = $row_admin['username'];
 
@@ -140,6 +133,7 @@ $Area_Pincode = $row_admin['pincode'];
 
 $address = $row_admin['address'];
 $rid = $row_admin['rid'];
+console.log("username");
 
 ?>
 
@@ -158,7 +152,9 @@ $rid = $row_admin['rid'];
 
 <td><?php echo $address; ?></td>
 
-<td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)"></td>
+<td>
+  <input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)">
+</td>
 
 
 </tr>
