@@ -268,10 +268,20 @@
                     <input type="button" class="button button-a button-small button-rouded" id="checkpincode" value="Check Availability">
                   </div>
                 </div>
+                <div class="col-md-12 mb-6" id="contact_details">
+                  <div class="form-group">
+                    <b>Enter Mobile Number</b>
+                    <input type="text" class="form-control input-mf" id="phonenum" placeholder="Mobile Number *" required>
+                  </div>
+                  <div class="form-group">
+                    <b>Enter Address</b>
+                    <input type="text" class="form-control input-mf" id="address" placeholder="Address *" required>
+                  </div>
+                </div>
                 <br><br><br><br>
                 <div class="col-md-6 mb-3">
                     <div class="dropdown">
-                      Select Mobile Company <br>
+                      <b>Select Mobile Company</b> <br>
                       <select id="editable-select" required>
                   
                       </select>
@@ -279,7 +289,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="dropdown" id="es2div">
-                    Select Mobile Model <br>
+                    <b>Select Mobile Model</b> <br>
                     <select id="editable-select2" required>
                      
                     </select>
@@ -502,7 +512,11 @@
                 <div class="col-md-12">
                   <br><button id="getqoute" class="button button-a button-small button-rouded">Get Quotation</button>
                   <p class="pricing"></p>
+<<<<<<< HEAD
                   <br><button id="requestquotation" class="button button-a button-small button-rouded" style="display:none;">Request Quotation</button>
+=======
+                  <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
+>>>>>>> 4a591266efa22691e94cc194dee786d6ef5e2f1c
                 
                 </div>
               </div>
@@ -609,9 +623,9 @@
 
 
   <script>
-window.onunload = function () {
-  signout()
-}
+// window.onunload = function () {
+//   signout()
+// }
 
 
 var firebaseConfig = {
@@ -1022,6 +1036,7 @@ function getvalue(id)
       $("#otherproblemlist").hide()
       $("#ownproblemlist").hide()
       $("#es2div").hide()
+      $("#contact_details").hide()
 
     
       $.ajax(
@@ -1212,11 +1227,24 @@ function getvalue(id)
             {
               alert("This Pincode is not currently available for our service")
               window.available = false
+              $("#contact_details").hide()
             }
             else
             {
               alert("This Pincode is Available")
               window.available = true
+              $.ajax({
+                url:"./api/getcontactdetails.php",
+                method:"POST",
+                data:{"sid":sid},
+                success: function(para){
+                  para = JSON.parse(para)
+                  $("#contact_details").show()
+                  $("#phonenum").val(para[0])
+                  $("#address").val(para[1])
+
+                }
+              })
             }
           }
         })
@@ -1263,6 +1291,8 @@ $("#requestquotation").click(function(){
                 'mmodel':window.mmodel,
                 'problems':problem,
                 'estprice':window.estprice,
+                'phonenum':$("#phonenum").val(),
+                'address':$("#address").val()
             },
         success: function(para)
         {

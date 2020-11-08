@@ -64,6 +64,7 @@
 }
 
 @media only screen and (max-width: 600px) {
+
   .botnavbar{
     display:block;
   }
@@ -88,22 +89,22 @@
       </button>
       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <li class="nav-item" id="homenav">
             <a class="nav-link js-scroll active" href="#home">Home</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item" id="about">
             <a class="nav-link js-scroll" href="#about">About</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link js-scroll" href="#service">Work</a>
+          </li> -->
+          <li class="nav-item" id="servicenav">
+            <a class="nav-link js-scroll" href="#work">Services</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#service">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#work">Work</a>
-          </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link js-scroll" href="#blog">Blog</a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <li class="nav-item" id="contactnav">
             <a class="nav-link js-scroll" href="#contact">Contact</a>
           </li>
           <li class="nav-item">
@@ -212,7 +213,7 @@
                   <div class="col-sm-8">
                     <h2 class="w-title">Mobile Repairing</h2>
                     <div class="w-more">
-                      <span class="w-ctegory">Mobile Repairing</span> / <span class="w-date">18 Sep. 2018</span>
+                      <span class="w-ctegory">Mobile Repairing</span>
                     </div>
                   </div>
                   <div class="col-sm-4">
@@ -226,7 +227,7 @@
           </div>
         </div>
       
-    
+<!--     
         <div class="col-md-4">
           <div class="work-box">
             <a href="img/work-6.jpg" data-lightbox="gallery-mf">
@@ -251,14 +252,14 @@
             </a>
           </div>
         </div>
-        
+         -->
       </div>
     </div>
   </section>
   <!--/ Section Portfolio End /-->
 
 
-  <div class="section-counter paralax-mf bg-image" style="background-image: url(img/counters-bg.jpg)">
+  <div class="section-counter paralax-mf bg-image" id="info" style="background-image: url(img/counters-bg.jpg)">
     <div class="overlay-mf"></div>
     <div class="container">
       <div class="row">
@@ -324,48 +325,9 @@
 </div>
 <!-- Floating Div  -->
 
-  <!--/ Section Testimonials Star /-->
-  <div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
-    <div class="overlay-mf"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div id="testimonial-mf" class="owl-carousel owl-theme">
-            <div class="testimonial-box">
-              <div class="author-test">
-                <img src="img/testimonial-2.jpg" alt="" class="rounded-circle b-shadow-a">
-                <span class="author">Xavi Alonso</span>
-              </div>
-              <div class="content-test">
-                <p class="description lead">
-                  Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit.
-                </p>
-                <span class="comit"><i class="fa fa-quote-right"></i></span>
-              </div>
-            </div>
-            <div class="testimonial-box">
-              <div class="author-test">
-                <img src="img/testimonial-4.jpg" alt="" class="rounded-circle b-shadow-a">
-                <span class="author">Marta Socrate</span>
-              </div>
-              <div class="content-test">
-                <p class="description lead">
-                  Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit.
-                </p>
-                <span class="comit"><i class="fa fa-quote-right"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
  
-  <!--/ Section Contact-Footer Star /-->
-  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(img/overlay-bg.jpg)">
+  <!--/ Section Contact-Footer Star for User /-->
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
     <div class="overlay-mf"></div>
     <div class="container">
       <div class="row">
@@ -376,7 +338,7 @@
                 <div class="col-md-6">
                   <div class="title-box-2">
                     <h5 class="title-left">
-                      Send Message Us
+                      Send Us Message
                     </h5>
                   </div>
                   <div>
@@ -470,7 +432,63 @@
       </div>
     </footer>
   </section>
-  <!--/ Section Contact-footer End /-->
+  <!--/ Section Contact-footer for User End /-->
+
+<!--/ Section Contact-Footer Star for Admin /-->
+<section class="blog-wrapper sect-pt4" id="contactform-admin" style="display:none;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="widget-sidebar sidebar-search">
+          <h5 class="sidebar-title">Filter Tasks</h5>
+          <div class="sidebar-content">
+            <form>
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Collect From Customer</button> <br><br>
+                  <button class="btn btn-secondary" type="button">Collect From Customer</button> <br><br>
+                  <button class="btn btn-secondary" type="button">Collect From Customer</button> <br><br>
+                  <button class="btn btn-secondary" type="button">Collect From Customer</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 mycards">
+        <div class="form-comments">
+          <div class="title-box-2">
+            <h3 class="title-left">
+              Task Number : 1
+            </h3>
+          </div>
+          <div class="form-mf">
+            <div class="row">
+              <div class="col-md-10">
+                <table class="table table-responsive">
+                  <tbody id="taskdetails">
+                    
+                    <!-- Dynamic Cards Will Append Here -->
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-4">
+                <br><button id="pickedup" class="button btn-success button-big button-rouded">Picked Up</button>
+              </div>
+              <div class="col-md-4">
+                <br><button id="cancelled" class="button btn-danger button-big button-rouded">Cancelled</button>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--/ Section Contact-footer for Admin End /-->
+
 
   <a href="#carouselExampleIndicators" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
@@ -695,8 +713,42 @@ var firebaseConfig = {
             if(para[0]=='200')
             {
               $("#login_button").hide()
+              $(".botnavbar").css("display", "none")
+
               $("#username").show()
               $("#username").html(para[1])
+
+              // check if user is admin
+              if(para[1] == "Admin_User")
+              {
+                $("#homenav").hide()
+                $("#servicenav").hide()
+                $("#contactnav").hide()
+                $("#carouselExampleIndicators").hide()
+                $("#work").hide()
+                $("#info").hide()
+                $("#client").hide()
+                $("#contactform-user").hide()
+                $("#contactform-admin").css("display", "block");
+                $.ajax({
+                  url:'./admin_area/api/view_assignments.php',
+                  type:'POST',
+                  data : {"sid":sid},
+                  success:function(para)
+                  {
+                      para = JSON.parse(para)
+                      console.log(para[0])
+                      var str = ''
+                      for(let i=0;i<para.length;i++)
+                      {
+                        str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
+                        str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
+                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a>View Problems</a></td></tr>'
+                      }
+                      $("#taskdetails").append(str) 
+                  }
+                })
+              }
             }
             else
             {

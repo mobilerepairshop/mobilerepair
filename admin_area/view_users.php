@@ -60,16 +60,17 @@ else {
 <tr>
 <th>User Image</th>
 
-<th>User Name</th>
+<th>User Full Name</th>
 
-<th>User Email</th>
+<th>Username</th>
 
 <th>User Address</th>
 
 <th>User Contact</th>
 
-<th>Delete User</th>
+<th>User Role</th>
 
+<th>Delete User</th>
 
 </tr>
 
@@ -97,9 +98,7 @@ $admin_country = $row_admin['admin_address'];
 
 $admin_job = $row_admin['admin_contact'];
 
-
-
-
+$admin_role = $row_admin['admin_role'];
 
 ?>
 
@@ -114,6 +113,8 @@ $admin_job = $row_admin['admin_contact'];
 <td><?php echo $admin_country; ?></td>
 
 <td><?php echo $admin_job; ?></td>
+
+<td><?php echo $admin_role; ?></td>
 
 <td>
 <?php 
