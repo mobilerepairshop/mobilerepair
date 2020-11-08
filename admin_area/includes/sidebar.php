@@ -314,18 +314,6 @@ else {
 
 </li><!-- Allocation li Ends -->
 
-
-<li><!-- Requests li Starts -->
-
-<a href="index.php?view_requests" data-target="#requests">
-
-<i class="fa fa-fw fa-table"></i> Problem Requests
-
-</a>
-
-</li><!-- Requests li Ends -->
-
-
 <li><!-- li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#enquiries">
