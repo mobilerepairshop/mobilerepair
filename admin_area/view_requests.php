@@ -99,8 +99,11 @@ else {
 
 $pro_desc = ["waterdamage"=>"Water Damage" , "mobiledead"=>"Mobile is Dead" , "toucherror"=>"Display is OK but partial/full touch not working" , "displayerror"=>"Touch is OK display damaged" , "touchdisplayerror"=>"Touch and display both not working" , "micerror"=>"Mic Problem" , "speakererror"=>"Speaker problem" , "loudspeakererror"=>"Loud speaker problem" , "vibratorerror"=>"Ringer/Vibrator problem" , "faultybattery"=>"Battery is faulty" , "chargingerror"=>"Mobile is not charging" , "networkerror"=>"Network not showing" , "towererror"=>"Only 1-2 tower showing in mobile" , "simerror"=>"SIM not detecting" , "detectionerror"=>"Memory card not detecting" , "powererror"=>"Power ON button not working" , "volumerror"=>"Volume buttons are not working" , "cameraerror"=>"Camera not working" , "lockerror"=>"Forgot screen lock/Password" , "flasherror"=>"Flash new software"];
 
-$get_r = "select * from req where status=0
-          inner join ";
+$get_r = "select * from req
+          inner join mobilemodel on mobilemodel.mmid = req.mmid
+          inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
+          inner join users on users.uid = req.uid
+          where req.status=0";
 
 $run_r = mysqli_query($con,$get_r);
 

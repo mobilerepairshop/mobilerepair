@@ -99,7 +99,7 @@ else {
 
 <th>Area Pincode</th>
 
-<th>Request Date</th>
+<th>User Address</th>
 
 <th>Action</th>
 
@@ -114,7 +114,11 @@ else {
 <?php
 
 
-$get_enquiries = "SELECT * FROM requests INNER JOIN users ON users.uid = requests.uid  where  requests.status=1";
+$get_enquiries = "select * from req
+                  inner join mobilemodel on mobilemodel.mmid = req.mmid
+                  inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
+                  inner join users on users.uid = req.uid
+                  where req.status=0";
 
 $run_admin = mysqli_query($con,$get_enquiries);
 
@@ -128,13 +132,13 @@ $username = $row_admin['username'];
 
 $Brand = $row_admin['mcname'];
 
-$Model = $row_admin['mmodel'];
+$Model = $row_admin['mmname'];
 
 $price = $row_admin['estprice'];
 
 $Area_Pincode = $row_admin['pincode'];
 
-$req_date = $row_admin['created_date'];
+$address = $row_admin['address'];
 $rid = $row_admin['rid'];
 
 ?>
@@ -152,7 +156,7 @@ $rid = $row_admin['rid'];
 
 <td><?php echo $Area_Pincode; ?></td>
 
-<td><?php echo $req_date; ?></td>
+<td><?php echo $address; ?></td>
 
 <td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)"></td>
 
