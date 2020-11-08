@@ -12,6 +12,8 @@ if($success == '200')
     $mmodel = $_POST['mmodel'];
     $problems = $_POST['problems'];
     $estprice = $_POST['estprice'];
+    $phonenum = $_POST['phonenum'];
+    $address = $_POST['address'];
     $created_date = date("d-m-Y");
     $note = "NA";
     $status = 0;
@@ -28,6 +30,8 @@ if($success == '200')
         $rid = mysqli_num_rows($res) + 1;
         
         $query = "insert into req values(".$rid.",'".$mmodel."','".$user[1]."','".$estprice."','".$status."','".$calprice."','".$created_date."','".$note."')";
+        $userquery = "update users set pincode='".$pincode."',address='".$address."',phonenum='".$phonenum."' where uid=".$user[1];
+        $userres = mysqli_query($conn,$userquery);
         $res = mysqli_query($conn,$query);
         echo $conn->error;
         if($res)

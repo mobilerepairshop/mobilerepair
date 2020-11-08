@@ -158,5 +158,28 @@ class UserAuth{
        
         
     }
+    public function getcontactinfo($sid)
+    {
+        $query = 'select users.phonenum,users.address from users
+                    inner join session on session.uid = users.uid
+                    where sesid=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('s',$sid);
+        if($stmt->execute())
+        {
+            $result = $stmt->get_result();   // <--- add this instead
+            $userinfo = array();
+            while ($data = $result->fetch_assoc()) 
+            {
+                array_push($userinfo,$data["phonenum"],$data["address"]);
+            }
+            return $userinfo;
+        }
+        else
+        {
+            return 400;
+        }
+        
+    }
 }
 	
