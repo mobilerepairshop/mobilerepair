@@ -93,6 +93,34 @@
                     return $mc;
                 }
             }
+            public function getchprice($rid)
+            {
+                $mc = array();
+                $query = 'select estprice,calprice,note,rid from req where rid=?';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$rid);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $userinfo = array();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        array_push($mc,
+                            [
+                                "estprice"=>$data["estprice"],
+                                "calprice"=>$data["calprice"],
+                                "note"=>$data["note"],
+                                "rid"=>$data["rid"],
+                            ]);
+                    }
+                    return $mc;
+                }
+                else
+                {
+                    return 400;
+                }
+  
+            }
             public function getproblems($uid,$rid)
             {
                 $mc = array();

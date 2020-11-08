@@ -309,7 +309,7 @@
   <button type="button" class="close" data-dismiss="modal">&times;</button>
   </div>
   <div class="modal-body person">
-      <table class="person-content" style="width:110%;">
+      <table class="payment-content" style="width:110%;">
   
       </table>
   </div>
@@ -419,6 +419,43 @@
                     
                     $('.person-content').html(s2)
                }
+                
+                
+            }
+        })
+    }
+    function getchgprice(rid)
+    {
+      console.log("Id = ",rid)
+        $.ajax({
+            url:'./api/getchgprice.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+
+                for(let i=0;i<para.length;i++)
+                {
+
+                  s2+='<div class="custom-control custom-radio">' 
+                  s2+='<input type="radio" class="custom-control-input" id="'+para[i].rid+'-calp" name="price" onchange="getvalue(this.id)"  >'
+                  s2+='<label class="custom-control-label" for="'+para[i].rid+'-calp">Estimated Price - '+para[i].estprice+'</label>'
+                  s2+='</div>'
+                  s2+='<div class="custom-control custom-radio">' 
+                  s2+='<input type="radio" class="custom-control-input" id="'+para[i].rid+'-estp" name="price" onchange="getvalue(this.id)" >'
+                  s2+='<label class="custom-control-label" for="'+para[i].rid+'-estp">Calculated Price - '+para[i].calprice+'</label>'
+                  s2+='</div>'
+
+                  s2+='<table><tr><td class="ordhead">Note</td><tr><tr><td>'+para[i].note+'</td></tr></table><br>'
+                  s2+='<button class="btn btn-success">Submit Price</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  class="btn btn-danger">Cancel Request</button>'
+ 
+                }
+                
+                $('.payment-content').html(s2)
+             
                 
                 
             }
@@ -573,6 +610,12 @@
                                               s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
                                               s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
                                           }
+                                          else if(groupedPeople[x][j].status==6)
+                                          {
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Price changed</b></td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                              s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" data-toggle="modal" data-target="#payment" onclick="getchgprice(this.id)">Select Price</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                          }
                                           else if(groupedPeople[x][j].status==-1 || groupedPeople[x][j].status==4)
                                           {
                                               s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Request Cancelled</b></td></tr>'
@@ -679,18 +722,30 @@
                                         {
                                             s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Device Picked</b></td>'
                                             s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
-                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Warehouse Note</button></td><td><button class="btn btn-danger">Cancel</button></td></tr></table></div></div>'
+                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger">Cancel</button></td></tr></table></div></div>'
                                         }
                                         else if(groupedPeople[x][j].status==-1 || groupedPeople[x][j].status==4)
                                         {
                                             s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Request Cancelled</b></td>'
                                             s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
                                         }
+                                        else if(groupedPeople[x][j].status==5)
+                                          {
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Drop for repair+</b></td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                              s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                          }
+                                        else if(groupedPeople[x][j].status==6)
+                                        {
+                                            s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>New Problems/Price changed</b></td></tr>'
+                                            s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                            s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" data-toggle="modal" data-target="#payment" id="'+groupedPeople[x][j].rid+'" onclick="getchgprice(this.id)">Select Final Price</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                        }
                                         else
                                         {
                                             s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Price Calculated</b></td>'
                                             s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
-                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Warehouse Note</button></td><td><button class="btn btn-success">Select Payment Method</button></td><td><button class="btn btn-danger">Cancel</button></td></tr></table></div></div>'
+                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success">Select Payment Method</button></td><td><button class="btn btn-danger">Cancel</button></td></tr></table></div></div>'
                                         }
                                         
                                         // s1+='</div></div>'
