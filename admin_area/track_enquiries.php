@@ -184,7 +184,7 @@ if($statuss=="3"){
 <td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Update" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)"></td>
 
 
-<td><input type="button" id="<?php echo $rid; ?>" name="pricing" value="Pricing" class="btn btn-primary form-control" data-toggle="modal" data-target="#exModal" onclick="pricemodaldata(this.id)"></td>
+<td><input type="button" id="<?php echo $rid; ?>" name="pricing" value="Pricing" class="btn btn-primary form-control" data-toggle="modal" data-target="#exModal" onclick="pricemodaldata(this.id)" <?php if ($statuss != "3"){ ?> disabled <?php  } ?>></td>
 
 </tr>
 
