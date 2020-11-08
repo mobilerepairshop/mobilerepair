@@ -77,6 +77,27 @@
 
 <body id="page-top">
 
+  
+<!-- Problem Modal -->
+<div class="modal fade" id="problem">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">Your Request</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body problem">
+      <table class="problem-content" style="width:110%;">
+  
+      </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+  
+  <!-- Problem Modal -->
+
+  
   <!--/ Nav Star /-->
   <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
@@ -456,32 +477,9 @@
         </div>
       </div>
       <div class="col-md-8 mycards">
-        <div class="form-comments">
-          <div class="title-box-2">
-            <h3 class="title-left">
-              Task Number : 1
-            </h3>
-          </div>
-          <div class="form-mf">
-            <div class="row">
-              <div class="col-md-10">
-                <table class="table table-responsive">
-                  <tbody id="taskdetails">
-                    
-                    <!-- Dynamic Cards Will Append Here -->
+          
+        <!-- Dynamically Cards will append here -->
 
-                  </tbody>
-                </table>
-              </div>
-              <div class="col-md-4">
-                <br><button id="pickedup" class="button btn-success button-big button-rouded">Picked Up</button>
-              </div>
-              <div class="col-md-4">
-                <br><button id="cancelled" class="button btn-danger button-big button-rouded">Cancelled</button>
-              </div>
-            </div>
-          </div>
-        </div> 
       </div>
     </div>
   </div>
@@ -597,6 +595,69 @@
 //   signout()
 // }
 
+
+function getproblems(rid)
+{
+    $.ajax({
+        url:'./api/getproblemsforadmin.php',
+        type:'POST',
+        data:{'rid':rid,'sid':sid},
+        success:function(para)
+        {
+            s2=""
+            console.log("This is note - ",para)
+            para = JSON.parse(para)
+            pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
+
+            for(let i=0;i<para.length;i++)
+            {
+                console.log(para[i].problem)
+                
+                s2+='<tr><th class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><th class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
+                $('.problem-content').html(s2)
+            }
+            
+            
+        }
+    })
+}
+
+function pickedup(rid,status)
+{
+  $.ajax({
+    url:'./api/pickedup.php',
+    type:'POST',
+    data:{
+      'rid':rid,
+      'status':status,
+      'sid':sid
+    },
+    success:function(para)
+    {
+        alert(para)        
+        window.setTimeout(function(){location.reload()},1000)
+
+    }
+  })
+}
+
+function cancelled(rid,status)
+{
+  $.ajax({
+    url:'./api/cancelled.php',
+    type:'POST',
+    data:{
+      'rid':rid,
+      'status':status,
+      'sid':sid
+    },
+    success:function(para)
+    {
+        alert(para)
+        window.setTimeout(function(){location.reload()},1000)
+    }
+  })
+}
 
 var firebaseConfig = {
     apiKey: "AIzaSyDyQhgM0Q5UUIt-MbIIDzPpbpLVudkmKK4",
@@ -738,14 +799,18 @@ var firebaseConfig = {
                   {
                       para = JSON.parse(para)
                       console.log(para[0])
+
                       var str = ''
+                      var status = ["","Picked Up","Dropped to Admin","","","","",""]
                       for(let i=0;i<para.length;i++)
                       {
+                        str += '<div class="form-comments"><div class="title-box-2"><h3 class="title-left">Task Number : '+(i+1)+'</h3></div><div class="form-mf"><div class="row"><div class="col-md-10"><table class="table table-responsive"><tbody id="taskdetails">'
                         str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
                         str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
-                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a>View Problems</a></td></tr>'
+                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems('+para[i].rid+')">Problems</a></td></tr>'
+                        str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
                       }
-                      $("#taskdetails").append(str) 
+                      $(".mycards").append(str) 
                   }
                 })
               }
