@@ -710,6 +710,7 @@ var firebaseConfig = {
 
 
   firebase.auth().onAuthStateChanged(function(user) {
+    console.log(user)
   if (user) {
     console.log("User Signed in")
     // name = user.displayName;
@@ -724,7 +725,7 @@ var firebaseConfig = {
 
   }
 });
-
+// firebase.auth().signOut()
 function signout()
 {
   var user = firebase.auth().currentUser;
