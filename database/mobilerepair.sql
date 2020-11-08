@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 09:22 AM
+-- Generation Time: Nov 08, 2020 at 09:50 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -93,16 +93,7 @@ CREATE TABLE `mobilemodel` (
   `mmname` varchar(500) NOT NULL,
   `mcid` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mobilemodel`
---
-
-INSERT INTO `mobilemodel` (`mmid`, `mmname`, `mcid`) VALUES
-(1, 'Galaxy M30s', 6),
-(2, '6.1', 7),
-(3, 'One Plus 6T', 8),
-(5, 'iPhone 12 pro', 9);
+-- Error reading data for table mobilerepair.mobilemodel: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`mobilemodel`' at line 1
 
 -- --------------------------------------------------------
 
@@ -114,14 +105,7 @@ CREATE TABLE `pincode` (
   `pid` int(50) NOT NULL,
   `pincode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pincode`
---
-
-INSERT INTO `pincode` (`pid`, `pincode`) VALUES
-(1, '411033'),
-(2, '411017');
+-- Error reading data for table mobilerepair.pincode: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`pincode`' at line 1
 
 -- --------------------------------------------------------
 
@@ -161,8 +145,6 @@ CREATE TABLE `problems` (
 --
 
 INSERT INTO `problems` (`rid`, `problem`, `subproblem`) VALUES
-(1, 2, 1),
-(2, 2, 1),
 (1, 2, 1);
 
 -- --------------------------------------------------------
@@ -211,7 +193,7 @@ CREATE TABLE `req` (
 --
 
 INSERT INTO `req` (`rid`, `mmid`, `uid`, `estprice`, `status`, `calprice`, `created_date`, `note`) VALUES
-(1, 1, 14, '1200', 0, '0', '0000-00-00', 'NA');
+(1, 1, 14, '1200', 1, '0', '0000-00-00', 'NA');
 
 -- --------------------------------------------------------
 
@@ -250,7 +232,7 @@ CREATE TABLE `scheduled_request` (
 --
 
 INSERT INTO `scheduled_request` (`rid`, `admin_id`, `date`, `time`) VALUES
-(1, 6, '2020-11-08', '01:08:00');
+(1, 6, '2020-11-09', '10:30:00');
 
 -- --------------------------------------------------------
 
