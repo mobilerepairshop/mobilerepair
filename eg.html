@@ -510,9 +510,13 @@
                   <p style="color:#0078ff;">This price is variable. It can change after mobile inspection</p>
               </div> -->
                 <div class="col-md-12">
-                  <br><button id="getqoute" class="button button-a  button-rouded">Get Quotation</button>
+                  <br><button id="getqoute" class="button button-a button-small button-rouded">Get Quotation</button>
                   <p class="pricing"></p>
+<<<<<<< HEAD
+                  <br><button id="requestquotation" class="button button-a button-small button-rouded" style="display:none;">Request Quotation</button>
+=======
                   <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
+>>>>>>> 4a591266efa22691e94cc194dee786d6ef5e2f1c
                 
                 </div>
               </div>
@@ -1045,6 +1049,7 @@ function getvalue(id)
         success: function(para)
         {
             s1 = ''
+            console.log(para)
             para = JSON.parse(para)
             var groupedPeople=groupArrayOfObjects(para,"pcode");
             subpro_desc = {
@@ -1260,6 +1265,8 @@ $("#getqoute").click(function(){
         success: function(para)
         {
             $(".pricing").text("Estimated Price for your request -"+para)
+            window.estprice = para
+            $("#requestquotation").show()
         }
         })
 })
@@ -1283,7 +1290,7 @@ $("#requestquotation").click(function(){
                 'pincode':$("#pincode").val(),
                 'mmodel':window.mmodel,
                 'problems':problem,
-                'estprice':"1200",
+                'estprice':window.estprice,
                 'phonenum':$("#phonenum").val(),
                 'address':$("#address").val()
             },

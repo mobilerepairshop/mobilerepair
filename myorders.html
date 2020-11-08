@@ -283,6 +283,40 @@
 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 </div></div></div></div>
 
+<!-- Problem Modal -->
+<div class="modal fade" id="person">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">Assigned Person</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body person">
+      <table class="person-content" style="width:110%;">
+  
+      </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+
+  <!-- Problem Modal -->
+<div class="modal fade" id="payment">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">Final Cost</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body person">
+      <table class="payment-content" style="width:110%;">
+  
+      </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+
 
 
 
@@ -336,6 +370,97 @@
         return rv;
       }, {});
     };
+    function getproblems(rid)
+    {
+        $.ajax({
+            url:'./api/getproblems.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+                pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
+
+               for(let i=0;i<para.length;i++)
+               {
+                    console.log(para[i].problem)
+                    
+                    s2+='<tr><td class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
+                    $('.problem-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
+    function getperson(rid)
+    {
+        $.ajax({
+            url:'./api/getperson.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+                // pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
+
+               for(let i=0;i<para.length;i++)
+               {
+                    // console.log(para[i].)
+                    
+                    s2+='<tr><td class="ordhead">Person Name </td> <td>'+para[i].admin_name+'</td></tr>'
+                    s2+='<tr><td class="ordhead">Contact Number </td> <td>'+para[i].admin_contact+'</td></tr>'
+                    s2+='<tr><td class="ordhead">Person Name </td> <td>'+para[i].date+'</td></tr>'
+                    s2+='<tr><td class="ordhead">Person Name </td> <td>'+para[i].time+'</td></tr>'
+                    
+                    $('.person-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
+    function getchgprice(rid)
+    {
+      console.log("Id = ",rid)
+        $.ajax({
+            url:'./api/getchgprice.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+
+                for(let i=0;i<para.length;i++)
+                {
+
+                  s2+='<div class="custom-control custom-radio">' 
+                  s2+='<input type="radio" class="custom-control-input" id="'+para[i].rid+'-calp" name="price" onchange="getvalue(this.id)"  >'
+                  s2+='<label class="custom-control-label" for="'+para[i].rid+'-calp">Estimated Price - '+para[i].estprice+'</label>'
+                  s2+='</div>'
+                  s2+='<div class="custom-control custom-radio">' 
+                  s2+='<input type="radio" class="custom-control-input" id="'+para[i].rid+'-estp" name="price" onchange="getvalue(this.id)" >'
+                  s2+='<label class="custom-control-label" for="'+para[i].rid+'-estp">Calculated Price - '+para[i].calprice+'</label>'
+                  s2+='</div>'
+
+                  s2+='<table><tr><td class="ordhead">Note</td><tr><tr><td>'+para[i].note+'</td></tr></table><br>'
+                  s2+='<button class="btn btn-success">Submit Price</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  class="btn btn-danger">Cancel Request</button>'
+ 
+                }
+                
+                $('.payment-content').html(s2)
+             
+                
+                
+            }
+        })
+    }
     function getproblems(rid)
     {
         $.ajax({
@@ -444,7 +569,7 @@
                             console.log(x + " -> " + groupedPeople[x]);
                             var innersize = Object.keys(groupedPeople[x]).length;
                             console.log("Inner Size - ",innersize)
-                              s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:100%;">'
+                              s1+='<div class="form-comments"><div class="row"><div class="col-sm-6" ><table style="width:120%;">'
                               for(let j=0;j<innersize;j++)
                               {
                                   console.log("Maps - ",groupedPeople[x][j].problem)
@@ -454,7 +579,7 @@
                                           s1+='<tr><td class="ordhead">Mobile Model</td><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
 
                                           s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td></tr>'  
-                                          s1+='<tr><td class="ordhead">Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</td></tr>'
+                                          s1+='<tr><td class="ordhead"><b>Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</b></td></tr>'
 
                                           s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td></tr>'
                                           s1+='<tr><td class="ordhead">Delivery(days)</td><td>3</td></tr>'
@@ -462,15 +587,45 @@
                                           if(groupedPeople[x][j].status==0)
                                           {
                                             
-                                              s1+='<tr><td class="ordhead">Status</td> <td>New Request</td></tr>'
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>New Request</b></td></tr>'
                                               s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
-                                              s1+='<br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger">Accept & Pay</button></td><td><button class="btn btn-danger">Cancel Request</button></td></tr></table></div></div>'
+                                              s1+='<br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger">Cancel</button></td></tr></table></div></div>'
+                                          }
+                                          else if(groupedPeople[x][j].status==2)
+                                          {
+                                            
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Assigned</b></td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td><td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr><tr><td class="ordhead">Assigned Person </td><td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id)">View Person</a></td></tr></table></div></div>'
+                                              s1+='<br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger">Cancel</button></td></tr></table></div></div>'
+                                          }
+                                          else if(groupedPeople[x][j].status==3)
+                                          {
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Device Picked</b></td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                              s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                          }
+                                          else if(groupedPeople[x][j].status==5)
+                                          {
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Drop for repair+</b></td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                              s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                          }
+                                          else if(groupedPeople[x][j].status==6)
+                                          {
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Price changed</b></td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                              s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" data-toggle="modal" data-target="#payment" onclick="getchgprice(this.id)">Select Price</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                          }
+                                          else if(groupedPeople[x][j].status==-1 || groupedPeople[x][j].status==4)
+                                          {
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Request Cancelled</b></td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
                                           }
                                           else
                                           {
-                                              s1+='<tr><td class="ordhead">Status</td> <td>Price Calculated</td></tr>'
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Price Calculated</b></td></tr>'
                                               s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
-                                              s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success">Accept & Pay</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                              s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" data-toggle="modal" data-target="#payment">Accept & Pay</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
                                           }
                                           
                                           // s1+='</div></div>'
@@ -545,27 +700,52 @@
                                         s1+='<td class="ordhead">Mobile Model</td><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
 
                                         s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td> '  
-                                        s1+='<td class="ordhead">Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</td></tr>'
+                                        s1+='<td class="ordhead"><b>Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</b></td></tr>'
 
                                         s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td>'
                                         s1+='<td class="ordhead">Delivery(days)</td><td>3</td></tr>'
 
                                         if(groupedPeople[x][j].status==0)
                                         {
-                                            s1+='<tr><td class="ordhead">Status</td> <td>New Request</td>'
+                                            s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>New Request</b></td>'
                                             s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
-                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-success">Accept & Pay</button></td><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel Request</button></td></tr></table></div></div>'
+                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
                                         }
-                                        else if(groupedPeople[x][j].status==-1)
+                                        else if(groupedPeople[x][j].status==2)
                                         {
-                                            s1+='<tr><td class="ordhead">Status</td> <td>Request Cancelled</td>'
+                                          
+                                            s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Assigned</b></td>'
+                                            s1+='<td class="ordhead">Total Problems </td><td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr><tr><td class="ordhead">Assigned Person </td><td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id)">View Person</a></td></tr></table></div></div>'
+                                            s1+='<br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger">Cancel</button></td></tr></table></div></div>'
+                                        }
+                                        else if(groupedPeople[x][j].status==3)
+                                        {
+                                            s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Device Picked</b></td>'
                                             s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
+                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger">Cancel</button></td></tr></table></div></div>'
+                                        }
+                                        else if(groupedPeople[x][j].status==-1 || groupedPeople[x][j].status==4)
+                                        {
+                                            s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Request Cancelled</b></td>'
+                                            s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
+                                        }
+                                        else if(groupedPeople[x][j].status==5)
+                                          {
+                                              s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Drop for repair+</b></td></tr>'
+                                              s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                              s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                          }
+                                        else if(groupedPeople[x][j].status==6)
+                                        {
+                                            s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>New Problems/Price changed</b></td></tr>'
+                                            s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                            s1+='<br><div class="row" style="margin-left:-10%;"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" data-toggle="modal" data-target="#payment" id="'+groupedPeople[x][j].rid+'" onclick="getchgprice(this.id)">Select Final Price</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
                                         }
                                         else
                                         {
-                                            s1+='<tr><td class="ordhead">Status</td> <td>Price Calculated</td>'
+                                            s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Price Calculated</b></td>'
                                             s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
-                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Warehouse Note</button></td><td><button class="btn btn-success">Select Payment Method</button></td><td><button class="btn btn-danger">Cancel Request</button></td></tr></table></div></div>'
+                                            s1+='<div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success">Select Payment Method</button></td><td><button class="btn btn-danger">Cancel</button></td></tr></table></div></div>'
                                         }
                                         
                                         // s1+='</div></div>'

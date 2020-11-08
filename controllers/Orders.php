@@ -40,7 +40,7 @@
                 // $query = 'select count(problem) as problem,count(subproblem) as subproblem,created_date,estprice,status,calprice,r.rid,note from req as r inner join problems as p inner join mobilemodel on r.rid=p.rid where r.uid=?';
                 // $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmodel,created_date,estprice,status,calprice,r.rid,note from requests as r inner join problems as p on r.rid=p.rid where r.uid=? group by rid order by r.rid desc';
                 
-                $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=?';
+                $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? group by r.rid';
                 $stmt = $this->conn->prepare($query);
                 $stmt->bind_param('i',$uid);
                 if($stmt->execute())
@@ -93,6 +93,34 @@
                     return $mc;
                 }
             }
+            public function getchprice($rid)
+            {
+                $mc = array();
+                $query = 'select estprice,calprice,note,rid from req where rid=?';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$rid);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $userinfo = array();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        array_push($mc,
+                            [
+                                "estprice"=>$data["estprice"],
+                                "calprice"=>$data["calprice"],
+                                "note"=>$data["note"],
+                                "rid"=>$data["rid"],
+                            ]);
+                    }
+                    return $mc;
+                }
+                else
+                {
+                    return 400;
+                }
+  
+            }
             public function getproblems($uid,$rid)
             {
                 $mc = array();
@@ -110,6 +138,34 @@
                                 "problem"=>$data["main_problem"],
                                 "subproblem"=>$data["sub_problem"],
                                 "rid"=>$data["rid"],
+                            ]);
+                    }
+                    return $mc;
+                }
+                else
+                {
+                    return 400;
+                }
+            }
+            public function getperson($rid)
+            {
+                $mc = array();
+                $query = 'select admin_name,admin_contact,date,time from scheduled_request as s inner join admins as a on s.admin_id=a.admin_id where a.admin_role="delivery_boy" and s.rid=?';
+                $stmt = $this->conn->prepare($query);
+                echo $this->conn->error;
+                $stmt->bind_param('i',$rid);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $userinfo = array();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        array_push($mc,
+                            [
+                                "admin_name"=>$data["admin_name"],
+                                "admin_contact"=>$data["admin_contact"],
+                                "date"=>$data["date"],
+                                "time"=>$data["time"]
                             ]);
                     }
                     return $mc;
