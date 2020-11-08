@@ -27,7 +27,7 @@ else {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="" name="quotes" class="btn btn-primary" onclick="updateModal(this.id)">Save changes</button>
+        <button type="button" id="" name="temp" class="btn btn-primary" onclick="updateprice(this.id)">Update Price</button>
       </div>
     </div>
   </div>
@@ -183,11 +183,9 @@ if($statuss=="3"){
 
 <td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Update" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)"></td>
 
-<td>
-    <button id="<?php echo $rid; ?>"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exModal" onclick="modaldata(this.id,this.name)">
-    Pricing
-    </button>
-</td>
+
+<td><input type="button" id="<?php echo $rid; ?>" name="pricing" value="Pricing" class="btn btn-primary form-control" data-toggle="modal" data-target="#exModal" onclick="pricemodaldata(this.id)"></td>
+
 </tr>
 
 
@@ -217,6 +215,44 @@ if($statuss=="3"){
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
+    function pricemodaldata(rid)
+    {
+        $("#exModalLabel").empty()
+        $("#exModalLabel").append("Assign Delivery boy for Request No: "+rid)
+        $('[name="temp"]').attr("id",rid)
+        $.ajax({
+        url:"api/getprice.php",
+        data:{"rid":rid},
+        success:function(para)
+        {console.log(para);
+            para = JSON.parse(para)
+            $("#price").val(para[0])
+            $("#note").val(para[1])
+        }
+    })
+    }
+
+    function updateprice(rid)
+    {
+        $.ajax({
+        url:"api/updateprice.php",
+        type:"POST",
+        data:{"rid":rid , "price":$("#price").val() , "note":$("#note").val()},
+        success:function(para)
+        {
+            if(para == "success")
+            {
+                alert("Updated Successfully")
+                window.setTimeout(function(){location.reload()},1000)
+            }
+            else
+            {
+                alert(para)
+                
+            }
+        }
+    })
+    }
     function modaldata(rid)
     {
         $("#exampleModalLabel").empty()
