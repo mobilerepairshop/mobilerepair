@@ -17,6 +17,21 @@
                     return 200;
                 }
             }
+            public function submitfinal($rid,$finalprice)
+            {
+                // Selection of final price
+                $query = 'update req set status=7,calprice=? where rid=?';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('si',$finalprice,$rid);
+                if($stmt->execute())
+                {
+                    return 200;
+                }
+                else
+                {
+                    return 400;
+                }
+            }
             
             public function getnote($rid)
             {
