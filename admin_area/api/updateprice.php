@@ -5,7 +5,7 @@ if(isset($_POST))
     $price = $_POST['price'];
     $note = $_POST['note'];
     $rid = $_POST['rid'];
-    $sql ="update req set calprice='$price',note='$note' where rid=$rid";
+    $sql ="update req set calprice='$price',note='$note',status=4 where rid=$rid";
     $res = mysqli_query($con,$sql);
     if($res)
     {

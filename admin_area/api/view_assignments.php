@@ -14,7 +14,7 @@ else
                 inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
                 inner join users on users.uid = req.uid
                 inner join session on session.uid = scheduled_request.admin_id
-                where session.sesid = "'.$sid.'" AND req.status in(1,2,8,9)';
+                where session.sesid = "'.$sid.'" AND req.status in(1,2,8)';
     $result = mysqli_query($con,$sql);
     $arr = [];
     if (mysqli_num_rows($result) > 0) 

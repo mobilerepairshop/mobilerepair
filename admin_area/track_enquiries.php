@@ -80,7 +80,7 @@ else {
 
 <li class="active" >
 
-<i class="fa fa-dashboard" ></i> Dashboard / View Enquiries
+<i class="fa fa-dashboard" ></i> Dashboard / Track Enquiries
 </li>
 
 </ol><!-- breadcrumb Ends -->
@@ -101,7 +101,7 @@ else {
 
 <h3 class="panel-title" ><!-- panel-title Starts -->
 
-<i class="fa fa-money fa-fw" ></i> View Enquiries
+<i class="fa fa-money fa-fw" ></i> Track Enquiries
 
 </h3><!-- panel-title Ends -->
 
@@ -117,13 +117,17 @@ else {
 <thead><!-- thead Starts -->
 
 <tr>
-<th>Request Number</th>
+<th>Request</th>
+
+<th>User Name </th>
+
+<th>User Contact </th>
+
+<th>Delivery Person</th>
 
 <th>Date</th>
 
-<th>Time</th>
-
-<th>Delivery Boy </th>
+<th>Time </th>
 
 <th>Status</th>
 
@@ -144,7 +148,11 @@ else {
 <?php
 
 
-$get_enquiries = "SELECT * FROM scheduled_request inner join admins on admins.admin_id=scheduled_request.admin_id inner join req on req.rid=scheduled_request.rid where req.status>0";
+$get_enquiries = "SELECT * FROM scheduled_request 
+                  inner join admins on admins.admin_id=scheduled_request.admin_id 
+                  inner join req on req.rid=scheduled_request.rid 
+                  inner join users on req.uid=users.uid
+                  where req.status>0";
 
 $run_admin = mysqli_query($con,$get_enquiries);
 
@@ -158,6 +166,10 @@ $date = $row_admin['date'];
 
 $time = $row_admin['time'];
 
+$username = $row_admin['username'];
+
+$phonenum = $row_admin['phonenum'];
+
 $devliveryboy = $row_admin['admin_name'];
 
 $statuss= $row_admin['status'];
@@ -170,16 +182,31 @@ if($statuss=="2"){
 if($statuss=="3"){
   $statuss="Phone dropped to admin";
 }
-$disabled = $statuss != "3"?"disabled='disabled'" : "";
+if($statuss=="4"){
+  $statuss="Price Updated";
+}
+if($statuss=="7"){
+  $statuss="Price accepted by user";
+}
+if($statuss=="8"){
+  $statuss="Person assigned for delivery";
+}
+if($statuss=="9"){
+  $statuss="Phone dropped to customer";
+}
+$disabled = $statuss != "Phone dropped to admin"?"disabled" : "";
 
 ?>
 
 <tr>
 
 <td><?php echo $rid; ?></td>
+<td><?php echo $username; ?></td>
+<td><?php echo $phonenum; ?></td>
 <td><?php echo $devliveryboy; ?></td>
 <td><?php echo $date; ?></td>
 <td><?php echo $time; ?></td>
+
 <td><?php echo $statuss; ?></td>
 
 <td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Update" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)"></td>

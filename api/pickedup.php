@@ -26,6 +26,10 @@
             {
                 echo $orders->droppedtoadmin($rid);
             }
+            if($status == 8)
+            {
+                echo $orders->droppedtouser($rid);
+            }
         }
     }
 ?>
