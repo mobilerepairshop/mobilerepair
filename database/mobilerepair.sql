@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 09:50 AM
+-- Generation Time: Nov 09, 2020 at 05:22 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -46,7 +46,8 @@ CREATE TABLE `admins` (
 INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `admin_image`, `admin_contact`, `admin_address`, `admin_role`) VALUES
 (0, 'Vinod Kumbhar', 'vk@gmail.com', '123', 'admin.jpg', '8421208111', 'Plot 34, NavVinayak Society, Jijai Nagar', 'super_admin'),
 (5, 'Atharva ', 'atharvadeshpande99@gmail.com', '123', 'bed-1-2.jpg', '7218340969', 'KESHAV NAGAR, NEAR GULMOHAR MARKET', 'system_manager'),
-(6, 'Atharva Santosh Deshpande', 'AtharvaSD_admin_5', '123', 'Photograph.jpg', '7563210245', 'Pune', 'delivery_boy');
+(6, 'Atharva Santosh Deshpande', 'AtharvaSD_admin_5', '123', 'Photograph.jpg', '7563210245', 'Pune', 'delivery_boy'),
+(7, 'Pragati Shamrao Gaikwad', 'PragatiSG_admin_6', '123', 'shivaji maharaj.jpg', '8652103245', 'Bhosari, Pune', 'delivery_boy');
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,14 @@ CREATE TABLE `mobilemodel` (
   `mmname` varchar(500) NOT NULL,
   `mcid` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.mobilemodel: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`mobilemodel`' at line 1
+
+--
+-- Dumping data for table `mobilemodel`
+--
+
+INSERT INTO `mobilemodel` (`mmid`, `mmname`, `mcid`) VALUES
+(6, 'Galaxy M30s', 6),
+(7, 'Guru', 6);
 
 -- --------------------------------------------------------
 
@@ -105,7 +113,13 @@ CREATE TABLE `pincode` (
   `pid` int(50) NOT NULL,
   `pincode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table mobilerepair.pincode: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `mobilerepair`.`pincode`' at line 1
+
+--
+-- Dumping data for table `pincode`
+--
+
+INSERT INTO `pincode` (`pid`, `pincode`) VALUES
+(3, '411033');
 
 -- --------------------------------------------------------
 
@@ -126,7 +140,9 @@ CREATE TABLE `pricing_allocation` (
 
 INSERT INTO `pricing_allocation` (`paid`, `mmid`, `subproblem_code`, `price`) VALUES
 (1, 1, 1, '1200'),
-(2, 1, 4, '1200');
+(2, 1, 4, '1200'),
+(3, 6, 1, '1000'),
+(4, 6, 2, '2000');
 
 -- --------------------------------------------------------
 
@@ -188,13 +204,6 @@ CREATE TABLE `req` (
   `note` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `req`
---
-
-INSERT INTO `req` (`rid`, `mmid`, `uid`, `estprice`, `status`, `calprice`, `created_date`, `note`) VALUES
-(1, 1, 14, '1200', 1, '0', '0000-00-00', 'NA');
-
 -- --------------------------------------------------------
 
 --
@@ -227,13 +236,6 @@ CREATE TABLE `scheduled_request` (
   `time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `scheduled_request`
---
-
-INSERT INTO `scheduled_request` (`rid`, `admin_id`, `date`, `time`) VALUES
-(1, 6, '2020-11-09', '10:30:00');
-
 -- --------------------------------------------------------
 
 --
@@ -251,6 +253,7 @@ CREATE TABLE `session` (
 
 INSERT INTO `session` (`sesid`, `uid`) VALUES
 ('4dc10bdebfbbe8d9e5383de48324cffc', 6),
+('27093d6e762d1ce7a1e272c6321e85e0', 14),
 ('5119918a8496e900f431ff8b12ba547f', 14);
 
 -- --------------------------------------------------------
@@ -275,6 +278,7 @@ INSERT INTO `session_admin` (`uid`, `sesid`) VALUES
 (0, '3dd77484350bbeed4711fc865d087fde'),
 (0, '4b5b54ef1fc3344bb24ebf06bd9e90e1'),
 (0, '57c6fd096e78b2c24f6c49a9a3bd1b07'),
+(0, '57d1e123641c8e9c5efb152cc5c3756d'),
 (0, '57dd6d10303abad4b80cfbc5f333cb4a'),
 (0, '79bba4ba3d0913878c7775527ac95f2f'),
 (0, 'ce5cc8682656c72e0872efaf39cc01ac'),
@@ -441,7 +445,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `mobilecompany`
@@ -453,19 +457,19 @@ ALTER TABLE `mobilecompany`
 -- AUTO_INCREMENT for table `mobilemodel`
 --
 ALTER TABLE `mobilemodel`
-  MODIFY `mmid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `mmid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pincode`
 --
 ALTER TABLE `pincode`
-  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pricing_allocation`
 --
 ALTER TABLE `pricing_allocation`
-  MODIFY `paid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `paid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `problem_master`
