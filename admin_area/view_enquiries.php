@@ -99,7 +99,7 @@ else {
 
 <th>Area Pincode</th>
 
-<th>Request Date</th>
+<th>User Address</th>
 
 <th>Action</th>
 
@@ -114,28 +114,26 @@ else {
 <?php
 
 
-$get_enquiries = "SELECT * FROM requests INNER JOIN users ON users.uid = requests.uid  where  requests.status=1";
-
+$get_enquiries = "SELECT * FROM req INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid INNER JOIN users ON users.uid = req.uid  where  req.status=0";
 $run_admin = mysqli_query($con,$get_enquiries);
 
 
 
 while($row_admin = mysqli_fetch_array($run_admin)){
-
-
     
 $username = $row_admin['username'];
 
 $Brand = $row_admin['mcname'];
 
-$Model = $row_admin['mmodel'];
+$Model = $row_admin['mmname'];
 
 $price = $row_admin['estprice'];
 
 $Area_Pincode = $row_admin['pincode'];
 
-$req_date = $row_admin['created_date'];
+$address = $row_admin['address'];
 $rid = $row_admin['rid'];
+console.log("username");
 
 ?>
 
@@ -152,9 +150,11 @@ $rid = $row_admin['rid'];
 
 <td><?php echo $Area_Pincode; ?></td>
 
-<td><?php echo $req_date; ?></td>
+<td><?php echo $address; ?></td>
 
-<td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)"></td>
+<td>
+  <input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)">
+</td>
 
 
 </tr>

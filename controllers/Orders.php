@@ -162,6 +162,39 @@
                     return 400;
                 }
             }
+
+            public function getproblemsforadmin($rid)
+            {
+                $mc = array();
+                $query = 'select main_problem,sub_problem,r.rid from req as r 
+                            inner join problems as p 
+                            inner join subproblem_master as sp 
+                            INNER JOIN problem_master as pm 
+                            on r.rid=p.rid and p.subproblem=sp.subproblem_code and sp.problem_code=pm.problem_code 
+                            where r.rid=?';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$rid);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $userinfo = array();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        array_push($mc,
+                            [
+                                "problem"=>$data["main_problem"],
+                                "subproblem"=>$data["sub_problem"],
+                                "rid"=>$data["rid"],
+                            ]);
+                    }
+                    return $mc;
+                }
+                else
+                {
+                    return 400;
+                }
+            }
+
             public function getperson($rid)
             {
                 $mc = array();

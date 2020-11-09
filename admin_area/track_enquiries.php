@@ -9,6 +9,34 @@ else {
   $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_boy'";
   $run_boy = mysqli_query($con,$get_boys);
 ?>
+
+
+<!-- Modal Start-->
+<div class="modal fade" id="exModal" tabindex="-1" role="dialog" aria-labelledby="exModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Total Cost for Repairing (₹) *<input type="text" placeholder="Enter Amount in ₹ " id="price">
+        Additional Note (if any)<input type="text" placeholder="Enter Note " id="note">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="" name="temp" class="btn btn-primary" onclick="updateprice(this.id)">Update Price</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal End -->
+
+
+
 <!-- Modal Start-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -36,7 +64,7 @@ else {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="" name="quotes" class="btn btn-primary" onclick="updateModal(this.id)">Assign</button>
+        <button type="button" id="" name="quotes" class="btn btn-primary" onclick="updateModal(this.id)">Update</button>
       </div>
     </div>
   </div>
@@ -89,19 +117,21 @@ else {
 <thead><!-- thead Starts -->
 
 <tr>
-<th>User Name</th>
+<th>Request Number</th>
 
-<th>Brand</th>
+<th>Date</th>
 
-<th>Model</th>
+<th>Time</th>
 
-<th>Repair Price </th>
+<th>Delivery Boy </th>
 
-<th>Area Pincode</th>
-
-<th>Request Date</th>
+<th>Status</th>
 
 <th>Action</th>
+
+<th>Confirm Price</th>
+
+
 
 
 
@@ -114,48 +144,48 @@ else {
 <?php
 
 
-$get_enquiries = "SELECT * FROM requests INNER JOIN users ON users.uid = requests.uid  where  requests.status=2";
+$get_enquiries = "SELECT * FROM scheduled_request inner join admins on admins.admin_id=scheduled_request.admin_id inner join req on req.rid=scheduled_request.rid where req.status>0";
 
 $run_admin = mysqli_query($con,$get_enquiries);
 
-
-
 while($row_admin = mysqli_fetch_array($run_admin)){
 
+$run_q = mysqli_query($con,$admin);
 
-    
-$username = $row_admin['username'];
-
-$Brand = $row_admin['mcname'];
-
-$Model = $row_admin['mmodel'];
-
-$price = $row_admin['estprice'];
-
-$Area_Pincode = $row_admin['pincode'];
-
-$req_date = $row_admin['created_date'];
 $rid = $row_admin['rid'];
+    
+$date = $row_admin['date'];
+
+$time = $row_admin['time'];
+
+$devliveryboy = $row_admin['admin_name'];
+
+$statuss= $row_admin['status'];
+if($statuss=="1"){
+  $statuss="Delivery Boy assigned";
+}
+if($statuss=="2"){
+  $statuss="Phone picked up from user";
+}
+if($statuss=="3"){
+  $statuss="Phone dropped to admin";
+}
+$disabled = $statuss != "3"?"disabled='disabled'" : "";
 
 ?>
 
 <tr>
 
+<td><?php echo $rid; ?></td>
+<td><?php echo $devliveryboy; ?></td>
+<td><?php echo $date; ?></td>
+<td><?php echo $time; ?></td>
+<td><?php echo $statuss; ?></td>
 
-<td><?php echo $username; ?></td>
+<td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Update" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)"></td>
 
-<td><?php echo $Brand; ?></td>
 
-<td><?php echo $Model; ?></td>
-
-<td><?php echo $price; ?></td>
-
-<td><?php echo $Area_Pincode; ?></td>
-
-<td><?php echo $req_date; ?></td>
-
-<td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)"></td>
-
+<td><input type="button" id="<?php echo $rid; ?>"  name="pricing" value="Pricing" class="btn btn-primary form-control" data-toggle="modal" data-target="#exModal" <?php echo $disabled; ?> onclick="pricemodaldata(this.id)" ></td>
 
 </tr>
 
@@ -186,6 +216,50 @@ $rid = $row_admin['rid'];
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
+    function pricemodaldata(rid)
+    {
+        $("#exModalLabel").empty()
+        $("#exModalLabel").append("Assign Delivery boy for Request No: "+rid)
+        $('[name="temp"]').attr("id",rid)
+        $.ajax({
+        url:"api/getprice.php",
+        data:{"rid":rid},
+        success:function(para)
+        {
+            console.log(para);
+            para = JSON.parse(para)
+            $("#price").val(para[0])
+            $("#note").val(para[2])
+            if(para[1]!="0"){
+              $("#price").val(para[1])
+            }
+            
+            
+        }
+    })
+    }
+
+    function updateprice(rid)
+    {
+        $.ajax({
+        url:"api/updateprice.php",
+        type:"POST",
+        data:{"rid":rid , "price":$("#price").val() , "note":$("#note").val()},
+        success:function(para)
+        {
+            if(para == "success")
+            {
+                alert("Updated Successfully")
+                window.setTimeout(function(){location.reload()},1000)
+            }
+            else
+            {
+                alert(para)
+                
+            }
+        }
+    })
+    }
     function modaldata(rid)
     {
         $("#exampleModalLabel").empty()
@@ -195,17 +269,17 @@ $rid = $row_admin['rid'];
     function updateModal(rid)
     {
         $.ajax({
-        url:"api/assigndeliveryboy.php",
+        url:"api/updatedeliveryboy.php",
         type:"POST",
         data:{"rid":rid , "boy_date":$("#boy_date").val() ,"boy_name":$("#boy_name").val() , "boy_time":$("#boy_time").val()},
         success:function(para)
         {
             if(para=='success')
             {
-                alert("Assigned")
+                alert("Updated")
                 window.setTimeout(function(){location.reload()},1000)
             }else{
-              alert("Not Assigned")
+              alert(para)
                 window.setTimeout(function(){location.reload()},1000)
             }
             
