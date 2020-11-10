@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>MobileRepair</title>
+  <title>DevFolio Bootstrap Template</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -22,6 +22,8 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   
   <link href="jquery-editable-select/dist/jquery-editable-select.min.css" rel="stylesheet">
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <script src="https://apis.google.com/js/platform.js" ></script>
@@ -30,10 +32,15 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="./login/css/login.css" rel="stylesheet">
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  
+
+  <!-- =======================================================
+    Theme Name: DevFolio
+    Theme URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
   <style>
-  
-  .containercheck {
+    .containercheck {
   display: block;
   position: relative;
   padding-left: 35px;
@@ -99,78 +106,14 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
-.botnavbar {
-  overflow: hidden;
-  background-color: #fff;
-  box-shadow: 0 0 6px 0 rgba(0,0,0,.12), 0 6px 6px 0 rgba(0,0,0,.64);
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index:999;
-  display:none;
-}
-
-.botnavbar a {
-  float: left;
-  display: block;
-  color: #000;
-  width:25%;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.botnavbar a:hover {
-  background: #f1f1f1;
-  color: black;
-}
-
-.botnavbar a.active {
-  background-color: #0078ff;
-  color: white;
-}
-
-@media only screen and (max-width: 600px) {
-
-  .botnavbar{
-    display:block;
-  }
-  .botnavbar a{
-    width:25%;
-  }
-}
   </style>
 </head>
 
-<body id="page-top">
-
-  
-<!-- Problem Modal -->
-<div class="modal fade" id="problem">
-  <div class="modal-dialog modal-dialog-centered modal-lg" >
-  <div class="modal-content">
-  <div class="modal-header">
-  <h4 class="modal-title">Your Request</h4>
-  <button type="button" class="close" data-dismiss="modal">&times;</button>
-  </div>
-  <div class="modal-body problem">
-      <table class="problem-content" style="width:110%;">
-  
-      </table>
-  </div>
-  <div class="modal-footer">
-  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-  </div></div></div></div>
-  
-  <!-- Problem Modal -->
-
-  
+<body>
   <!--/ Nav Star /-->
   <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll" href="#page-top">MobileRepair</a>
+      <a class="navbar-brand js-scroll" href="#page-top">Mobile Repair Service</a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
         aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
@@ -179,196 +122,31 @@
       </button>
       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav">
-          <li class="nav-item" id="homenav">
-            <a class="nav-link js-scroll active" href="./index2.html">Home</a>
-          </li>
-          <li class="nav-item" id="servicenav">
-            <a class="nav-link js-scroll" href="#about">About Us</a>
-          </li>
-          <li class="nav-item" id="contactnav">
-            <a class="nav-link js-scroll" href="#contact">Contact</a>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" id="login_button" onclick="openLoginModal()">Login</a>
+            <a class="nav-link js-scroll" href="#">About</a>
           </li>
-          <li>
-            
-            <div class="collapse navbar-collapse" id="navbar-list-4 prodrop">
-              <ul class="navbar-nav">
-                  <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Dashboard</a>
-                    <a class="dropdown-item" href="#">Edit Profile</a>
-                    <a class="dropdown-item" onclick="signout()">Log Out</a>
-                  </div>
-                </li>   
-              </ul>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#">Work</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#">Contact</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <!--/ Nav End /-->
-  <br><br>
-   <!--/ Section Blog-Single Star /-->
-  <section class="blog-wrapper sect-pt4" id="blog">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4" id="leftnavpane">
-          <div class="widget-sidebar">
-            <a href="./index2.html" class="sidebar-title">Services Home Page</a> <br><br>
-            <a href="./eg2.html" class="sidebar-title">Mobile Repair Service</a> <br><br>
-            <a href="./myorders2.html" class="sidebar-title">Track Mobile Repair Orders</a> <br><br>
-            <a class="sidebar-title">Mobile Repair Payments</a> <br><br>
-            <a class="sidebar-title">Take Insurance Service</a>
-          </div>
-        </div>
-        <div class="col-md-8" id="servicerequestform">
-            <div class="form-comments">
-              <div class="title-box-2">
-                <h3 class="title-left">
-                  Request a Service
-                </h3>
-              </div>
-              <div class="form-mf">
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <div class="form-group">
-                      <input type="number" class="form-control input-mf" id="pincode" placeholder="Pincode *" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <div class="form-group">
-                      <input type="button" class="button button-a button-small button-rouded" id="checkpincode" value="Check Availability">
-                    </div>
-                  </div>
-                  <div class="col-md-12 mb-6" id="contact_details">
-                    <div class="form-group">
-                      <b>Enter Mobile Number</b>
-                      <input type="text" class="form-control input-mf" id="phonenum" placeholder="Mobile Number *" required>
-                    </div>
-                    <div class="form-group">
-                      <b>Enter Address</b>
-                      <input type="text" class="form-control input-mf" id="address" placeholder="Address *" required>
-                    </div>
-                  </div>
-                  <br><br><br><br>
-                  <div class="col-md-6 mb-3">
-                      <div class="dropdown">
-                        <b>Select Mobile Company</b> <br>
-                        <select id="editable-select" required>
-                    
-                        </select>
-                      </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <div class="dropdown" id="es2div">
-                      <b>Select Mobile Model</b> <br>
-                      <select id="editable-select2" required>
-                       
-                      </select>
-                    </div>
-                </div>
-  
-  
-                
-                <br><br><br><br>
-  
-                <div class="row problem">
-                  
-                </div>
-                  <div class="col-md-12">
-                    <br><button id="getqoute" class="button button-a button-small button-rouded">Get Quotation</button>
-                    <p class="pricing"></p>
-                    <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
-                  
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-  </section>
-  <!--/ Section Blog-Single End /-->
 
 
-<!-- Floating Div  -->
-
-<div class="botnavbar">
-  <a href="./index2.html" ><i class="fa fa-home fa-2x" aria-hidden="true"></i>Home</a>
-  <a href="./myorders.html"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i>Orders</a>
-  <!-- <a href="#contact"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>Profile</a> -->
-  <a href="#contact"><i class="fa fa-credit-card-alt fa-2x" aria-hidden="true"></i>Payment</a>
-  <a href="#contact"><i class="fa fa-shield fa-2x" aria-hidden="true"></i>Insurance</a>
-</div>
-<!-- Floating Div  -->
-
- 
-  <!--/ Section Contact-Footer Star for User /-->
-  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
-    <div class="overlay-mf"></div>
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="copyright-box">
-              <p class="copyright">&copy; Copyright <strong>MobileRepair</strong>. All Rights Reserved</p>
-              <div class="credits">
-                <!--
-                  All the links in the footer should remain intact.
-                  You can delete the links only if you purchased the pro version.
-                  Licensing information: https://bootstrapmade.com/license/
-                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
-                -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </section>
-  <!--/ Section Contact-footer for User End /-->
-
-<!--/ Section Contact-Footer Star for Admin /-->
-<section class="blog-wrapper sect-pt4" id="contactform-admin" style="display:none;">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="widget-sidebar sidebar-search">
-          <h5 class="sidebar-title">Filter Tasks</h5>
-          <div class="sidebar-content">
-            <form>
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Collect From Customer</button> <br><br>
-                  <button class="btn btn-secondary" type="button">Collect From Customer</button> <br><br>
-                  <button class="btn btn-secondary" type="button">Collect From Customer</button> <br><br>
-                  <button class="btn btn-secondary" type="button">Collect From Customer</button>
-                </span>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-8 mycards">
-          
-        <!-- Dynamically Cards will append here -->
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!--/ Section Contact-footer for Admin End /-->
-
-
-  <a href="#carouselExampleIndicators" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <div id="preloader"></div>
 
 <!-- Login Modal -->
 <div class="modal fade login" id="loginModal">
@@ -447,6 +225,119 @@
 
 <!-- Login Modal end -->
 
+<br><br><br>
+  <!--/ Section Blog-Single Star /-->
+  <section class="blog-wrapper sect-pt4" id="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" id="leftnavpane">
+            <div class="widget-sidebar">
+              <a href="./index2.html" class="sidebar-title">Services Home Page</a> <br><br>
+              <a href="./eg2.html" class="sidebar-title">Mobile Repair Service</a> <br><br>
+              <a href="./myorders2.html" class="sidebar-title">Track Mobile Repair Orders</a> <br><br>
+              <a class="sidebar-title">Mobile Repair Payments</a> <br><br>
+              <a class="sidebar-title">Take Insurance Service</a>
+            </div>
+          </div>
+        <div class="col-md-8">
+          <div class="form-comments">
+            <div class="title-box-2">
+              <h3 class="title-left">
+                Request a Service
+              </h3>
+            </div>
+            <div class="form-mf">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <div class="form-group">
+                    <input type="number" class="form-control input-mf" id="pincode" placeholder="Pincode *" required>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="form-group">
+                    <input type="button" class="button button-a button-small button-rouded" id="checkpincode" value="Check Availability">
+                  </div>
+                </div>
+                <div class="col-md-12 mb-6" id="contact_details">
+                  <div class="form-group">
+                    <b>Enter Mobile Number</b>
+                    <input type="text" class="form-control input-mf" id="phonenum" placeholder="Mobile Number *" required>
+                  </div>
+                  <div class="form-group">
+                    <b>Enter Address</b>
+                    <input type="text" class="form-control input-mf" id="address" placeholder="Address *" required>
+                  </div>
+                </div>
+                <br><br><br><br>
+                <div class="col-md-6 mb-3">
+                    <div class="dropdown">
+                      <b>Select Mobile Company</b> <br>
+                      <select id="editable-select" required>
+                  
+                      </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="dropdown" id="es2div">
+                    <b>Select Mobile Model</b> <br>
+                    <select id="editable-select2" required>
+                     
+                    </select>
+                  </div>
+              </div>
+
+
+              
+              <br><br><br><br>
+
+              <div class="row problem">
+                
+              </div>
+    
+                <div class="col-md-12">
+                  <br><button id="getqoute" class="button button-a button-small button-rouded">Get Quotation</button>
+                  <p class="pricing"></p>
+                  <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!--/ Section Blog-Single End /-->
+
+  <!--/ Section Contact-Footer Star /-->
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(img/overlay-bg.jpg)">
+    <div class="overlay-mf"></div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="copyright-box">
+              <p class="copyright">&copy; Copyright <strong>DevFolio</strong>. All Rights Reserved</p>
+              <div class="credits">
+                <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
+                -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <!--/ Section Contact-footer End /-->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <div id="preloader"></div>
 
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
@@ -463,16 +354,17 @@
   <script src="lib/typed/typed.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
+  
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
- 
+
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
 
-<script>
 
+ <script>
 function pickedup(rid,status)
 {
   $.ajax({
@@ -1023,16 +915,22 @@ function getvalue(id)
 
             // console.log(groupedPeople)
             // <div class="form-group ">
-            for(x in groupedPeople)
+              for(x in groupedPeople)
             {
                 if (groupedPeople.hasOwnProperty(x)) 
                 {
                     console.log(x + " -> " + groupedPeople[x]);
             
-                    s1+='<div class="col-md-6 mb-2 "><div class="form-group "><div class="form-check"><div class="custom-checkbox">'
-                    s1+='<input type="checkbox" class="custom-control-input" id="'+x+'"  onclick="showproblems(this.id)">'
-                    s1+='<label class="custom-control-label" for="'+x+'">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
+                    // s1+='<div class="col-md-6 mb-2 "><div class="form-group "><div class="form-check"><div class="custom-checkbox">'
+                    // s1+='<input type="checkbox" class="custom-control-input" id="'+x+'"  onclick="showproblems(this.id)">'
+                    // s1+='<label class="custom-control-label" for="'+x+'">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
                    
+                    s1+='<div class="col-md-6 mb-2 "><div class="form-group "><div class="form-check"><div class="custom-checkbox">'
+                    s1+='<input type="checkbox" class="custom-control-input" id="'+x+'" onclick="showproblems(this.id)">'
+                    s1+='<label class="custom-control-label" for="'+x+'">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
+
+
+
                     var innersize = Object.keys(groupedPeople[x]).length;
                     console.log("Inner size - ",innersize)
                     window.ids = x;
@@ -1252,5 +1150,12 @@ $("#requestquotation").click(function(){
 
 
 </script>
+
+
+
+
+
 </body>
 </html>
+
+
