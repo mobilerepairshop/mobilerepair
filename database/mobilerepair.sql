@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2020 at 05:22 PM
+-- Generation Time: Nov 10, 2020 at 06:45 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -156,13 +156,6 @@ CREATE TABLE `problems` (
   `subproblem` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `problems`
---
-
-INSERT INTO `problems` (`rid`, `problem`, `subproblem`) VALUES
-(1, 2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -207,25 +200,6 @@ CREATE TABLE `req` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `requests`
---
-
-CREATE TABLE `requests` (
-  `rid` int(100) NOT NULL,
-  `pincode` varchar(50) NOT NULL,
-  `mcname` varchar(50) NOT NULL,
-  `mmodel` varchar(100) NOT NULL,
-  `uid` int(10) DEFAULT NULL,
-  `estprice` varchar(100) DEFAULT NULL,
-  `status` int(5) DEFAULT NULL,
-  `calprice` varchar(100) DEFAULT NULL,
-  `created_date` date NOT NULL,
-  `note` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `scheduled_request`
 --
 
@@ -233,8 +207,16 @@ CREATE TABLE `scheduled_request` (
   `rid` int(10) NOT NULL,
   `admin_id` int(50) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL
+  `time` time NOT NULL,
+  `delivery_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `scheduled_request`
+--
+
+INSERT INTO `scheduled_request` (`rid`, `admin_id`, `date`, `time`, `delivery_status`) VALUES
+(1, 7, '2020-11-19', '10:50:00', '');
 
 -- --------------------------------------------------------
 
@@ -246,15 +228,6 @@ CREATE TABLE `session` (
   `sesid` varchar(100) NOT NULL,
   `uid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `session`
---
-
-INSERT INTO `session` (`sesid`, `uid`) VALUES
-('4dc10bdebfbbe8d9e5383de48324cffc', 6),
-('27093d6e762d1ce7a1e272c6321e85e0', 14),
-('5119918a8496e900f431ff8b12ba547f', 14);
 
 -- --------------------------------------------------------
 
@@ -405,13 +378,6 @@ ALTER TABLE `req`
   ADD PRIMARY KEY (`rid`);
 
 --
--- Indexes for table `requests`
---
-ALTER TABLE `requests`
-  ADD PRIMARY KEY (`rid`),
-  ADD KEY `uid` (`uid`);
-
---
 -- Indexes for table `session`
 --
 ALTER TABLE `session`
@@ -488,16 +454,6 @@ ALTER TABLE `subproblem_master`
 --
 ALTER TABLE `users`
   MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `requests`
---
-ALTER TABLE `requests`
-  ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
