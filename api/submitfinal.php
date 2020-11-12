@@ -16,7 +16,7 @@
         if($user[0]=='200')
         {
             $orders = new Orders($conn);
-            $values = $orders->submitfinal($_POST['rid'],$_POST['fprice']);
+            $values = $orders->submitfinal($_POST['rid']);
             echo($values);
         }
     }

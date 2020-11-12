@@ -17,12 +17,12 @@
                     return 200;
                 }
             }
-            public function submitfinal($rid,$finalprice)
+            public function submitfinal($rid)
             {
                 // Selection of final price
-                $query = 'update req set status=7,calprice=? where rid=?';
+                $query = 'update req set status=7 where rid=?';
                 $stmt = $this->conn->prepare($query);
-                $stmt->bind_param('si',$finalprice,$rid);
+                $stmt->bind_param('i',$rid);
                 if($stmt->execute())
                 {
                     return 200;
