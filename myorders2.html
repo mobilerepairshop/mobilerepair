@@ -1005,11 +1005,11 @@ function groupArrayOfObjects(list, key) {
   }
   function submitfinal(rid)
   {
-    fprice = $("input[name='price']:checked").val()
+    // fprice = $("input[name='price']:checked").val()
     $.ajax({
         url:'./api/submitfinal.php',
         type:'POST',
-        data:{'rid':rid,'sid':sid,'fprice':fprice},
+        data:{'rid':rid,'sid':sid},
         success:function(para)
         {
           console.log("This is note - ",para)
