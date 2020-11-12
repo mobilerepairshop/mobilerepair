@@ -10,31 +10,13 @@ else {
   $run_boy = mysqli_query($con,$get_boys);
 ?>
 
-
-<!-- Modal Start-->
-<div class="modal fade" id="exModal" tabindex="-1" role="dialog" aria-labelledby="exModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Total Cost for Repairing (₹) *<input type="text" placeholder="Enter Amount in ₹ " id="price">
-        Additional Note (if any)<input type="text" placeholder="Enter Note " id="note">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="" name="temp" class="btn btn-primary" onclick="updateprice(this.id)">Update Price</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal End -->
-
+<style>
+.unstyled-button {
+  border: none;
+  padding: 0;
+  background: none;
+}
+</style>
 
 
 <!-- Modal Start-->
@@ -71,6 +53,68 @@ else {
 </div>
 
 <!-- Modal End -->
+
+
+<!-- Modal Start-->
+<div class="modal fade" id="exModal" tabindex="-1" role="dialog" aria-labelledby="exModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Total Cost for Repairing (₹) *<input type="text" placeholder="Enter Amount in ₹ " id="price">
+        Additional Note (if any)<input type="text" placeholder="Enter Note " id="note">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="" name="temp" class="btn btn-primary" onclick="updateprice(this.id)">Update Price</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal End -->
+
+
+<!-- Modal Start-->
+<div class="modal fade" id="eModal" tabindex="-1" role="dialog" aria-labelledby="eModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <label>Delivery Boy</label>
+        <select  name="boy_name" id="boy_name">
+      <?php 
+        while($boy = mysqli_fetch_array($run_boy)){
+          $namee=$boy['admin_name'];
+          $boy_id=$boy['admin_id'];
+
+          echo "<option value='$boy_id'>" .$namee . "</option>";
+          }
+      ?>
+      <label>Time and Date</label>
+      <input type="date" placeholder="Enter Date " id="boy_date" name="boy_date">
+      <input type="time" placeholder="Enter Date " id="boy_time" name="boy_time">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="" name="temp1" class="btn btn-primary" onclick="deliveryupdateModal(this.id)">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal End -->
+
 
 <div class="row" ><!-- 1 row Starts -->
 
@@ -203,7 +247,7 @@ $disabled = $statuss != "Phone dropped to admin"?"disabled" : "";
 <td><?php echo $rid; ?></td>
 <td><?php echo $username; ?></td>
 <td><?php echo $phonenum; ?></td>
-<td><?php echo $devliveryboy; ?></td>
+<td><input type="button" id="<?php echo $rid; ?>" name="assign" value="<?php echo $devliveryboy; ?>"  class="unstyled-button" data-toggle="modal" data-target="#eModal" onclick="deliverymodaldata(this.id)"></td>
 <td><?php echo $date; ?></td>
 <td><?php echo $time; ?></td>
 
@@ -287,11 +331,37 @@ $disabled = $statuss != "Phone dropped to admin"?"disabled" : "";
         }
     })
     }
+    function deliverymodaldata(rid)
+    {
+        $("#eModalLabel").empty()
+        $("#eModalLabel").append("Update Delivery boy for Request No: "+rid)
+        $('[name="temp1"]').attr("id",rid)
+    }
     function modaldata(rid)
     {
         $("#exampleModalLabel").empty()
         $("#exampleModalLabel").append("Assign Delivery boy for Request No: "+rid)
         $('[name="quotes"]').attr("id",rid)
+    }
+    function deliveryupdateModal(rid)
+    {
+        $.ajax({
+        url:"api/updatename.php",
+        type:"POST",
+        data:{"rid":rid , "boy_date":$("#boy_date").val() ,"boy_name":$("#boy_name").val() , "boy_time":$("#boy_time").val()},
+        success:function(para)
+        {
+            if(para=='success')
+            {
+                alert("Updated")
+                window.setTimeout(function(){location.reload()},1000)
+            }else{
+              alert(para)
+                window.setTimeout(function(){location.reload()},1000)
+            }
+            
+        }
+    })
     }
     function updateModal(rid)
     {
