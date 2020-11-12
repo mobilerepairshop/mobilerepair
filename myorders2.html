@@ -168,8 +168,7 @@
                 <div class="history" style="width:30%;height:3vw;text-align: center;border:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('History')">
                     History
                 </div>
-            </div>
-m            <br>
+            </div>           <br>
             <div class="row mycards">
            
 
@@ -335,6 +334,82 @@ m            <br>
 </div>
 
 <!-- Login Modal end -->
+<!-- Note Modal -->
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Note from warehouse</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body note">
+           <p class="note-content"></p>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<!-- Problem Modal -->
+<div class="modal fade" id="problem">
+<div class="modal-dialog modal-dialog-centered modal-lg" >
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Your Request</h4>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body problem">
+    <table class="problem-content" style="width:110%;">
+
+    </table>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div></div></div></div>
+
+<!-- Problem Modal -->
+<div class="modal fade" id="person">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">Assigned Person</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body person">
+      <table class="person-content" style="width:110%;">
+  
+      </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+
+  <!-- Problem Modal -->
+<div class="modal fade" id="payment">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">Final Cost</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body person">
+      <table class="payment-content" style="width:110%;">
+  
+      </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
 
 
   <!-- JavaScript Libraries -->
@@ -875,16 +950,8 @@ function groupArrayOfObjects(list, key) {
                 for(let i=0;i<para.length;i++)
                 {
 
-                  s2+='<div class="custom-control custom-radio">' 
-                  s2+='<input type="radio" class="custom-control-input" id="'+para[i].rid+'-calp" value="'+para[i].estprice+'" name="price"   >'
-                  s2+='<label class="custom-control-label" for="'+para[i].rid+'-calp">Estimated Price - '+para[i].estprice+'</label>'
-                  s2+='</div>'
-                  s2+='<div class="custom-control custom-radio">' 
-                  s2+='<input type="radio" class="custom-control-input" id="'+para[i].rid+'-estp" value="'+para[i].calprice+'" name="price" >'
-                  s2+='<label class="custom-control-label" for="'+para[i].rid+'-estp">Calculated Price - '+para[i].calprice+'</label>'
-                  s2+='</div>'
-
-                  s2+='<table><tr><td class="ordhead">Note</td><tr><tr><td>'+para[i].note+'</td></tr></table><br>'
+                  s2+='<div class="ordhead"><b>Calculated Price -</b> '+para[i].calprice+'</div><br>'
+                  s2+='<table><tr><td class="ordhead"><b>Note</b></td></tr><tr><td><p>'+para[i].note+'</p></td></tr></table><br>'
                   s2+='<button class="btn btn-success" onclick="submitfinal('+para[i].rid+')">Submit Price</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  class="btn btn-danger">Cancel Request</button>'
  
                 }
@@ -954,6 +1021,7 @@ function groupArrayOfObjects(list, key) {
 	  var ww = document.body.clientWidth;
    
 	  if (ww < 600) {
+      // Mobile View
       $(".active").css("width","33%")
       $(".active").css("height","15vw")
       $(".cancel").css("width","33%")
@@ -1110,6 +1178,7 @@ function groupArrayOfObjects(list, key) {
 	  } 
 	  else if (ww >= 601) 
 	  {
+      // Desktop View
       $(".active").css("width","30%")
       $(".active").css("height","3vw")
       $(".cancel").css("width","30%")
@@ -1149,7 +1218,7 @@ function groupArrayOfObjects(list, key) {
                           console.log(x + " -> " + groupedPeople[x]);
                           var innersize = Object.keys(groupedPeople[x]).length;
                           console.log("Inner Size - ",innersize)
-                            s1+='<div class="form-comments" style="width: 95%;height: 15vw;"><div class="row"><div class="col-sm-6" ><table style="width:220%;">'
+                            s1+='<div class="form-comments" style="width: 95%;"><div class="row"><div class="col-sm-6" ><table style="width:220%;">'
                             for(let j=0;j<innersize;j++)
                             {
                                 console.log("Maps - ",groupedPeople[x][j].problem)
@@ -1201,14 +1270,14 @@ function groupArrayOfObjects(list, key) {
                                               break;
                                             case 4:
                                                   // New problems added price changed by admin. Give an option to accept new price or go with old one or cancel
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Price changed</b></td></tr>'
-                                                  s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
-                                                  s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" data-toggle="modal" data-target="#payment" id="'+groupedPeople[x][j].rid+'" onclick="getchgprice(this.id)">Select Final Price</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
+                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Price changed</b></td>'
+                                                  s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                                  s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-success" data-toggle="modal" data-target="#payment" id="'+groupedPeople[x][j].rid+'" onclick="getchgprice(this.id)">Select Final Price</button></td><td><button class="btn btn-danger" >Cancel</button></td></tr></table></div></div>'
                                               break;
                                             case 5:
                                                // User accepts the old price/new price
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Out for repair</b></td></tr>'
-                                                  s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Out for repair</b></td>'
+                                                  s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
                                                   s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success">Accept & Pay</button></tr></table></div></div>'
                                               break;
                                             case 6:
@@ -1225,8 +1294,8 @@ function groupArrayOfObjects(list, key) {
                                                   break;
                                             case 8:
                                                   //Delivery Person Assigned 
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Delivery Assigned</b></td></tr>'
-                                                  s1+='<tr><td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
+                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><b>Delivery Assigned</b></td>'
+                                                  s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div>'
                                                   s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success">Accept & Pay</button></tr></table></div></div>'
                                                 break;
                                             case 9:
@@ -1266,6 +1335,8 @@ function groupArrayOfObjects(list, key) {
 	$(window).resize(function(){
       alterClass();
       
+
+  
       	});
 	//Fire it when the page first loads:
     alterClass();
