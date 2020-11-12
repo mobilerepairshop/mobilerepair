@@ -91,19 +91,19 @@ else {
 <tr>
 <th>User Name</th>
 
-<th>Brand</th>
-
-<th>Model</th>
-
-<th>Repair Price </th>
+<th>Contact Number</th>
 
 <th>Area Pincode</th>
 
 <th>User Address</th>
 
+<th>Brand : Model</th>
+
+<th>Problem & Problem Description</th>
+
+<th>Repair Price </th>
+
 <th>Action</th>
-
-
 
 </tr>
 
@@ -113,11 +113,32 @@ else {
 
 <?php
 
+$get_r = "SELECT * FROM req 
+          INNER JOIN problems ON problems.rid = req.rid
+          INNER JOIN problem_master ON problems.problem = problem_master.problem_code
+          INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
+          where  req.status=0";
 
-$get_enquiries = "SELECT * FROM req INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid INNER JOIN users ON users.uid = req.uid  where  req.status=0";
+$run_r = mysqli_query($con,$get_r);
+
+$prob = [];
+
+while($row_r=mysqli_fetch_array($run_r)){
+
+array_push($prob,[$row_r['rid'],$row_r['main_problem'],$row_r['sub_problem']]);
+
+}
+
+
+$get_enquiries = "SELECT * FROM req 
+                  INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid 
+                  INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid 
+                  INNER JOIN users ON users.uid = req.uid 
+                  INNER JOIN problems ON problems.rid = req.rid
+                  INNER JOIN problem_master ON problems.problem = problem_master.problem_code
+                  INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
+                  where  req.status=0";
 $run_admin = mysqli_query($con,$get_enquiries);
-
-
 
 while($row_admin = mysqli_fetch_array($run_admin)){
     
@@ -129,11 +150,17 @@ $Model = $row_admin['mmname'];
 
 $price = $row_admin['estprice'];
 
+$phonenum = $row_admin['phonenum'];
+
 $Area_Pincode = $row_admin['pincode'];
 
+$problem = $row_admin['main_problem'];
+
+$subproblem = $row_admin['sub_problem'];
+
 $address = $row_admin['address'];
+
 $rid = $row_admin['rid'];
-console.log("username");
 
 ?>
 
@@ -142,15 +169,38 @@ console.log("username");
 
 <td><?php echo $username; ?></td>
 
-<td><?php echo $Brand; ?></td>
-
-<td><?php echo $Model; ?></td>
-
-<td><?php echo $price; ?></td>
+<td><?php echo $phonenum; ?></td>
 
 <td><?php echo $Area_Pincode; ?></td>
 
 <td><?php echo $address; ?></td>
+
+<td><?php echo $Brand . " : " .$Model ; ?></td>
+
+<td>
+    <table class="table table-bordered">
+
+        <?php 
+        for($j=0;$j<count($prob);$j++)
+        {
+            if($prob[$j][0] == $rid)
+            {
+        ?>
+                <tr>
+                    <td> <?php echo $prob[$j][1]; ?></td>
+                    <td> <?php echo $prob[$j][2]; ?></td>
+                </tr>
+
+        <?php
+            }
+        }
+
+        ?>
+    </table> 
+
+</td>
+
+<td><?php echo $price; ?></td>
 
 <td>
   <input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)">

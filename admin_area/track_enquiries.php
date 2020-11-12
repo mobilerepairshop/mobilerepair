@@ -167,6 +167,8 @@ else {
 
 <th>User Contact </th>
 
+<th>User Address </th>
+
 <th>Delivery Person</th>
 
 <th>Date</th>
@@ -214,11 +216,13 @@ $username = $row_admin['username'];
 
 $phonenum = $row_admin['phonenum'];
 
+$address = $row_admin['address'];
+
 $devliveryboy = $row_admin['admin_name'];
 
 $statuss= $row_admin['status'];
 if($statuss=="1"){
-  $statuss="Delivery Boy assigned";
+  $statuss="Delivery person assigned";
 }
 if($statuss=="2"){
   $statuss="Phone picked up from user";
@@ -239,33 +243,37 @@ if($statuss=="9"){
   $statuss="Phone dropped to customer";
 }
 $disabled = $statuss != "Phone dropped to admin"?"disabled" : "";
+$disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
 
 ?>
 
 <tr>
 
 <td><?php echo $rid; ?></td>
+
 <td><?php echo $username; ?></td>
+
 <td><?php echo $phonenum; ?></td>
-<td><input type="button" id="<?php echo $rid; ?>" name="assign" value="<?php echo $devliveryboy; ?>"  class="unstyled-button" data-toggle="modal" data-target="#eModal" onclick="deliverymodaldata(this.id)"></td>
+
+<td><?php echo $address; ?></td>
+
+<td><input type="button" style="color:blue;" id="<?php echo $rid; ?>" name="assign" value="<?php echo $devliveryboy; ?>"  class="unstyled-button" data-toggle="modal" data-target="#eModal" onclick="deliverymodaldata(this.id)"></td>
+
 <td><?php echo $date; ?></td>
+
 <td><?php echo $time; ?></td>
 
 <td><?php echo $statuss; ?></td>
 
-<td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Update" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)"></td>
-
+<td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)" <?php echo $disabled_assign; ?>></td>
 
 <td><input type="button" id="<?php echo $rid; ?>"  name="pricing" value="Pricing" class="btn btn-primary form-control" data-toggle="modal" data-target="#exModal" <?php echo $disabled; ?> onclick="pricemodaldata(this.id)" ></td>
 
 </tr>
 
-
 <?php } ?>
 
 </tbody><!-- tbody Ends -->
-
-
 
 </table><!-- table table-bordered table-hover table-striped Ends -->
 
@@ -280,10 +288,7 @@ $disabled = $statuss != "Phone dropped to admin"?"disabled" : "";
 
 </div><!-- col-lg-12 Ends -->
 
-
-
 </div><!-- 2 row Ends -->
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>

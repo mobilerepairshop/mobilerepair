@@ -360,24 +360,6 @@
     </div>
   </div>
 
-<!-- Problem Modal -->
-<div class="modal fade" id="problem">
-<div class="modal-dialog modal-dialog-centered modal-lg" >
-<div class="modal-content">
-<div class="modal-header">
-<h4 class="modal-title">Your Request</h4>
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-</div>
-<div class="modal-body problem">
-    <table class="problem-content" style="width:110%;">
-
-    </table>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-</div></div></div></div>
-
-<!-- Problem Modal -->
 <div class="modal fade" id="person">
   <div class="modal-dialog modal-dialog-centered modal-lg" >
   <div class="modal-content">
@@ -627,7 +609,7 @@ var firebaseConfig = {
                         str += '<div class="form-comments"><div class="title-box-2"><h3 class="title-left">Task Number : '+(i+1)+'</h3></div><div class="form-mf"><div class="row"><div class="col-md-10"><table class="table table-responsive"><tbody id="taskdetails">'
                         str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
                         str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
-                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems('+para[i].rid+')">Problems</a></td></tr>'
+                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
                         str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')" '+disable_button+'>Cancelled</button></div></div></div></div>'
                       }
                       $(".mycards2").append(str) 
@@ -712,7 +694,7 @@ function signout()
                 else
                 {
                     alert("Cannot log out")
-                    // window.location.reload();
+                    window.location.reload();
                 }
             }
         })
@@ -924,8 +906,8 @@ function groupArrayOfObjects(list, key) {
                     
                     s2+='<tr><td class="ordhead">Person Name </td> <td>'+para[i].admin_name+'</td></tr>'
                     s2+='<tr><td class="ordhead">Contact Number </td> <td>'+para[i].admin_contact+'</td></tr>'
-                    s2+='<tr><td class="ordhead">Person Name </td> <td>'+para[i].date+'</td></tr>'
-                    s2+='<tr><td class="ordhead">Person Name </td> <td>'+para[i].time+'</td></tr>'
+                    s2+='<tr><td class="ordhead">Arrival Date </td> <td>'+para[i].date+'</td></tr>'
+                    s2+='<tr><td class="ordhead">Arrival Time</td> <td>'+para[i].time+'</td></tr>'
                     
                     $('.person-content').html(s2)
                }
@@ -1000,6 +982,7 @@ function groupArrayOfObjects(list, key) {
         {
           console.log("This is note - ",para)
           alert("Cancelled Successfully")
+          window.location.reload();
         }
     })
   }
@@ -1014,6 +997,7 @@ function groupArrayOfObjects(list, key) {
         {
           console.log("This is note - ",para)
           alert("Submitted Successfully")
+          window.location.reload();
         }
     })
   }
@@ -1340,6 +1324,31 @@ function groupArrayOfObjects(list, key) {
       	});
 	//Fire it when the page first loads:
     alterClass();
+
+    function getproblems_admin(rid)
+    {
+        $.ajax({
+            url:'./api/getproblemsforadmin.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+
+               for(let i=0;i<para.length;i++)
+               {
+                    console.log(para[i].problem)
+                    
+                    s2+='<tr><td class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
+                    $('.problem-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
 
 </script>
 </body>
