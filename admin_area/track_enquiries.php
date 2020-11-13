@@ -147,6 +147,8 @@ else {
 
 <i class="fa fa-money fa-fw" ></i> Track Enquiries
 
+<a href="./index.php?track_enquiries" style="float:right;color:blue;">Refresh</a>
+
 </h3><!-- panel-title Ends -->
 
 
@@ -198,7 +200,7 @@ $get_enquiries = "SELECT * FROM scheduled_request
                   inner join admins on admins.admin_id=scheduled_request.admin_id 
                   inner join req on req.rid=scheduled_request.rid 
                   inner join users on req.uid=users.uid
-                  where req.status>0";
+                  where req.status>0 and req.status<9";
 
 $run_admin = mysqli_query($con,$get_enquiries);
 

@@ -234,30 +234,35 @@ include("view_allocation.php");
 
 if(isset($_GET['view_enquiries'])){
 
-    include("view_enquiries.php");
-    
-    }
+include("view_enquiries.php");
+
+}
 if(isset($_GET['track_enquiries'])){
 
-        include("track_enquiries.php");
-        
-        }
+include("track_enquiries.php");
+
+}
 if(isset($_GET['insert_user'])){
 
-        include("insert_user.php");
-        
-    }
+include("insert_user.php");
+
+}
 if(isset($_GET['view_users'])){
 
-        include("view_users.php");
-            
-    }
+include("view_users.php");
+
+}
 if(isset($_GET['chat_response'])){
 
-        include("chat_response.php");
-            
-    }
+include("chat_response.php");
 
+}
+
+if(isset($_GET['view_history'])){
+
+include("view_history.php");
+    
+}
 ?>
 
 </div><!-- container-fluid Ends -->

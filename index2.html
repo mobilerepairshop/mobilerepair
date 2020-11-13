@@ -99,7 +99,7 @@
 
   
   <!--/ Nav Star /-->
-  <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+  <nav class="navbar navbar-b navbar-reduce navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll" href="#page-top">MobileRepair</a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
@@ -154,7 +154,7 @@
             <a href="./eg2.html" class="sidebar-title">Mobile Repair Service</a> <br><br>
             <a href="./myorders2.html" class="sidebar-title">Track Mobile Repair Orders</a> <br><br>
             <a class="sidebar-title">Mobile Repair Payments</a> <br><br>
-            <a class="sidebar-title">Take Insurance Service</a>
+            <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a>
           </div>
         </div>
                 
@@ -198,10 +198,10 @@
 
 <div class="botnavbar">
   <a href="./index2.html" ><i class="fa fa-home fa-2x" aria-hidden="true"></i>Home</a>
-  <a href="./myorders.html"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i>Orders</a>
+  <a href="./myorders2.html"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i>Orders</a>
   <!-- <a href="#contact"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>Profile</a> -->
-  <a href="#contact"><i class="fa fa-credit-card-alt fa-2x" aria-hidden="true"></i>Payment</a>
-  <a href="#contact"><i class="fa fa-shield fa-2x" aria-hidden="true"></i>Insurance</a>
+  <a href="#"><i class="fa fa-credit-card-alt fa-2x" aria-hidden="true"></i>Payment</a>
+  <a href="./insurance.html"><i class="fa fa-shield fa-2x" aria-hidden="true"></i>Insurance</a>
 </div>
 <!-- Floating Div  -->
 
@@ -523,7 +523,7 @@ var firebaseConfig = {
             if(para[0]=='200')
             {
               $("#login_button").hide()
-              $(".botnavbar").css("display", "none")
+              // $(".botnavbar").css("display", "none")
 
               $("#username").show()
               $("#username").html(para[1])
@@ -531,6 +531,7 @@ var firebaseConfig = {
               // check if user is admin
               if(para[1] == "Admin_User")
               {
+                $(".botnavbar").css("display", "none")
                 $("#homenav").hide()
                 $("#servicenav").hide()
                 $("#contactnav").hide()
