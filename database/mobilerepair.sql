@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2020 at 06:51 AM
+-- Generation Time: Nov 14, 2020 at 08:38 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -193,7 +193,9 @@ CREATE TABLE `req` (
   `status` int(5) DEFAULT NULL,
   `calprice` varchar(100) DEFAULT NULL,
   `created_date` date NOT NULL,
-  `note` varchar(255) NOT NULL
+  `note` varchar(255) NOT NULL,
+  `repairperson` varchar(100) NOT NULL,
+  `imeino` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -220,6 +222,14 @@ CREATE TABLE `session` (
   `sesid` varchar(100) NOT NULL,
   `uid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `session`
+--
+
+INSERT INTO `session` (`sesid`, `uid`) VALUES
+('e7889f0e166abfd7d416b5dd9e34630a', 7),
+('27cbe291944a9b512cc516811989795e', 14);
 
 -- --------------------------------------------------------
 
