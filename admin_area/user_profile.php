@@ -36,13 +36,12 @@ $admin_image = $row_admin['admin_image'];
 
 $new_admin_image = $row_admin['admin_image'];
 
-$admin_country = $row_admin['admin_country'];
+$admin_address = $row_admin['admin_address'];
 
-$admin_job = $row_admin['admin_job'];
+$admin_role = $row_admin['admin_role'];
 
 $admin_contact = $row_admin['admin_contact'];
 
-$admin_about = $row_admin['admin_about'];
 
 
 
@@ -97,7 +96,7 @@ $admin_about = $row_admin['admin_about'];
 
 <div class="form-group"><!-- form-group Starts -->
 
-<label class="col-md-3 control-label">User Name: </label>
+<label class="col-md-3 control-label">User Full Name: </label>
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
@@ -110,11 +109,11 @@ $admin_about = $row_admin['admin_about'];
 
 <div class="form-group"><!-- form-group Starts -->
 
-<label class="col-md-3 control-label">User Email: </label>
+<label class="col-md-3 control-label">User Name </label>
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" name="admin_email" class="form-control" required value="<?php echo $admin_email; ?>">
+<input type="text" name="admin_email" class="form-control" required disabled  value="<?php echo $admin_email; ?>">
 
 </div><!-- col-md-6 Ends -->
 
@@ -123,11 +122,11 @@ $admin_about = $row_admin['admin_about'];
 
 <div class="form-group"><!-- form-group Starts -->
 
-<label class="col-md-3 control-label">User Password: </label>
+<label class="col-md-3 control-label">Address </label>
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" name="admin_pass" class="form-control" required value="<?php echo $admin_pass; ?>">
+<input type="text" name="admin_pass" class="form-control" required value="<?php echo $admin_address; ?>">
 
 </div><!-- col-md-6 Ends -->
 
@@ -135,24 +134,11 @@ $admin_about = $row_admin['admin_about'];
 
 <div class="form-group"><!-- form-group Starts -->
 
-<label class="col-md-3 control-label">User Country: </label>
+<label class="col-md-3 control-label">Contact No</label>
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" name="admin_country" class="form-control" required value="<?php echo $admin_country; ?>">
-
-</div><!-- col-md-6 Ends -->
-
-</div><!-- form-group Ends -->
-
-
-<div class="form-group"><!-- form-group Starts -->
-
-<label class="col-md-3 control-label">User Job: </label>
-
-<div class="col-md-6"><!-- col-md-6 Starts -->
-
-<input type="text" name="admin_job" class="form-control" required value="<?php echo $admin_job; ?>">
+<input type="text" name="admin_country" class="form-control" required value="<?php echo $admin_contact; ?>">
 
 </div><!-- col-md-6 Ends -->
 
@@ -161,28 +147,17 @@ $admin_about = $row_admin['admin_about'];
 
 <div class="form-group"><!-- form-group Starts -->
 
-<label class="col-md-3 control-label">User Contact: </label>
+<label class="col-md-3 control-label">User Role </label>
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" name="admin_contact" class="form-control" required value="<?php echo $admin_contact; ?>">
+<input type="text" name="admin_job" class="form-control" required disabled value="<?php echo $admin_role; ?>">
 
 </div><!-- col-md-6 Ends -->
 
 </div><!-- form-group Ends -->
 
 
-<div class="form-group"><!-- form-group Starts -->
-
-<label class="col-md-3 control-label">User About: </label>
-
-<div class="col-md-6"><!-- col-md-6 Starts -->
-
-<textarea name="admin_about" class="form-control" rows="3"> <?php echo $admin_about; ?> </textarea>
-
-</div><!-- col-md-6 Ends -->
-
-</div><!-- form-group Ends -->
 
 <div class="form-group"><!-- form-group Starts -->
 
@@ -231,15 +206,12 @@ $admin_name = $_POST['admin_name'];
 
 $admin_email = $_POST['admin_email'];
 
-$admin_pass = $_POST['admin_pass'];
+$admin_add = $_POST['admin_pass'];
 
-$admin_country = $_POST['admin_country'];
+$admin_con = $_POST['admin_country'];
 
 $admin_job = $_POST['admin_job'];
 
-$admin_contact = $_POST['admin_contact'];
-
-$admin_about = $_POST['admin_about'];
 
 
 $admin_image = $_FILES['admin_image']['name'];
@@ -254,7 +226,7 @@ $admin_image = $new_admin_image;
 
 }
 
-$update_admin = "update admins set admin_name='$admin_name',admin_email='$admin_email',admin_pass='$admin_pass',admin_image='$admin_image',admin_contact='$admin_contact',admin_country='$admin_country',admin_job='$admin_job',admin_about='$admin_about' where admin_id='$admin_id'";
+$update_admin = "update admins set admin_name='$admin_name',admin_image='$admin_image',admin_contact='$admin_con' where admin_id='$admin_id'";
 
 $run_admin = mysqli_query($con,$update_admin);
 

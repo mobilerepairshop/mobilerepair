@@ -70,7 +70,7 @@ else {
 
 <th>User Role</th>
 
-<th>Delete User</th>
+<th>Action</th>
 
 </tr>
 
@@ -126,11 +126,18 @@ else
 {
 ?>
 
+
+</a>
+<a href="index.php?user_profile=<?php echo $admin_id; ?>">
+
+<i class="fa fa-pencil"> </i> Edit
+
+</a>
+<br><br>
 <a href="index.php?user_delete=<?php echo $admin_id; ?>" >
 
 <i class="fa fa-trash-o" ></i> Delete
 
-</a>
 <?php
 }
 ?>
