@@ -143,7 +143,7 @@
     </div>
   </nav>
   <!--/ Nav End /-->
-  <br><br>
+  <!-- <br><br> -->
    <!--/ Section Blog-Single Star /-->
   <section class="blog-wrapper sect-pt4" id="blog">
     <div class="container">
@@ -561,6 +561,7 @@ var firebaseConfig = {
                         str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
                         str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
                         str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
+                        str += '<tr><th>Customer Address </th><td>'+para[i].address+'</td><th>Customer Contact </th><td>'+para[i].phonenum+'</td></tr>'
                         str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')" '+disable_button+'>Cancelled</button></div></div></div></div>'
                       }
                       $(".mycards").append(str) 

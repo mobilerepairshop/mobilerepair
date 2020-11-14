@@ -115,6 +115,30 @@ else {
 
 <!-- Modal End -->
 
+<!-- Repairing Details Modal Start-->
+<div class="modal fade" id="rdModal" tabindex="-1" role="dialog" aria-labelledby="rdModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rdModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Mobile IMEI Number *<input type="text" placeholder="Enter Mobile IMEI Number " id="imeino">
+        Repair Person Name *<input type="text" placeholder="Enter Repair Person Name " id="repairperson">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="" name="rdbutton" class="btn btn-primary" onclick="repairingdetails(this.id)">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Repairing Details Modal End -->
+
 
 <div class="row" ><!-- 1 row Starts -->
 
@@ -223,14 +247,18 @@ $address = $row_admin['address'];
 $devliveryboy = $row_admin['admin_name'];
 
 $statuss= $row_admin['status'];
+
+$dis = 1;
+
 if($statuss=="1"){
   $statuss="Delivery person assigned";
 }
 if($statuss=="2"){
   $statuss="Phone picked up from user";
 }
-if($statuss=="3"){
-  $statuss="Phone dropped to admin";
+if($statuss=="3"){  
+  $statuss="Phone dropped to admin <br> <a id='".$rid."' data-toggle='modal' data-target='#rdModal' style='cursor:pointer;' onclick='rddata(this.id)'>Repairing Details</a>";
+  $dis = 0;
 }
 if($statuss=="4"){
   $statuss="Price Updated";
@@ -244,7 +272,7 @@ if($statuss=="8"){
 if($statuss=="9"){
   $statuss="Phone dropped to customer";
 }
-$disabled = $statuss != "Phone dropped to admin"?"disabled" : "";
+$disabled = $dis == 0?"" : "disabled";
 $disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
 
 ?>
@@ -259,7 +287,7 @@ $disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
 
 <td><?php echo $address; ?></td>
 
-<td><input type="button" style="color:blue;" id="<?php echo $rid; ?>" name="assign" value="<?php echo $devliveryboy; ?>"  class="unstyled-button" data-toggle="modal" data-target="#eModal" onclick="deliverymodaldata(this.id)"></td>
+<td><input type="button" style="color:#337ab7;" id="<?php echo $rid; ?>" name="assign" value="<?php echo $devliveryboy; ?>"  class="unstyled-button" data-toggle="modal" data-target="#eModal" onclick="deliverymodaldata(this.id)"></td>
 
 <td><?php echo $date; ?></td>
 
@@ -269,7 +297,7 @@ $disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
 
 <td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)" <?php echo $disabled_assign; ?>></td>
 
-<td><input type="button" id="<?php echo $rid; ?>"  name="pricing" value="Pricing" class="btn btn-primary form-control" data-toggle="modal" data-target="#exModal" <?php echo $disabled; ?> onclick="pricemodaldata(this.id)" ></td>
+<td><input type="button" id="<?php echo $rid; ?>" name="pricing" value="Pricing" class="btn btn-primary form-control" data-toggle="modal" data-target="#exModal" <?php echo $disabled; ?> onclick="pricemodaldata(this.id)" ></td>
 
 </tr>
 
@@ -301,6 +329,7 @@ $disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
         $('[name="temp"]').attr("id",rid)
         $.ajax({
         url:"api/getprice.php",
+        method:"POST",
         data:{"rid":rid},
         success:function(para)
         {
@@ -344,6 +373,23 @@ $disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
         $("#eModalLabel").append("Update Delivery boy for Request No: "+rid)
         $('[name="temp1"]').attr("id",rid)
     }
+    function rddata(rid)
+    {
+        $("#rdModalLabel").empty()
+        $("#rdModalLabel").append("Update Repairing Details for Request No: "+rid)
+        $('[name="rdbutton"]').attr("id",rid)
+        $.ajax({
+          url:"./api/getrddetails.php",
+          method:"POST",
+          data:{"rid":rid},
+          success:function(para)
+          {
+              para = JSON.parse(para)
+              $("#repairperson").val(para[1])
+              $("#imeino").val(para[0])  
+          }
+        })
+    }
     function modaldata(rid)
     {
         $("#exampleModalLabel").empty()
@@ -376,6 +422,27 @@ $disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
         url:"api/updatedeliveryboy.php",
         type:"POST",
         data:{"rid":rid , "boy_date":$("#boy_date").val() ,"boy_name":$("#boy_name").val() , "boy_time":$("#boy_time").val()},
+        success:function(para)
+        {
+            if(para=='success')
+            {
+                alert("Updated")
+                window.setTimeout(function(){location.reload()},1000)
+            }else{
+              alert(para)
+                window.setTimeout(function(){location.reload()},1000)
+            }
+            
+        }
+    })
+    }
+
+    function repairingdetails(rid)
+    {
+        $.ajax({
+        url:"api/repairingdetails.php",
+        type:"POST",
+        data:{"rid":rid , "repairperson":$("#repairperson").val() , "imeino":$("#imeino").val()},
         success:function(para)
         {
             if(para=='success')

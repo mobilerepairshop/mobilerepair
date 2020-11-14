@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2020 at 06:45 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Generation Time: Nov 14, 2020 at 06:51 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -35,7 +34,7 @@ CREATE TABLE `admins` (
   `admin_pass` varchar(255) NOT NULL,
   `admin_image` text NOT NULL,
   `admin_contact` varchar(255) NOT NULL,
-  `admin_address` text,
+  `admin_address` text DEFAULT NULL,
   `admin_role` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -210,13 +209,6 @@ CREATE TABLE `scheduled_request` (
   `time` time NOT NULL,
   `delivery_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `scheduled_request`
---
-
-INSERT INTO `scheduled_request` (`rid`, `admin_id`, `date`, `time`, `delivery_status`) VALUES
-(1, 7, '2020-11-19', '10:50:00', '');
 
 -- --------------------------------------------------------
 
