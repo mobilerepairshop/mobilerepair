@@ -70,7 +70,11 @@ else {
 
 <th>User Role</th>
 
-<th>Action</th>
+<th>Edit   </th>
+
+<th>Delete</th>
+
+
 
 </tr>
 
@@ -117,6 +121,15 @@ $admin_role = $row_admin['admin_role'];
 <td><?php echo $admin_role; ?></td>
 
 <td>
+</a>
+<a href="index.php?user_profile=<?php echo $admin_id; ?>">
+
+<i class="fa fa-pencil"> </i> Edit
+
+</a>
+</td>
+<td>
+
 <?php 
 if($admin_id == 0)
 {
@@ -127,13 +140,7 @@ else
 ?>
 
 
-</a>
-<a href="index.php?user_profile=<?php echo $admin_id; ?>">
 
-<i class="fa fa-pencil"> </i> Edit
-
-</a>
-<br><br>
 <a href="index.php?user_delete=<?php echo $admin_id; ?>" >
 
 <i class="fa fa-trash-o" ></i> Delete
@@ -143,7 +150,6 @@ else
 ?>
 
 </td>
-
 
 </tr>
 
