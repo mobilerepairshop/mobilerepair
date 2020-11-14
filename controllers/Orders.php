@@ -35,7 +35,7 @@
             
             public function getnote($rid)
             {
-                $query = 'select note from requests where rid=?';
+                $query = 'select note from req where rid=?';
                 $stmt = $this->conn->prepare($query);
                 $stmt->bind_param('i',$rid);
                 if($stmt->execute())

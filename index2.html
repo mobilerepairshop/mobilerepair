@@ -99,7 +99,7 @@
 
   
   <!--/ Nav Star /-->
-  <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+  <nav class="navbar navbar-b navbar-reduce navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll" href="#page-top">MobileRepair</a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
@@ -154,7 +154,7 @@
             <a href="./eg2.html" class="sidebar-title">Mobile Repair Service</a> <br><br>
             <a href="./myorders2.html" class="sidebar-title">Track Mobile Repair Orders</a> <br><br>
             <a class="sidebar-title">Mobile Repair Payments</a> <br><br>
-            <a class="sidebar-title">Take Insurance Service</a>
+            <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a>
           </div>
         </div>
                 
@@ -198,10 +198,10 @@
 
 <div class="botnavbar">
   <a href="./index2.html" ><i class="fa fa-home fa-2x" aria-hidden="true"></i>Home</a>
-  <a href="./myorders.html"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i>Orders</a>
+  <a href="./myorders2.html"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i>Orders</a>
   <!-- <a href="#contact"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>Profile</a> -->
-  <a href="#contact"><i class="fa fa-credit-card-alt fa-2x" aria-hidden="true"></i>Payment</a>
-  <a href="#contact"><i class="fa fa-shield fa-2x" aria-hidden="true"></i>Insurance</a>
+  <a href="#"><i class="fa fa-credit-card-alt fa-2x" aria-hidden="true"></i>Payment</a>
+  <a href="./insurance.html"><i class="fa fa-shield fa-2x" aria-hidden="true"></i>Insurance</a>
 </div>
 <!-- Floating Div  -->
 
@@ -523,7 +523,7 @@ var firebaseConfig = {
             if(para[0]=='200')
             {
               $("#login_button").hide()
-              $(".botnavbar").css("display", "none")
+              // $(".botnavbar").css("display", "none")
 
               $("#username").show()
               $("#username").html(para[1])
@@ -531,6 +531,7 @@ var firebaseConfig = {
               // check if user is admin
               if(para[1] == "Admin_User")
               {
+                $(".botnavbar").css("display", "none")
                 $("#homenav").hide()
                 $("#servicenav").hide()
                 $("#contactnav").hide()
@@ -559,7 +560,7 @@ var firebaseConfig = {
                         str += '<div class="form-comments"><div class="title-box-2"><h3 class="title-left">Task Number : '+(i+1)+'</h3></div><div class="form-mf"><div class="row"><div class="col-md-10"><table class="table table-responsive"><tbody id="taskdetails">'
                         str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
                         str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
-                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems('+para[i].rid+')">Problems</a></td></tr>'
+                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
                         str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')" '+disable_button+'>Cancelled</button></div></div></div></div>'
                       }
                       $(".mycards").append(str) 
@@ -805,7 +806,30 @@ function shakeModal(){
     }, 1000 ); 
 }
 
+function getproblems_admin(rid)
+    {
+        $.ajax({
+            url:'./api/getproblemsforadmin.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
 
+               for(let i=0;i<para.length;i++)
+               {
+                    console.log(para[i].problem)
+                    
+                    s2+='<tr><td class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
+                    $('.problem-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
 </script>
 </body>
 </html>

@@ -103,8 +103,6 @@ else {
 
 <th>Repair Price </th>
 
-<th>Action</th>
-
 </tr>
 
 </thead><!-- thead Ends -->
@@ -117,7 +115,7 @@ $get_r = "SELECT * FROM req
           INNER JOIN problems ON problems.rid = req.rid
           INNER JOIN problem_master ON problems.problem = problem_master.problem_code
           INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
-          where  req.status=0";
+          where  req.status=9";
 
 $run_r = mysqli_query($con,$get_r);
 
@@ -137,7 +135,7 @@ $get_enquiries = "SELECT * FROM req
                   INNER JOIN problems ON problems.rid = req.rid
                   INNER JOIN problem_master ON problems.problem = problem_master.problem_code
                   INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
-                  where  req.status=0";
+                  where  req.status=9";
 $run_admin = mysqli_query($con,$get_enquiries);
 
 while($row_admin = mysqli_fetch_array($run_admin)){
@@ -148,7 +146,7 @@ $Brand = $row_admin['mcname'];
 
 $Model = $row_admin['mmname'];
 
-$price = $row_admin['estprice'];
+$price = $row_admin['calprice'];
 
 $phonenum = $row_admin['phonenum'];
 
@@ -201,11 +199,6 @@ $rid = $row_admin['rid'];
 </td>
 
 <td><?php echo $price; ?></td>
-
-<td>
-  <input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)">
-</td>
-
 
 </tr>
 

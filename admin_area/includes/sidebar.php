@@ -338,6 +338,17 @@ else {
 
 </li><!-- li Ends -->
 
+<li><!-- li Starts -->
+
+<a href="index.php?view_history" data-toggle="collapse" data-target="#history">
+
+<i class="fa fa-envelope-o"></i> View History 
+
+</a>
+
+</li><!-- li Ends -->
+
+
 <li><!-- Requests li Starts -->
 
 <a href="index.php?chat_response">

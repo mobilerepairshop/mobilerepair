@@ -122,6 +122,7 @@ $get_r = "select * from problems";
 $run_r = mysqli_query($con,$get_r);
 
 $prob = [];
+
 while($row_r=mysqli_fetch_array($run_r)){
 
 array_push($prob,[$row_r['rid'],$row_r['problem'],$pro_desc[$row_r['subproblem']]]);
