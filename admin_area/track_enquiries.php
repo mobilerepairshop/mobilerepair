@@ -8,6 +8,7 @@ echo "<script>window.open('login.php','_self')</script>";
 else {
   $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_boy'";
   $run_boy = mysqli_query($con,$get_boys);
+  $run_boy1 = mysqli_query($con,$get_boys);
 ?>
 
 <style>
@@ -33,9 +34,9 @@ else {
       <label>Delivery Boy</label>
         <select  name="boy_name" id="boy_name">
       <?php 
-        while($boy = mysqli_fetch_array($run_boy)){
-          $namee=$boy['admin_name'];
-          $boy_id=$boy['admin_id'];
+        while($boy1 = mysqli_fetch_array($run_boy1)){
+          $namee=$boy1['admin_name'];
+          $boy_id=$boy1['admin_id'];
 
           echo "<option value='$boy_id'>" .$namee . "</option>";
           }
@@ -102,8 +103,8 @@ else {
           }
       ?>
       <label>Time and Date</label>
-      <input type="date" placeholder="Enter Date " id="boy_date" name="boy_date">
-      <input type="time" placeholder="Enter Date " id="boy_time" name="boy_time">
+      <input type="date" placeholder="Enter Date " id="boy_datee" name="boy_date">
+      <input type="time" placeholder="Enter Date " id="boy_timee" name="boy_time">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -224,7 +225,7 @@ $get_enquiries = "SELECT * FROM scheduled_request
                   inner join admins on admins.admin_id=scheduled_request.admin_id 
                   inner join req on req.rid=scheduled_request.rid 
                   inner join users on req.uid=users.uid
-                  where req.status>0 and req.status<9";
+                  where req.status>0 and req.status<9 and scheduled_request.delivery_status IN('0','1')";
 
 $run_admin = mysqli_query($con,$get_enquiries);
 
@@ -401,7 +402,7 @@ $disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
         $.ajax({
         url:"api/updatename.php",
         type:"POST",
-        data:{"rid":rid , "boy_date":$("#boy_date").val() ,"boy_name":$("#boy_name").val() , "boy_time":$("#boy_time").val()},
+        data:{"rid":rid , "boy_date":$("#boy_datee").val() ,"boy_name":$("#boy_name").val() , "boy_time":$("#boy_timee").val()},
         success:function(para)
         {
             if(para=='success')
