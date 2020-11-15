@@ -81,7 +81,7 @@ submitBtn.addEventListener('click', ()=>{
       console.log(data);
       $.ajax({
         type: "GET",
-        url:"test.php",
+        url:"chat.php",
         data:data,
         success: function(data){
           if(data=="inserted"){
