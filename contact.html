@@ -220,15 +220,15 @@
   <div class="container">
     <form name="frmContact" id="contactForm" frmContact"" method="post" action="" enctype="multipart/form-data">
       
-      <input type="text" id="fname" name="name" placeholder="Name" style="width:50%;"><br>
+      <input type="text" id="fname" name="name" placeholder="Name*" required style="width:50%;"><br>
   
      
-      <input type="text" id="lname" name="email" placeholder="Email Address" style="width:50%;"><br>
+      <input type="text" id="lname" name="email" placeholder="Email Address*" required style="width:50%;"><br>
 
      
-      <input type="text" id="contact" name="phone" placeholder="Contact Number" style="width:50%;"><br>
+      <input type="text" id="contact" name="phone" placeholder="Contact Number*" required style="width:50%;"><br>
   
-      <textarea id="subject" name="subject" placeholder="Subject..." style="height:200px;width:50%;"></textarea><br>
+      <textarea id="subject" name="subject" placeholder="Subject*" required style="height:200px;width:50%;"></textarea><br>
   
       <input type="submit" value="Send"  name="submit" style="background-color:#0078ff;" onclick="submitForm()">
     </form>
