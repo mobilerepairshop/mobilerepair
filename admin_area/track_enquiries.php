@@ -257,7 +257,7 @@ $(document).ready(function()
             {
               array.push(groupedPeople[x][j])
             }
-            else if(groupedPeople[x][j].status < 8 && groupedPeople[x][j].delivery_status == 0)
+            else if(groupedPeople[x][j].status < 8 && (groupedPeople[x][j].delivery_status == 0 || groupedPeople[x][j].delivery_status == 2))
             {
               array.push(groupedPeople[x][j])
             }
@@ -290,9 +290,9 @@ $(document).ready(function()
           if(statuss=="9"){
             statuss="Phone dropped to customer";
           }
-          var disabled = dis == 0?"" : "disabled";
+          var disabled1 = dis == 0?"" : "disabled";
           var disabled_assign = statuss != "Price accepted by user"?"disabled" : "";
-          var str = "<tr><td>"+(i+1)+"</td><td>"+array[i].username+"</td><td>"+array[i].phonenum+"</td><td>"+array[i].address+"</td><td><input type='button' style='color:#337ab7;' id='"+array[i].rid+"' name='assign' value='"+array[i].admin_name+"'  class='unstyled-button' data-toggle='modal' data-target='#eModal' onclick='deliverymodaldata(this.id)'></td><td>"+array[i].date+"</td><td>"+array[i].time+"</td><td>"+statuss+"</td><td><input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+"></td><td><input type='button' id='"+array[i].rid+"' name='pricing' value='Pricing' class='btn btn-primary form-control' data-toggle='modal' data-target='#exModal' disabled onclick='pricemodaldata(this.id)' ></td></tr>"
+          var str = "<tr><td>"+(i+1)+"</td><td>"+array[i].username+"</td><td>"+array[i].phonenum+"</td><td>"+array[i].address+"</td><td><input type='button' style='color:#337ab7;' id='"+array[i].rid+"' name='assign' value='"+array[i].admin_name+"'  class='unstyled-button' data-toggle='modal' data-target='#eModal' onclick='deliverymodaldata(this.id)'></td><td>"+array[i].date+"</td><td>"+array[i].time+"</td><td>"+statuss+"</td><td><input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+"></td><td><input type='button' id='"+array[i].rid+"' name='pricing' value='Pricing' class='btn btn-primary form-control' data-toggle='modal' data-target='#exModal' "+disabled1+" onclick='pricemodaldata(this.id)' ></td></tr>"
           $("#trackcontent").append(str)
         }
       }
