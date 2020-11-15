@@ -7,7 +7,7 @@ if (isset($_POST['name'])) {
     $subject = strip_tags($_POST['subject']);
     $sql = "INSERT INTO contactus (name,email,phone,subject) VALUES('" . $name. "', '" . $email. "','" . $phone. "','" . $subject. "')";
     if (mysqli_query($con, $sql)) {
-        echo "New record created successfully";
+        echo "Response recorded successfully";
     } else {
         echo "Error: " . $sql . "" . mysqli_error($con);
     }
