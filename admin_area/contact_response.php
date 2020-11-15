@@ -1,7 +1,4 @@
 <?php
-
-
-
 if($_COOKIE['sid'] == null){
 
 echo "<script>window.open('login.php','_self')</script>";
@@ -9,11 +6,10 @@ echo "<script>window.open('login.php','_self')</script>";
 }
 
 else {
-
 ?>
 
 
-<div class="row"><!--  1 row Starts -->
+<div class="row" ><!-- 1 row Starts -->
 
 <div class="col-lg-12" ><!-- col-lg-12 Starts -->
 
@@ -21,15 +17,16 @@ else {
 
 <li class="active" >
 
-<i class="fa fa-dashboard"></i> Dashboard / View Carousel Image
-
+<i class="fa fa-dashboard" ></i> Dashboard / View Contact Response
 </li>
 
 </ol><!-- breadcrumb Ends -->
 
+
 </div><!-- col-lg-12 Ends -->
 
-</div><!--  1 row Ends -->
+</div><!-- 1 row Ends -->
+
 
 <div class="row" ><!-- 2 row Starts -->
 
@@ -41,7 +38,7 @@ else {
 
 <h3 class="panel-title" ><!-- panel-title Starts -->
 
-<i class="fa fa-money fa-fw" ></i> View Carousel Image
+<i class="fa fa-money fa-fw" ></i> View Response
 
 </h3><!-- panel-title Ends -->
 
@@ -54,86 +51,80 @@ else {
 
 <table class="table table-bordered table-hover table-striped" ><!-- table table-bordered table-hover table-striped Starts -->
 
-<thead>
+<thead><!-- thead Starts -->
 
 <tr>
-<th>Carousel ID</th>
-<th>Carousel Image</th>
-<th>Action</th>
-<th>Action</th>
 
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Contact Number</th>
+
+<th>Subject</th>
 
 
 
 </tr>
 
-</thead>
+</thead><!-- thead Ends -->
 
-<tbody>
+<tbody><!-- tbody Starts -->
 
 <?php
 
-$get_pro = "select * from carousel";
 
-$run_pro = mysqli_query($con,$get_pro);
+$get_enquiries = "SELECT * FROM contactus";
 
-$ctr = 0;
-while($row_pro=mysqli_fetch_array($run_pro)){
+$run_admin = mysqli_query($con,$get_enquiries);
 
-$pro_id = $row_pro['id'];
+while($row_admin = mysqli_fetch_array($run_admin)){
+  
+$name = $row_admin['name'];
 
-$main_image = $row_pro['image'];
+$email = $row_admin['email'];
 
-$ctr += 1;
+$phone = $row_admin['phone'];
+
+$sub = $row_admin['subject'];
 
 ?>
 
 <tr>
 
-<td><?php echo $ctr; ?></td>
-<td><img width=150 src="../storage/<?php echo $main_image; ?>" ></td>
 
-<td>
+<td><?php echo $name; ?></td>
 
-<a href="index.php?delete_carousel=<?php echo $pro_id; ?>">
+<td><?php echo $email; ?></td>
 
-<i class="fa fa-trash-o"> </i> Delete
+<td><?php echo $phone; ?></td>
 
-</a>
-
-</td>
-
-<td>
-
-<a href="index.php?edit_carousel=<?php echo $pro_id; ?>">
-
-<i class="fa fa-pencil"> </i> Edit
-
-</a>
-
-</td>
+<td><?php echo $sub; ?></td>
 
 </tr>
 
+
 <?php } ?>
 
+</tbody><!-- tbody Ends -->
 
-</tbody>
 
 
 </table><!-- table table-bordered table-hover table-striped Ends -->
 
 </div><!-- table-responsive Ends -->
 
+
 </div><!-- panel-body Ends -->
+
 
 </div><!-- panel panel-default Ends -->
 
+
 </div><!-- col-lg-12 Ends -->
+
+
 
 </div><!-- 2 row Ends -->
 
-
-
-
-<?php } ?>
+<?php }  ?>

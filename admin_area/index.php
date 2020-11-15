@@ -287,6 +287,11 @@ if(isset($_GET['chat_response'])){
 include("chat_response.php");
 
 }
+if(isset($_GET['contact_response'])){
+
+    include("contact_response.php");
+    
+    }
 
 if(isset($_GET['view_history'])){
 

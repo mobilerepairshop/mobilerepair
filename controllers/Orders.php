@@ -55,7 +55,7 @@
                 // $query = 'select count(problem) as problem,count(subproblem) as subproblem,created_date,estprice,status,calprice,r.rid,note from req as r inner join problems as p inner join mobilemodel on r.rid=p.rid where r.uid=?';
                 // $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmodel,created_date,estprice,status,calprice,r.rid,note from requests as r inner join problems as p on r.rid=p.rid where r.uid=? group by rid order by r.rid desc';
                 
-                $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? group by r.rid';
+                $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? group by r.rid';
                 $stmt = $this->conn->prepare($query);
                 $stmt->bind_param('i',$uid);
                 if($stmt->execute())
@@ -75,7 +75,9 @@
                                 "status"=>$data["status"],
                                 "calprice"=>$data["calprice"],
                                 "rid"=>$data["rid"],
-                                "note"=>$data["note"]
+                                "note"=>$data["note"],
+                                "pay_method"=>$data["pay_method"],
+                                "pay_status"=>$data["pay_status"]
                             ]);
                     }
                     return $mc;

@@ -11,12 +11,9 @@
         public function pickedupfromuser($rid)
         {
             $query = 'update req set status = 2 where rid=?';
-            $query1 = 'update scheduled_request set delivery_status = 2 where rid=?';
             $stmt = $this->conn->prepare($query);
-            $stmt1 = $this->conn->prepare($query);
             $stmt->bind_param('i',$rid);
-            $stmt1->bind_param('i',$rid);
-            if($stmt->execute() and $stmt1->execute())
+            if($stmt->execute())
             {
                 return 200;
             }
@@ -30,7 +27,12 @@
             $query = 'update req set status = 3 where rid=?';
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param('i',$rid);
-            if($stmt->execute())
+
+            $query1 = 'update scheduled_request set delivery_status = "2" where delivery_status = "0" and rid=?';
+            $stmt1 = $this->conn->prepare($query1);
+            $stmt1->bind_param('i',$rid);
+
+            if($stmt->execute() and $stmt1->execute())
             {
                 return 200;
             }
@@ -42,12 +44,9 @@
         public function droppedtouser($rid)
         {
             $query = 'update req set status = 9 where rid=?';
-            $query1 = 'update scheduled_request set delivery_status = 3 where rid=?';
             $stmt = $this->conn->prepare($query);
-            $stmt1 = $this->conn->prepare($query);
             $stmt->bind_param('i',$rid);
-            $stmt1->bind_param('i',$rid);
-            if($stmt->execute() and $stmt1->execute())
+            if($stmt->execute())
             {
                 return 200;
             }
@@ -58,7 +57,44 @@
         }
         public function pickupcancel($rid)
         {
-            $query = 'update req set status = 6 where rid=?';
+            $query = 'update req set status = 10 where rid=?';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param('i',$rid);
+            if($stmt->execute())
+            {
+                return 200;
+            }
+            else
+            {
+                return 400;
+            }
+        }
+        public function setpaymethod($rid,$paymethod)
+        {
+            if($paymethod == "online")
+            {
+                $query = 'update req set pay_method=? , pay_status="0" where rid=?';
+            }
+            else if($paymethod == "cod")
+            {
+                $query = 'update req set pay_method=? , pay_status="0" where rid=?';
+            }
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param('si',$paymethod,$rid);
+            if($stmt->execute())
+            {
+                return 200;
+            }
+            else
+            {
+                return 400;
+            }
+        }
+
+        public function paid($rid)
+        {
+            $query = 'update req set pay_status="1" where rid=?';
+            
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param('i',$rid);
             if($stmt->execute())
