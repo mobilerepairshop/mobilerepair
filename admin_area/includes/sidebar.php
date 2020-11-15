@@ -359,6 +359,16 @@ else {
 
 </li><!-- Requests li Ends -->
 
+<li><!-- Requests li Starts -->
+
+<a href="index.php?contact_response">
+
+<i class="fa fa-fw fa-table"></i> Contact Us Response
+
+</a>
+
+</li><!-- Requests li Ends -->
+
 
 <li><!-- Carousel li Starts -->
 
