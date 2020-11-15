@@ -216,93 +216,8 @@ else {
 
 </thead><!-- thead Ends -->
 
-<tbody><!-- tbody Starts -->
+<tbody id="trackcontent"><!-- tbody Starts -->
 
-<?php
-
-
-$get_enquiries = "SELECT * FROM scheduled_request 
-                  inner join admins on admins.admin_id=scheduled_request.admin_id 
-                  inner join req on req.rid=scheduled_request.rid 
-                  inner join users on req.uid=users.uid
-                  where req.status>0 and req.status<9 and scheduled_request.delivery_status IN('0','1','2','3')";
-
-$run_admin = mysqli_query($con,$get_enquiries);
-
-while($row_admin = mysqli_fetch_array($run_admin)){
-
-$run_q = mysqli_query($con,$admin);
-
-$rid = $row_admin['rid'];
-    
-$date = $row_admin['date'];
-
-$time = $row_admin['time'];
-
-$username = $row_admin['username'];
-
-$phonenum = $row_admin['phonenum'];
-
-$address = $row_admin['address'];
-
-$devliveryboy = $row_admin['admin_name'];
-
-$statuss= $row_admin['status'];
-
-$dis = 1;
-
-if($statuss=="1"){
-  $statuss="Delivery person assigned";
-}
-if($statuss=="2"){
-  $statuss="Phone picked up from user";
-}
-if($statuss=="3"){  
-  $statuss="Phone dropped to admin <br> <a id='".$rid."' data-toggle='modal' data-target='#rdModal' style='cursor:pointer;' onclick='rddata(this.id)'>Repairing Details</a>";
-  $dis = 0;
-}
-if($statuss=="4"){
-  $statuss="Price Updated";
-}
-if($statuss=="7"){
-  $statuss="Price accepted by user";
-}
-if($statuss=="8"){
-  $statuss="Person assigned for delivery";
-}
-if($statuss=="9"){
-  $statuss="Phone dropped to customer";
-}
-$disabled = $dis == 0?"" : "disabled";
-$disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
-
-?>
-
-<tr>
-
-<td><?php echo $rid; ?></td>
-
-<td><?php echo $username; ?></td>
-
-<td><?php echo $phonenum; ?></td>
-
-<td><?php echo $address; ?></td>
-
-<td><input type="button" style="color:#337ab7;" id="<?php echo $rid; ?>" name="assign" value="<?php echo $devliveryboy; ?>"  class="unstyled-button" data-toggle="modal" data-target="#eModal" onclick="deliverymodaldata(this.id)"></td>
-
-<td><?php echo $date; ?></td>
-
-<td><?php echo $time; ?></td>
-
-<td><?php echo $statuss; ?></td>
-
-<td><input type="button" id="<?php echo $rid; ?>" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" onclick="modaldata(this.id)" <?php echo $disabled_assign; ?>></td>
-
-<td><input type="button" id="<?php echo $rid; ?>" name="pricing" value="Pricing" class="btn btn-primary form-control" data-toggle="modal" data-target="#exModal" <?php echo $disabled; ?> onclick="pricemodaldata(this.id)" ></td>
-
-</tr>
-
-<?php } ?>
 
 </tbody><!-- tbody Ends -->
 
@@ -323,6 +238,74 @@ $disabled_assign = $statuss != "Price accepted by user"?"disabled" : "";
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
+
+$(document).ready(function()
+  {
+    $.ajax({
+      url: "./api/gettrackdata.php", 
+      method:"POST",
+      success: function(para)
+      {
+        var groupedPeople=groupArrayOfObjects(JSON.parse(para),"rid");
+        console.log(groupedPeople)
+        var array = []
+        for(x in groupedPeople)
+        {
+          for(let j=0;j<groupedPeople[x].length;j++)
+          {
+            if(groupedPeople[x][j].status >= 8 && groupedPeople[x][j].delivery_status == 1)
+            {
+              array.push(groupedPeople[x][j])
+            }
+            else if(groupedPeople[x][j].status < 8 && groupedPeople[x][j].delivery_status == 0)
+            {
+              array.push(groupedPeople[x][j])
+            }
+          } 
+        }
+        var str = ''
+        var dis = 1
+        for(let i=0;i<array.length;i++)
+        {
+          var statuss = array[i].status
+          if(statuss=="1"){
+            statuss="Delivery person assigned";
+          }
+          if(statuss=="2"){
+            statuss="Phone picked up from user";
+          }
+          if(statuss=="3"){  
+            statuss="Phone dropped to admin <br> <a id='"+(array[i].rid)+"' data-toggle='modal' data-target='#rdModal' style='cursor:pointer;' onclick='rddata(this.id)'>Repairing Details</a>";
+            dis = 0;
+          }
+          if(statuss=="4"){
+            statuss="Price Updated";
+          }
+          if(statuss=="7"){
+            statuss="Price accepted by user";
+          }
+          if(statuss=="8"){
+            statuss="Person assigned for delivery";
+          }
+          if(statuss=="9"){
+            statuss="Phone dropped to customer";
+          }
+          var disabled = dis == 0?"" : "disabled";
+          var disabled_assign = statuss != "Price accepted by user"?"disabled" : "";
+          var str = "<tr><td>"+(i+1)+"</td><td>"+array[i].username+"</td><td>"+array[i].phonenum+"</td><td>"+array[i].address+"</td><td><input type='button' style='color:#337ab7;' id='"+array[i].rid+"' name='assign' value='"+array[i].admin_name+"'  class='unstyled-button' data-toggle='modal' data-target='#eModal' onclick='deliverymodaldata(this.id)'></td><td>"+array[i].date+"</td><td>"+array[i].time+"</td><td>"+statuss+"</td><td><input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+"></td><td><input type='button' id='"+array[i].rid+"' name='pricing' value='Pricing' class='btn btn-primary form-control' data-toggle='modal' data-target='#exModal' disabled onclick='pricemodaldata(this.id)' ></td></tr>"
+          $("#trackcontent").append(str)
+        }
+      }
+    });
+  })
+
+  function groupArrayOfObjects(list, key) {
+      return list.reduce(function(rv, x) {
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv;
+
+      }, {});
+    };
     function pricemodaldata(rid)
     {
         $("#exModalLabel").empty()
