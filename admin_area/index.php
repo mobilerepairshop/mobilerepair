@@ -76,12 +76,17 @@ if(isset($_GET['dashboard'])){
 include("dashboard.php");
 
 }
+if(isset($_GET['user_delete'])){
 
+    include("user_delete.php");
+    
+    }
+    
 if(isset($_GET['user_profile'])){
-
-include("user_profile.php");
-
-}    
+    
+    include("user_profile.php");
+    
+    }   
 
 if(isset($_GET['view_mcompanies'])){
 
