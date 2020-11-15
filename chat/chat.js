@@ -51,13 +51,13 @@ submitBtn.addEventListener('click', ()=>{
       temp1 = `<div class="income-msg">
       <img src="img/bot1.jpg" class="avatar">
       <span class="msg">${array[i]}</span> 
-       
       </div>
+      <br>
       <div class="income-msg">
       <img src="img/bot1.jpg" class="avatar">
       <span class="msg">${array[i+1]}</span>
- 
       </div>
+        <br>
       <div class="income-msg">
       <img src="img/bot1.jpg" class="avatar">
       <span class="msg">${array[i+2]}</span> 
@@ -73,6 +73,7 @@ submitBtn.addEventListener('click', ()=>{
       <img src="img/bot1.jpg" class="avatar">
       <span class="msg">Our customer executive will contact you soon.</span>
       </div>
+      <br>
       <div class="income-msg">
       <img src="img/bot1.jpg" class="avatar"> 
       <span class="msg">Thank you!</span>
@@ -81,7 +82,7 @@ submitBtn.addEventListener('click', ()=>{
       console.log(data);
       $.ajax({
         type: "GET",
-        url:"chat.php",
+        url:"chat/test.php",
         data:data,
         success: function(data){
           if(data=="inserted"){

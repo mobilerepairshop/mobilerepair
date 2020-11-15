@@ -17,5 +17,4 @@ if(isset($_REQUEST["userresponse"])) {
     }
     }
 
-
 ?>
