@@ -222,9 +222,9 @@
                                 <div class="col-sm">
                                   <div onclick="googleSignin()" ><img src="google.png" style="cursor:pointer;"></img></div>
                                 </div>
-                                <div class="col-sm">
+                                <!-- <div class="col-sm">
                                   <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
-                                </div>
+                                </div> -->
                               </div>
                             </div>
                             <!-- <a id="facebook_login" class="circle facebook" href="#">
@@ -431,6 +431,31 @@
 
 
  <script>
+
+
+function paid(rid,status)
+{
+  $.ajax({
+    url:'./api/paid.php',
+    type:'POST',
+    data:{
+      'rid':rid,
+      'status':status,
+      'sid':sid
+    },
+    success:function(para)
+    {
+      alert(para)
+      if(para == "200")
+      {
+        alert("Done")     
+
+        window.setTimeout(function(){location.reload()},1000)
+      }
+    }
+  })
+}
+
 function pickedup(rid,status)
 {
   $.ajax({
@@ -622,7 +647,22 @@ var firebaseConfig = {
                         str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
                         str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
                         str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems('+para[i].rid+')">Problems</a></td></tr>'
-                        str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')" '+disable_button+'>Cancelled</button></div></div></div></div>'
+                        if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
+                        {
+                          str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_drop+'>'+status[para[i].status]+'</button></div></div></div></div>'
+                        }
+                        else if(para[i].delivery_status==1 && para[i].pay_status=="1")
+                        {
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+                        }
+                        else if(para[i].delivery_status==0 && para[i].status==1)
+                        {
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
+                        }
+                        else
+                        {
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+                        }
                       }
                       $(".mycards").append(str) 
                   }

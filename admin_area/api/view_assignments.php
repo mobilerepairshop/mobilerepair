@@ -21,7 +21,7 @@ else
     {
         while($row = mysqli_fetch_assoc($result)) 
         {
-            array_push($arr,["rid"=>$row['rid'],"date"=>$row['date'],"time"=>$row['time'],"mmodel"=>$row['mmname'],"mcompany"=>$row['mcname'],"customer"=>$row['username'],"status"=>$row['status'],"address"=>$row['address'],"phonenum"=>$row['phonenum']]);
+            array_push($arr,["rid"=>$row['rid'],"date"=>$row['date'],"time"=>$row['time'],"mmodel"=>$row['mmname'],"mcompany"=>$row['mcname'],"customer"=>$row['username'],"status"=>$row['status'],"address"=>$row['address'],"phonenum"=>$row['phonenum'],"pay_status"=>$row['pay_status'],"pay_method"=>$row['pay_method'],"delivery_status"=>$row['delivery_status']]);
         }
     }
     echo json_encode($arr);

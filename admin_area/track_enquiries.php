@@ -225,7 +225,7 @@ $get_enquiries = "SELECT * FROM scheduled_request
                   inner join admins on admins.admin_id=scheduled_request.admin_id 
                   inner join req on req.rid=scheduled_request.rid 
                   inner join users on req.uid=users.uid
-                  where req.status>0 and req.status<9 and scheduled_request.delivery_status IN('0','1')";
+                  where req.status>0 and req.status<9 and scheduled_request.delivery_status IN('0','1','2','3')";
 
 $run_admin = mysqli_query($con,$get_enquiries);
 
