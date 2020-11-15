@@ -359,6 +359,44 @@ else {
 
 </li><!-- Requests li Ends -->
 
+<li><!-- Requests li Starts -->
+
+<a href="index.php?contact_response">
+
+<i class="fa fa-fw fa-table"></i> Contact Us Response
+
+</a>
+
+</li><!-- Requests li Ends -->
+
+
+<li><!-- Carousel li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#carousel">
+
+<i class="fa fa-fw fa-table"></i> Carousel Images
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="carousel" class="collapse">
+
+<li>
+<a href="index.php?insert_carousel"> Insert Carousel Images </a>
+</li>
+
+<li>
+<a href="index.php?view_carousel"> View Carousel Images </a>
+</li>
+
+</ul>
+
+</li><!-- Carousel li Ends -->
+
+
+
 <li><!-- li Starts -->
 
 <a href="./logout.php">

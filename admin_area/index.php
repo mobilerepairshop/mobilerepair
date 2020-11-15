@@ -189,6 +189,31 @@ include("view_problems.php");
 
 }
 
+if(isset($_GET['delete_carousel'])){
+
+    include("delete_carousel.php");
+    
+    }
+    
+    if(isset($_GET['edit_carousel'])){
+    
+    include("edit_carousel.php");
+    
+    }
+        
+    if(isset($_GET['insert_carousel'])){
+    
+    include("insert_carousel.php");
+    
+    }
+    
+    if(isset($_GET['view_carousel'])){
+    
+    include("view_carousel.php");
+    
+    }
+
+
 if(isset($_GET['delete_subproblems'])){
 
 include("delete_subproblems.php");
@@ -262,6 +287,11 @@ if(isset($_GET['chat_response'])){
 include("chat_response.php");
 
 }
+if(isset($_GET['contact_response'])){
+
+    include("contact_response.php");
+    
+    }
 
 if(isset($_GET['view_history'])){
 

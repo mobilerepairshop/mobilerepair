@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>MobileRepair</title>
+  <title>MobileRepair-Contact</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -73,6 +73,40 @@
   }
 }
   </style>
+  <style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box;}
+    
+    input[type=text], select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+    
+    input[type=submit] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    </style>
 </head>
 
 <body id="page-top">
@@ -111,13 +145,13 @@
       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav">
           <li class="nav-item" id="homenav">
-            <a class="nav-link js-scroll active" href="./index2.html">Home</a>
+            <a class="nav-link js-scroll" href="./index2.html">Home</a>
           </li>
           <li class="nav-item" id="servicenav">
-            <a class="nav-link js-scroll" href="about.html" target="_blank">About Us</a>
+            <a class="nav-link js-scroll" href="about.html" target="_blank">About</a>
           </li>
           <li class="nav-item" id="contactnav">
-            <a class="nav-link js-scroll" href="contact.html" target="_blank">Contact</a>
+            <a class="nav-link js-scroll active" href="contact.html" target="_blank" >Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll" id="login_button" onclick="openLoginModal()">Login</a>
@@ -145,8 +179,6 @@
   <!--/ Nav End /-->
   <!-- <br><br> -->
    <!--/ Section Blog-Single Star /-->
-   <br><br>
-
   <section class="blog-wrapper sect-pt4" id="blog">
     <div class="container">
       <div class="row">
@@ -179,12 +211,28 @@
           </a>
         </div>
         <!-- Advertisement Carousel -->
+        
 
       </div>
     </div>
   </section>
   <!--/ Section Blog-Single End /-->
+  <div class="container">
+    <form name="frmContact" id="contactForm" frmContact"" method="post" action="" enctype="multipart/form-data">
+      
+      <input type="text" id="fname" name="name" placeholder="Name" style="width:50%;"><br>
+  
+     
+      <input type="text" id="lname" name="email" placeholder="Email Address" style="width:50%;"><br>
 
+     
+      <input type="text" id="contact" name="phone" placeholder="Contact Number" style="width:50%;"><br>
+  
+      <textarea id="subject" name="subject" placeholder="Subject..." style="height:200px;width:50%;"></textarea><br>
+  
+      <input type="submit" value="Send"  name="submit" style="background-color:#0078ff;" onclick="submitForm()">
+    </form>
+  </div>
 
 <!-- Floating Div  -->
 
@@ -281,9 +329,9 @@
                                 <div class="col-sm">
                                   <div onclick="googleSignin()" ><img src="google.png" style="cursor:pointer;"></img></div>
                                 </div>
-                                <!-- <div class="col-sm">
+                                <div class="col-sm">
                                   <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
-                                </div> -->
+                                </div>
                               </div>
                             </div>
                             <!-- <a id="facebook_login" class="circle facebook" href="#">
@@ -361,30 +409,23 @@
 
 <script>
 
-function paid(rid,status)
-{
-  $.ajax({
-    url:'./api/paid.php',
-    type:'POST',
-    data:{
-      'rid':rid,
-      'status':status,
-      'sid':sid
-    },
-    success:function(para)
-    {
-      alert(para)
-      if(para == "200")
-      {
-        alert("Done")     
-
-        window.setTimeout(function(){location.reload()},1000)
-      }
-    }
-  })
+function submitForm(){
+	 $.ajax({
+		type: "POST",
+		url: "api/savecontact.php",
+		cache:false,
+		data: $('form#contactForm').serialize(),
+		success: function(response){
+			if(response){
+				alert(response);
+			  }
+	
+		},
+		error: function(){
+			alert("Error");
+		}
+	});
 }
-
-
 
 $.ajax({
     url:'./api/getcarousel.php',
@@ -608,28 +649,12 @@ var firebaseConfig = {
                       for(let i=0;i<para.length;i++)
                       {
                         var disable_button = para[i].status==1?"":"disabled"
-                        var disable_drop = para[i].pay_status!="1"?"disabled":""
                         str += '<div class="form-comments"><div class="title-box-2"><h3 class="title-left">Task Number : '+(i+1)+'</h3></div><div class="form-mf"><div class="row"><div class="col-md-10"><table class="table table-responsive"><tbody id="taskdetails">'
                         str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
                         str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
                         str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
                         str += '<tr><th>Customer Address </th><td>'+para[i].address+'</td><th>Customer Contact </th><td>'+para[i].phonenum+'</td></tr>'
-                        if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
-                        {
-                          str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_drop+'>'+status[para[i].status]+'</button></div></div></div></div>'
-                        }
-                        else if(para[i].delivery_status==1 && para[i].pay_status=="1")
-                        {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
-                        }
-                        else if(para[i].delivery_status==0 && para[i].status==1)
-                        {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
-                        }
-                        else
-                        {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
-                        }
+                        str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')" '+disable_button+'>Cancelled</button></div></div></div></div>'
                       }
                       $(".mycards").append(str) 
                   }
