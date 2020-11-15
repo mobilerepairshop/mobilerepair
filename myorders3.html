@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MobileRepair</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <script src="https://apis.google.com/js/platform.js" ></script>
+  <meta name="google-signin-client_id" content="411937557386-8fdmnh35is2oo4bckud4bgmg8okeanql.apps.googleusercontent.com">
+
+  <link href="css/style.css" rel="stylesheet">
+  <link href="./login/css/login.css" rel="stylesheet">
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  
+  <style>
+    
+.botnavbar {
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 0 6px 0 rgba(0,0,0,.12), 0 6px 6px 0 rgba(0,0,0,.64);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index:999;
+  display:none;
+}
+
+.botnavbar a {
+  float: left;
+  display: block;
+  color: #000;
+  width:25%;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.botnavbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.botnavbar a.active {
+  background-color: #0078ff;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .botnavbar{
+    display:block;
+  }
+  .botnavbar a{
+    width:25%;
+  }
+}
+
+.steps .step {
+    display: block;
+    width: 100%;
+    margin-bottom: 35px;
+    text-align: center
+}
+
+.steps .step .step-icon-wrap {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 80px;
+    text-align: center
+}
+
+.steps .step .step-icon-wrap::before,
+.steps .step .step-icon-wrap::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    height: 3px;
+    margin-top: -1px;
+    background-color: #e1e7ec;
+    content: '';
+    z-index: 1
+}
+
+.steps .step .step-icon-wrap::before {
+    left: 0
+}
+
+.steps .step .step-icon-wrap::after {
+    right: 0
+}
+
+.steps .step .step-icon {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #e1e7ec;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    color: #374250;
+    font-size: 38px;
+    line-height: 81px;
+    z-index: 5
+}
+
+.steps .step .step-title {
+    margin-top: 16px;
+    margin-bottom: 0;
+    color: #606975;
+    font-size: 14px;
+    font-weight: 500
+}
+
+.steps .step:first-child .step-icon-wrap::before {
+    display: none
+}
+
+.steps .step:last-child .step-icon-wrap::after {
+    display: none
+}
+
+.steps .step.completed .step-icon-wrap::before,
+.steps .step.completed .step-icon-wrap::after {
+    background-color: #0da9ef
+}
+
+.steps .step.completed .step-icon {
+    border-color: #0da9ef;
+    background-color: #0da9ef;
+    color: #fff
+}
+
+@media (max-width: 576px) {
+    .flex-sm-nowrap .step .step-icon-wrap::before,
+    .flex-sm-nowrap .step .step-icon-wrap::after {
+        display: none
+    }
+    .modal-open .modal {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.ordercard{
+  width:50%;
+}
+}
+
+@media (max-width: 768px) {
+    .flex-md-nowrap .step .step-icon-wrap::before,
+    .flex-md-nowrap .step .step-icon-wrap::after {
+        display: none
+    }
+    .modal-open .modal {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.ordercard{
+  width: 95%;
+}
+}
+
+@media (max-width: 991px) {
+    .flex-lg-nowrap .step .step-icon-wrap::before,
+    .flex-lg-nowrap .step .step-icon-wrap::after {
+        display: none
+    }
+    .modal-open .modal {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.ordercard{
+  width: 95%;
+}
+}
+
+@media (max-width: 1200px) {
+    .flex-xl-nowrap .step .step-icon-wrap::before,
+    .flex-xl-nowrap .step .step-icon-wrap::after {
+        display: none
+    }
+    .modal-open .modal {
+    height:155vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.modal .modal-content{
+  width:100%;
+}
+.modalcard{
+    width: 170%;
+    margin-left: 2%;
+}
+}
+
+
+.bg-faded, .bg-secondary {
+    background-color: #f5f5f5 !important;
+}
+
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    overflow-y: auto;
+}
+.ordercard{
+  width: 95%;
+}
+  </style>
+</head>
+
+<body id="page-top">
+
+  
+<!-- Problem Modal -->
+<div class="modal fade" id="problem">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">Your Request</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body problem">
+      <table class="problem-content" style="width:110%;">
+  
+      </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+  
+  <!-- Problem Modal -->
+
+
+<!-- Status Modal -->
+
+<div class="modal fade" id="status">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">Status</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body status-content">
+     
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+
+
+<!-- Status Modal End -->
+
+
+
+  
+  <!--/ Nav Star /-->
+  <nav class="navbar navbar-b navbar-reduce navbar-expand-md fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll" href="#page-top">MobileRepair</a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+        <ul class="navbar-nav">
+          <li class="nav-item" id="homenav">
+            <a class="nav-link js-scroll active" href="./index2.html">Home</a>
+          </li>
+          <li class="nav-item" id="servicenav">
+            <a class="nav-link js-scroll" href="#about">About Us</a>
+          </li>
+          <li class="nav-item" id="contactnav">
+            <a class="nav-link js-scroll" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" id="login_button" onclick="openLoginModal()">Login</a>
+          </li>
+          <li>
+            
+            <div class="collapse navbar-collapse" id="navbar-list-4 prodrop">
+              <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Dashboard</a>
+                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a class="dropdown-item" onclick="signout()">Log Out</a>
+                  </div>
+                </li>   
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--/ Nav End /-->
+  <br><br>
+   <!--/ Section Blog-Single Star /-->
+  <section class="blog-wrapper sect-pt4" id="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" id="leftnavpane">
+          <div class="widget-sidebar">
+            <a href="./index2.html" class="sidebar-title">Services Home Page</a> <br><br>
+            <a href="./eg2.html" class="sidebar-title">Mobile Repair Service</a> <br><br>
+            <a href="./myorders2.html" class="sidebar-title">Track Mobile Repair Orders</a> <br><br>
+            <a class="sidebar-title">Mobile Repair Payments</a> <br><br>
+            <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a>
+          </div>
+        </div>
+        <div class="col-md-8" id="filterorders">
+            <div class="row">
+                <div class="active" style="width:30%;height:3vw;text-align: center;border:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('Active Order')">
+                    Active Orders
+                </div>
+                <div class="cancel" style="width:30%;height:3vw;text-align: center;border-top:2px solid gray;border-bottom:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('Cancelled Order')">
+                    Cancelled Orders
+                </div>
+                <div class="history" style="width:30%;height:3vw;text-align: center;border:2px solid gray;background-color: #fff;cursor:pointer;" onclick="alert('History')">
+                    History
+                </div>
+            </div>           <br>
+            <div class="row mycards">
+           
+
+            </div>
+       </div>
+            <br>
+      <!-- <div class="row"> -->
+          
+        
+      <!-- </div> -->
+    </div>
+  </section>
+  <!--/ Section Blog-Single End /-->
+
+<!-- Floating Div  -->
+
+<div class="botnavbar">
+  <a href="./index2.html" ><i class="fa fa-home fa-2x" aria-hidden="true"></i>Home</a>
+  <a href="./myorders2.html"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i>Orders</a>
+  <!-- <a href="#contact"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>Profile</a> -->
+  <a href="#"><i class="fa fa-credit-card-alt fa-2x" aria-hidden="true"></i>Payment</a>
+  <a href="./insurance.html"><i class="fa fa-shield fa-2x" aria-hidden="true"></i>Insurance</a>
+</div>
+<!-- Floating Div  -->
+
+ 
+  <!--/ Section Contact-Footer Star for User /-->
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
+    <div class="overlay-mf"></div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="copyright-box">
+              <p class="copyright">&copy; Copyright <strong>MobileRepair</strong>. All Rights Reserved</p>
+              <div class="credits">
+                <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
+                -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <!--/ Section Contact-footer for User End /-->
+
+<!--/ Section Contact-Footer Star for Admin /-->
+<section class="blog-wrapper sect-pt4" id="contactform-admin" style="display:none;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="widget-sidebar sidebar-search">
+          <h5 class="sidebar-title">Filter Tasks</h5>
+          <div class="sidebar-content">
+            <form>
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Collect From Customer</button> <br><br>
+                  <button class="btn btn-secondary" type="button">Collect From Customer</button> <br><br>
+                  <button class="btn btn-secondary" type="button">Collect From Customer</button> <br><br>
+                  <button class="btn btn-secondary" type="button">Collect From Customer</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 mycards2">
+          
+        <!-- Dynamically Cards will append here -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--/ Section Contact-footer for Admin End /-->
+
+
+  <a href="#carouselExampleIndicators" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <div id="preloader"></div>
+
+<!-- Login Modal -->
+<div class="modal fade login" id="loginModal">
+  <div class="modal-dialog login animated">
+      <div class="modal-content">
+         <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                <h4 class="modal-title">Login with</h4>
+            </div>
+            <div class="modal-body">
+                <div class="box">
+                     <div class="content">
+                        <div class="social">
+                            <!-- <a class="circle github" href="#">
+                                <i class="fa fa-github fa-fw"></i>
+                            </a> -->
+          
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-sm">
+                                  <div onclick="googleSignin()" ><img src="google.png" style="cursor:pointer;"></img></div>
+                                </div>
+                                <div class="col-sm">
+                                  <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- <a id="facebook_login" class="circle facebook" href="#">
+                                <i class="fa fa-facebook fa-fw"></i>
+                            </a> -->
+                        </div>
+                        <div class="division">
+                            <div class="line l"></div>
+                              <span>or</span>
+                            <div class="line r"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="form loginBox">
+                            <form method="" action="" accept-charset="UTF-8">
+                            <input id="emaillog" class="form-control" type="text" placeholder="Email/Username" name="email">
+                            <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
+                            <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                            </form>
+                        </div>
+                     </div>
+                </div>
+                <div class="box">
+                    <div class="content registerBox" style="display:none;">
+                     <div class="form">
+                        <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                        <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username">
+                        <input id="emailreg" class="form-control" type="text" placeholder="Email" name="email">
+                        <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password">
+                        <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                        <p id="errornote" style="display:none;"></p>
+                        <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="registerAjax()">
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="forgot login-footer">
+                    <span>Looking to
+                         <a href="javascript: showRegisterForm();">create an account</a>
+                    ?</span>
+                </div>
+                <div class="forgot register-footer" style="display:none">
+                     <span>Already have an account?</span>
+                     <a href="javascript: showLoginForm();">Login</a>
+                </div>
+            </div>
+      </div>
+  </div>
+</div>
+
+<!-- Login Modal end -->
+<!-- Note Modal -->
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Note from warehouse</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body note">
+           <p class="note-content"></p>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="person">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">Assigned Person</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body person">
+      <table class="person-content" style="width:110%;">
+  
+      </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+
+  <!-- Problem Modal -->
+<div class="modal fade" id="payment">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">Final Cost</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body person">
+      <table class="payment-content" style="width:110%;">
+  
+      </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+
+      
+
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/popper/popper.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/counterup/jquery.waypoints.min.js"></script>
+  <script src="lib/counterup/jquery.counterup.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="lib/typed/typed.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+ 
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+
+<script>
+
+function pickedup(rid,status)
+{
+  $.ajax({
+    url:'./api/pickedup.php',
+    type:'POST',
+    data:{
+      'rid':rid,
+      'status':status,
+      'sid':sid
+    },
+    success:function(para)
+    {
+        alert("Done")        
+        window.setTimeout(function(){location.reload()},1000)
+
+    }
+  })
+}
+
+function cancelled(rid,status)
+{
+  alert(status)
+
+  $.ajax({
+    url:'./api/cancelled.php',
+    type:'POST',
+    data:{
+      'rid':rid,
+      'status':status,
+      'sid':sid
+    },
+    success:function(para)
+    {
+        alert("Done")
+        window.setTimeout(function(){location.reload()},1000)
+    }
+  })
+}
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDyQhgM0Q5UUIt-MbIIDzPpbpLVudkmKK4",
+    authDomain: "hopeful-summer-292810.firebaseapp.com",
+    databaseURL: "https://hopeful-summer-292810.firebaseio.com",
+    projectId: "hopeful-summer-292810",
+    storageBucket: "hopeful-summer-292810.appspot.com",
+    messagingSenderId: "411937557386",
+    appId: "1:411937557386:web:838b8dd854ca6d9a165673"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  function fbSignin()
+  {
+    const provider =  new firebase.auth.FacebookAuthProvider();
+    provider.setCustomParameters({
+      prompt: 'select_account',
+      display: 'popup'
+
+    }); 
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      console.log(user)
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+
+  }
+  function googleSignin(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      prompt: 'select_account'
+    });
+    firebase.auth().signInWithPopup(provider).then
+    (
+      function(result) 
+      {
+        console.log("Google linked")
+        console.log(result.additionalUserInfo.profile.email)
+        id = result.id;
+        // Ajax Google sign in
+            $.ajax({
+                url:'./login/api/login.php',
+                type:'POST',
+                data:{
+                  'email':result.additionalUserInfo.profile.email,
+                  'pwd':result.additionalUserInfo.profile.id,
+                  'username':result.additionalUserInfo.profile.name,
+                  'authtype':'google',
+                  'role':'user'
+                },
+                success:function(para)
+                {
+                    console.log("This is - ",para)
+                    para = JSON.parse(para)
+                    if(para=='200')
+                    {
+                      location.reload()   
+                    }
+                    else
+                    {
+                      shakeModal(); 
+                    }
+                }
+            })
+
+      }
+   )
+
+  }
+
+  function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+    
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null;
+}
+
+  var sid = getCookie("sid");
+  console.log(sid)
+  $.ajax({
+        url:'./login/api/checksession.php',
+        type:'POST',
+        data:{'sid':sid},
+        success:function(para)
+        {
+            console.log(para)
+            para = $.parseJSON(para)
+            if(para[0]=='200')
+            {
+              $("#login_button").hide()
+              // $(".botnavbar").css("display", "none")
+
+              $("#username").show()
+              $("#username").html(para[1])
+
+              // check if user is admin
+              if(para[1] == "Admin_User")
+              {
+                $(".botnavbar").css("display", "none")
+                $("#homenav").hide()
+                $("#servicenav").hide()
+                $("#contactnav").hide()
+                $("#carouselExampleIndicators").hide()
+                $("#work").hide()
+                $("#info").hide()
+                $("#client").hide()
+                $("#contactform-user").hide()
+                $("#filterorders").hide()
+                $(".mycards").hide()
+                $("#leftnavpane").hide()
+
+                $("#contactform-admin").css("display", "block");
+                $.ajax({
+                  url:'./admin_area/api/view_assignments.php',
+                  type:'POST',
+                  data : {"sid":sid},
+                  success:function(para)
+                  {
+                      para = JSON.parse(para)
+                      console.log(para[0])
+
+                      var str = ''
+                      var status = ["","Picked Up","Dropped to Admin","","","","","","Dropped to user",""]
+                      for(let i=0;i<para.length;i++)
+                      {
+                        var disable_button = para[i].status==1?"":"disabled"
+                        str += '<div class="form-comments"><div class="title-box-2"><h3 class="title-left">Task Number : '+(i+1)+'</h3></div><div class="form-mf"><div class="row"><div class="col-md-10"><table class="table table-responsive"><tbody id="taskdetails">'
+                        str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
+                        str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
+                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
+                        str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')" '+disable_button+'>Cancelled</button></div></div></div></div>'
+                      }
+                      $(".mycards2").append(str) 
+                  }
+                })
+              }
+            }
+            else
+            {
+              $("#login_button").show()
+              $("#username").hide()
+
+            }
+        }
+        
+    })
+
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    console.log(user)
+  if (user) {
+    console.log("User Signed in")
+    // name = user.displayName;
+    // email = user.email;
+    // photoUrl = user.photoURL;
+    // $("#login_button").hide()
+    // $("#name").html(name)
+  } else {
+    console.log("User Signed out")
+    // $("#login_button").show()
+    // $("#username").hide()
+
+  }
+});
+// firebase.auth().signOut()
+function signout()
+{
+  var user = firebase.auth().currentUser;
+  if(user)
+  {
+      firebase.auth().signOut().then(function() {
+        console.log("SIgnout success")
+        $.ajax({
+            url:'./login/api/logout.php',
+            type:'POST',
+            success:function(para)
+            {
+                console.log(para)
+                if(para=='200')
+                {
+                    alert("Successfully logged out")
+                    window.location.reload();
+                }
+                else
+                {
+                    alert("Cannot log out")
+                    window.location.reload();
+                }
+            }
+        })
+
+
+
+      }).catch(function(error) {
+        // An error happened.
+      });
+  }
+  else
+  {
+    $.ajax({
+            url:'./login/api/logout.php',
+            type:'POST',
+            success:function(para)
+            {
+                console.log(para)
+                if(para=='200')
+                {
+                    alert("Successfully logged out")
+                    $("#username").hide()
+                    window.location.reload();
+                }
+                else
+                {
+                    alert("Cannot log out")
+                    window.location.reload();
+                }
+            }
+        })
+  }
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $("#password_confirmationreg").keyup(function(){
+    pwd = String($('#passwordreg').val())   
+    confpwd = String($('#password_confirmationreg').val());
+    if(pwd==confpwd)
+    {
+      $("#errornote").show()
+      $("#errornote").text("Password match")
+      $("#errornote").css('color','green')
+    }
+    else
+    {
+      $("#errornote").show()
+      $("#errornote").text("Password does not matach")
+      $("#errornote").css('color','red')
+    }
+    
+  });
+
+  function openLoginModal(){
+    showLoginForm();
+    setTimeout(function(){
+        $('#loginModal').modal('show');    
+    }, 230);
+    
+}
+function showRegisterForm(){
+    $('.loginBox').fadeOut('fast',function(){
+        $('.registerBox').fadeIn('fast');
+        $('.login-footer').fadeOut('fast',function(){
+            $('.register-footer').fadeIn('fast');
+        });
+        $('.modal-title').html('Register with');
+    }); 
+    $('.error').removeClass('alert alert-danger').html('');
+       
+}
+function showLoginForm(){
+    $('#loginModal .registerBox').fadeOut('fast',function(){
+        $('.loginBox').fadeIn('fast');
+        $('.register-footer').fadeOut('fast',function(){
+            $('.login-footer').fadeIn('fast');    
+        });
+        
+        $('.modal-title').html('Login with');
+    });       
+     $('.error').removeClass('alert alert-danger').html(''); 
+}
+
+function registerAjax()
+{
+        username = $('#userreg').val();
+        email = $('#emailreg').val();
+        pwd = String($('#passwordreg').val());
+        pwdcnf = String($('#password_confirmationreg').val());
+        if(pwd==pwdcnf)
+        {
+              $.ajax({
+                url:'./login/api/register.php',
+                type:'POST',
+                data:{
+                  'username':username,
+                  'email':email,
+                  'pwd':pwd
+                },
+                success:function(para)
+                {
+                    console.log("This is - ",para)
+                    if(para=='200')
+                    {
+                      alert("Registered Successfully")
+                      window.location.replace("./index.html");   
+                    }
+                    else
+                    {
+                      shakeModal(); 
+                    }
+                }
+            })
+        }
+        else
+        {
+          $("#errornote").text("Password does not matach")
+          $("#errornote").css('color','red')
+        }
+
+        
+}
+function loginAjax(){
+
+  email = $('#emaillog').val();
+  pwd = $('#passwordlog').val();
+  if(email.split("_").length == 3 && email.split("_")[1] == "admin" && !isNaN(email.split("_")[2]))
+  {
+    role = "admin"
+  }
+  else
+  {
+    role = "user"
+  }
+  $.ajax({
+    url:'./login/api/login.php',
+    type:'POST',
+    data:{
+      'email':email,
+      'pwd':pwd,
+      'authtype':'emailpass',
+      'role':role
+    },
+    success:function(para)
+    {
+        console.log("This is - ",para)
+        
+        if(para=="200")
+        {
+          $("#login_button").hide()
+          location.reload()
+        }
+        else
+        {
+          shakeModal(); 
+        }
+    }
+  }) 
+}
+/*   Simulate error message from the server   */
+    //  shakeModal();
+
+
+function shakeModal(){
+    $('#loginModal .modal-dialog').addClass('shake');
+             $('.error').addClass('alert alert-danger').html("Invalid email/password combination");
+             $('input[type="password"]').val('');
+             setTimeout( function(){ 
+                $('#loginModal .modal-dialog').removeClass('shake'); 
+    }, 1000 ); 
+}
+
+function groupArrayOfObjects(list, key) {
+      return list.reduce(function(rv, x) {
+
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv;
+      }, {});
+    };
+
+
+
+    function getstatus(status)
+    {
+      s1=""
+      var obj = {
+            0: ["New Request","fa fa-handshake-o"],
+            1: ["Pickup Assigned","fa fa-car"],
+            2: ["Pickup Successfull","fa fa-thumbs-up"],
+            3:["Device Dropped","fa fa-thumbs-up"],
+            4:["Price Updated","fa fa-refresh"],
+            5:["Sent For Repair","fa fa-paper-plane"],
+            6:["Request Cancelled","fa fa-times"],
+            7:["In progress","fa fa-cog"],
+            8:["Delivery Assigned","fa fa-car"],
+            9:["Order Successfull","fa fa-check-square"],
+      }
+      
+        s1+='<div class="container padding-bottom-3x mb-1">'
+        s1+='<div class="modalcard card mb-3" style="width:170%;">'
+        s1+='<div class="p-4 text-center text-white text-lg bg-dark rounded-top"><span class="text-uppercase">Order No - </span><span class="text-medium">34VB5540K83</span></div>'
+        s1+='<div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">'
+        s1+='<div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped Via:</span> Mobile Repair</div>'
+        s1+='<div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span> Repair in progress</div>'
+        s1+='</div>'
+        s1+='<div class="card-body">'
+        s1+='<div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">'
+        for(let i=0;i<10;i++)
+        {
+          if(i<=status)
+          {
+            s1+='<div class="step completed">'
+            s1+='<div class="step-icon-wrap">'
+            s1+='<div class="step-icon"><i class="'+obj[i][1]+'" aria-hidden="true"></i></div>'
+            s1+=' </div>'
+            s1+='<h4 class="step-title">'+obj[i][0]+'</h4>'
+            s1+='</div>'
+          }
+          else
+          {
+            s1+='<div class="step">'
+            s1+='<div class="step-icon-wrap">'
+            s1+='<div class="step-icon"><i class="'+obj[i][1]+'"></i></div>'
+            s1+=' </div>'
+            s1+='<h4 class="step-title">'+obj[i][0]+'</h4>'
+            s1+='</div>'
+          }
+           
+        } 
+      
+          s1+='</div></div></div></div>'
+          $('.status-content').append(s1)
+    }
+    function getproblems(rid)
+    {
+        $.ajax({
+            url:'./api/getproblems.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+                pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
+
+               for(let i=0;i<para.length;i++)
+               {
+                    console.log(para[i].problem)
+                    
+                    s2+='<tr><td class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
+                    $('.problem-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
+    function getperson(rid)
+    {
+        $.ajax({
+            url:'./api/getperson.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+                // pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
+
+               for(let i=0;i<para.length;i++)
+               {
+                    // console.log(para[i].)
+                    
+                    s2+='<tr><td class="ordhead">Person Name </td> <td>'+para[i].admin_name+'</td></tr>'
+                    s2+='<tr><td class="ordhead">Contact Number </td> <td>'+para[i].admin_contact+'</td></tr>'
+                    s2+='<tr><td class="ordhead">Arrival Date </td> <td>'+para[i].date+'</td></tr>'
+                    s2+='<tr><td class="ordhead">Arrival Time</td> <td>'+para[i].time+'</td></tr>'
+                    
+                    $('.person-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
+    function getchgprice(rid)
+    {
+      console.log("Id = ",rid)
+        $.ajax({
+            url:'./api/getchgprice.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+
+                for(let i=0;i<para.length;i++)
+                {
+
+                  s2+='<div class="ordhead"><b>Calculated Price -</b> '+para[i].calprice+'</div><br>'
+                  s2+='<table><tr><td class="ordhead"><b>Note</b></td></tr><tr><td><p>'+para[i].note+'</p></td></tr></table><br>'
+                  s2+='<button class="btn btn-success" onclick="submitfinal('+para[i].rid+')">Submit Price</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  class="btn btn-danger">Cancel Request</button>'
+ 
+                }
+                
+                $('.payment-content').html(s2)
+             
+                
+                
+            }
+        })
+    }
+    $(document).ready(function()
+    {
+        // if (screen.width <= 699) 
+        // {
+        //   document.location = "eg.html";
+        // }
+ 
+        
+ 
+   
+
+  })
+  
+  function getnote(rid)
+  {
+    $.ajax({
+        url:'./api/getnote.php',
+        type:'POST',
+        data:{'rid':rid},
+        success:function(para)
+        {
+          console.log("This is note - ",para)
+          $('.note .note-content').html(para)
+        }
+    })
+  }
+
+  function cancelRequest(rid)
+  {
+    $.ajax({
+        url:'./api/cancelrequest.php',
+        type:'POST',
+        data:{'rid':rid,'sid':sid},
+        success:function(para)
+        {
+          console.log("This is note - ",para)
+          alert("Cancelled Successfully")
+          window.location.reload();
+        }
+    })
+  }
+  function submitfinal(rid)
+  {
+    // fprice = $("input[name='price']:checked").val()
+    $.ajax({
+        url:'./api/submitfinal.php',
+        type:'POST',
+        data:{'rid':rid,'sid':sid},
+        success:function(para)
+        {
+          console.log("This is note - ",para)
+          alert("Submitted Successfully")
+          window.location.reload();
+        }
+    })
+  }
+
+
+
+
+      // Desktop View
+      $(".active").css("width","30%")
+      $(".active").css("height","3vw")
+      $(".cancel").css("width","30%")
+      $(".cancel").css("height","3vw")
+      $(".history").css("width","30%")
+      $(".history").css("height","3vw")
+        console.log("desktop")
+            $.ajax({
+            url:'./api/getmyorders.php',
+            type:'POST',
+            data:{'sid':sid},
+            success:function(para)
+            {
+                $(".mycards").empty()
+                if(para==400)
+                {
+                    console.log(400)
+                }
+                else
+                {
+                    console.log(para)
+                    para = $.parseJSON(para)
+                    var groupedPeople=groupArrayOfObjects(para,"rid");
+                    console.log("After process here is the thing - ")
+                    console.log(groupedPeople)
+                    flag=0
+                    s1 = ""
+                    rids = []
+                    var size = Object.keys(groupedPeople).length;
+                    console.log(size)
+                    pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
+
+                    console.log("Mapp - ",pro_desc.waterdamage)
+                    for(x in groupedPeople)
+                    {
+                      if (groupedPeople.hasOwnProperty(x)) {
+                          console.log(x + " -> " + groupedPeople[x]);
+                          var innersize = Object.keys(groupedPeople[x]).length;
+                          console.log("Inner Size - ",innersize)
+                            // s1+='<div class="form-comments ordercard" ><div class="row"><div class="col-sm-6 " ><table style="width:220%;">'
+                            s1 += '<div class="form-comments"><div class="title-box-2"><h3 class="title-left">Order No : '+(x)+'</h3></div><div class="form-mf"><div class="row"><div class="col-md-10"><table class="table table-responsive" style="width:120%;"><tbody id="taskdetails">'
+
+                            for(let j=0;j<innersize;j++)
+                            {
+                                console.log("Maps - ",groupedPeople[x][j].problem)
+                                    if(j==innersize-1)
+                                    {
+                                         // 0 New Request
+                                        // 1 Person Assigned
+                                        // 2 Phone picked up
+                                        // 3 Phone Dropped to Admin
+                                        // 4 New problems added price changed by admin. Give an option to accept new price or go with old one or cancel
+                                        // 5 User accepts the old price/new price
+                                        // 6 Order Cancel
+                                        // 7 Admin has started the repair
+                                        // 8 Delivery Person Assigned 
+                                        // 9 Completed
+
+                                    s1+='<tr><th>Mobile Brand </th><td>'+groupedPeople[x][j].mcname+'</td><th>Mobile Model</th><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
+                                    s1+='<tr><th>Estimated Price</th><td>'+groupedPeople[x][j].estprice+'</td><th>Calculated Price </th><td>'+groupedPeople[x][j].calprice+'</td></tr>'
+                                    s1+='<tr><th>Date Requested</th><td>'+groupedPeople[x][j].created_date+'</td><th>Problems</th><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr>'
+
+                                    switch (groupedPeople[x][j].status)
+                                    {
+                                    case 0:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td></tr></tbody></table></div>'
+                                            s1+='<div class="col-md-4"><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></div>'
+                                            break;
+                                    case 1:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td><th>Person </th><td>  <a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id)">View Person</a></td></tr></tbody></table></div>'
+                                            s1+='<div class="col-md-4"><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></div>'
+                                            break;  
+                                    case 2:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td></tr></tbody></table></div>'
+                                            s1+='<div class="col-md-4"><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></div>'
+                                            break;  
+                                    case 3:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td></tr></tbody></table></div>'
+                                            s1+='<div class="col-md-4"><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></div>'
+                                            break;    
+                                    case 4:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td></tr></tbody></table></div>'
+                                            s1+='<div class="col-md-4"><button class="btn btn-success" data-toggle="modal" data-target="#payment" id="'+groupedPeople[x][j].rid+'" onclick="getchgprice(this.id)">Select Final Price</button> </div><div class="col-md-4"><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></div>'
+                                            break; 
+                                    case 5:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td></tr></tbody></table></div>'
+                                            s1+='<div class="col-md-4">  <button class="btn btn-success">Payment</button></div>'
+                                            break;   
+                                    case 6:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td></tr></tbody></table></div>'
+                                            break;  
+                                    case 7:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td></tr></tbody></table></div>'
+                                            s1+='<div class="col-md-4">  <button class="btn btn-success">Payment</button></div>'
+                                            break;  
+                                    case 8:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td></tr></tbody></table></div>'
+                                            s1+='<div class="col-md-4">  <button class="btn btn-success">Payment</button></div>'
+                                            break;  
+                                    case 9:
+                                            s1+='<tr><th>Status</th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id)">Track Product</a></td></tr></tbody></table></div>'
+                                            s1+='<div class="col-md-4">  <button class="btn btn-success">Payment</button></div>'
+                                            break;  
+                                        }
+
+                                        flag=1
+                                    }
+  
+                            }
+                            s1+='</div></div></div>'
+                      
+                      }
+                    }
+                    $(".mycards").append(s1)
+                      
+
+                }
+                
+            }
+            
+        })
+    
+      
+      var flag=0;
+      
+
+
+
+
+    function getproblems_admin(rid)
+    {
+        $.ajax({
+            url:'./api/getproblemsforadmin.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+
+               for(let i=0;i<para.length;i++)
+               {
+                    console.log(para[i].problem)
+                    
+                    s2+='<tr><td class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
+                    $('.problem-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
