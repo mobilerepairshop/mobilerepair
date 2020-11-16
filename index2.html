@@ -25,9 +25,6 @@
   <script src="https://apis.google.com/js/platform.js" ></script>
   <meta name="google-signin-client_id" content="411937557386-8fdmnh35is2oo4bckud4bgmg8okeanql.apps.googleusercontent.com">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
-  <link rel="stylesheet" href="chat.css">
-
   <link href="css/style.css" rel="stylesheet">
   <link href="./login/css/login.css" rel="stylesheet">
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -149,7 +146,6 @@
   <!-- <br><br> -->
    <!--/ Section Blog-Single Star /-->
    <br><br>
-   
 
   <section class="blog-wrapper sect-pt4" id="blog">
     <div class="container">
@@ -188,38 +184,7 @@
     </div>
   </section>
   <!--/ Section Blog-Single End /-->
-  <section>
-    <button class="chat-btn"> 
-        <i class="material-icons"> comment </i>
-    </button>
-    <div class="chat-popup">
-        <div class="chat-area">
-         <div class="income-msg">
-             <img src="chat/img/bot1.jpg" class="avatar" alt="">
-             <span class="msg">Welcome,Are you looking for</span> 
-         </div>
-         <br>
-         <div class="income-msg">
-            <img src="chat/img/bot1.jpg" class="avatar" alt="">
-           
-            <span class="msg">Mobile Repairing</span>
-        </div>
-        <br>
-        <div class="income-msg">
-        <img src="chat/img/bot1.jpg" class="avatar" alt="">
-        <span class="msg">Mobile Insuarance</span>
-        </div>
-        <br>
-        </div>
 
-        <div class="input-area">
-            <input type="text" id="inptext">
-            <button id="emoji-btn"> &#127773;</button>
-            <button class="submit" id="mybtn"> <i class="material-icons"> send</i></button>
-        </div>
-    </div>
-<script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
-<script src="chat/chat.js"></script>
 
 <!-- Floating Div  -->
 
@@ -234,7 +199,7 @@
 
  
   <!--/ Section Contact-Footer Star for User /-->
-  <!-- <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
     <div class="overlay-mf"></div>
     <footer>
       <div class="container">
@@ -243,6 +208,12 @@
             <div class="copyright-box">
               <p class="copyright">&copy; Copyright <strong>MobileRepair</strong>. All Rights Reserved</p>
               <div class="credits">
+                <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
+                -->
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
               </div>
             </div>
@@ -250,7 +221,7 @@
         </div>
       </div>
     </footer>
-  </section> -->
+  </section>
   <!--/ Section Contact-footer for User End /-->
 
 <!--/ Section Contact-Footer Star for Admin /-->
@@ -420,7 +391,7 @@ $.ajax({
     type:'POST',
     success:function(para)
     {
-        alert(para)
+        // alert(para)
         para = JSON.parse(para)
         s1 = ''
         s2 =''

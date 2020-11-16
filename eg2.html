@@ -153,6 +153,27 @@
 </head>
 
 <body>
+    
+    
+<!-- Quotation Modal -->
+<div class="modal fade" id="quotation">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title">High Level Quotation</h4>
+  <buttonget  type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body">
+      <b id="quotation_amt"></b> 
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+  
+  <!-- Quotation Modal -->
+
+
+    
   <!--/ Nav Star /-->
   <nav class="navbar navbar-b navbar-reduce navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
@@ -348,7 +369,7 @@
               </div>
     
                 <div class="col-md-12">
-                  <br><button id="getqoute" class="button button-a button-small button-rouded">Get Quotation</button>
+                  <br><button id="getqoute" class="button button-a button-small button-rouded" data-toggle="modal" data-target="#quotation" onclick="getquote()">Get Quotation</button>
                   <p class="pricing"></p>
                   <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
                 
@@ -1193,7 +1214,7 @@ function getvalue(id)
       }
     })
     
-$("#getqoute").click(function(){
+function getquote(){
 
     $.ajax(
         {
@@ -1202,16 +1223,16 @@ $("#getqoute").click(function(){
         data:{
                 'sid':sid,
                 'mmodel':window.mmodel,
-                'problems':problem,
+                'problems':problem
             },
         success: function(para)
         {
-            $(".pricing").text("Estimated Price for your request -"+para)
+            $("#quotation_amt").text("Estimated Price for your request is Rs "+para)
             window.estprice = para
             $("#requestquotation").show()
         }
         })
-})
+}
 $("#requestquotation").click(function(){
   // alert(problems)
   // alert($('[name="ownproblemradio"]').val())
@@ -1223,25 +1244,32 @@ $("#requestquotation").click(function(){
         console.log(problem)
     
         console.log(window.mcname)
-        $.ajax(
+        if($("#phonenum").val() != "" && $("#address").val() != "")
         {
-        url: "./api/submitproblem.php", 
-        method:"POST",
-        data:{
-                'sid':sid,
-                'pincode':$("#pincode").val(),
-                'mmodel':window.mmodel,
-                'problems':problem,
-                'estprice':window.estprice,
-                'phonenum':$("#phonenum").val(),
-                'address':$("#address").val()
-            },
-        success: function(para)
-        {
-            alert(para)
-            window.location.replace("./myorders2.html");
+            $.ajax(
+            {
+            url: "./api/submitproblem.php", 
+            method:"POST",
+            data:{
+                    'sid':sid,
+                    'pincode':$("#pincode").val(),
+                    'mmodel':window.mmodel,
+                    'problems':problem,
+                    'estprice':window.estprice,
+                    'phonenum':$("#phonenum").val(),
+                    'address':$("#address").val()
+                },
+            success: function(para)
+            {
+                alert(para)
+                window.location.replace("./myorders2.html");
+            }
+            })
         }
-        })
+        else
+        {
+          alert("Please Provide Address and Phone Number")
+        }
     }
     else
     {
