@@ -187,5 +187,25 @@ class UserAuth{
         }
         
     }
+    public function getaboutus()
+    {
+        $query = 'select admin_name,admin_email,admin_contact,admin_address from admins where admin_id = 0';
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute())
+        {
+            $result = $stmt->get_result();   // <--- add this instead
+            $userinfo = array();
+            while ($data = $result->fetch_assoc()) 
+            {
+                array_push($userinfo,$data["admin_name"],$data["admin_address"],$data["admin_contact"],$data["admin_email"]);
+            }
+            return $userinfo;
+        }
+        else
+        {
+            return 400;
+        }
+        
+    }
 }
 	
