@@ -43,9 +43,8 @@ class UserAuth{
         $this->create_datetime = date('Y-m-d');
         $this->pincode = "";
         $this->phonenum = "";
-        $this->adddress = "";
-
-        $query = 'insert into users(email,password,create_datetime,username,pincode,phonenum,adddress)values(?,?,?,?,?,?,?)';
+        $this->address = "";
+        $query = 'insert into users(email,password,create_datetime,username,pincode,phonenum,address)values(?,?,?,?,?,?,?)';
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('sssssss',
             $this->email,
@@ -54,7 +53,7 @@ class UserAuth{
             $this->username,
             $this->pincode,
             $this->phonenum,
-            $this->adddress
+            $this->address
            );
            if($stmt->execute())
            {
@@ -62,7 +61,7 @@ class UserAuth{
            }
            else
            {
-               return '400';
+               return mysqli_error($this->conn);
            }
     }
     public function checkValidUser($email,$pwd,$role)
