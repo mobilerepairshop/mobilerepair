@@ -40,14 +40,21 @@ class UserAuth{
     }
     public function registerUser()
     {
-        $this->create_datetime = date('Y-m-d h:i:sa');
-        $query = 'insert into users(email,password,create_datetime,username)values(?,?,?,?)';
+        $this->create_datetime = date('Y-m-d');
+        $this->pincode = "";
+        $this->phonenum = "";
+        $this->adddress = "";
+
+        $query = 'insert into users(email,password,create_datetime,username,pincode,phonenum,adddress)values(?,?,?,?,?,?,?)';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ssss',
+        $stmt->bind_param('sssssss',
             $this->email,
             $this->password,
             $this->create_datetime,
-            $this->username
+            $this->username,
+            $this->pincode,
+            $this->phonenum,
+            $this->adddress
            );
            if($stmt->execute())
            {
