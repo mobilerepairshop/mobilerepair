@@ -117,13 +117,13 @@
             <a class="nav-link js-scroll active" href="./index2.html">Home</a>
           </li>
           <li class="nav-item" id="servicenav">
-            <a class="nav-link js-scroll" href="about.html" target="_blank">About Us</a>
+            <a class="nav-link js-scroll" href="about.html">About Us</a>
           </li>
           <li class="nav-item" id="contactnav">
-            <a class="nav-link js-scroll" href="contact.html" target="_blank">Contact</a>
+            <a class="nav-link js-scroll" href="contact.html">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" id="login_button" onclick="openLoginModal()">Login</a>
+            <a class="nav-link js-scroll" id="login_button" style="cursor:pointer;" onclick="openLoginModal()">Login</a>
           </li>
           <li>
             
@@ -155,7 +155,7 @@
       <div class="row">
         <div class="col-md-4" id="leftnavpane">
           <div class="widget-sidebar">
-            <a href="./index2.html" class="sidebar-title">Services Home Page</a> <br><br>
+            <a href="./index2.html" class="sidebar-title" style="color:#0078ff;">Services Home Page</a> <br><br>
             <a href="./eg2.html" class="sidebar-title">Mobile Repair Service</a> <br><br>
             <a href="./myorders2.html" class="sidebar-title">Track Mobile Repair Orders</a> <br><br>
             <a class="sidebar-title">Mobile Repair Payments</a> <br><br>
@@ -334,7 +334,7 @@
                         <div class="error"></div>
                         <div class="form loginBox">
                             <form method="" action="" accept-charset="UTF-8">
-                            <input id="emaillog" class="form-control" type="text" placeholder="Email/Username" name="email">
+                            <input id="emaillog" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
                             <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
                             <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
                             </form>
@@ -346,7 +346,7 @@
                      <div class="form">
                         <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
                         <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username">
-                        <input id="emailreg" class="form-control" type="text" placeholder="Email" name="email">
+                        <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
                         <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password">
                         <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
                         <p id="errornote" style="display:none;"></p>
@@ -357,14 +357,14 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <div class="forgot login-footer">
-                    <span>Looking to
-                         <a href="javascript: showRegisterForm();">create an account</a>
-                    ?</span>
-                </div>
+              <div class="forgot login-footer">
+                <span>Don't have an account?
+                  <b><a href="javascript: showRegisterForm();" style="color: #0078ff;">Sign up</a></b>
+                </span>
+              </div>
                 <div class="forgot register-footer" style="display:none">
                      <span>Already have an account?</span>
-                     <a href="javascript: showLoginForm();">Login</a>
+                     <a href="javascript: showLoginForm();" style="color: #0078ff;">Login</a>
                 </div>
             </div>
       </div>
@@ -562,6 +562,7 @@ var firebaseConfig = {
                     para = JSON.parse(para)
                     if(para=='200')
                     {
+                      alert("Successfully Registered")
                       location.reload()   
                     }
                     else
@@ -842,7 +843,7 @@ function registerAjax()
                     if(para=='200')
                     {
                       alert("Registered Successfully")
-                      window.location.replace("./index.html");   
+                      window.location.replace("./index2.html");   
                     }
                     else
                     {
