@@ -214,6 +214,56 @@ else {
 </li><!-- Models li Ends -->
 
 
+<li><!-- city li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#city">
+
+<i class="fa fa-mobile-phone" style="font-size:25px"></i> Manage Cities
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="city" class="collapse">
+
+<li>
+<a href="index.php?insert_city"> Insert City </a>
+</li>
+
+<li>
+<a href="index.php?view_city"> View Cities </a>
+</li>
+
+</ul>
+
+</li><!-- city li Ends -->
+
+<li><!-- city li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#pincode">
+
+<i class="fa fa-mobile-phone" style="font-size:25px"></i> Manage Pincodes
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="pincode" class="collapse">
+
+<li>
+<a href="index.php?insert_pincode"> Insert Pincode </a>
+</li>
+
+<li>
+<a href="index.php?view_pincode"> View Pincode  </a>
+</li>
+
+</ul>
+
+</li><!-- city li Ends -->
+
 <li><!-- Pincode li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#pincodes">
