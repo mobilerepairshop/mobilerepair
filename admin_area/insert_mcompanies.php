@@ -1,3 +1,19 @@
+<head>
+<style>
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+</head>
 <div class="row" ><!-- 1  row Starts -->
 
 <div class="col-lg-12" ><!-- col-lg-12 Starts -->
@@ -48,7 +64,7 @@
         
         <div id="cdetails"> </div>
 
-        <button class="form-btn" id="submit">Submit</button>
+        <button class="button" id="submit">Submit</button>
     </div>
     
 </form>

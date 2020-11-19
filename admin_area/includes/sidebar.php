@@ -126,6 +126,7 @@ else {
 
 <div class="collapse navbar-collapse navbar-ex1-collapse"><!-- collapse navbar-collapse navbar-ex1-collapse Starts -->
 
+
 <ul class="nav navbar-nav side-nav"><!-- nav navbar-nav side-nav Starts -->
 
 <li><!-- li Starts -->
@@ -137,6 +138,7 @@ else {
 </a>
 
 </li><!-- li Ends -->
+
 
 <li><!-- li Starts -->
 
@@ -218,7 +220,7 @@ else {
 
 <a href="#" data-toggle="collapse" data-target="#city">
 
-<i class="fa fa-mobile-phone" style="font-size:25px"></i> Manage Cities
+<i class="fa fa-building-o" ></i> Manage Cities
 
 <i class="fa fa-fw fa-caret-down"></i>
 
@@ -243,7 +245,7 @@ else {
 
 <a href="#" data-toggle="collapse" data-target="#pincode">
 
-<i class="fa fa-mobile-phone" style="font-size:25px"></i> Manage Pincodes
+<i class="fa fa-map-marker" style="font-size:20px" ></i> Manage Pincodes
 
 <i class="fa fa-fw fa-caret-down"></i>
 
