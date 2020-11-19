@@ -7,10 +7,10 @@ const chatBtn = document.querySelector('.chat-btn');
 const submitBtn = document.querySelector('.submit');
 const chatArea = document.querySelector('.chat-area');
 const inputElm = document.querySelector('input');
+const spanElm = document.querySelector('span');
 const emojiBtn = document.querySelector('#emoji-btn');
 const picker = new EmojiButton();
-
-
+alert("hi");
 // Emoji selection  
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -33,6 +33,11 @@ chatBtn.addEventListener('click', ()=>{
 array = ["What is your City?","Pune","Mumbai","Enter your PIN Code number","Enter your mobile number","end"]; 
 i=0
 var userresponse=[]
+spanElm.addEventListener('click', ()=>{
+  var t = $(this).text();
+  userresponse.push(t);
+  alert(t);
+});
 submitBtn.addEventListener('click', ()=>{
     
     let userInput = inputElm.value;
