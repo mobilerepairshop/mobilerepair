@@ -6,8 +6,7 @@ require('../controllers/Orders.php');
 require_once("../admin_area/includes/db.php");
 $success = $database->connect_db();
 if($success == '200')
-{
-    
+{    
     $pincode = $_POST['pincode'];
     $mmodel = $_POST['mmodel'];
     $problems = $_POST['problems'];

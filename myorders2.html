@@ -1382,7 +1382,6 @@ function groupArrayOfObjects(list, key) {
                           console.log(x + " -> " + groupedPeople[x]);
                           var innersize = Object.keys(groupedPeople[x]).length;
                           console.log("Inner Size - ",innersize)
-                            s1+='<div class="form-comments ordercard" ><div class="row"><div class="col-sm-6 " ><table style="width:220%;">'
                             for(let j=0;j<innersize;j++)
                             {
                                 console.log("Maps - ",groupedPeople[x][j].problem)
@@ -1398,12 +1397,11 @@ function groupArrayOfObjects(list, key) {
                                         // 7 Admin has started the repair
                                         // 8 Delivery Person Assigned 
                                         // 9 Completed
+                                        s1+='<div class="form-comments ordercard" ><div class="row"><div class="col-sm-6 " ><table style="width:220%;">'
                                         s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+groupedPeople[x][j].mcname+'</td>'
                                         s1+='<td class="ordhead">Mobile Model</td><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
-
                                         s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td> '  
                                         s1+='<td class="ordhead"><b>Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</b></td></tr>'
-
                                         s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td>'
                                         s1+='<td class="ordhead">Delivery(days)</td><td>3</td></tr>'
 
@@ -1514,15 +1512,11 @@ function groupArrayOfObjects(list, key) {
                                                 break;
 
                                             }
+                                        s1+='</div></div></div>'
                                       
                                         flag=1
                                     }
-                                  
-                    
-                                  
-                            }
-                            s1+='</div></div>'
-                      
+                            }                      
                       }
                     }
                     $(".mycards").append(s1)
