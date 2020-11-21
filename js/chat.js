@@ -10,7 +10,7 @@ const inputElm = document.querySelector('input');
 const spanElm = document.querySelector('span');
 const emojiBtn = document.querySelector('#emoji-btn');
 const picker = new EmojiButton();
-alert("hi");
+// alert("hi");
 // Emoji selection  
 window.addEventListener('DOMContentLoaded', () => {
 
