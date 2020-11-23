@@ -318,7 +318,7 @@
           <div class="form-comments">
             <div class="title-box-2">
               <h3 class="title-left">
-                Request a Service
+                Check Service Availability
               </h3>
             </div>
             <div class="form-mf">
@@ -1004,9 +1004,10 @@ function getvalue(id)
       }
       else
       {
+        alert("not logged in")
+
         $(".form-comments").hide()
         openLoginModal()
-        alert("not logged in")
         $("#damageproblemlist").hide()
         $("#touchdisplayproblemlist").hide()
         $("#hardwareproblemlist").hide()
