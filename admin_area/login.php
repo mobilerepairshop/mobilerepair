@@ -79,7 +79,7 @@ Log in
 // }
 
 
-    // error_reporting(0);
+    error_reporting(0);
     require('../database/sqlconnection.php');
     require('./controllers/UserAuth.php');
 
@@ -103,7 +103,7 @@ Log in
                     {
                         echo "<script>alert('You are Logged in into admin panel')</script>";
 
-                        echo "<script>window.open('./index.php?dashboard','_self')</script>";
+                        echo "<script>window.open('./abc.php','_self')</script>";
                     }
                     else
                     {

@@ -41,7 +41,7 @@ class UserAuth{
     }
     public function registerUser()
     {
-        $this->create_datetime = date('Y-m-d h:i:sa');
+        $this->create_datetime = date('Y-m-d');
         $query = 'insert into users(username,password,email,create_datetime,userphoto,location,phonenum)values(?,?,?,?,?,?,?)';
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('ssssssi',

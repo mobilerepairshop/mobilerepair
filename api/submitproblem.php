@@ -13,7 +13,7 @@ if($success == '200')
     $estprice = $_POST['estprice'];
     $phonenum = $_POST['phonenum'];
     $address = $_POST['address'];
-    $created_date = date("d-m-Y");
+    $created_date = date("Y-m-d");
     $note = "NA";
     $status = 0;
     $calprice = '0';
