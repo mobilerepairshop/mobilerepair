@@ -6,15 +6,14 @@ require('../controllers/Orders.php');
 require_once("../admin_area/includes/db.php");
 $success = $database->connect_db();
 if($success == '200')
-{
-    
+{    
     $pincode = $_POST['pincode'];
     $mmodel = $_POST['mmodel'];
     $problems = $_POST['problems'];
     $estprice = $_POST['estprice'];
     $phonenum = $_POST['phonenum'];
     $address = $_POST['address'];
-    $created_date = date("d-m-Y");
+    $created_date = date("Y-m-d");
     $note = "NA";
     $status = 0;
     $calprice = '0';
@@ -43,7 +42,10 @@ if($success == '200')
             }
             if($res)
             {
-                echo "Request Sent Successfully";
+                echo 'Your request has been submitted successfully,
+Our customer care executive shall be contact you soon,
+You can track your request status at “Track Mobile Repair Service” menu
+Price may very if more problems found during repair”';
             }
             else
             {

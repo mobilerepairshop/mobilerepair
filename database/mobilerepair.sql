@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2020 at 11:53 AM
+-- Generation Time: Nov 21, 2020 at 12:50 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -59,6 +59,14 @@ CREATE TABLE `carousel` (
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `carousel`
+--
+
+INSERT INTO `carousel` (`id`, `image`) VALUES
+(2, 'work-1.jpg'),
+(3, 'work-3.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +79,48 @@ CREATE TABLE `chat` (
   `pin` int(20) NOT NULL,
   `mobile` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cities`
+--
+
+CREATE TABLE `cities` (
+  `cid` int(10) NOT NULL,
+  `cname` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`cid`, `cname`) VALUES
+(1, 'Pune'),
+(2, 'Mumbai'),
+(3, 'Nagpur');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contactus`
+--
+
+CREATE TABLE `contactus` (
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `subject` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contactus`
+--
+
+INSERT INTO `contactus` (`name`, `email`, `phone`, `subject`) VALUES
+('a', 'a', 'a', 'a'),
+('b', 'b', '1', 'b'),
+('c', 'c', '2', 'c');
 
 -- --------------------------------------------------------
 
@@ -121,15 +171,19 @@ INSERT INTO `mobilemodel` (`mmid`, `mmname`, `mcid`) VALUES
 
 CREATE TABLE `pincode` (
   `pid` int(50) NOT NULL,
-  `pincode` varchar(50) NOT NULL
+  `pincode` varchar(50) NOT NULL,
+  `cid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pincode`
 --
 
-INSERT INTO `pincode` (`pid`, `pincode`) VALUES
-(3, '411033');
+INSERT INTO `pincode` (`pid`, `pincode`, `cid`) VALUES
+(3, '411033', 1),
+(4, '411032', 2),
+(6, '411017', 1),
+(7, '440001', 3);
 
 -- --------------------------------------------------------
 
@@ -236,17 +290,6 @@ CREATE TABLE `session` (
   `uid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `session`
---
-
-INSERT INTO `session` (`sesid`, `uid`) VALUES
-('9bc3fa00b5e22fba2c11da3681b43c10', 7),
-('c5d968560c5fc1277f28285dcb8edc42', 7),
-('e7889f0e166abfd7d416b5dd9e34630a', 7),
-('4b5d6d0dcc67aa1cbd513882692efaea', 14),
-('f54d385a0e08b75f249feacc907212c9', 14);
-
 -- --------------------------------------------------------
 
 --
@@ -257,26 +300,6 @@ CREATE TABLE `session_admin` (
   `uid` int(10) NOT NULL,
   `sesid` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `session_admin`
---
-
-INSERT INTO `session_admin` (`uid`, `sesid`) VALUES
-(0, '0f5af3a7ba1e021970a5c1e41dec83ec'),
-(0, '1a37ca65319336fd9c8fd70cdd018e0d'),
-(0, '28393781e4aeab3ff0be23faedeac6c6'),
-(0, '3dd77484350bbeed4711fc865d087fde'),
-(0, '4b5b54ef1fc3344bb24ebf06bd9e90e1'),
-(0, '57c6fd096e78b2c24f6c49a9a3bd1b07'),
-(0, '57d1e123641c8e9c5efb152cc5c3756d'),
-(0, '57dd6d10303abad4b80cfbc5f333cb4a'),
-(0, '79bba4ba3d0913878c7775527ac95f2f'),
-(0, 'ce5cc8682656c72e0872efaf39cc01ac'),
-(0, 'd97acae31d606b38a498d5e32368303e'),
-(0, 'dd4d28375c51b97b0e559db89f6c79f0'),
-(0, 'e81863437dec2c1b189de3b52b56e1b8'),
-(0, 'fc64838637b86e6bbe6f8893569d65a0');
 
 -- --------------------------------------------------------
 
@@ -343,11 +366,12 @@ INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, 
 (11, '0acff50219f19374cc9f5c63ee8b76b7', 'sarang.barshikar123@gmail.com', '2020-10-17', 'Sarang Barshikar', '', '', ''),
 (12, 'da4c0997c1d9ca360671294a41769b68', 'barshikarswati@gmail.com', '2020-10-18', 'Swati Barshikar', '', '', ''),
 (13, 'bd7b470fe545c8a3d9d73f91afdb42b2', 'skbarshikar@mitaoe.ac.in', '2020-10-18', 'sarang kumar barshikar', '', '', ''),
-(14, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2020-10-31', 'Atharva Deshpande', '411033', '7218340969', 'Chinchwadgaon, Pune 33'),
+(14, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2020-10-31', 'Atharva Deshpande', '440001', '7218340969', 'Chinchwadgaon, Pune 33'),
 (16, 'a370453431cea129c9fcf1778c79e9a1', 'asdeshpande@mitaoe.ac.in', '2020-10-31', 'atharva deshpande', '', '', ''),
 (17, '202cb962ac59075b964b07152d234b70', 'aa@gmail.com', '2020-11-04', 'qweryuioihgf', '', '', ''),
 (18, '202cb962ac59075b964b07152d234b70', 'ad@gmail.com', '2020-11-05', 'AD', '', '', ''),
-(19, '10f54dd835a02a70320e86e5bf25af5e', 'pristineacanditsolutions@gmail.com', '2020-11-15', 'Pristine Solutions', '', '', '');
+(19, '10f54dd835a02a70320e86e5bf25af5e', 'pristineacanditsolutions@gmail.com', '2020-11-15', 'Pristine Solutions', '', '', ''),
+(20, '202cb962ac59075b964b07152d234b70', 'aa', '2020-11-17', 'aaaa', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -364,6 +388,12 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `carousel`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cities`
+--
+ALTER TABLE `cities`
+  ADD PRIMARY KEY (`cid`);
 
 --
 -- Indexes for table `mobilecompany`
@@ -442,7 +472,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `carousel`
 --
 ALTER TABLE `carousel`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `cities`
+--
+ALTER TABLE `cities`
+  MODIFY `cid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `mobilecompany`
@@ -460,7 +496,7 @@ ALTER TABLE `mobilemodel`
 -- AUTO_INCREMENT for table `pincode`
 --
 ALTER TABLE `pincode`
-  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pricing_allocation`
@@ -484,7 +520,7 @@ ALTER TABLE `subproblem_master`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

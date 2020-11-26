@@ -24,6 +24,7 @@
   <link href="jquery-editable-select/dist/jquery-editable-select.min.css" rel="stylesheet">
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="./public/css/forms.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <script src="https://apis.google.com/js/platform.js" ></script>
@@ -324,10 +325,19 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
-                    <input type="number" class="form-control input-mf" id="pincode" placeholder="Pincode *" required>
+                    <select name="city" id="city">
+                      <option value="">Select Your City</option>
+                    </select>  
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
+                  <div class="form-group">
+                    <select name="pincode" id="pincode">
+                      <option value="">Select Your Pincode</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
                   <div class="form-group">
                     <input type="button" class="button button-a button-small button-rouded" id="checkpincode" value="Check Availability">
                   </div>
@@ -344,7 +354,7 @@
                 </div>
                 <br><br><br><br>
                 <div class="col-md-6 mb-3">
-                    <div class="dropdown">
+                    <div class="dropdown" id="mobile_details">
                       <b>Select Mobile Company</b> <br>
                       <select id="editable-select" required>
                   
@@ -364,11 +374,11 @@
               
               <br><br><br><br>
 
-              <div class="row problem">
+              <div class="row problem" id="problemdiv">
                 
               </div>
     
-                <div class="col-md-12">
+                <div class="col-md-12" id="quotebuttons">
                   <br><button id="getqoute" class="button button-a button-small button-rouded" data-toggle="modal" data-target="#quotation" onclick="getquote()">Get Quotation</button>
                   <p class="pricing"></p>
                   <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
@@ -466,7 +476,6 @@ function paid(rid,status)
     },
     success:function(para)
     {
-      alert(para)
       if(para == "200")
       {
         alert("Done")     
@@ -695,6 +704,7 @@ var firebaseConfig = {
             {
               $("#login_button").show()
               $("#username").hide()
+              $(".form-comments").hide()
 
             }
         }
@@ -973,31 +983,45 @@ function getvalue(id)
 }
     $(document).ready(function()
     {
-
       var sid = getCookie("sid");
       if(sid)
       {
         $(".form-comments").show()
-         $("#requestquotation").hide() 
+        $("#requestquotation").hide()
+        $("#damageproblemlist").hide()
+        $("#touchdisplayproblemlist").hide()
+        $("#hardwareproblemlist").hide()
+        $("#batteryproblemlist").hide()
+        $("#memorycardproblemlist").hide()
+        $("#networkproblemlist").hide()
+        $("#otherproblemlist").hide()
+        $("#ownproblemlist").hide()
+        $("#es2div").hide()
+        $("#contact_details").hide()
+        $("#pincode").hide() 
+        $("#mobile_details").hide()
+        $("#problemdiv").hide()
+        $("#quotebuttons").hide()
       }
       else
       {
+        alert("not logged in")
+
         $(".form-comments").hide()
         openLoginModal()
-        alert("not logged in")
+        $("#damageproblemlist").hide()
+        $("#touchdisplayproblemlist").hide()
+        $("#hardwareproblemlist").hide()
+        $("#batteryproblemlist").hide()
+        $("#memorycardproblemlist").hide()
+        $("#networkproblemlist").hide()
+        $("#otherproblemlist").hide()
+        $("#ownproblemlist").hide()
+        $("#es2div").hide()
+        $("#contact_details").hide()
+        $("#pincode").hide()
       }
-      $("#damageproblemlist").hide()
-      $("#touchdisplayproblemlist").hide()
-      $("#hardwareproblemlist").hide()
-      $("#batteryproblemlist").hide()
-      $("#memorycardproblemlist").hide()
-      $("#networkproblemlist").hide()
-      $("#otherproblemlist").hide()
-      $("#ownproblemlist").hide()
-      $("#es2div").hide()
-      $("#contact_details").hide()
-
-    
+      
       $.ajax(
       {
         url: "./api/getprobsubmap.php", 
@@ -1142,11 +1166,59 @@ function getvalue(id)
 
       });
 
+      // get cities 
+      $.ajax(
+            {
+              url: "./api/getcities.php", 
+              method:"POST",
+              success: function(para)
+              {
+                para = JSON.parse(para)
+                var str = ''
+                for(let i=0;i<para.length;i++)
+                {
+                  str += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
+                }
+                $("#city").append(str)
+              }
+                
+           });
+      // 
+
     })
     // $("#editable-select").on('change','select',function () { alert('hello'); });
     $('#editable-select').on('select.editable-select', function (e, li) {
       
     })
+
+
+    // get pincodes from cities
+
+    $("#city").change(function(){
+      $("#pincode").empty()
+      if($("#city").val() != "")
+      {
+        $("#pincode").show()
+        $.ajax(
+        {
+          url: "./api/getpincode.php", 
+          method:"POST",
+          data:{'city':$("#city").val()},
+          success: function(para)
+          {
+            para = JSON.parse(para)
+            var str = ''
+            for(let i=0;i<para.length;i++)
+            {
+              str += '<option value="'+para[i]+'">'+para[i]+'</option>'
+            }
+            $("#pincode").append(str)
+          }
+        })
+      }
+    })
+
+    // 
 
     problems = []
     function showproblems(id)
@@ -1177,7 +1249,7 @@ function getvalue(id)
     $("#checkpincode").click(function(){
       if($("#pincode").val() == "")
       {
-        alert("Please Enter Pincode First")
+        alert("Please Select Pincode First")
       }
       else
       {
@@ -1207,7 +1279,9 @@ function getvalue(id)
                   $("#contact_details").show()
                   $("#phonenum").val(para[0])
                   $("#address").val(para[1])
-
+                  $("#mobile_details").show()
+                  $("#problemdiv").show()
+                  $("#quotebuttons").show()
                 }
               })
             }
