@@ -39,8 +39,21 @@ $mc_name = $row_edit['cname'];
 
 <title> Edit City </title>
 
+<style>
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 320px;
+  cursor: pointer;
+}
+</style>
 
-<!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script> -->
 
 </head>
 
@@ -101,7 +114,7 @@ $mc_name = $row_edit['cname'];
 
 <div class="col-md-6" >
 
-<input type="submit" name="update" value="Update" class="btn btn-primary form-control" >
+<input type="submit" name="update" value="Update" class="button" >
 
 </div>
 

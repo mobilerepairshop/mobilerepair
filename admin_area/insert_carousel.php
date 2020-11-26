@@ -18,7 +18,7 @@
   background-color: #008CBA; /* Green */
   border: none;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -78,7 +78,7 @@
         <!-- <input type="text" id="cname1" name="cname1" placeholder="Enter Company 1 Name*" onfocus="addCompany()"><br><br> -->
         
 
-        <input type="file" id="file" name="file" />
+        <input type="file" id="file" name="file" /><br>
         <input type="button" class="button" value="Upload" id="but_upload">
 
         <br><br>
