@@ -50,18 +50,17 @@ else {
 
 <div class="table-responsive" ><!-- table-responsive Starts -->
 
-<table class="table table-bordered table-hover table-striped" ><!-- table table-bordered table-hover table-striped Starts -->
+<table class="table table-bordered table-hover table-striped" style="width:700px;margin-left: auto;margin-right: auto;"  ><!-- table table-bordered table-hover table-striped Starts -->
 
 <thead>
 
 <tr>
-<th>Sub Problems ID</th> 
-<th>Main Problems</th>
-<th>Sub Problems</th>
-<th>Action</th>
-<th>Action</th>
 
-
+<th style="width:10%">SubProblem ID</th>
+<th style="width:25%">Main Problem</th>
+<th style="width:25%">Sub Problem</th>
+<th style="width:15%">Action</th>
+<th style="width:15%">Action</th>
 
 
 </tr>

@@ -52,18 +52,16 @@ else {
 
 <div class="table-responsive" ><!-- table-responsive Starts -->
 
-<table class="table table-bordered table-hover table-striped" ><!-- table table-bordered table-hover table-striped Starts -->
+<table class="table table-bordered table-hover table-striped" style="width:700px;margin-left: auto;margin-right: auto;"  ><!-- table table-bordered table-hover table-striped Starts -->
 
 <thead>
 
 <tr>
-<th>City ID</th>
-<th>City Name</th>
-<th>Action</th>
-<th>Action</th>
 
-
-
+<th style="width:20%">City ID</th>
+<th style="width:40%">City Name</th>
+<th style="width:20%">Action</th>
+<th style="width:20%">Action</th>
 
 </tr>
 

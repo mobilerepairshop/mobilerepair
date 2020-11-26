@@ -52,16 +52,16 @@ else {
 
 <div class="table-responsive" ><!-- table-responsive Starts -->
 
-<table class="table table-bordered table-hover table-striped" ><!-- table table-bordered table-hover table-striped Starts -->
+<table class="table table-bordered table-hover table-striped" style="width:700px;margin-left: auto;margin-right: auto;" ><!-- table table-bordered table-hover table-striped Starts -->
 
 <thead>
 
 <tr>
-<th>Carousel ID</th>
-<th>Carousel Image</th>
-<th>Action</th>
-<th>Action</th>
 
+<th style="width:20%">Carousel ID</th>
+<th style="width:40%">Carousel Image</th>
+<th style="width:20%">Action</th>
+<th style="width:20%">Action</th>
 
 
 

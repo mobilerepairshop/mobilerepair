@@ -49,21 +49,17 @@ else {
 
 <div class="table-responsive" ><!-- table-responsive Starts -->
 
-<table class="table table-bordered table-hover table-striped" ><!-- table table-bordered table-hover table-striped Starts -->
+<table class="table table-bordered table-hover table-striped" style="width:800px;margin-left: auto;margin-right: auto;" ><!-- table table-bordered table-hover table-striped Starts -->
 
 <thead><!-- thead Starts -->
 
 <tr>
 
-<th>Name</th>
 
-<th>Email</th>
-
-<th>Contact Number</th>
-
-<th>Subject</th>
-
-
+<th style="width:20%">Name</th>
+<th style="width:20%">Email</th>
+<th style="width:20%">Contact Number</th>
+<th style="width:40%">Subject</th>
 
 </tr>
 
