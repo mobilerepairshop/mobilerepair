@@ -13,6 +13,21 @@
   margin-left: 0.3rem;
   font-family: sans-serif;
 }
+
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
     </style>
 <div class="row" ><!-- 1  row Starts -->
 
@@ -63,7 +78,7 @@
         <!-- <input type="text" id="cname1" name="cname1" placeholder="Enter Company 1 Name*" onfocus="addCompany()"><br><br> -->
         
 
-        <input type="file" id="file" name="file" />
+        <input type="file" id="file" name="file" /><br>
         <input type="button" class="button" value="Upload" id="but_upload">
 
         <br><br>

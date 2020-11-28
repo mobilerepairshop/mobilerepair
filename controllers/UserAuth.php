@@ -40,14 +40,20 @@ class UserAuth{
     }
     public function registerUser()
     {
-        $this->create_datetime = date('Y-m-d h:i:sa');
-        $query = 'insert into users(email,password,create_datetime,username)values(?,?,?,?)';
+        $this->create_datetime = date('Y-m-d');
+        $this->pincode = "";
+        $this->phonenum = "";
+        $this->address = "";
+        $query = 'insert into users(email,password,create_datetime,username,pincode,phonenum,address)values(?,?,?,?,?,?,?)';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ssss',
+        $stmt->bind_param('sssssss',
             $this->email,
             $this->password,
             $this->create_datetime,
-            $this->username
+            $this->username,
+            $this->pincode,
+            $this->phonenum,
+            $this->address
            );
            if($stmt->execute())
            {
@@ -55,7 +61,7 @@ class UserAuth{
            }
            else
            {
-               return '400';
+               return mysqli_error($this->conn);
            }
     }
     public function checkValidUser($email,$pwd,$role)
@@ -172,6 +178,26 @@ class UserAuth{
             while ($data = $result->fetch_assoc()) 
             {
                 array_push($userinfo,$data["phonenum"],$data["address"]);
+            }
+            return $userinfo;
+        }
+        else
+        {
+            return 400;
+        }
+        
+    }
+    public function getaboutus()
+    {
+        $query = 'select admin_name,admin_email,admin_contact,admin_address from admins where admin_id = 0';
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute())
+        {
+            $result = $stmt->get_result();   // <--- add this instead
+            $userinfo = array();
+            while ($data = $result->fetch_assoc()) 
+            {
+                array_push($userinfo,$data["admin_name"],$data["admin_address"],$data["admin_contact"],$data["admin_email"]);
             }
             return $userinfo;
         }

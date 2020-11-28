@@ -12,19 +12,19 @@ else {
 
 <?php
 
-if(isset($_GET['edit_mcompanies'])){
+if(isset($_GET['edit_pincode'])){
 
-$edit_id = $_GET['edit_mcompanies'];
+$edit_id = $_GET['edit_pincode'];
 
-$get_data = "select * from mobilecompany where mcid=$edit_id";
+$get_data = "select * from pincode where pid=$edit_id";
 
 $run_edit = mysqli_query($con,$get_data);
 
 $row_edit = mysqli_fetch_array($run_edit);
 
-$mc_id = $row_edit['mcid'];
+$mc_id = $row_edit['pid'];
 
-$mc_name = $row_edit['mcname'];
+$mc_name = $row_edit['pincode'];
 
 }
 
@@ -37,9 +37,7 @@ $mc_name = $row_edit['mcname'];
 
 <head>
 
-<title> Edit Mobile Company </title>
-
-
+<title> Edit Pincode </title>
 <style>
 .button {
   background-color: #008CBA; /* Green */
@@ -55,7 +53,6 @@ $mc_name = $row_edit['mcname'];
 }
 </style>
 
-
 </head>
 
 <body>
@@ -68,7 +65,7 @@ $mc_name = $row_edit['mcname'];
 
 <li class="active">
 
-<i class="fa fa-dashboard"> </i> Dashboard / Edit Mobile Company
+<i class="fa fa-dashboard"> </i> Dashboard / Edit Pincode 
 
 </li>
 
@@ -89,7 +86,7 @@ $mc_name = $row_edit['mcname'];
 
 <h3 class="panel-title">
 
-<i class="fa fa-money fa-fw"></i> Edit Mobile Company
+<i class="fa fa-money fa-fw"></i> Edit City
 
 </h3>
 
@@ -101,11 +98,11 @@ $mc_name = $row_edit['mcname'];
 
 <div class="form-group" ><!-- form-group Starts -->
 
-<label class="col-md-3 control-label" > Mobile Company Name </label>
+<label class="col-md-3 control-label" >Pincode </label>
 
 <div class="col-md-6" >
 
-<input type="text" name="mcname" class="form-control" required value="<?php echo $mc_name; ?>">
+<input type="text" name="pincode" class="form-control" required value="<?php echo $mc_name; ?>">
 
 </div>
 
@@ -142,16 +139,16 @@ $mc_name = $row_edit['mcname'];
 
 if(isset($_POST['update'])){
 
-$mcname = $_POST['mcname'];
-$update_mc = "update mobilecompany set mcname = '".$mcname."' where mcid = ".$_GET['edit_mcompanies'];
+$cpin = $_POST['pincode'];
+$update_mc = "update pincode set pincode = '".$cpin."' where pid = ".$_GET['edit_pincode'];
 
 $run_mc = mysqli_query($con,$update_mc);
 
 if($run_mc){
 
-echo "<script> alert('Product has been updated successfully') </script>";
+echo "<script> alert('Pincode has been updated successfully') </script>";
 
-echo "<script>window.open('index.php?view_mcompanies','_self')</script>";
+echo "<script>window.open('index.php?view_pincode','_self')</script>";
 
 }
 

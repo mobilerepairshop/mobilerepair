@@ -21,7 +21,7 @@ else {
 
 <li class="active" >
 
-<i class="fa fa-dashboard"></i> Dashboard / View Available Pincodes
+<i class="fa fa-dashboard"></i> Dashboard / View Cities
 
 </li>
 
@@ -41,7 +41,7 @@ else {
 
 <h3 class="panel-title" ><!-- panel-title Starts -->
 
-<i class="fa fa-money fa-fw" ></i> View Available Pincodes
+<i class="fa fa-money fa-fw" ></i> View Cities
 
 </h3><!-- panel-title Ends -->
 
@@ -52,18 +52,16 @@ else {
 
 <div class="table-responsive" ><!-- table-responsive Starts -->
 
-<table class="table table-bordered table-hover table-striped" ><!-- table table-bordered table-hover table-striped Starts -->
+<table class="table table-bordered table-hover table-striped" style="width:700px;margin-left: auto;margin-right: auto;"  ><!-- table table-bordered table-hover table-striped Starts -->
 
 <thead>
 
 <tr>
-<th>Pincode ID</th>
-<th>Available Pincode</th>
-<th>Action</th>
-<th>Action</th>
 
-
-
+<th style="width:20%">City ID</th>
+<th style="width:40%">City Name</th>
+<th style="width:20%">Action</th>
+<th style="width:20%">Action</th>
 
 </tr>
 
@@ -73,16 +71,16 @@ else {
 
 <?php
 
-$get_pin = "select * from pincode";
+$get_com = "select * from cities";
 
-$run_pin = mysqli_query($con,$get_pin);
+$run_com = mysqli_query($con,$get_com);
 
 $ctr = 0;
-while($row_pin=mysqli_fetch_array($run_pin)){
+while($row_com=mysqli_fetch_array($run_com)){
 
-$pin_id = $row_pin['pid'];
+$com_id = $row_com['cid'];
 
-$pincode = $row_pin['pincode'];
+$com_name = $row_com['cname'];
 
 $ctr += 1;
 
@@ -92,11 +90,11 @@ $ctr += 1;
 
 <td><?php echo $ctr; ?></td>
 
-<td><?php echo $pincode; ?></td>
+<td><?php echo $com_name; ?></td>
 
 <td>
 
-<a href="index.php?delete_pincodes=<?php echo $pin_id; ?>">
+<a href="index.php?delete_city=<?php echo $com_id; ?>">
 
 <i class="fa fa-trash-o"> </i> Delete
 
@@ -106,7 +104,7 @@ $ctr += 1;
 
 <td>
 
-<a href="index.php?edit_pincodes=<?php echo $pin_id; ?>">
+<a href="index.php?edit_city=<?php echo $com_id; ?>">
 
 <i class="fa fa-pencil"> </i> Edit
 

@@ -136,30 +136,6 @@ include("insert_mmodels.php");
 
 }
 
-if(isset($_GET['view_pincodes'])){
-
-include("view_pincodes.php");
-
-}
-
-if(isset($_GET['delete_pincodes'])){
-
-include("delete_pincodes.php");
-
-}
-
-if(isset($_GET['edit_pincodes'])){
-
-include("edit_pincodes.php");
-
-}
-    
-if(isset($_GET['insert_pincodes'])){
-
-include("insert_pincodes.php");
-
-}
-
 if(isset($_GET['view_requests'])){
 
 include("view_requests.php");
@@ -291,13 +267,59 @@ if(isset($_GET['contact_response'])){
 
     include("contact_response.php");
     
-    }
+}
 
 if(isset($_GET['view_history'])){
 
 include("view_history.php");
     
 }
+
+if(isset($_GET['insert_city'])){
+
+    include("insert_city.php");
+        
+}
+
+if(isset($_GET['view_city'])){
+
+    include("view_city.php");
+        
+}
+if(isset($_GET['delete_city'])){
+
+    include("delete_city.php");
+        
+}
+if(isset($_GET['edit_city'])){
+
+    include("edit_city.php");
+        
+}
+
+if(isset($_GET['insert_pincode'])){
+
+    include("insert_pincode.php");
+        
+}
+
+if(isset($_GET['view_pincode'])){
+
+    include("view_pincode.php");
+        
+}
+
+if(isset($_GET['delete_pincode'])){
+
+    include("delete_pincode.php");
+        
+}
+if(isset($_GET['edit_pincode'])){
+
+    include("edit_pincode.php");
+        
+}
+
 ?>
 
 </div><!-- container-fluid Ends -->

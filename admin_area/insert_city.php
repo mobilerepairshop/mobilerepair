@@ -1,3 +1,19 @@
+<head>
+<style>
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+</head>
 <div class="row" ><!-- 1  row Starts -->
 
 <div class="col-lg-12" ><!-- col-lg-12 Starts -->
@@ -6,7 +22,7 @@
 
 <li class="active" >
 
-<i class="fa fa-dashboard" ></i> Dashboard / Insert Available Pincode
+<i class="fa fa-dashboard" ></i> Dashboard / Insert City
 
 </li>
 
@@ -28,7 +44,7 @@
 
 <h3 class="panel-title" >
 
-<i class="fa fa-money fa-fw" ></i> Insert Available Pincode
+<i class="fa fa-money fa-fw" ></i> Insert City
 
 </h3>
 
@@ -42,13 +58,13 @@
 
 <form method="post" enctype="multipart/form-data" id="mcompany">
     <div class="form-container">
-        <p class="includedet">Please Enter Pincode Details</p><br>
+        <p class="includedet">Please Enter City</p><br>
 
-        <input type="text" id="pincode1" name="pincode1" placeholder="Enter Pincode 1 *" onfocus="addPincode()"><br><br>
+        <input type="text" id="cname1" name="cname1" placeholder="Enter City 1 Name*" onfocus="addCity()"><br><br>
         
-        <div id="pdetails"> </div>
+        <div id="cdetails"> </div>
 
-        <button class="form-btn" id="submit">Submit</button>
+        <button  class="button" id="submit">Submit</button>
     </div>
     
 </form>
@@ -66,11 +82,11 @@
    
 <script>
 var ctr = 2
-function addPincode()
+function addCity()
 {
     // alert($("#"+id).val())
-    var s = '<input type="text" id="pincode'+ctr+'" name="pincode'+ctr+'" placeholder="Enter Pincode '+ctr+' *" onfocus="addPincode()"><br><br>'
-    $("#pdetails").append(s)
+    var s = '<input type="text" id="cname'+ctr+'" name="cname'+ctr+'" placeholder="Enter City '+ctr+' Name*" onfocus="addCity()"><br><br>'
+    $("#cdetails").append(s)
     ctr+=1
 }
 
@@ -106,28 +122,30 @@ if(sid==null)
 $("#submit").click(function() {
 
     var arr=[]
-    arr[0]= $('#pincode1').val()
+    arr[0]= $('#cname1').val()
     for(let i =1;i<ctr;i++)
     {
-        var x = '#pincode'+(i+1)
+        var x = '#cname'+(i+1)
         if($(x).val() != "" && $(x).val() != undefined)
         {
             arr.push($(x).val())
+            alert(arr);
         }
     }
-alert(arr)
-$.ajax({
-  url: './api/submitpincode.php',
-  type: 'POST',
-  data: {"pincodes":arr},
-  success: function(response){
-    if(response != "400")
-    {
-      alert("Pincode Added Successfully")
-      window.open('index.php?view_pincodes','_self');
+
+    $.ajax({
+    url: './api/submitcity.php',
+    type: 'POST',
+    data: {"cname":arr},
+    success: function(response){
+        alert(response);
+        if(response)
+        {
+        alert("City Added Successfully");
+        window.open('index.php?view_city','_self');
+        }
     }
-  }
-})
+    })
 return false;
 });  
 </script>

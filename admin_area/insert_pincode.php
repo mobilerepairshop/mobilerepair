@@ -22,7 +22,7 @@
 
 <li class="active" >
 
-<i class="fa fa-dashboard" ></i> Dashboard / Insert Mobile Companies
+<i class="fa fa-dashboard" ></i> Dashboard / Insert Pincode
 
 </li>
 
@@ -44,7 +44,7 @@
 
 <h3 class="panel-title" >
 
-<i class="fa fa-money fa-fw" ></i> Insert Mobile Companies
+<i class="fa fa-money fa-fw" ></i> Insert Pincode
 
 </h3>
 
@@ -58,9 +58,25 @@
 
 <form method="post" enctype="multipart/form-data" id="mcompany">
     <div class="form-container">
-        <p class="includedet">Please Enter Company Details</p><br>
+        <p class="includedet">Please Enter Pincode</p><br>
 
-        <input type="text" id="cname1" name="cname1" placeholder="Enter Company 1 Name*" onfocus="addCompany()"><br><br>
+        <table class="table">
+            <tr>
+                <th>Select City Name</th>
+                <th>Enter Pincode</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="companies1" id="companies1">
+                    </select>
+                </td>
+                <td>
+                    <input type="text" id="mmodel1" name="mmodel1" placeholder="Enter Pincode 1 *" onfocus="addModel()">
+                </td>
+            </tr>
+        </table>
+        
+        
         
         <div id="cdetails"> </div>
 
@@ -81,12 +97,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
    
 <script>
+$(document).ready(function(){
+
+    $.ajax({
+        url:"api/getcities.php",
+        type:"POST",
+        success:function(para)
+        {
+            para = JSON.parse(para)
+            window.companies = para
+            for(let i=0;i<para.length;i++)
+            {
+                var str = '<option value="'+para[i][1]+'">'+para[i][0]+'</option>'
+                $("#companies1").append(str)
+            }
+        }
+})
+})
 var ctr = 2
-function addCompany()
+function addModel()
 {
-    // alert($("#"+id).val())
-    var s = '<input type="text" id="cname'+ctr+'" name="cname'+ctr+'" placeholder="Enter Company '+ctr+' Name*" onfocus="addCompany()"><br><br>'
-    $("#cdetails").append(s)
+    var s = '<tr><td><select name="companies'+ctr+'" id="companies'+ctr+'"></select></td><td><input type="text" id="mmodel'+ctr+'" name="mmodel'+ctr+'" placeholder="Enter Pincode'+ctr+'*" onfocus="addModel()"></td></tr>'
+    $(".table").append(s)
+    for(let i=0;i<window.companies.length;i++)
+    {
+        var str = '<option value="'+window.companies[i][1]+'">'+window.companies[i][0]+'</option>'
+        $("#companies"+ctr).append(str)
+    }
     ctr+=1
 }
 
@@ -122,25 +159,27 @@ if(sid==null)
 $("#submit").click(function() {
 
     var arr=[]
-    arr[0]= $('#cname1').val()
+    arr[0]= [$('#mmodel1').val(),$('#companies1').val()]
     for(let i =1;i<ctr;i++)
     {
-        var x = '#cname'+(i+1)
+        var x = '#mmodel'+(i+1)
+        var y = '#companies'+(i+1)
         if($(x).val() != "" && $(x).val() != undefined)
         {
-            arr.push($(x).val())
+            arr.push([$(x).val(),$(y).val()])
         }
     }
-
+    console.log(arr)
 $.ajax({
-  url: './api/submitcname.php',
+  url: './api/submitpin.php',
   type: 'POST',
-  data: {"cname":arr},
+  data: {"mmodel":arr},
   success: function(response){
     if(response != "400")
     {
-      alert("Company Added Successfully")
-      window.open('index.php?view_mcompanies','_self');
+      alert("Pincode added successfully")
+      window.open('index.php?view_pincode','_self');
+
     }
   }
 })

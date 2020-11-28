@@ -50,18 +50,18 @@ else {
 
 <div class="table-responsive" ><!-- table-responsive Starts -->
 
-<table class="table table-bordered table-hover table-striped" ><!-- table table-bordered table-hover table-striped Starts -->
+<table class="table table-bordered table-hover table-striped" style="width:700px;margin-left: auto;margin-right: auto;" ><!-- table table-bordered table-hover table-striped Starts -->
 
 <thead>
 
 <tr>
-<th>Mobile Model ID</th> 
-<th>Mobile Company Name</th>
-<th>Mobile Model Name</th>
-<th>Action</th>
-<th>Action</th>
 
 
+<th style="width:10%">Mobile Model ID</th>
+<th style="width:25%">Mobile Company Name</th>
+<th style="width:25%">Mobile Model Name</th>
+<th style="width:15%">Action</th>
+<th style="width:15%">Action</th>
 
 
 </tr>

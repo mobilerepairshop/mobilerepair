@@ -40,7 +40,20 @@ $main_problem = $row_edit['main_problem'];
 <title> Edit Main Problem </title>
 
 
-<!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script> -->
+<style>
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 320px;
+  cursor: pointer;
+}
+</style>
 
 </head>
 
@@ -101,7 +114,7 @@ $main_problem = $row_edit['main_problem'];
 
 <div class="col-md-6" >
 
-<input type="submit" name="update" value="Update" class="btn btn-primary form-control" >
+<input type="submit" name="update" value="Update" class="button" >
 
 </div>
 

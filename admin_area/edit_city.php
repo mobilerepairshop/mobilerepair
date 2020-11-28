@@ -12,19 +12,19 @@ else {
 
 <?php
 
-if(isset($_GET['edit_pincodes'])){
+if(isset($_GET['edit_city'])){
 
-$edit_id = $_GET['edit_pincodes'];
+$edit_id = $_GET['edit_city'];
 
-$get_data = "select * from pincode where pid=$edit_id";
+$get_data = "select * from cities where cid=$edit_id";
 
 $run_edit = mysqli_query($con,$get_data);
 
 $row_edit = mysqli_fetch_array($run_edit);
 
-$p_id = $row_edit['pid'];
+$mc_id = $row_edit['cid'];
 
-$pincode = $row_edit['pincode'];
+$mc_name = $row_edit['cname'];
 
 }
 
@@ -37,10 +37,23 @@ $pincode = $row_edit['pincode'];
 
 <head>
 
-<title> Edit Available Pincode </title>
+<title> Edit City </title>
 
+<style>
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 320px;
+  cursor: pointer;
+}
+</style>
 
-<!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script> -->
 
 </head>
 
@@ -54,7 +67,7 @@ $pincode = $row_edit['pincode'];
 
 <li class="active">
 
-<i class="fa fa-dashboard"> </i> Dashboard / Edit Available Pincode
+<i class="fa fa-dashboard"> </i> Dashboard / Edit City 
 
 </li>
 
@@ -75,7 +88,7 @@ $pincode = $row_edit['pincode'];
 
 <h3 class="panel-title">
 
-<i class="fa fa-money fa-fw"></i> Edit Available Pincode
+<i class="fa fa-money fa-fw"></i> Edit City
 
 </h3>
 
@@ -87,11 +100,11 @@ $pincode = $row_edit['pincode'];
 
 <div class="form-group" ><!-- form-group Starts -->
 
-<label class="col-md-3 control-label" > Pincode </label>
+<label class="col-md-3 control-label" >City Name </label>
 
 <div class="col-md-6" >
 
-<input type="text" name="pincode" class="form-control" required value="<?php echo $pincode; ?>">
+<input type="text" name="city" class="form-control" required value="<?php echo $mc_name; ?>">
 
 </div>
 
@@ -101,7 +114,7 @@ $pincode = $row_edit['pincode'];
 
 <div class="col-md-6" >
 
-<input type="submit" name="update" value="Update" class="btn btn-primary form-control" >
+<input type="submit" name="update" value="Update" class="button" >
 
 </div>
 
@@ -128,16 +141,16 @@ $pincode = $row_edit['pincode'];
 
 if(isset($_POST['update'])){
 
-$pincode = $_POST['pincode'];
-$update_pincode = "update pincode set pincode = '".$pincode."' where pid = ".$_GET['edit_pincodes'];
+$cname = $_POST['city'];
+$update_mc = "update cities set cname = '".$cname."' where cid = ".$_GET['edit_city'];
 
-$run_pincode = mysqli_query($con,$update_pincode);
+$run_mc = mysqli_query($con,$update_mc);
 
-if($run_pincode){
+if($run_mc){
 
-echo "<script> alert('Pincode has been updated successfully') </script>";
+echo "<script> alert('City name been updated successfully') </script>";
 
-echo "<script>window.open('index.php?view_pincodes','_self')</script>";
+echo "<script>window.open('index.php?view_city','_self')</script>";
 
 }
 

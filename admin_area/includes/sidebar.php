@@ -126,6 +126,7 @@ else {
 
 <div class="collapse navbar-collapse navbar-ex1-collapse"><!-- collapse navbar-collapse navbar-ex1-collapse Starts -->
 
+
 <ul class="nav navbar-nav side-nav"><!-- nav navbar-nav side-nav Starts -->
 
 <li><!-- li Starts -->
@@ -137,6 +138,7 @@ else {
 </a>
 
 </li><!-- li Ends -->
+
 
 <li><!-- li Starts -->
 
@@ -214,30 +216,55 @@ else {
 </li><!-- Models li Ends -->
 
 
-<li><!-- Pincode li Starts -->
+<li><!-- city li Starts -->
 
-<a href="#" data-toggle="collapse" data-target="#pincodes">
+<a href="#" data-toggle="collapse" data-target="#city">
 
-<i class="fa fa-map-marker" style="font-size:20px"></i> Available Pincodes
+<i class="fa fa-building-o" ></i> Manage Cities
 
 <i class="fa fa-fw fa-caret-down"></i>
 
 
 </a>
 
-<ul id="pincodes" class="collapse">
+<ul id="city" class="collapse">
 
 <li>
-<a href="index.php?insert_pincodes"> Insert New Pincode </a>
+<a href="index.php?insert_city"> Insert City </a>
 </li>
 
 <li>
-<a href="index.php?view_pincodes"> View Available Pincodes </a>
+<a href="index.php?view_city"> View Cities </a>
 </li>
 
 </ul>
 
-</li><!-- Pincode li Ends -->
+</li><!-- city li Ends -->
+
+<li><!-- city li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#pincode">
+
+<i class="fa fa-map-marker" style="font-size:20px" ></i> Manage Pincodes
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="pincode" class="collapse">
+
+<li>
+<a href="index.php?insert_pincode"> Insert Pincode </a>
+</li>
+
+<li>
+<a href="index.php?view_pincode"> View Pincode  </a>
+</li>
+
+</ul>
+
+</li><!-- city li Ends -->
 
 <li><!-- Problems li Starts -->
 

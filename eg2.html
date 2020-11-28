@@ -24,6 +24,7 @@
   <link href="jquery-editable-select/dist/jquery-editable-select.min.css" rel="stylesheet">
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="./public/css/forms.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <script src="https://apis.google.com/js/platform.js" ></script>
@@ -187,16 +188,16 @@
       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav">
           <li class="nav-item" id="homenav">
-            <a class="nav-link js-scroll active" href="./index2.html">Home</a>
+            <a class="nav-link js-scroll" href="./index2.html">Home</a>
           </li>
           <li class="nav-item" id="servicenav">
-            <a class="nav-link js-scroll" href="#about">About Us</a>
+            <a class="nav-link js-scroll" href="about.html">About Us</a>
           </li>
           <li class="nav-item" id="contactnav">
-            <a class="nav-link js-scroll" href="#contact">Contact</a>
+            <a class="nav-link js-scroll" href="contact.html">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" id="login_button" onclick="openLoginModal()">Login</a>
+            <a class="nav-link js-scroll" id="login_button" style="cursor:pointer;" onclick="openLoginModal()">Login</a>
           </li>
           <li>
             
@@ -260,7 +261,7 @@
                         <div class="error"></div>
                         <div class="form loginBox">
                             <form method="" action="" accept-charset="UTF-8">
-                            <input id="emaillog" class="form-control" type="text" placeholder="Email/Username" name="email">
+                            <input id="emaillog" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
                             <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
                             <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
                             </form>
@@ -272,7 +273,7 @@
                      <div class="form">
                         <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
                         <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username">
-                        <input id="emailreg" class="form-control" type="text" placeholder="Email" name="email">
+                        <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
                         <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password">
                         <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
                         <p id="errornote" style="display:none;"></p>
@@ -283,14 +284,14 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <div class="forgot login-footer">
-                    <span>Looking to
-                         <a href="javascript: showRegisterForm();">create an account</a>
-                    ?</span>
-                </div>
+              <div class="forgot login-footer">
+                <span>Don't have an account?
+                  <b><a href="javascript: showRegisterForm();" style="color: #0078ff;">Sign up</a></b>
+                </span>
+              </div>
                 <div class="forgot register-footer" style="display:none">
                      <span>Already have an account?</span>
-                     <a href="javascript: showLoginForm();">Login</a>
+                     <a href="javascript: showLoginForm();" style="color: #0078ff;">Login</a>
                 </div>
             </div>
       </div>
@@ -307,7 +308,7 @@
         <div class="col-md-4" id="leftnavpane">
             <div class="widget-sidebar">
               <a href="./index2.html" class="sidebar-title">Services Home Page</a> <br><br>
-              <a href="./eg2.html" class="sidebar-title">Mobile Repair Service</a> <br><br>
+              <a href="./eg2.html" class="sidebar-title" style="color:#0078ff;">Mobile Repair Service</a> <br><br>
               <a href="./myorders2.html" class="sidebar-title">Track Mobile Repair Orders</a> <br><br>
               <a class="sidebar-title">Mobile Repair Payments</a> <br><br>
               <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a>
@@ -317,17 +318,26 @@
           <div class="form-comments">
             <div class="title-box-2">
               <h3 class="title-left">
-                Request a Service
+                Check Service Availability
               </h3>
             </div>
             <div class="form-mf">
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
-                    <input type="number" class="form-control input-mf" id="pincode" placeholder="Pincode *" required>
+                    <select name="city" id="city">
+                      <option value="">Select Your City</option>
+                    </select>  
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
+                  <div class="form-group">
+                    <select name="pincode" id="pincode">
+                      <option value="">Select Your Pincode</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
                   <div class="form-group">
                     <input type="button" class="button button-a button-small button-rouded" id="checkpincode" value="Check Availability">
                   </div>
@@ -344,7 +354,7 @@
                 </div>
                 <br><br><br><br>
                 <div class="col-md-6 mb-3">
-                    <div class="dropdown">
+                    <div class="dropdown" id="mobile_details">
                       <b>Select Mobile Company</b> <br>
                       <select id="editable-select" required>
                   
@@ -364,11 +374,11 @@
               
               <br><br><br><br>
 
-              <div class="row problem">
+              <div class="row problem" id="problemdiv">
                 
               </div>
     
-                <div class="col-md-12">
+                <div class="col-md-12" id="quotebuttons">
                   <br><button id="getqoute" class="button button-a button-small button-rouded" data-toggle="modal" data-target="#quotation" onclick="getquote()">Get Quotation</button>
                   <p class="pricing"></p>
                   <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
@@ -466,7 +476,6 @@ function paid(rid,status)
     },
     success:function(para)
     {
-      alert(para)
       if(para == "200")
       {
         alert("Done")     
@@ -583,6 +592,7 @@ var firebaseConfig = {
                     para = JSON.parse(para)
                     if(para=='200')
                     {
+                      alert("Successfully Registered")
                       location.reload()   
                     }
                     else
@@ -694,6 +704,7 @@ var firebaseConfig = {
             {
               $("#login_button").show()
               $("#username").hide()
+              $(".form-comments").hide()
 
             }
         }
@@ -861,7 +872,7 @@ function registerAjax()
                     if(para=='200')
                     {
                       alert("Registered Successfully")
-                      window.location.replace("./index.html");   
+                      window.location.replace("./index2.html");   
                     }
                     else
                     {
@@ -972,30 +983,45 @@ function getvalue(id)
 }
     $(document).ready(function()
     {
-
       var sid = getCookie("sid");
       if(sid)
       {
         $(".form-comments").show()
+        $("#requestquotation").hide()
+        $("#damageproblemlist").hide()
+        $("#touchdisplayproblemlist").hide()
+        $("#hardwareproblemlist").hide()
+        $("#batteryproblemlist").hide()
+        $("#memorycardproblemlist").hide()
+        $("#networkproblemlist").hide()
+        $("#otherproblemlist").hide()
+        $("#ownproblemlist").hide()
+        $("#es2div").hide()
+        $("#contact_details").hide()
+        $("#pincode").hide() 
+        $("#mobile_details").hide()
+        $("#problemdiv").hide()
+        $("#quotebuttons").hide()
       }
       else
       {
+        alert("not logged in")
+
         $(".form-comments").hide()
         openLoginModal()
-        alert("not logged in")
+        $("#damageproblemlist").hide()
+        $("#touchdisplayproblemlist").hide()
+        $("#hardwareproblemlist").hide()
+        $("#batteryproblemlist").hide()
+        $("#memorycardproblemlist").hide()
+        $("#networkproblemlist").hide()
+        $("#otherproblemlist").hide()
+        $("#ownproblemlist").hide()
+        $("#es2div").hide()
+        $("#contact_details").hide()
+        $("#pincode").hide()
       }
-      $("#damageproblemlist").hide()
-      $("#touchdisplayproblemlist").hide()
-      $("#hardwareproblemlist").hide()
-      $("#batteryproblemlist").hide()
-      $("#memorycardproblemlist").hide()
-      $("#networkproblemlist").hide()
-      $("#otherproblemlist").hide()
-      $("#ownproblemlist").hide()
-      $("#es2div").hide()
-      $("#contact_details").hide()
-
-    
+      
       $.ajax(
       {
         url: "./api/getprobsubmap.php", 
@@ -1140,11 +1166,59 @@ function getvalue(id)
 
       });
 
+      // get cities 
+      $.ajax(
+            {
+              url: "./api/getcities.php", 
+              method:"POST",
+              success: function(para)
+              {
+                para = JSON.parse(para)
+                var str = ''
+                for(let i=0;i<para.length;i++)
+                {
+                  str += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
+                }
+                $("#city").append(str)
+              }
+                
+           });
+      // 
+
     })
     // $("#editable-select").on('change','select',function () { alert('hello'); });
     $('#editable-select').on('select.editable-select', function (e, li) {
       
     })
+
+
+    // get pincodes from cities
+
+    $("#city").change(function(){
+      $("#pincode").empty()
+      if($("#city").val() != "")
+      {
+        $("#pincode").show()
+        $.ajax(
+        {
+          url: "./api/getpincode.php", 
+          method:"POST",
+          data:{'city':$("#city").val()},
+          success: function(para)
+          {
+            para = JSON.parse(para)
+            var str = ''
+            for(let i=0;i<para.length;i++)
+            {
+              str += '<option value="'+para[i]+'">'+para[i]+'</option>'
+            }
+            $("#pincode").append(str)
+          }
+        })
+      }
+    })
+
+    // 
 
     problems = []
     function showproblems(id)
@@ -1175,7 +1249,7 @@ function getvalue(id)
     $("#checkpincode").click(function(){
       if($("#pincode").val() == "")
       {
-        alert("Please Enter Pincode First")
+        alert("Please Select Pincode First")
       }
       else
       {
@@ -1205,7 +1279,9 @@ function getvalue(id)
                   $("#contact_details").show()
                   $("#phonenum").val(para[0])
                   $("#address").val(para[1])
-
+                  $("#mobile_details").show()
+                  $("#problemdiv").show()
+                  $("#quotebuttons").show()
                 }
               })
             }

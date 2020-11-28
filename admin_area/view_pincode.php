@@ -1,7 +1,5 @@
 <?php
 
-
-
 if($_COOKIE['sid'] == null){
 
 echo "<script>window.open('login.php','_self')</script>";
@@ -21,7 +19,7 @@ else {
 
 <li class="active" >
 
-<i class="fa fa-dashboard"></i> Dashboard / View Main Problems
+<i class="fa fa-dashboard"></i> Dashboard / View Pincode
 
 </li>
 
@@ -41,7 +39,7 @@ else {
 
 <h3 class="panel-title" ><!-- panel-title Starts -->
 
-<i class="fa fa-money fa-fw" ></i> View Main Problems
+<i class="fa fa-money fa-fw" ></i> View Pincode
 
 </h3><!-- panel-title Ends -->
 
@@ -52,18 +50,17 @@ else {
 
 <div class="table-responsive" ><!-- table-responsive Starts -->
 
-<table class="table table-bordered table-hover table-striped" style="width:700px;margin-left: auto;margin-right: auto;"  ><!-- table table-bordered table-hover table-striped Starts -->
+<table class="table table-bordered table-hover table-striped" style="width:700px;margin-left: auto;margin-right: auto;"><!-- table table-bordered table-hover table-striped Starts -->
 
 <thead>
 
 <tr>
 
-
-
-<th style="width:20%">Main Problems ID</th>
-<th style="width:40%">Main Problems</th>
-<th style="width:20%">Action</th>
-<th style="width:20%">Action</th>
+<th style="width:10%">Pincode ID</th>
+<th style="width:25%">City Name</th>
+<th style="width:25%">Pincode</th>
+<th style="width:15%">Action</th>
+<th style="width:15%">Action</th>
 
 
 </tr>
@@ -74,16 +71,18 @@ else {
 
 <?php
 
-$get_pro = "select * from problem_master";
+$get_m = "select * from pincode inner join cities on pincode.cid=cities.cid";
 
-$run_pro = mysqli_query($con,$get_pro);
+$run_m = mysqli_query($con,$get_m);
 
 $ctr = 0;
-while($row_pro=mysqli_fetch_array($run_pro)){
+while($row_m=mysqli_fetch_array($run_m)){
 
-$pro_id = $row_pro['problem_code'];
+$m_id = $row_m['pid'];
 
-$main_problem = $row_pro['main_problem'];
+$m_name = $row_m['pincode'];
+
+$mc_name = $row_m['cname'];
 
 $ctr += 1;
 
@@ -93,11 +92,13 @@ $ctr += 1;
 
 <td><?php echo $ctr; ?></td>
 
-<td><?php echo $main_problem; ?></td>
+<td><?php echo $mc_name; ?></td>
+
+<td><?php echo $m_name; ?></td>
 
 <td>
 
-<a href="index.php?delete_problems=<?php echo $pro_id; ?>">
+<a href="index.php?delete_pincode=<?php echo $m_id; ?>">
 
 <i class="fa fa-trash-o"> </i> Delete
 
@@ -107,7 +108,7 @@ $ctr += 1;
 
 <td>
 
-<a href="index.php?edit_problems=<?php echo $pro_id; ?>">
+<a href="index.php?edit_pincode=<?php echo $m_id; ?>">
 
 <i class="fa fa-pencil"> </i> Edit
 

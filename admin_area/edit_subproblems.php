@@ -43,8 +43,21 @@ $mainproblem = $row_edit['main_problem'];
 
 <title> Edit Sub Problem </title>
 
+<style>
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 5px;
+  cursor: pointer;
+}
+</style>
 
-<!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script> -->
 
 </head>
 
@@ -112,7 +125,7 @@ $mainproblem = $row_edit['main_problem'];
         
         <div id="spdetails"> </div>
 
-        <button class="form-btn" id="update" name="update">Update</button>
+        <button class="button" id="update" name="update">Update</button>
     </div>
     
 </form>
