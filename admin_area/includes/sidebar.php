@@ -266,31 +266,6 @@ else {
 
 </li><!-- city li Ends -->
 
-<li><!-- Pincode li Starts -->
-
-<a href="#" data-toggle="collapse" data-target="#pincodes">
-
-<i class="fa fa-map-marker" style="font-size:20px"></i> Available Pincodes
-
-<i class="fa fa-fw fa-caret-down"></i>
-
-
-</a>
-
-<ul id="pincodes" class="collapse">
-
-<li>
-<a href="index.php?insert_pincodes"> Insert New Pincode </a>
-</li>
-
-<li>
-<a href="index.php?view_pincodes"> View Available Pincodes </a>
-</li>
-
-</ul>
-
-</li><!-- Pincode li Ends -->
-
 <li><!-- Problems li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#problems">
