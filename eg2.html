@@ -260,7 +260,7 @@
                             <div class="container">
                               <div class="row">
                                 <div class="col-sm">
-                                  <div onclick="googleSignin()" ><img src="google.png" style="cursor:pointer;"></img></div>
+                                  <div onclick="googleSignin()" ><img class="google" src="google.png" style="cursor:pointer;"></img></div>
                                 </div>
                                 <!-- <div class="col-sm">
                                   <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
@@ -1116,8 +1116,8 @@ function getvalue(id)
                     for(let j=0;j<innersize;j++)
                     {
                         
-                        s1+='<div class="form-check"><div class="custom-control custom-radio">' 
-                        s1+='<input type="radio" class="custom-control-input" id="'+x+'-'+groupedPeople[x][j].spcode+'" onchange="getvalue(this.id)" name="'+x+'" >'
+                        s1+='<div class="form-check"><div class="custom-control custom-checkbox">' 
+                        s1+='<input type="checkbox" class="custom-control-input" id="'+x+'-'+groupedPeople[x][j].spcode+'" onchange="getvalue(this.id)" name="'+x+'" >'
                         s1+='<label class="custom-control-label" for="'+x+'-'+groupedPeople[x][j].spcode+'">'+groupedPeople[x][j].subproblem+'</label>'
                         s1+='</div></div>'
                         
@@ -1389,6 +1389,25 @@ $("#requestquotation").click(function(){
   }
 })
 
+var alterClass = function() {
+	  var ww = document.body.clientWidth;
+   
+	  if (ww > 600) {
+      console.log("Desktop")
+      $('.google').attr('src','googlesignin2.png')
+      $('.google').css('width','40%')
+    }
+    else{
+      console.log("Mobile")
+      $('.google').attr('src','google.png')
+      $('.google').css('width','25%')
+    }
+    }
+    $(window).resize(function(){
+      alterClass();
+      
+      	});
+    alterClass()
 
 </script>
 

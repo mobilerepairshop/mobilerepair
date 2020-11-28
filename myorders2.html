@@ -472,7 +472,8 @@
                             <div class="container">
                               <div class="row">
                                 <div class="col-sm">
-                                  <div onclick="googleSignin()" ><img src="google.png" style="cursor:pointer;"></img></div>
+                                  
+                                  <div onclick="googleSignin()" ><img class="google" src="" style="cursor:pointer;"></img></div>
                                 </div>
                                 <!-- <div class="col-sm">
                                   <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
@@ -1241,7 +1242,6 @@ function groupArrayOfObjects(list, key) {
                 s2=""
                 console.log("This is note - ",para)
                 para = JSON.parse(para)
-                pro_desc = {"waterdamage":"Water Damage" , "mobiledead":"Mobile is Dead" , "toucherror":"Display is OK but partial/full touch not working" , "displayerror":"Touch is OK display damaged" , "touchdisplayerror":"Touch and display both not working" , "micerror":"Mic Problem" , "speakererror":"Speaker problem" , "loudspeakererror":"Loud speaker problem" , "vibratorerror":"Ringer/Vibrator problem" , "faultybattery":"Battery is faulty" , "chargingerror":"Mobile is not charging" , "networkerror":"Network not showing" , "towererror":"Only 1-2 tower showing in mobile" , "simerror":"SIM not detecting" , "detectionerror":"Memory card not detecting" , "powererror":"Power ON button not working" , "volumerror":"Volume buttons are not working" , "cameraerror":"Camera not working" , "lockerror":"Forgot screen lock/Password" , "flasherror":"Flash new software"}
 
                for(let i=0;i<para.length;i++)
                {
@@ -1587,7 +1587,24 @@ function groupArrayOfObjects(list, key) {
             }
         })
     }
-
+    var alterClass = function() {
+	  var ww = document.body.clientWidth;
+   
+	  if (ww > 600) {
+      console.log("Desktop")
+      $('.google').attr('src','googlesignin3.png')
+    }
+    else{
+      console.log("Mobile")
+      $('.google').attr('src','google.png')
+      $('.google').css('width','25%')
+    }
+    }
+    $(window).resize(function(){
+      alterClass();
+      
+      	});
+    alterClass()
 </script>
 </body>
 </html>

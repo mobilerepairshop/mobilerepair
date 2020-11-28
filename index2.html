@@ -279,7 +279,9 @@
                             <div class="container">
                               <div class="row">
                                 <div class="col-sm">
-                                  <div onclick="googleSignin()" ><img src="google.png" style="cursor:pointer;"></img></div>
+                                  <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+
+                                  <div onclick="googleSignin()" ><img class="google" src="googlesignin3.png" style="cursor:pointer;"></img></div>
                                 </div>
                                 <!-- <div class="col-sm">
                                   <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
@@ -899,6 +901,35 @@ function getproblems_admin(rid)
             }
         })
     }
+
+    var alterClass = function() {
+	  var ww = document.body.clientWidth;
+   
+	  if (ww > 600) {
+      console.log("Desktop")
+      $('.google').attr('src','googlesignin3.png')
+      $('.google').css('width','60%')
+      
+    }
+    else{
+      console.log("Mobile")
+      $('.google').attr('src','google.png')
+      $('.google').css('width','25%')
+    }
+    }
+    $(window).resize(function(){
+      alterClass();
+      
+      	});
+    alterClass()
+
+    let x  = function(){
+      const c;
+      c=10;
+      
+      console.log(c);
+    }
+    x();
 </script>
 </body>
 </html>
