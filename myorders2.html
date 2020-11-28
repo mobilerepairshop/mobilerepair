@@ -85,7 +85,7 @@
     display: block;
     position: relative;
     width: 100%;
-    height: 80px;
+    height: 40px;
     text-align: center
 }
 
@@ -93,7 +93,7 @@
 .steps .step .step-icon-wrap::after {
     display: block;
     position: absolute;
-    top: 50%;
+    top: 35%;
     width: 50%;
     height: 3px;
     margin-top: -1px;
@@ -113,8 +113,8 @@
 .steps .step .step-icon {
     display: inline-block;
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 30px;
+    height: 30px;
     border: 1px solid #e1e7ec;
     border-radius: 50%;
     background-color: #f5f5f5;
@@ -128,8 +128,8 @@
     margin-top: 16px;
     margin-bottom: 0;
     color: #606975;
-    font-size: 14px;
-    font-weight: 500
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .steps .step:first-child .step-icon-wrap::before {
@@ -243,7 +243,7 @@
   <button type="button" class="close" data-dismiss="modal">&times;</button>
   </div>
   <div class="modal-body problem">
-      <table class="problem-content" style="width:110%;">
+      <table class="problem-content" style="width:100%;">
   
       </table>
   </div>
@@ -583,7 +583,7 @@
   <button type="button" class="close" data-dismiss="modal">&times;</button>
   </div>
   <div class="modal-body person">
-      <table class="person-content" style="width:110%;">
+      <table class="person-content" style="width:100%;">
   
       </table>
   </div>
@@ -600,7 +600,7 @@
   <button type="button" class="close" data-dismiss="modal">&times;</button>
   </div>
   <div class="modal-body person">
-      <table class="payment-content" style="width:110%;">
+      <table class="payment-content" style="width:100%;">
   
       </table>
   </div>
@@ -1157,8 +1157,8 @@ function groupArrayOfObjects(list, key) {
       orderid = String(rid).padStart(5, '0')
       s1=""
       var obj = {
-            0: ["New Request","fa fa-handshake-o"],
-            1: ["Pickup Assigned","fa fa-car"],
+            0: ["New Request","fa fa-handshake"],
+            1: ["Pickup Assigned","fa fa-car fa-sm"],
             2: ["Pickup Successfull","fa fa-thumbs-up"],
             3:["Device Dropped","fa fa-thumbs-up"],
             4:["Price Updated","fa fa-refresh"],
@@ -1170,11 +1170,11 @@ function groupArrayOfObjects(list, key) {
       }
       
         s1+='<div class="container padding-bottom-3x mb-1">'
-        s1+='<div class="modalcard card mb-3" style="width:170%;">'
+        s1+='<div class="modalcard card mb-3" style="width:100%;">'
         s1+='<div class="p-4 text-center text-white text-lg bg-dark rounded-top"><span class="text-uppercase">Order No - </span><span class="text-medium">MR'+orderid+'</span></div>'
         s1+='<div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">'
-        s1+='<div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped Via:</span> Mobile Repair</div>'
-        s1+='<div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span> Repair in progress</div>'
+        s1+='<div class="w-100 text-center py-1 px-2"><span class="text-medium">Current Status of Your Order</span></div>'
+        // s1+='<div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span> Repair in progress</div>'
         s1+='</div>'
         s1+='<div class="card-body">'
         s1+='<div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">'
@@ -1184,18 +1184,18 @@ function groupArrayOfObjects(list, key) {
           {
             s1+='<div class="step completed">'
             s1+='<div class="step-icon-wrap">'
-            s1+='<div class="step-icon"><i class="'+obj[i][1]+'" aria-hidden="true"></i></div>'
+            s1+='<div class="step-icon"></div>'
             s1+=' </div>'
-            s1+='<h4 class="step-title">'+obj[i][0]+'</h4>'
+            s1+='<h5 class="step-title">'+obj[i][0]+'</h4>'
             s1+='</div>'
           }
           else
           {
             s1+='<div class="step">'
             s1+='<div class="step-icon-wrap">'
-            s1+='<div class="step-icon"><i class="'+obj[i][1]+'"></i></div>'
+            s1+='<div class="step-icon"></div>'
             s1+=' </div>'
-            s1+='<h4 class="step-title">'+obj[i][0]+'</h4>'
+            s1+='<h5 class="step-title">'+obj[i][0]+'</h4>'
             s1+='</div>'
           }
            
