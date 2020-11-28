@@ -399,7 +399,7 @@
                 <div class="col-md-12" id="quotebuttons">
                   <br><button id="getqoute" class="button button-a button-small button-rouded" data-toggle="modal" data-target="#quotation" onclick="getquote()">Get Quotation</button>
                   <p class="pricing"></p>
-                  <br><button id="requestquotation" class="button button-a button-small button-rouded">Take Service</button>
+                  <br><button id="requestquotation" class="button button-a button-small button-rouded" data-toggle="modal" data-target="#alert">Take Service</button>
                 
                 </div>
               </div>
@@ -1367,6 +1367,7 @@ $("#requestquotation").click(function(){
             success: function(para)
             {
                 alert(para)
+                alertdata("Success","")
                 window.location.replace("./myorders2.html");
             }
             })
