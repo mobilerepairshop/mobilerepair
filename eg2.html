@@ -154,7 +154,25 @@
 </head>
 
 <body>
-    
+  
+      
+<!-- Alert Modal -->
+<div class="modal fade" id="alert">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title" id="alerttitle">High Level Quotation</h4>
+  <buttonget  type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body">
+      <b id="alertcontent"></b> 
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+  
+  <!-- Alert Modal -->
+  
     
 <!-- Quotation Modal -->
 <div class="modal fade" id="quotation">
@@ -339,7 +357,7 @@
                 </div>
                 <div class="col-md-12 mb-3">
                   <div class="form-group">
-                    <input type="button" class="button button-a button-small button-rouded" id="checkpincode" value="Check Availability">
+                    <input type="button" class="button button-a button-small button-rouded" id="checkpincode" value="Check Availability" data-toggle="modal" data-target="#alert">
                   </div>
                 </div>
                 <div class="col-md-12 mb-6" id="contact_details">
@@ -381,7 +399,7 @@
                 <div class="col-md-12" id="quotebuttons">
                   <br><button id="getqoute" class="button button-a button-small button-rouded" data-toggle="modal" data-target="#quotation" onclick="getquote()">Get Quotation</button>
                   <p class="pricing"></p>
-                  <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
+                  <br><button id="requestquotation" class="button button-a button-small button-rouded">Take Service</button>
                 
                 </div>
               </div>
@@ -463,6 +481,13 @@
 
  <script>
 
+function alertdata(data,title)
+{
+  $("#alerttitle").empty()
+  $("#alertcontent").empty()
+  $("#alerttitle").append(title)
+  $("#alertcontent").append(data)
+}
 
 function paid(rid,status)
 {
@@ -1249,7 +1274,8 @@ function getvalue(id)
     $("#checkpincode").click(function(){
       if($("#pincode").val() == "")
       {
-        alert("Please Select Pincode First")
+        // alert("Please Select Pincode First")
+        alertdata("Please Select Pincode First","")
       }
       else
       {
@@ -1262,13 +1288,16 @@ function getvalue(id)
           {
             if(para == 0)
             {
-              alert("This Pincode is not currently available for our service")
+              // alert("This Pincode is not currently available for our service")
+              alertdata("This Pincode is currently not available for our service","")
+
               window.available = false
               $("#contact_details").hide()
             }
             else
             {
-              alert("This Pincode is Available")
+              // alert("This Pincode is Available")
+              alertdata("This Pincode is Available","")
               window.available = true
               $.ajax({
                 url:"./api/getcontactdetails.php",
@@ -1344,7 +1373,7 @@ $("#requestquotation").click(function(){
         }
         else
         {
-          alert("Please Provide Address and Phone Number")
+          alertdata("Please Provide Address and Phone Number","")
         }
     }
     else
