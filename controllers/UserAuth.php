@@ -207,5 +207,28 @@ class UserAuth{
         }
         
     }
+
+    public function checkusername($userid)
+    {
+        $query = 'select uid from users where email=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('s',$userid);
+        if($stmt->execute())
+        {
+            $stmt->store_result();
+            if($stmt->num_rows == 0)
+            {
+                return "200";
+            }
+            else
+            {
+                return "400";
+            }  
+        }
+        else
+        {
+            return '400';
+        }
+    }
 }
 	

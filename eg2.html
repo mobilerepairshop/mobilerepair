@@ -41,7 +41,12 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
   <style>
-  
+  select{
+  cursor:pointer;
+} 
+option{
+  cursor:pointer;
+} 
      
 .botnavbar {
   overflow: hidden;
@@ -289,12 +294,13 @@
                 <div class="box">
                     <div class="content registerBox" style="display:none;">
                      <div class="form">
-                        <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                        <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username">
-                        <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
-                        <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password">
-                        <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                      <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                        <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username" required>
+                        <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required>
+                        <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password" required>
+                        <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required>
                         <p id="errornote" style="display:none;"></p>
+                        <br><input type="checkbox" id="termsconditions" required> By signing up, you agree to our <a href="#" style="color: #0078ff;">Terms of Use</a> and <a href="#" style="color: #0078ff;">Privacy Policy</a>  <br><br>
                         <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="registerAjax()">
                         </form>
                         </div>
@@ -830,7 +836,7 @@ function signout()
   $("#password_confirmationreg").keyup(function(){
     pwd = String($('#passwordreg').val())   
     confpwd = String($('#password_confirmationreg').val());
-    if(pwd==confpwd)
+    if(pwd==confpwd && pwd != "" && confpwd != "")
     {
       $("#errornote").show()
       $("#errornote").text("Password match")
@@ -874,9 +880,36 @@ function showLoginForm(){
     });       
      $('.error').removeClass('alert alert-danger').html(''); 
 }
+window.userexist = 0
+$('#emailreg').change(function (){
+  $.ajax({
+    url:'./api/checkusername.php',
+    type:'POST',
+    data:{
+      'userid':$('#emailreg').val()
+    },
+    success:function(para)
+    {
+        if(para=='400')
+        {
+          window.userexist = 1
+          alert("Please Choose Different Email/Mobile Number")
+          $("#emailreg").val("")
+        }
+        else
+        {
+          window.userexist = 0
+        }
+    }
+})
+})
 
 function registerAjax()
 {
+  if(window.userexist == 0)
+  {
+    if($('#userreg').val() != "" && $('#emailreg').val() != "" && $('#passwordreg').val() != "" && $('#password_confirmationreg').val() != "" && $('#termsconditions').prop("checked"))
+    {
         username = $('#userreg').val();
         email = $('#emailreg').val();
         pwd = String($('#passwordreg').val());
@@ -912,7 +945,16 @@ function registerAjax()
           $("#errornote").css('color','red')
         }
 
-        
+      } 
+      else
+      {
+        alert("Please Fill and Check All the Fields")
+      }
+  }
+  else
+  {
+    alert("Please Choose Different Email/Mobile Number")
+  }
 }
 function loginAjax(){
 
