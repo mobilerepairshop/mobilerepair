@@ -71,6 +71,7 @@
   .botnavbar a{
     width:25%;
   }
+ 
 }
   </style>
 </head>
@@ -107,6 +108,7 @@
         <span></span>
         <span></span>
         <span></span>
+        
       </button>
       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav">
@@ -119,15 +121,17 @@
           <li class="nav-item" id="contactnav">
             <a class="nav-link js-scroll" href="contact.html">Contact</a>
           </li>
-          <li class="nav-item">
+         
+          <li class="nav-item" id="loginav" >
             <a class="nav-link js-scroll" id="login_button" style="cursor:pointer;" onclick="openLoginModal()">Login</a>
           </li>
           <li>
             
-            <div class="collapse navbar-collapse" id="navbar-list-4 prodrop">
+            <div class="navbar-collapse" id="navbar-list-4 prodrop">
               <ul class="navbar-nav">
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" id="username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Dashboard</a>
@@ -579,9 +583,9 @@ var firebaseConfig = {
               $("#login_button").hide()
               // $(".botnavbar").css("display", "none")
 
-              $("#username").show()
+            
               $("#username").html(para[1])
-
+              $("#username").show()
               // check if user is admin
               if(para[1] == "Admin_User")
               {
@@ -923,13 +927,6 @@ function getproblems_admin(rid)
       	});
     alterClass()
 
-    let x  = function(){
-      const c;
-      c=10;
-      
-      console.log(c);
-    }
-    x();
 </script>
 </body>
 </html>
