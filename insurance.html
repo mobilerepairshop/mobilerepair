@@ -30,7 +30,10 @@
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   
   <style>
-    
+a{
+  cursor: pointer;
+}
+
 .botnavbar {
   overflow: hidden;
   background-color: #fff;
@@ -77,6 +80,57 @@
 
 <body id="page-top">
 
+<!-- editprofile Modal -->
+<div class="modal fade" id="editprofile">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title" id="edit_title"></h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body">
+    <div class="box">
+      <div class="content registerBox">
+       <div class="form">
+          <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-2">
+                <b><span>Full Name</span></b>
+              </div>
+              <div class="col-md-10">
+                <input id="user_fullname" class="form-control" type="text" placeholder="Full Name" name="username" required>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-md-2">
+                <b><span>Mobile Number</span></b>
+              </div>
+              <div class="col-md-10">
+                <input id="user_mobile" class="form-control" type="number" placeholder="Mobile Number" required>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-md-2">
+                <b><span>Address</span></b>
+              </div>
+              <div class="col-md-10">
+                <input id="user_address" class="form-control" type="text" placeholder="Address" required>
+              </div>
+            </div>
+          </div><br>
+          <p id="errornote" style="display:none;"></p>
+          </form>
+          </div>
+      </div>
+  </div>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-success" name="updateprofile" id="" onclick="updateprofile(this.id)">Update</button>
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+  
+  <!-- editprofile Modal -->
   
 <!-- Problem Modal -->
 <div class="modal fade" id="problem">
@@ -130,8 +184,8 @@
                   <a class="nav-link dropdown-toggle" id="username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Dashboard</a>
-                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a class="dropdown-item" href="./myorders2.html">Dashboard</a>
+                    <a class="dropdown-item" id="" name="editprofile" data-toggle="modal" data-target="#editprofile" onclick="editprofile(this.id)">Edit Profile</a>
                     <a class="dropdown-item" onclick="signout()">Log Out</a>
                   </div>
                 </li>   
@@ -346,6 +400,54 @@
 
 <script>
 
+function editprofile(id)
+{
+  $.ajax({
+    url:'./api/getprofiledata.php',
+    type:'POST',
+    data:{
+      'uid':id,
+      'sid':sid
+    },
+    success:function(para)
+    {
+      para = JSON.parse(para)
+      $('[name="updateprofile"]').attr("id", para[0].uid);
+      $("#user_fullname").val(para[0].fullname)
+      $("#edit_title").html("Login ID: "+para[0].loginid)
+      $("#user_mobile").val(para[0].contact)
+      $("#user_address").val(para[0].address)
+    }
+  })  
+}
+
+function updateprofile(id)
+{
+  $.ajax({
+    url:'./api/updateprofiledata.php',
+    type:'POST',
+    data:{
+      'uid':id,
+      'fullname':$("#user_fullname").val(),
+      'mobile':$("#user_mobile").val(),
+      'address':$("#user_address").val(),
+      'sid':sid
+    },
+    success:function(para)
+    {
+      if(para == "200")
+      {
+        alert("Success")
+        window.location.reload()
+      }
+      else
+      {
+        alert(para)
+      }
+    }
+  })  
+}
+
 
 function paid(rid,status)
 {
@@ -528,6 +630,7 @@ var firebaseConfig = {
 
               $("#username").show()
               $("#username").html(para[1])
+              $('[name="editprofile"]').attr("id", para[2]);
 
               // check if user is admin
               if(para[1] == "Admin_User")
@@ -561,7 +664,7 @@ var firebaseConfig = {
                         str += '<div class="form-comments"><div class="title-box-2"><h3 class="title-left">Task Number : '+(i+1)+'</h3></div><div class="form-mf"><div class="row"><div class="col-md-10"><table class="table table-responsive"><tbody id="taskdetails">'
                         str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
                         str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
-                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
+                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
                         if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
                         {
                           str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_drop+'>'+status[para[i].status]+'</button></div></div></div></div>'
