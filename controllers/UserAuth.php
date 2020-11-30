@@ -207,5 +207,66 @@ class UserAuth{
         }
         
     }
+
+    public function checkusername($userid)
+    {
+        $query = 'select uid from users where email=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('s',$userid);
+        if($stmt->execute())
+        {
+            $stmt->store_result();
+            if($stmt->num_rows == 0)
+            {
+                return "200";
+            }
+            else
+            {
+                return "400";
+            }  
+        }
+        else
+        {
+            return '400';
+        }
+    }
+
+    public function getprofiledata($uid)
+    {
+        $query = 'select uid,email,username,phonenum,address from users where uid = ?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('i',$uid);
+        if($stmt->execute())
+        {
+            $result = $stmt->get_result();   // <--- add this instead
+            $userinfo = array();
+            while ($data = $result->fetch_assoc()) 
+            {
+                array_push($userinfo,["fullname"=>$data["username"],"address"=>$data["address"],"contact"=>$data["phonenum"],"loginid"=>$data["email"],"uid"=>$data["uid"]]);
+            }
+            return $userinfo;
+        }
+        else
+        {
+            return 400;
+        }
+        
+    }
+
+    public function updateprofiledata($uid,$address,$contact,$name)
+        {
+            $query = 'update users set username=?, phonenum=?, address=? where uid=?';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param('sssi',$name,$contact,$address,$uid);
+            if($stmt->execute())
+            {
+                return "200";
+            }
+            else
+            {
+                return "400";
+            }
+        }
+
 }
 	
