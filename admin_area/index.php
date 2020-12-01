@@ -275,6 +275,12 @@ include("view_history.php");
     
 }
 
+if(isset($_GET['view_cancelled'])){
+
+include("view_cancelled.php");
+    
+}
+
 if(isset($_GET['insert_city'])){
 
     include("insert_city.php");

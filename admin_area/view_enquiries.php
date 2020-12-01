@@ -75,6 +75,8 @@ else {
 
 <i class="fa fa-money fa-fw" ></i> View Enquiries
 
+<a href="./index.php?view_enquiries" style="float:right;color:blue;">Refresh</a>
+
 </h3><!-- panel-title Ends -->
 
 
@@ -89,6 +91,9 @@ else {
 <thead><!-- thead Starts -->
 
 <tr>
+
+<th>Order ID</th>
+
 <th>User Name</th>
 
 <th>Contact Number</th>
@@ -134,9 +139,9 @@ $get_enquiries = "SELECT * FROM req
                   INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid 
                   INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid 
                   INNER JOIN users ON users.uid = req.uid 
-                  INNER JOIN problems ON problems.rid = req.rid
-                  INNER JOIN problem_master ON problems.problem = problem_master.problem_code
-                  INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
+                  -- INNER JOIN problems ON problems.rid = req.rid
+                  -- INNER JOIN problem_master ON problems.problem = problem_master.problem_code
+                  -- INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
                   where  req.status=0";
 $run_admin = mysqli_query($con,$get_enquiries);
 
@@ -166,6 +171,7 @@ $rid = $row_admin['rid'];
 
 <tr>
 
+<td><?php echo "MR".sprintf("%05d", $rid); ?></td>
 
 <td><?php echo $username; ?></td>
 

@@ -6,8 +6,9 @@ echo "<script>window.open('login.php','_self')</script>";
 }
 
 else {
- 
 ?>
+
+
 <div class="row" ><!-- 1 row Starts -->
 
 <div class="col-lg-12" ><!-- col-lg-12 Starts -->
@@ -16,7 +17,8 @@ else {
 
 <li class="active" >
 
-<i class="fa fa-dashboard" ></i> Dashboard / View History
+<i class="fa fa-dashboard" ></i> Dashboard / View Cancelled Requests
+
 </li>
 
 </ol><!-- breadcrumb Ends -->
@@ -37,7 +39,7 @@ else {
 
 <h3 class="panel-title" ><!-- panel-title Starts -->
 
-<i class="fa fa-money fa-fw" ></i> View History
+<i class="fa fa-money fa-fw" ></i> View Cancelled Requests
 
 </h3><!-- panel-title Ends -->
 
@@ -53,6 +55,7 @@ else {
 <thead><!-- thead Starts -->
 
 <tr>
+
 <th>Order ID</th>
 
 <th>User Name</th>
@@ -69,6 +72,8 @@ else {
 
 <th>Repair Price </th>
 
+<th>Status </th>
+
 </tr>
 
 </thead><!-- thead Ends -->
@@ -81,7 +86,7 @@ $get_r = "SELECT * FROM req
           INNER JOIN problems ON problems.rid = req.rid
           INNER JOIN problem_master ON problems.problem = problem_master.problem_code
           INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
-          where  req.status=9";
+          where  req.status=6";
 
 $run_r = mysqli_query($con,$get_r);
 
@@ -98,10 +103,10 @@ $get_enquiries = "SELECT * FROM req
                   INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid 
                   INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid 
                   INNER JOIN users ON users.uid = req.uid 
-                  INNER JOIN problems ON problems.rid = req.rid
-                  INNER JOIN problem_master ON problems.problem = problem_master.problem_code
-                  INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
-                  where  req.status=9";
+                --   INNER JOIN problems ON problems.rid = req.rid
+                --   INNER JOIN problem_master ON problems.problem = problem_master.problem_code
+                --   INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
+                  where  req.status=6";
 $run_admin = mysqli_query($con,$get_enquiries);
 
 while($row_admin = mysqli_fetch_array($run_admin)){
@@ -129,6 +134,7 @@ $rid = $row_admin['rid'];
 ?>
 
 <tr>
+
 
 <td><?php echo "MR".sprintf("%05d", $rid); ?></td>
 
@@ -166,6 +172,8 @@ $rid = $row_admin['rid'];
 </td>
 
 <td><?php echo $price; ?></td>
+
+<td>Cancelled</td>
 
 </tr>
 

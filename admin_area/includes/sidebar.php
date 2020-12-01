@@ -375,6 +375,15 @@ else {
 
 </li><!-- li Ends -->
 
+<li><!-- li Starts -->
+
+<a href="index.php?view_cancelled" data-toggle="collapse" data-target="#cancelled">
+
+<i class="fa fa-envelope-o"></i> View Cancelled Requests 
+
+</a>
+
+</li><!-- li Ends -->
 
 <li><!-- Requests li Starts -->
 
