@@ -1246,19 +1246,19 @@ var firebaseConfig = {
                         str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
                         if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
                         {
-                          str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_button+'>'+status[para[i].status]+'</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_button+'>'+status[para[i].status]+'</button></div></div></div></div>'
                         }
                         else if(para[i].delivery_status==1 && para[i].pay_status=="1")
                         {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
                         }
                         else if(para[i].delivery_status==0 && para[i].status==1)
                         {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-small button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
                         }
                         else
                         {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
                         }
                       }
                       $(".mycards2").append(str) 
