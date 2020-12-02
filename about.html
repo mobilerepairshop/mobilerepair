@@ -166,7 +166,7 @@ a{
                   <a class="nav-link dropdown-toggle" id="username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="./myorders2.html">Dashboard</a>
+                    <a class="dropdown-item" href="./myorders2.html" name="dashboard">Dashboard</a>
                     <a class="dropdown-item" id="" name="editprofile" data-toggle="modal" data-target="#editprofile" onclick="editprofile(this.id)">Edit Profile</a>
                     <a class="dropdown-item" onclick="signout()">Log Out</a>
                   </div>
@@ -804,7 +804,8 @@ var firebaseConfig = {
                 $("#client").hide()
                 $("#contactform-user").hide()
                 $("#leftnavpane").hide()
-
+                $('[name="editprofile"]').hide();
+                $('[name="dashboard"]').hide();
                 $("#contactform-admin").css("display", "block");
                 $.ajax({
                   url:'./admin_area/api/view_assignments.php',
