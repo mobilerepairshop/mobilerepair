@@ -394,7 +394,7 @@ $(document).ready(function()
           }
           else
           {
-            var str = "<tr><td>MR"+orderid+"</td><td>"+array[i].username+"</td><td>"+array[i].phonenum+"</td><td>"+array[i].address+"</td><td><input type='button' style='color:#337ab7;' id='"+array[i].rid+"' name='assign' value='"+array[i].admin_name+"'  class='unstyled-button' data-toggle='modal' data-target='#eModal' onclick='deliverymodaldata(this.id)'></td><td>"+array[i].date+"</td><td>"+array[i].time+"</td><td>"+statuss+"</td><td><input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+"></td><td><input type='button' id='"+array[i].rid+"' name='pricing' value='Pricing' class='btn btn-primary form-control' data-toggle='modal' data-target='#exModal' "+disabled1+" onclick='pricemodaldata(this.id)' ></td></tr>"
+            var str = "<tr><td>MR"+orderid+"</td><td>"+array[i].username+"</td><td>"+array[i].phonenum+"</td><td>"+array[i].address+"</td><td><input type='button' style='color:#337ab7;' id='"+array[i].rid+"' name='assign' value='"+array[i].admin_name+"'  class='unstyled-button' data-toggle='modal' data-target='#eModal' onclick='deliverymodaldata(this.id)'></td><td>"+array[i].date+"</td><td>"+array[i].time+"</td><td>"+statuss+"</td><td><input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+"></td><td><input type='button' id='"+array[i].rid+"' name='pricing' value='Pricing' class='btn btn-primary form-control' "+disabled1+" onclick='pricemodaldata(this.id)' ></td></tr>"
           }
          
           $("#trackcontent").append(str)
@@ -412,26 +412,43 @@ $(document).ready(function()
     };
     function pricemodaldata(rid)
     {
-        $("#exModalLabel").empty()
-        $("#exModalLabel").append("Assign Delivery boy for Request No: "+rid)
-        $('[name="temp"]').attr("id",rid)
-        $.ajax({
-        url:"api/getprice.php",
-        method:"POST",
-        data:{"rid":rid},
-        success:function(para)
-        {
-            console.log(para);
-            para = JSON.parse(para)
-            $("#price").val(para[0])
-            $("#note").val(para[2])
-            if(para[1]!="0"){
-              $("#price").val(para[1])
-            }
-            
-            
-        }
-    })
+      $.ajax({
+          url:"./api/getrddetails.php",
+          method:"POST",
+          data:{"rid":rid},
+          success:function(para)
+          {
+              para = JSON.parse(para)
+              if(para[0] == "" && para[1] == "")
+              {
+                alert("Please Provide IMEI Number and Repair Person Name First")
+                $('#exModal').modal('hide');
+              } 
+              else
+              {
+                $('#exModal').modal('show');
+                $("#exModalLabel").empty()
+                $("#exModalLabel").append("Assign Delivery boy for Request No: "+rid)
+                $('[name="temp"]').attr("id",rid)
+                $.ajax({
+                  url:"api/getprice.php",
+                  method:"POST",
+                  data:{"rid":rid},
+                  success:function(para)
+                  {
+                    console.log(para);
+                    para = JSON.parse(para)
+                    $("#price").val(para[0])
+                    $("#note").val(para[2])
+                    if(para[1]!="0")
+                    {
+                      $("#price").val(para[1])
+                    }
+                  }
+                })
+              }
+          }
+        })
     }
 
     function updateprice(rid)

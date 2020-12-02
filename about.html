@@ -1111,12 +1111,21 @@ function resetpassword()
         pwdcnf = String($('#password_confirmationotp').val());
         if(pwd==pwdcnf)
         {
+              if(user.split("_").length == 3 && user.split("_")[1] == "admin" && !isNaN(user.split("_")[2]))
+              {
+                role = "admin"
+              }
+              else
+              {
+                role = "user"
+              }
               $.ajax({
                 url:'api/resetpassword.php',
                 type:'POST',
                 data:{
                   'username':user,
-                  'pwd':pwd
+                  'pwd':pwd,
+                  'role':role
                 },
                 success:function(para)
                 {
