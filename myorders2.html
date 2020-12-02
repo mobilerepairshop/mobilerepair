@@ -401,7 +401,7 @@ a{
                   <a class="nav-link dropdown-toggle" id="username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="./myorders2.html">Dashboard</a>
+                    <a class="dropdown-item" href="./myorders2.html" name="dashboard">Dashboard</a>
                     <a class="dropdown-item" id="" name="editprofile" data-toggle="modal" data-target="#editprofile" onclick="editprofile(this.id)">Edit Profile</a>
                     <a class="dropdown-item" onclick="signout()">Log Out</a>
                   </div>
@@ -575,26 +575,63 @@ a{
                      </div>
                 </div>
                 <div class="box">
-                    <div class="content registerBox" style="display:none;">
-                     <div class="form">
-                      <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                        <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username" required>
-                        <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required>
-                        <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password" required>
-                        <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required>
-                        <p id="errornote" style="display:none;"></p>
-                        <br><input type="checkbox" id="termsconditions" required> By signing up, you agree to our <a href="#" style="color: #0078ff;">Terms of Use</a> and <a href="#" style="color: #0078ff;">Privacy Policy</a>  <br><br>
-                        <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="registerAjax()">
-                        </form>
-                        </div>
-                    </div>
+                  <div class="content registerBox" style="display:none;">
+                   <div class="form">
+                    <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                      <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username" required>
+                      <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required>
+                      <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password" required>
+                      <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required>
+                      <p id="errornote" style="display:none;"></p>
+                      <br><input type="checkbox" id="termsconditions" required> By signing up, you agree to our <a href="#" style="color: #0078ff;">Terms of Use</a> and <a href="#" style="color: #0078ff;">Privacy Policy</a>  <br><br>
+                      <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="registerAjax()">
+                      </form>
+                      </div>
+                  </div>
+              </div>
+              <div class="box">
+                <div class="content resetBox" style="display:none;">
+                 <div class="form">
+                    <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                    <input id="userreset" class="form-control" type="text" placeholder="Email/Mobile Number" name="userreset"><br>
+                    <input class="btn btn-default btn-register" id="otp" type="button" value="Send OTP" name="commit" onclick="resetAjax()">
+                    </form>
+                 </div>
+                </div>
+              </div>
+          </div>
+          <div class="box">
+            <div class="content otpBox" style="display:none;">
+             <div class="form">
+                <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                  <p id="successsnote" style="display:none;"></p>
+                <input id="enterotp" class="form-control" type="text" placeholder="Enter OTP" name="userreset">
+                <input class="btn btn-default btn-register" id="otp" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
+                </form>
                 </div>
             </div>
+        </div> 
+        <div class="box">
+          <div class="content otppassword" style="display:none;">
+           <div class="form">
+              <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                      <input id="user" class="form-control" type="text" placeholder="Email/Mobile Number" name="user">
+                      <input id="passwordotp" class="form-control" type="password" placeholder="Password" name="passwordotp">
+                      <input id="password_confirmationotp" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmationotp">
+                      <p id="errnote" style="display:none;"></p>
+                      <input class="btn btn-default btn-register" type="button" value="Confirm Password" name="commit" onclick="resetpassword()">
+              </form>
+              </div>
+          </div>
+        </div>
             <div class="modal-footer">
               <div class="forgot login-footer">
                 <span>Don't have an account?
                   <b><a href="javascript: showRegisterForm();" style="color: #0078ff;">Sign up</a></b>
-                </span>
+                </span><br>
+                <span>Don't remember password?
+                  <b><a href="javascript: showResetForm();" style="color: #0078ff;"> Reset</a></b>
+                </span> 
               </div>
                 <div class="forgot register-footer" style="display:none">
                      <span>Already have an account?</span>
@@ -1212,7 +1249,8 @@ var firebaseConfig = {
                 $("#filterorders").hide()
                 $(".mycards").hide()
                 $("#leftnavpane").hide()
-
+                $('[name="editprofile"]').hide();
+                $('[name="dashboard"]').hide();
                 $("#contactform-admin").css("display", "block");
                 $.ajax({
                   url:'./admin_area/api/view_assignments.php',
@@ -1234,19 +1272,19 @@ var firebaseConfig = {
                         str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
                         if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
                         {
-                          str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_button+'>'+status[para[i].status]+'</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_button+'>'+status[para[i].status]+'</button></div></div></div></div>'
                         }
                         else if(para[i].delivery_status==1 && para[i].pay_status=="1")
                         {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
                         }
                         else if(para[i].delivery_status==0 && para[i].status==1)
                         {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-small button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
                         }
                         else
                         {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
                         }
                       }
                       $(".mycards2").append(str) 
@@ -1391,6 +1429,20 @@ function showRegisterForm(){
     $('.error').removeClass('alert alert-danger').html('');
        
 }
+
+
+function showResetForm(){
+    $('.loginBox').fadeOut('fast',function(){
+        $('.resetBox').fadeIn('fast');
+        $('.login-footer').fadeOut('fast',function(){
+            $('.register-footer').fadeIn('fast');
+        });
+        $('.modal-title').html('Register with');
+    }); 
+    $('.error').removeClass('alert alert-danger').html('');
+       
+}
+
 function showLoginForm(){
     $('#loginModal .registerBox').fadeOut('fast',function(){
         $('.loginBox').fadeIn('fast');
@@ -1478,6 +1530,87 @@ function registerAjax()
     alert("Please Choose Different Email/Mobile Number")
   }
 }
+
+
+function resetpassword()
+{
+        user = String($('#user').val());
+        pwd = String($('#passwordotp').val());
+        pwdcnf = String($('#password_confirmationotp').val());
+        if(pwd==pwdcnf)
+        {
+              $.ajax({
+                url:'api/resetpassword.php',
+                type:'POST',
+                data:{
+                  'username':user,
+                  'pwd':pwd
+                },
+                success:function(para)
+                {
+                    console.log("This is - ",para)
+                    if(para=='200')
+                    {
+                      alert("Updated Successfully")
+                      window.location.replace("./index2.html");   
+                    }
+                    else
+                    {
+                      shakeModal(); 
+                    }
+                }
+            })
+        }
+        else
+        {
+          $("#errornote").text("Password does not matach")
+          $("#errornote").css('color','red')
+        }
+
+        
+}
+
+function resetAjax()
+
+{
+        var username = $('#userreset').val();
+              $.ajax({
+                url:'api/reset.php',
+                type:'POST',
+                data:{
+                  'username':username
+                },
+                success:function(para)
+                {
+                  $('.resetBox').fadeOut('fast',function(){
+                  $('.otpBox').fadeIn('fast');
+                  $('.login-footer').fadeOut('fast',function(){
+                  $('.register-footer').fadeIn('fast');
+                  });
+                  $('.modal-title').html('Register with');
+                  }); 
+                  $('.error').removeClass('alert alert-danger').html('');
+
+                  $("#otp").hide()
+                  $("#successsnote").show()
+                
+                  $("#successsnote").text("OTP sent successfully to registerd email/mobile number")
+                  $("#successsnote").css('color','green')
+                }
+            })   
+}
+function resetotp()
+{
+  $('.otpBox').fadeOut('fast',function(){
+                  $('.otppassword').fadeIn('fast');
+                  $('.login-footer').fadeOut('fast',function(){
+                  $('.register-footer').fadeIn('fast');
+                  });
+                  $('.modal-title').html('Register with');
+                  }); 
+                  $('.error').removeClass('alert alert-danger').html('');    
+}
+
 function loginAjax(){
 
   email = $('#emaillog').val();
