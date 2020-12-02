@@ -56,6 +56,56 @@ else {
 <!-- Modal End -->
 
 
+<!-- Warranty Modal Start-->
+<div class="modal fade" id="warranty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <label>Warranty Period</label>
+ <br><br>
+      <input type="radio" value="warr" name="warR">Warranty</input><br><br>
+      <input type="radio" value="nowarr" name="warR">No Warranty</input><br><br>
+      <div id="datediv"  style="display:none;"><label>Select Date</label> <input type="date" id="wardate" placeholder="Enter Date"></div><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="" name="quotes" class="btn btn-primary" onclick="updatewarranty(this.id)">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Warranty Modal End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Modal Start-->
 <div class="modal fade" id="exModal" tabindex="-1" role="dialog" aria-labelledby="exModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -239,15 +289,60 @@ else {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 
+function updatewarranty(id)
+{
+  var radioValue = $("input[name='warR']:checked").val();
+
+  if(radioValue=='warr')
+  {
+    date = $('#wardate').val()
+  }
+  else
+  {
+    date = "nowarr"
+  }
+
+    $.ajax({
+        url:"api/updatewarranty.php",
+        type:"POST",
+        data:{"rid":id , "date":date},
+        success:function(para)
+        {
+            if(para=='success')
+            {
+                alert("Updated")
+                window.setTimeout(function(){location.reload()},1000)
+            }else{
+              alert(para)
+                window.setTimeout(function(){location.reload()},1000)
+            }
+            
+        }
+    })
+}
 $(document).ready(function()
   {
+    $("input[type=radio]").change(function(){
+      alert(this.value)
+      if(this.value=='warr')
+      {
+          $('#datediv').show();
+      }
+      else
+      {
+        $('#datediv').hide();
+      }
+    });
+
+
+
     $.ajax({
       url: "./api/gettrackdata.php", 
       method:"POST",
       success: function(para)
       {
         var groupedPeople=groupArrayOfObjects(JSON.parse(para),"rid");
-        console.log(groupedPeople)
+        console.log("This is - ",groupedPeople)
         var array = []
         for(x in groupedPeople)
         {
@@ -293,8 +388,15 @@ $(document).ready(function()
           var disabled1 = dis == 0?"" : "disabled";
           var disabled_assign = statuss != "Price accepted by user"?"disabled" : "";
           var orderid = String(array[i].rid).padStart(5, '0')
-          
-          var str = "<tr><td>MR"+orderid+"</td><td>"+array[i].username+"</td><td>"+array[i].phonenum+"</td><td>"+array[i].address+"</td><td><input type='button' style='color:#337ab7;' id='"+array[i].rid+"' name='assign' value='"+array[i].admin_name+"'  class='unstyled-button' data-toggle='modal' data-target='#eModal' onclick='deliverymodaldata(this.id)'></td><td>"+array[i].date+"</td><td>"+array[i].time+"</td><td>"+statuss+"</td><td><input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+"></td><td><input type='button' id='"+array[i].rid+"' name='pricing' value='Pricing' class='btn btn-primary form-control' data-toggle='modal' data-target='#exModal' "+disabled1+" onclick='pricemodaldata(this.id)' ></td></tr>"
+          if(array[i].status==9)
+          {
+            var str = "<tr><td>MR"+orderid+"</td><td>"+array[i].username+"</td><td>"+array[i].phonenum+"</td><td>"+array[i].address+"</td><td><input type='button' style='color:#337ab7;' id='"+array[i].rid+"' name='assign' value='"+array[i].admin_name+"'  class='unstyled-button' data-toggle='modal' data-target='#eModal' onclick='deliverymodaldata(this.id)'></td><td>"+array[i].date+"</td><td>"+array[i].time+"</td><td>"+statuss+"</td><td><input type='button' id='"+array[i].rid+"' name='warranty' value='Warranty Period' class='btn btn-primary form-control' data-toggle='modal' data-target='#warranty' onclick='modaldata(this.id)' ></td><td><input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+"></td></tr>"
+          }
+          else
+          {
+            var str = "<tr><td>MR"+orderid+"</td><td>"+array[i].username+"</td><td>"+array[i].phonenum+"</td><td>"+array[i].address+"</td><td><input type='button' style='color:#337ab7;' id='"+array[i].rid+"' name='assign' value='"+array[i].admin_name+"'  class='unstyled-button' data-toggle='modal' data-target='#eModal' onclick='deliverymodaldata(this.id)'></td><td>"+array[i].date+"</td><td>"+array[i].time+"</td><td>"+statuss+"</td><td><input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+"></td><td><input type='button' id='"+array[i].rid+"' name='pricing' value='Pricing' class='btn btn-primary form-control' data-toggle='modal' data-target='#exModal' "+disabled1+" onclick='pricemodaldata(this.id)' ></td></tr>"
+          }
+         
           $("#trackcontent").append(str)
         }
       }

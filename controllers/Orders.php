@@ -17,6 +17,58 @@
                     return 200;
                 }
             }
+            public function getorderbyid($rid)
+            {
+                $query = 'select * from req  where rid=?';
+                $query2 = 'select * from problems  where rid=?';
+                
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$rid);
+
+                $stmt2 = $this->conn->prepare($query2);
+                $stmt2->bind_param('i',$rid);
+
+
+                if($stmt->execute())
+                {
+                    
+                    $mc = array();
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $mc2 = array();
+                    $stmt2->execute();
+                    $result2 = $stmt2->get_result();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        
+                        array_push($mc,
+                            [
+                                "mmid"=>$data["mmid"],
+                                "uid"=>$data["uid"],
+                                "estprice"=>0,
+                                "status"=>0,
+                                "calprice"=>0,
+                                "rid"=>$data["rid"],
+                                "note"=>'',
+                                "pay_method"=>'',
+                                "pay_status"=>'',
+                                "warranty"=>'',
+                                "imeino"=>$data["imeino"]
+                            ]);
+                    }
+                    while ($data = $result2->fetch_assoc()) 
+                    {
+                        
+                        array_push($mc2,
+                            [
+                                "problem"=>$data["problem"],
+                                "subproblem"=>$data["subproblem"],
+                               
+                            ]);
+                    }
+                    $mc[1] = $mc2;
+                    return $mc;
+                }
+            }
             public function getfiltords($type,$uid)
             {
                 $mc = array();
@@ -243,10 +295,18 @@
                 }
             }
 
-            public function getperson($rid)
+            public function getperson($rid,$type)
             {
                 $mc = array();
-                $query = 'select admin_name,admin_contact,date,time from scheduled_request as s inner join admins as a on s.admin_id=a.admin_id where a.admin_role="delivery_boy" and s.rid=?';
+                if($type==2)
+                {
+                    $query = 'select admin_name,admin_contact,date,time from scheduled_request as s inner join admins as a on s.admin_id=a.admin_id where a.admin_role="delivery_boy" and (s.delivery_status=2 or s.delivery_status=0) and s.rid=? ';
+
+                }
+                else if($type==1)
+                {
+                    $query = 'select admin_name,admin_contact,date,time from scheduled_request as s inner join admins as a on s.admin_id=a.admin_id where a.admin_role="delivery_boy" and s.delivery_status=1  and s.rid=? ';
+                }
                 $stmt = $this->conn->prepare($query);
                 echo $this->conn->error;
                 $stmt->bind_param('i',$rid);

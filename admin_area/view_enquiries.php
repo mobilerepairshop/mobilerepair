@@ -105,7 +105,7 @@ else {
 <th>Brand : Model</th>
 
 <th>Problem & Problem Description</th>
-
+<th>Under Warranty</th>
 <th>Repair Price </th>
 
 <th>Action</th>
@@ -154,6 +154,8 @@ $Brand = $row_admin['mcname'];
 $Model = $row_admin['mmname'];
 
 $price = $row_admin['estprice'];
+
+$inwarr = $row_admin['inwarr'];
 
 $phonenum = $row_admin['phonenum'];
 
@@ -205,6 +207,9 @@ $rid = $row_admin['rid'];
     </table> 
 
 </td>
+
+
+<td><?php echo $inwarr==1 ? 'Under Warranty' : 'New Request';?></td>
 
 <td><?php echo $price; ?></td>
 

@@ -11,14 +11,14 @@
         
         $auth = new UserAuth($conn);
         $id = $_POST['sid'];
-
+        $type=$_POST['type'];
         $user = $auth->validateSession($id);
         if($user[0]=='200')
         {
             $orders = new Orders($conn);
             $rid = $_POST['rid'];
             // echo "Rid => ".$rid;
-            $values = $orders->getperson($rid);
+            $values = $orders->getperson($rid,$type);
             echo json_encode($values);
         }
     }
