@@ -9,17 +9,16 @@
     {
         $conn = $database->get_db();
         
-        $auth = new UserAuth($conn);
-        $id = $_POST['sid'];
+        // $auth = new UserAuth($conn);
+        // $id = $_POST['sid'];
 
-        $user = $auth->validateSession($id);
-        if($user[0]=='200')
-        {
+        // $user = $auth->validateSession($id);
+    
             $orders = new Orders($conn);
             $values = $orders->getprobsubprobmap();
-            // echo"sarang";
+
            echo json_encode($values);
-        }
+        
     }
  
 

@@ -136,30 +136,6 @@ include("insert_mmodels.php");
 
 }
 
-if(isset($_GET['view_pincodes'])){
-
-include("view_pincodes.php");
-
-}
-
-if(isset($_GET['delete_pincodes'])){
-
-include("delete_pincodes.php");
-
-}
-
-if(isset($_GET['edit_pincodes'])){
-
-include("edit_pincodes.php");
-
-}
-    
-if(isset($_GET['insert_pincodes'])){
-
-include("insert_pincodes.php");
-
-}
-
 if(isset($_GET['view_requests'])){
 
 include("view_requests.php");
@@ -296,6 +272,12 @@ if(isset($_GET['contact_response'])){
 if(isset($_GET['view_history'])){
 
 include("view_history.php");
+    
+}
+
+if(isset($_GET['view_cancelled'])){
+
+include("view_cancelled.php");
     
 }
 

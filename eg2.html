@@ -41,7 +41,17 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
   <style>
-  
+
+a{
+  cursor: pointer;
+}
+
+  select{
+  cursor:pointer;
+} 
+option{
+  cursor:pointer;
+} 
      
 .botnavbar {
   overflow: hidden;
@@ -154,7 +164,77 @@
 </head>
 
 <body>
-    
+ 
+<!-- editprofile Modal -->
+<div class="modal fade" id="editprofile">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title" id="edit_title"></h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body">
+    <div class="box">
+      <div class="content registerBox">
+       <div class="form">
+          <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-2">
+                <b><span>Full Name</span></b>
+              </div>
+              <div class="col-md-10">
+                <input id="user_fullname" class="form-control" type="text" placeholder="Full Name" name="username" required>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-md-2">
+                <b><span>Mobile Number</span></b>
+              </div>
+              <div class="col-md-10">
+                <input id="user_mobile" class="form-control" type="number" placeholder="Mobile Number" required>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-md-2">
+                <b><span>Address</span></b>
+              </div>
+              <div class="col-md-10">
+                <input id="user_address" class="form-control" type="text" placeholder="Address" required>
+              </div>
+            </div>
+          </div><br>
+          <p id="errornote" style="display:none;"></p>
+          </form>
+          </div>
+      </div>
+  </div>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-success" name="updateprofile" id="" onclick="updateprofile(this.id)">Update</button>
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+  
+  <!-- editprofile Modal -->
+  
+      
+<!-- Alert Modal -->
+<div class="modal fade" id="alert">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title" id="alerttitle">High Level Quotation</h4>
+  <buttonget  type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body">
+      <b id="alertcontent"></b> 
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+  
+  <!-- Alert Modal -->
+  
     
 <!-- Quotation Modal -->
 <div class="modal fade" id="quotation">
@@ -207,8 +287,8 @@
                   <a class="nav-link dropdown-toggle" id="username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Dashboard</a>
-                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a class="dropdown-item" href="./myorders2.html" name="dashboard">Dashboard</a>
+                    <a class="dropdown-item" id="" name="editprofile" data-toggle="modal" data-target="#editprofile" onclick="editprofile(this.id)">Edit Profile</a>
                     <a class="dropdown-item" onclick="signout()">Log Out</a>
                   </div>
                 </li>   
@@ -242,7 +322,7 @@
                             <div class="container">
                               <div class="row">
                                 <div class="col-sm">
-                                  <div onclick="googleSignin()" ><img src="google.png" style="cursor:pointer;"></img></div>
+                                  <div onclick="googleSignin()" ><img class="google" src="google.png" style="cursor:pointer;"></img></div>
                                 </div>
                                 <!-- <div class="col-sm">
                                   <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
@@ -269,25 +349,63 @@
                      </div>
                 </div>
                 <div class="box">
-                    <div class="content registerBox" style="display:none;">
-                     <div class="form">
-                        <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                        <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username">
-                        <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
-                        <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password">
-                        <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
-                        <p id="errornote" style="display:none;"></p>
-                        <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="registerAjax()">
-                        </form>
-                        </div>
-                    </div>
+                  <div class="content registerBox" style="display:none;">
+                   <div class="form">
+                    <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                      <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username" required>
+                      <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required>
+                      <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password" required>
+                      <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required>
+                      <p id="errornote" style="display:none;"></p>
+                      <br><input type="checkbox" id="termsconditions" required> By signing up, you agree to our <a href="#" style="color: #0078ff;">Terms of Use</a> and <a href="#" style="color: #0078ff;">Privacy Policy</a>  <br><br>
+                      <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="registerAjax()">
+                      </form>
+                      </div>
+                  </div>
+              </div>
+              <div class="box">
+                <div class="content resetBox" style="display:none;">
+                 <div class="form">
+                    <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                    <input id="userreset" class="form-control" type="text" placeholder="Email/Mobile Number" name="userreset"><br>
+                    <input class="btn btn-default btn-register" id="otp" type="button" value="Send OTP" name="commit" onclick="resetAjax()">
+                    </form>
+                 </div>
+                </div>
+              </div>
+          </div>
+          <div class="box">
+            <div class="content otpBox" style="display:none;">
+             <div class="form">
+                <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                  <p id="successsnote" style="display:none;"></p>
+                <input id="enterotp" class="form-control" type="text" placeholder="Enter OTP" name="userreset">
+                <input class="btn btn-default btn-register" id="otp" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
+                </form>
                 </div>
             </div>
+        </div> 
+        <div class="box">
+          <div class="content otppassword" style="display:none;">
+           <div class="form">
+              <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                      <input id="user" class="form-control" type="text" placeholder="Email/Mobile Number" name="user">
+                      <input id="passwordotp" class="form-control" type="password" placeholder="Password" name="passwordotp">
+                      <input id="password_confirmationotp" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmationotp">
+                      <p id="errnote" style="display:none;"></p>
+                      <input class="btn btn-default btn-register" type="button" value="Confirm Password" name="commit" onclick="resetpassword()">
+              </form>
+              </div>
+          </div>
+        </div>
             <div class="modal-footer">
               <div class="forgot login-footer">
                 <span>Don't have an account?
                   <b><a href="javascript: showRegisterForm();" style="color: #0078ff;">Sign up</a></b>
-                </span>
+                </span><br>
+                <span>Don't remember password?
+                  <b><a href="javascript: showResetForm();" style="color: #0078ff;"> Reset</a></b>
+                </span> 
               </div>
                 <div class="forgot register-footer" style="display:none">
                      <span>Already have an account?</span>
@@ -339,7 +457,7 @@
                 </div>
                 <div class="col-md-12 mb-3">
                   <div class="form-group">
-                    <input type="button" class="button button-a button-small button-rouded" id="checkpincode" value="Check Availability">
+                    <input type="button" class="button button-a button-small button-rouded" id="checkpincode" value="Check Availability" data-toggle="modal" data-target="#alert">
                   </div>
                 </div>
                 <div class="col-md-12 mb-6" id="contact_details">
@@ -381,7 +499,7 @@
                 <div class="col-md-12" id="quotebuttons">
                   <br><button id="getqoute" class="button button-a button-small button-rouded" data-toggle="modal" data-target="#quotation" onclick="getquote()">Get Quotation</button>
                   <p class="pricing"></p>
-                  <br><button id="requestquotation" class="button button-a button-big button-rouded">Take Service</button>
+                  <br><button id="requestquotation" class="button button-a button-small button-rouded">Take Service</button>
                 
                 </div>
               </div>
@@ -463,6 +581,63 @@
 
  <script>
 
+function editprofile(id)
+{
+  $.ajax({
+    url:'./api/getprofiledata.php',
+    type:'POST',
+    data:{
+      'uid':id,
+      'sid':sid
+    },
+    success:function(para)
+    {
+      para = JSON.parse(para)
+      $('[name="updateprofile"]').attr("id", para[0].uid);
+      $("#user_fullname").val(para[0].fullname)
+      $("#edit_title").html("Login ID: "+para[0].loginid)
+      $("#user_mobile").val(para[0].contact)
+      $("#user_address").val(para[0].address)
+    }
+  })  
+}
+
+function updateprofile(id)
+{
+  $.ajax({
+    url:'./api/updateprofiledata.php',
+    type:'POST',
+    data:{
+      'uid':id,
+      'fullname':$("#user_fullname").val(),
+      'mobile':$("#user_mobile").val(),
+      'address':$("#user_address").val(),
+      'sid':sid
+    },
+    success:function(para)
+    {
+      if(para == "200")
+      {
+        alert("Success")
+        window.location.reload()
+      }
+      else
+      {
+        alert(para)
+      }
+    }
+  })  
+}
+
+
+
+function alertdata(data,title)
+{
+  $("#alerttitle").empty()
+  $("#alertcontent").empty()
+  $("#alerttitle").append(title)
+  $("#alertcontent").append(data)
+}
 
 function paid(rid,status)
 {
@@ -644,6 +819,7 @@ var firebaseConfig = {
 
               $("#username").show()
               $("#username").html(para[1])
+              $('[name="editprofile"]').attr("id", para[2]);
 
               // check if user is admin
               if(para[1] == "Admin_User")
@@ -659,6 +835,8 @@ var firebaseConfig = {
                 $("#contactform-user").hide()
                 $("#servicerequestform").hide()
                 $("#leftnavpane").hide()
+                $('[name="editprofile"]').hide();
+                $('[name="dashboard"]').hide();
                 $("#contactform-admin").css("display", "block");
                 $.ajax({
                   url:'./admin_area/api/view_assignments.php',
@@ -680,19 +858,19 @@ var firebaseConfig = {
                         str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems('+para[i].rid+')">Problems</a></td></tr>'
                         if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
                         {
-                          str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_drop+'>'+status[para[i].status]+'</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_drop+'>'+status[para[i].status]+'</button></div></div></div></div>'
                         }
                         else if(para[i].delivery_status==1 && para[i].pay_status=="1")
                         {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
                         }
                         else if(para[i].delivery_status==0 && para[i].status==1)
                         {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-big button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-small button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
                         }
                         else
                         {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-big button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
                         }
                       }
                       $(".mycards").append(str) 
@@ -805,7 +983,7 @@ function signout()
   $("#password_confirmationreg").keyup(function(){
     pwd = String($('#passwordreg').val())   
     confpwd = String($('#password_confirmationreg').val());
-    if(pwd==confpwd)
+    if(pwd==confpwd && pwd != "" && confpwd != "")
     {
       $("#errornote").show()
       $("#errornote").text("Password match")
@@ -838,6 +1016,20 @@ function showRegisterForm(){
     $('.error').removeClass('alert alert-danger').html('');
        
 }
+
+
+function showResetForm(){
+    $('.loginBox').fadeOut('fast',function(){
+        $('.resetBox').fadeIn('fast');
+        $('.login-footer').fadeOut('fast',function(){
+            $('.register-footer').fadeIn('fast');
+        });
+        $('.modal-title').html('Register with');
+    }); 
+    $('.error').removeClass('alert alert-danger').html('');
+       
+}
+
 function showLoginForm(){
     $('#loginModal .registerBox').fadeOut('fast',function(){
         $('.loginBox').fadeIn('fast');
@@ -849,9 +1041,36 @@ function showLoginForm(){
     });       
      $('.error').removeClass('alert alert-danger').html(''); 
 }
+window.userexist = 0
+$('#emailreg').change(function (){
+  $.ajax({
+    url:'./api/checkusername.php',
+    type:'POST',
+    data:{
+      'userid':$('#emailreg').val()
+    },
+    success:function(para)
+    {
+        if(para=='400')
+        {
+          window.userexist = 1
+          alert("Please Choose Different Email/Mobile Number")
+          $("#emailreg").val("")
+        }
+        else
+        {
+          window.userexist = 0
+        }
+    }
+})
+})
 
 function registerAjax()
 {
+  if(window.userexist == 0)
+  {
+    if($('#userreg').val() != "" && $('#emailreg').val() != "" && $('#passwordreg').val() != "" && $('#password_confirmationreg').val() != "" && $('#termsconditions').prop("checked"))
+    {
         username = $('#userreg').val();
         email = $('#emailreg').val();
         pwd = String($('#passwordreg').val());
@@ -887,8 +1106,107 @@ function registerAjax()
           $("#errornote").css('color','red')
         }
 
+      } 
+      else
+      {
+        alert("Please Fill and Check All the Fields")
+      }
+  }
+  else
+  {
+    alert("Please Choose Different Email/Mobile Number")
+  }
+}
+
+
+function resetpassword()
+{
+        user = String($('#user').val());
+        pwd = String($('#passwordotp').val());
+        pwdcnf = String($('#password_confirmationotp').val());
+        if(pwd==pwdcnf)
+        {
+              if(user.split("_").length == 3 && user.split("_")[1] == "admin" && !isNaN(user.split("_")[2]))
+              {
+                role = "admin"
+              }
+              else
+              {
+                role = "user"
+              }
+              $.ajax({
+                url:'api/resetpassword.php',
+                type:'POST',
+                data:{
+                  'username':user,
+                  'pwd':pwd,
+                  'role':role
+                },
+                success:function(para)
+                {
+                    console.log("This is - ",para)
+                    if(para=='200')
+                    {
+                      alert("Updated Successfully")
+                      window.location.replace("./index2.html");   
+                    }
+                    else
+                    {
+                      shakeModal(); 
+                    }
+                }
+            })
+        }
+        else
+        {
+          $("#errornote").text("Password does not matach")
+          $("#errornote").css('color','red')
+        }
+
         
 }
+
+function resetAjax()
+
+{
+        var username = $('#userreset').val();
+              $.ajax({
+                url:'api/reset.php',
+                type:'POST',
+                data:{
+                  'username':username
+                },
+                success:function(para)
+                {
+                  $('.resetBox').fadeOut('fast',function(){
+                  $('.otpBox').fadeIn('fast');
+                  $('.login-footer').fadeOut('fast',function(){
+                  $('.register-footer').fadeIn('fast');
+                  });
+                  $('.modal-title').html('Register with');
+                  }); 
+                  $('.error').removeClass('alert alert-danger').html('');
+
+                  $("#otp").hide()
+                  $("#successsnote").show()
+                
+                  $("#successsnote").text("OTP sent successfully to registerd email/mobile number")
+                  $("#successsnote").css('color','green')
+                }
+            })   
+}
+function resetotp()
+{
+  $('.otpBox').fadeOut('fast',function(){
+                  $('.otppassword').fadeIn('fast');
+                  $('.login-footer').fadeOut('fast',function(){
+                  $('.register-footer').fadeIn('fast');
+                  });
+                  $('.modal-title').html('Register with');
+                  }); 
+                  $('.error').removeClass('alert alert-danger').html('');    
+}
+
 function loginAjax(){
 
   email = $('#emaillog').val();
@@ -1091,8 +1409,8 @@ function getvalue(id)
                     for(let j=0;j<innersize;j++)
                     {
                         
-                        s1+='<div class="form-check"><div class="custom-control custom-radio">' 
-                        s1+='<input type="radio" class="custom-control-input" id="'+x+'-'+groupedPeople[x][j].spcode+'" onchange="getvalue(this.id)" name="'+x+'" >'
+                        s1+='<div class="form-check"><div class="custom-control custom-checkbox">' 
+                        s1+='<input type="checkbox" class="custom-control-input" id="'+x+'-'+groupedPeople[x][j].spcode+'" onchange="getvalue(this.id)" name="'+x+'" >'
                         s1+='<label class="custom-control-label" for="'+x+'-'+groupedPeople[x][j].spcode+'">'+groupedPeople[x][j].subproblem+'</label>'
                         s1+='</div></div>'
                         
@@ -1249,7 +1567,8 @@ function getvalue(id)
     $("#checkpincode").click(function(){
       if($("#pincode").val() == "")
       {
-        alert("Please Select Pincode First")
+        // alert("Please Select Pincode First")
+        alertdata("Please Select Pincode First","")
       }
       else
       {
@@ -1262,13 +1581,16 @@ function getvalue(id)
           {
             if(para == 0)
             {
-              alert("This Pincode is not currently available for our service")
+              // alert("This Pincode is not currently available for our service")
+              alertdata("This Pincode is currently not available for our service","")
+
               window.available = false
               $("#contact_details").hide()
             }
             else
             {
-              alert("This Pincode is Available")
+              // alert("This Pincode is Available")
+              alertdata("This Pincode is Available","")
               window.available = true
               $.ajax({
                 url:"./api/getcontactdetails.php",
@@ -1312,6 +1634,7 @@ function getquote(){
 $("#requestquotation").click(function(){
   // alert(problems)
   // alert($('[name="ownproblemradio"]').val())
+
   if(window.available)
   {
     var sid = getCookie("sid");
@@ -1322,6 +1645,7 @@ $("#requestquotation").click(function(){
         console.log(window.mcname)
         if($("#phonenum").val() != "" && $("#address").val() != "")
         {
+          $("#requestquotation").prop("disabled","true")
             $.ajax(
             {
             url: "./api/submitproblem.php", 
@@ -1338,13 +1662,14 @@ $("#requestquotation").click(function(){
             success: function(para)
             {
                 alert(para)
+                alertdata("Success","")
                 window.location.replace("./myorders2.html");
             }
             })
         }
         else
         {
-          alert("Please Provide Address and Phone Number")
+          alertdata("Please Provide Address and Phone Number","")
         }
     }
     else
@@ -1359,6 +1684,25 @@ $("#requestquotation").click(function(){
   }
 })
 
+var alterClass = function() {
+	  var ww = document.body.clientWidth;
+   
+	  if (ww > 600) {
+      console.log("Desktop")
+      $('.google').attr('src','googlesignin2.png')
+      $('.google').css('width','40%')
+    }
+    else{
+      console.log("Mobile")
+      $('.google').attr('src','google.png')
+      $('.google').css('width','25%')
+    }
+    }
+    $(window).resize(function(){
+      alterClass();
+      
+      	});
+    alterClass()
 
 </script>
 

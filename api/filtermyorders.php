@@ -11,14 +11,12 @@
         
         $auth = new UserAuth($conn);
         $id = $_POST['sid'];
-        $type=$_POST['type'];
+
         $user = $auth->validateSession($id);
         if($user[0]=='200')
         {
             $orders = new Orders($conn);
-            $rid = $_POST['rid'];
-            // echo "Rid => ".$rid;
-            $values = $orders->getperson($rid,$type);
+            $values = $orders->getfiltords($_POST['type'],$user[1]);
             echo json_encode($values);
         }
     }

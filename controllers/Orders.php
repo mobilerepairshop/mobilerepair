@@ -9,13 +9,111 @@
 
             public function cancelreq($rid)
             {
-                $query = 'update req set status=-1 where rid=?';
+                $query = 'update req set status=6 where rid=?';
                 $stmt = $this->conn->prepare($query);
                 $stmt->bind_param('i',$rid);
                 if($stmt->execute())
                 {
                     return 200;
                 }
+            }
+            public function getorderbyid($rid)
+            {
+                $query = 'select * from req  where rid=?';
+                $query2 = 'select * from problems  where rid=?';
+                
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$rid);
+
+                $stmt2 = $this->conn->prepare($query2);
+                $stmt2->bind_param('i',$rid);
+
+
+                if($stmt->execute())
+                {
+                    
+                    $mc = array();
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $mc2 = array();
+                    $stmt2->execute();
+                    $result2 = $stmt2->get_result();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        
+                        array_push($mc,
+                            [
+                                "mmid"=>$data["mmid"],
+                                "uid"=>$data["uid"],
+                                "estprice"=>0,
+                                "status"=>0,
+                                "calprice"=>0,
+                                "rid"=>$data["rid"],
+                                "note"=>'',
+                                "pay_method"=>'',
+                                "pay_status"=>'',
+                                "warranty"=>'',
+                                "imeino"=>$data["imeino"]
+                            ]);
+                    }
+                    while ($data = $result2->fetch_assoc()) 
+                    {
+                        
+                        array_push($mc2,
+                            [
+                                "problem"=>$data["problem"],
+                                "subproblem"=>$data["subproblem"],
+                               
+                            ]);
+                    }
+                    $mc[1] = $mc2;
+                    return $mc;
+                }
+            }
+            public function getfiltords($type,$uid)
+            {
+                $mc = array();
+                if($type=='active')
+                {
+                    $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and (status<>9 and status<>6) group by r.rid';
+                }
+                else if($type=='cancel')
+                {
+                    $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=6 group by r.rid';
+
+                }
+                else if($type=='history')
+                {
+                    $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=9 group by r.rid';
+
+                }
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$uid);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $userinfo = array();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        
+                        array_push($mc,
+                            [
+                                "problem"=>$data["problem"],
+                                "subproblem"=>$data["subproblem"],
+                                "mcname"=>$data["mcname"],
+                                "mmodel"=>$data["mmname"],
+                                "created_date"=>$data["created_date"],
+                                "estprice"=>$data["estprice"],
+                                "status"=>$data["status"],
+                                "calprice"=>$data["calprice"],
+                                "rid"=>$data["rid"],
+                                "note"=>$data["note"],
+                                "pay_method"=>$data["pay_method"],
+                                "pay_status"=>$data["pay_status"],
+                                "warranty"=>$data["warranty"]
+                            ]);
+                    }
+                }
+                return $mc;
             }
             public function submitfinal($rid)
             {
@@ -197,10 +295,18 @@
                 }
             }
 
-            public function getperson($rid)
+            public function getperson($rid,$type)
             {
                 $mc = array();
-                $query = 'select admin_name,admin_contact,date,time from scheduled_request as s inner join admins as a on s.admin_id=a.admin_id where a.admin_role="delivery_boy" and s.rid=?';
+                if($type==2)
+                {
+                    $query = 'select admin_name,admin_contact,date,time from scheduled_request as s inner join admins as a on s.admin_id=a.admin_id where a.admin_role="delivery_boy" and (s.delivery_status=2 or s.delivery_status=0) and s.rid=? ';
+
+                }
+                else if($type==1)
+                {
+                    $query = 'select admin_name,admin_contact,date,time from scheduled_request as s inner join admins as a on s.admin_id=a.admin_id where a.admin_role="delivery_boy" and s.delivery_status=1  and s.rid=? ';
+                }
                 $stmt = $this->conn->prepare($query);
                 echo $this->conn->error;
                 $stmt->bind_param('i',$rid);

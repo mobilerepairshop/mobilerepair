@@ -75,6 +75,8 @@ else {
 
 <i class="fa fa-money fa-fw" ></i> View Enquiries
 
+<a href="./index.php?view_enquiries" style="float:right;color:blue;">Refresh</a>
+
 </h3><!-- panel-title Ends -->
 
 
@@ -89,6 +91,9 @@ else {
 <thead><!-- thead Starts -->
 
 <tr>
+
+<th>Order ID</th>
+
 <th>User Name</th>
 
 <th>Contact Number</th>
@@ -100,7 +105,7 @@ else {
 <th>Brand : Model</th>
 
 <th>Problem & Problem Description</th>
-
+<th>Under Warranty</th>
 <th>Repair Price </th>
 
 <th>Action</th>
@@ -134,9 +139,6 @@ $get_enquiries = "SELECT * FROM req
                   INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid 
                   INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid 
                   INNER JOIN users ON users.uid = req.uid 
-                  INNER JOIN problems ON problems.rid = req.rid
-                  INNER JOIN problem_master ON problems.problem = problem_master.problem_code
-                  INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
                   where  req.status=0";
 $run_admin = mysqli_query($con,$get_enquiries);
 
@@ -149,6 +151,8 @@ $Brand = $row_admin['mcname'];
 $Model = $row_admin['mmname'];
 
 $price = $row_admin['estprice'];
+
+$inwarr = $row_admin['inwarr'];
 
 $phonenum = $row_admin['phonenum'];
 
@@ -166,6 +170,7 @@ $rid = $row_admin['rid'];
 
 <tr>
 
+<td><?php echo "MR".sprintf("%05d", $rid); ?></td>
 
 <td><?php echo $username; ?></td>
 
@@ -199,6 +204,9 @@ $rid = $row_admin['rid'];
     </table> 
 
 </td>
+
+
+<td><?php echo $inwarr==1 ? 'Under Warranty' : 'New Request';?></td>
 
 <td><?php echo $price; ?></td>
 
