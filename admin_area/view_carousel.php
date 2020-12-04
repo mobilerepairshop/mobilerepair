@@ -1,7 +1,5 @@
 <?php
 
-
-
 if($_COOKIE['sid'] == null){
 
 echo "<script>window.open('login.php','_self')</script>";
@@ -11,7 +9,6 @@ echo "<script>window.open('login.php','_self')</script>";
 else {
 
 ?>
-
 
 <div class="row"><!--  1 row Starts -->
 
@@ -45,7 +42,6 @@ else {
 
 </h3><!-- panel-title Ends -->
 
-
 </div><!-- panel-heading Ends -->
 
 <div class="panel-body" ><!-- panel-body Starts -->
@@ -62,8 +58,6 @@ else {
 <th style="width:40%">Carousel Image</th>
 <th style="width:20%">Action</th>
 <th style="width:20%">Action</th>
-
-
 
 </tr>
 
