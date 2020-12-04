@@ -326,6 +326,12 @@ if(isset($_GET['edit_pincode'])){
         
 }
 
+if(isset($_GET['view_customers'])){
+
+    include("view_customers.php");
+        
+}
+
 ?>
 
 </div><!-- container-fluid Ends -->

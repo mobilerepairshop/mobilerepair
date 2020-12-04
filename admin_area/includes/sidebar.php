@@ -431,7 +431,15 @@ else {
 
 </li><!-- Carousel li Ends -->
 
+<li><!-- li Starts -->
 
+<a href="index.php?view_customers" data-toggle="collapse" data-target="#customers">
+
+<i class="fa fa-envelope-o"></i> View Customers 
+
+</a>
+
+</li><!-- li Ends -->
 
 <li><!-- li Starts -->
 
