@@ -59,9 +59,8 @@ else {
 <th>Customer No</th>
 <th>Customer Name</th>
 <th>Customer Email</th>
-<th>Customer Image</th>
 <th>Customer Creation Date</th>
-<th>Customer City</th>
+<th>Customer Address</th>
 <th>Customer Phone Number</th>
 
 
@@ -88,11 +87,9 @@ $c_name = $row_c['username'];
 
 $c_email = $row_c['email'];
 
-$c_image = $row_c['userphoto'];
-
 $c_creation = $row_c['create_datetime'];
 
-$c_city = $row_c['location'];
+$c_city = $row_c['address'];
 
 $c_contact = $row_c['phonenum'];
 
@@ -110,8 +107,6 @@ $i++;
 <td><?php echo $c_name; ?></td>
 
 <td><?php echo $c_email; ?></td>
-
-<td><img src="../storage/users/<?php echo $c_image; ?>" width="60" height="60" ></td>
 
 <td><?php echo $c_creation; ?></td>
 
