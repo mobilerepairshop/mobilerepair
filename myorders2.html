@@ -956,22 +956,25 @@ function filter(type)
                                                   } 
                                                   today = yyyy+'-'+mm+'-'+dd;
                                                   var d1 = parseDate(today);
-                                                  var d2 = parseDate(groupedPeople[x][j].warranty);
-                                                  console.log(d1.getTime()<d2.getTime());
-                                                  if(d1.getTime()<d2.getTime())
+                                                  if(groupedPeople[x][j].warranty != "" && groupedPeople[x][j].warranty != "nowarr")
                                                   {
-                                                    s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
-                                                    s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
-                                                    s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" onclick="initiate('+groupedPeople[x][j].rid+')">Reinitiate</button></td></tr></table></div></div>'
-                                                  
-                                                  }
-                                                  else
-                                                  {
-                                                    s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
-                                                    s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
-                                                   
-                                                  }
-                                                   
+                                                    console.log(groupedPeople[x][j].warranty)
+                                                    var d2 = parseDate(groupedPeople[x][j].warranty);
+                                                    console.log(d1.getTime()<d2.getTime());
+                                                    if(d1.getTime()<d2.getTime())
+                                                    {
+                                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
+                                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
+                                                      s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" onclick="initiate('+groupedPeople[x][j].rid+')">Reinitiate</button></td></tr></table></div></div>'
+                                                    
+                                                    }
+                                                    else
+                                                    {
+                                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
+                                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
+                                                    
+                                                    }
+                                                  }                                                  
                                                     
                                                 break;
                                               }
