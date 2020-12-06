@@ -11,12 +11,13 @@
         
         $auth = new UserAuth($conn);
         $id = $_POST['sid'];
+        $rid = $_POST['rid'];
 
         $user = $auth->validateSession($id);
         if($user[0]=='200')
         {
             $orders = new Orders($conn);
-            $values = $orders->getfiltords($_POST['type'],$user[1],-1);
+            $values = $orders->getbilldetails($rid,$user[1]);
             echo json_encode($values);
         }
     }
