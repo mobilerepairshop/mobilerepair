@@ -448,26 +448,6 @@ a{
   </div></div></div></div>
   
   <!-- editprofile Modal -->
-
-
-
-<!-- Alert Modal -->
-<div class="modal fade" id="alert">
-  <div class="modal-dialog modal-dialog-centered modal-lg" >
-  <div class="modal-content">
-  <div class="modal-header">
-  <h4 class="modal-title" id="alerttitle">High Level Quotation</h4>
-  <buttonget  type="button" class="close" data-dismiss="modal">&times;</button>
-  </div>
-  <div class="modal-body">
-      <b id="alertcontent"></b> 
-  </div>
-  <div class="modal-footer">
-  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-  </div></div></div></div>
-  
-  <!-- Alert Modal -->
-  
   
 <!-- Problem Modal -->
 <div class="modal fade" id="problem">
@@ -817,7 +797,7 @@ a{
                 <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
                   <p id="successsnote" style="display:none;"></p>
                 <input id="enterotp" class="form-control" type="text" placeholder="Enter OTP" name="userreset">
-                <input class="btn btn-default btn-register" id="otp" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
+                <input class="btn btn-default btn-register" id="otpc" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
                 </form>
                 </div>
             </div>
@@ -973,7 +953,7 @@ a{
  
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
-  <script src="js/print.js"></script>
+  <!-- <script src="js/print.js"></script> -->
 
 <script>
 
@@ -1280,18 +1260,6 @@ function updateprofile(id)
     }
   })  
 }
-
-
-
-                                           
-function alertdata(data,title)
-{
-  $("#alerttitle").empty()
-  $("#alertcontent").empty()
-  $("#alerttitle").append(title)
-  $("#alertcontent").append(data)
-}
-
 
 function paid(rid,status)
 {

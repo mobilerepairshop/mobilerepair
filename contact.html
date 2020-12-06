@@ -81,6 +81,23 @@ a{
 
 <body id="page-top">
 
+<!-- Alert Modal -->
+<div class="modal fade" id="alert">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title" id="alerttitle">High Level Quotation</h4>
+  </div>
+  <div class="modal-body">
+      <b id="alertcontent"></b> 
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal" id="modalclose">Close</button>
+  </div></div></div></div>
+  
+  <!-- Alert Modal -->
+  
+
 <!-- verify user-delivery Modal -->
 <div class="modal fade" id="verifyuserdelivery">
   <div class="modal-dialog modal-dialog-centered modal-lg" >
@@ -425,7 +442,7 @@ a{
                 <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
                   <p id="successsnote" style="display:none;"></p>
                 <input id="enterotp" class="form-control" type="text" placeholder="Enter OTP" name="userreset">
-                <input class="btn btn-default btn-register" id="otp" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
+                <input class="btn btn-default btn-register" id="otpc" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
                 </form>
                 </div>
             </div>
