@@ -511,6 +511,18 @@ function editprofile(id)
   })  
 }
 
+
+function alertdata(data,title)
+{
+  $("#alerttitle").empty()
+  $("#alertcontent").empty()
+  $("#alerttitle").append(title)
+  $("#alertcontent").append(data)
+}
+
+
+
+
 function updateprofile(id)
 {
   $.ajax({

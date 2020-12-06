@@ -468,7 +468,13 @@ a{
   <script src="js/main.js"></script>
 
 <script>
-
+function alertdata(data,title)
+{
+  $("#alerttitle").empty()
+  $("#alertcontent").empty()
+  $("#alerttitle").append(title)
+  $("#alertcontent").append(data)
+}
 function editprofile(id)
 {
   $.ajax({
