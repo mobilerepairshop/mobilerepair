@@ -542,12 +542,18 @@ function updateprofile(id)
     {
       if(para == "200")
       {
-        alert("Success")
-        window.location.reload()
+        $('#editprofile').modal('hide')
+        alertdata("Information Updated Successfully","Update Status")
+        $('#alert').modal({backdrop: 'static', keyboard: false})
+        $('#alert').modal('show')
+        $("#modalclose").click(function() {
+          window.location.reload()
+        });
       }
       else
       {
-        alert(para)
+        alertdata(para)
+        $('#alert').modal('show')
       }
     }
   })  
@@ -582,12 +588,14 @@ function paid(rid,status)
     },
     success:function(para)
     {
-      alert(para)
       if(para == "200")
       {
-        alert("Done")     
-
-        window.setTimeout(function(){location.reload()},1000)
+        alertdata("Done")     
+        $('#alert').modal({backdrop: 'static', keyboard: false})
+        $('#alert').modal('show')
+        $("#modalclose").click(function() {
+          window.location.reload()
+        });
       }
     }
   })
@@ -629,12 +637,13 @@ $.ajax({
        
     }
   })
-function pickedup(rid,status)
+  function pickedup(rid,status)
 {if(status == 1 || status == 8)
   {
     if(window.otpverified == 0)
     {
-      alert("Please Verify OTP First")
+      alertdata("Please Verify OTP First","")
+        $('#alert').modal('show')
     }
     else
     {
@@ -648,8 +657,12 @@ function pickedup(rid,status)
         },
         success:function(para)
         {
-            alert("Done")        
-            window.setTimeout(function(){location.reload()},1000)
+            alertdata("Done","Delivery Status")
+            $('#alert').modal({backdrop: 'static', keyboard: false})
+            $('#alert').modal('show')
+            $("#modalclose").click(function() {
+              window.location.reload()
+            });        
         }
       })
     }
@@ -666,8 +679,12 @@ function pickedup(rid,status)
       },
       success:function(para)
       {
-          alert("Done")        
-          window.setTimeout(function(){location.reload()},1000)
+        alertdata("Done","Delivery Status")
+        $('#alert').modal({backdrop: 'static', keyboard: false})
+        $('#alert').modal('show')
+        $("#modalclose").click(function() {
+          window.location.reload()
+        });
       }
     })
   }
@@ -695,7 +712,8 @@ function verifyuserdelivery()
 {
   // alert($("#verificationotp").val())
   window.otpverified = 1
-  alert("Verified")
+  alertdata("Verified","Verification Status")
+  $('#alert').modal('show')
   $('[name="sendotpbutton"]').html('Re-send OTP');
   $('#verifyuserdelivery').modal('hide');
 }
@@ -703,7 +721,6 @@ function verifyuserdelivery()
 
 function cancelled(rid,status)
 {
-  alert(status)
 
   $.ajax({
     url:'./api/cancelled.php',
@@ -715,8 +732,12 @@ function cancelled(rid,status)
     },
     success:function(para)
     {
-        alert("Done")
-        window.setTimeout(function(){location.reload()},1000)
+      alertdata("Cancelled","Delivery Status")
+        $('#alert').modal({backdrop: 'static', keyboard: false})
+        $('#alert').modal('show')
+        $("#modalclose").click(function() {
+          window.location.reload()
+        });
     }
   })
 }
@@ -789,8 +810,13 @@ var firebaseConfig = {
                     para = JSON.parse(para)
                     if(para=='200')
                     {
-                      alert("Successfully Registered")
-                      location.reload()   
+                      $('#loginModal').modal('hide')
+                      alertdata("Successfully Registered","Login Status")
+                      $('#alert').modal({backdrop: 'static', keyboard: false})
+                      $('#alert').modal('show')
+                      $("#modalclose").click(function() {
+                        window.location.reload()
+                      }); 
                     }
                     else
                     {
@@ -949,13 +975,18 @@ function signout()
                 console.log(para)
                 if(para=='200')
                 {
-                    alert("Successfully logged out")
-                    window.location.reload();
+                  alertdata("Successfully Logged Out","Login Status")
+                  $('#alert').modal({backdrop: 'static', keyboard: false})
+                  $('#alert').modal('show')
+                  $("#modalclose").click(function() {
+                    window.location.reload()
+                  });
                 }
                 else
                 {
-                    alert("Cannot log out")
-                    window.location.reload();
+                  alertdata("Cannot Logout","Login Status")
+                  $('#alert').modal({backdrop: 'static', keyboard: false})
+                  $('#alert').modal('show')
                 }
             }
         })
@@ -976,14 +1007,19 @@ function signout()
                 console.log(para)
                 if(para=='200')
                 {
-                    alert("Successfully logged out")
+                  alertdata("Successfully Logged Out","Login Status")
+                  $('#alert').modal({backdrop: 'static', keyboard: false})
+                  $('#alert').modal('show')
+                  $("#modalclose").click(function() {
                     $("#username").hide()
-                    window.location.reload();
+                    window.location.reload()
+                  });
                 }
                 else
                 {
-                    alert("Cannot log out")
-                    // window.location.reload();
+                  alertdata("Cannot Logout","Login Status")
+                  $('#alert').modal({backdrop: 'static', keyboard: false})
+                  $('#alert').modal('show')
                 }
             }
         })
@@ -1097,8 +1133,12 @@ $('#emailreg').change(function (){
         if(para=='400')
         {
           window.userexist = 1
-          alert("Please Choose Different Email/Mobile Number")
-          $("#emailreg").val("")
+          alertdata("Please Choose Different Email/Mobile Number","Registration Status")
+          $('#alert').modal({backdrop: 'static', keyboard: false})
+          $('#alert').modal('show')
+          $("#modalclose").click(function() {
+              $("#emailreg").val("")
+          });
         }
         else
         {
@@ -1133,8 +1173,12 @@ function registerAjax()
                     console.log("This is - ",para)
                     if(para=='200')
                     {
-                      alert("Registered Successfully")
-                      window.location.replace("./index2.html");   
+                      alertdata("Registered Successfully","Registration Status")
+                      $('#alert').modal({backdrop: 'static', keyboard: false})
+                      $('#alert').modal('show')
+                      $("#modalclose").click(function() {
+                        window.location.replace("./index2.html");   
+                      });
                     }
                     else
                     {
@@ -1152,12 +1196,14 @@ function registerAjax()
       } 
       else
       {
-        alert("Please Fill and Check All the Fields")
+        alertdata("Please Fill and Check All the Fields","")
+        $('#alert').modal('show')
       }
   }
   else
   {
-    alert("Please Choose Different Email/Mobile Number")
+    alertdata("Please Choose Different Email/Mobile Number","")
+    $('#alert').modal('show')
   }
 }
 
@@ -1189,8 +1235,12 @@ function resetpassword()
                     console.log("This is - ",para)
                     if(para=='200')
                     {
-                      alert("Updated Successfully")
-                      window.location.replace("./index2.html");   
+                      alertdata("Updated Successfully","")
+                      $('#alert').modal({backdrop: 'static', keyboard: false})
+                      $('#alert').modal('show')
+                      $("#modalclose").click(function() {
+                        window.location.replace("./index2.html");   
+                      });   
                     }
                     else
                     {
