@@ -112,7 +112,7 @@ Log in
                 }
                 else
                 {
-                    echo 'aiscdsu400';
+                    echo "<script>alert('Email or Password is Wrong')</script>";
                 }
 
             }

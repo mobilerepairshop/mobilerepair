@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2020 at 12:50 PM
+-- Generation Time: Dec 04, 2020 at 07:50 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -45,8 +45,7 @@ CREATE TABLE `admins` (
 INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `admin_image`, `admin_contact`, `admin_address`, `admin_role`) VALUES
 (0, 'Vinod Kumbhar', 'vk@gmail.com', '123', 'admin.jpg', '8421208111', 'Plot 34, NavVinayak Society, Jijai Nagar', 'super_admin'),
 (5, 'Atharva ', 'atharvadeshpande99@gmail.com', '123', 'bed-1-2.jpg', '7218340969', 'KESHAV NAGAR, NEAR GULMOHAR MARKET', 'system_manager'),
-(6, 'Atharva Santosh Deshpande', 'AtharvaSD_admin_5', '123', 'Photograph.jpg', '7563210245', 'Pune', 'delivery_boy'),
-(7, 'Pragati Shamrao Gaikwad', 'PragatiSG_admin_6', '123', 'shivaji maharaj.jpg', '8652103245', 'Bhosari, Pune', 'delivery_boy');
+(6, 'Atharva Santosh Deshpande', 'AtharvaSD_admin_5', '111', 'Photograph.jpg', '7563210245', 'Pune', 'delivery_boy');
 
 -- --------------------------------------------------------
 
@@ -262,7 +261,8 @@ CREATE TABLE `req` (
   `repairperson` varchar(100) NOT NULL,
   `imeino` varchar(100) NOT NULL,
   `pay_method` varchar(20) NOT NULL,
-  `pay_status` varchar(5) NOT NULL
+  `pay_status` varchar(5) NOT NULL,
+  `warranty` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -366,12 +366,11 @@ INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, 
 (11, '0acff50219f19374cc9f5c63ee8b76b7', 'sarang.barshikar123@gmail.com', '2020-10-17', 'Sarang Barshikar', '', '', ''),
 (12, 'da4c0997c1d9ca360671294a41769b68', 'barshikarswati@gmail.com', '2020-10-18', 'Swati Barshikar', '', '', ''),
 (13, 'bd7b470fe545c8a3d9d73f91afdb42b2', 'skbarshikar@mitaoe.ac.in', '2020-10-18', 'sarang kumar barshikar', '', '', ''),
-(14, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2020-10-31', 'Atharva Deshpande', '440001', '7218340969', 'Chinchwadgaon, Pune 33'),
+(14, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2020-10-31', 'Atharva Deshpande', '411033', '7218340969', 'Keshav Nagar, Chinchwad, Pune'),
 (16, 'a370453431cea129c9fcf1778c79e9a1', 'asdeshpande@mitaoe.ac.in', '2020-10-31', 'atharva deshpande', '', '', ''),
-(17, '202cb962ac59075b964b07152d234b70', 'aa@gmail.com', '2020-11-04', 'qweryuioihgf', '', '', ''),
+(17, 'b706835de79a2b4e80506f582af3676a', 'aa@gmail.com', '2020-11-04', 'qweryuioihgf', '', '', ''),
 (18, '202cb962ac59075b964b07152d234b70', 'ad@gmail.com', '2020-11-05', 'AD', '', '', ''),
-(19, '10f54dd835a02a70320e86e5bf25af5e', 'pristineacanditsolutions@gmail.com', '2020-11-15', 'Pristine Solutions', '', '', ''),
-(20, '202cb962ac59075b964b07152d234b70', 'aa', '2020-11-17', 'aaaa', '', '', '');
+(19, '10f54dd835a02a70320e86e5bf25af5e', 'pristineacanditsolutions@gmail.com', '2020-11-15', 'Pristine Solutions', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -496,7 +495,7 @@ ALTER TABLE `mobilemodel`
 -- AUTO_INCREMENT for table `pincode`
 --
 ALTER TABLE `pincode`
-  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `pid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pricing_allocation`
@@ -520,7 +519,7 @@ ALTER TABLE `subproblem_master`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

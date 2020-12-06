@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+  <link href="17.1.0.38/external/bootstrap.css" rel="stylesheet" />
+    <link href="//cdn.syncfusion.com/17.1.0.38/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
+    <link href="17.1.0.38/themes/web/content/default.css" rel="stylesheet" />
+    <link href="17.1.0.38/themes/web/content/default-responsive.css" rel="stylesheet" />
+    <link href="//cdn.syncfusion.com/17.1.0.38/js/web/responsive-css/ej.responsive.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    <script src="//cdn.syncfusion.com/js/assets/external/jquery-1.10.2.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script src="//cdn.syncfusion.com/js/assets/external/jquery-2.1.4.min.js"></script>
+    <!--<![endif]-->
+    <script src="//cdn.syncfusion.com/js/assets/external/jquery.easing.1.3.min.js"></script>
+    <script src="17.1.0.38/scripts/web/jsondata.min.js"></script>
+    <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+    <script type="text/javascript" src="//cdn.syncfusion.com/17.1.0.38/js/web/ej.web.all.min.js"></script>
+    <script src="17.1.0.38/scripts/web/properties.js" type="text/javascript"></script>
+  
+</head>
+<body>
+  
+   <button id="btn1" onclick="Clear()">
+    Click here to Clear Filter
+  </button>
+<br><br>
+    <div id="Grid"></div>
+    <script type="text/javascript">
+      var Data = [];
+        $(function () {
+          $.ajax({
+            url:"api/gethistory_view.php",
+              type:"POST",
+              success:function(para){
+                $.ajax({
+                url:"api/gethistory_req.php",
+                  type:"POST",
+                  success:function(para1){
+                    para = JSON.parse(para)
+                    para1 = JSON.parse(para1)
+                    for(let i=0;i<para1.length;i++)
+                    {
+                      for(let j=0;j<para.length;j++){
+                       if(para[j][0]==para1[i][10]){
+                        Data.push({
+                      orderid:para1[i][0],
+                      username:para1[i][1],
+                      contactno:para1[i][5],
+                      pincode:para1[i][6],
+                      adddress:para1[i][9],
+                      brand:para1[i][2],
+                      model:para1[i][3],
+                      prob:para[j][1],
+                      subprob:para[j][2],
+                      price:para1[i][4]
+                      
+
+                  });
+                       } 
+
+                  }}
+                    
+                
+                  $("#Grid").ejGrid({
+                dataSource: Data,
+                allowPaging: true,
+                allowScrolling:true,
+                allowFiltering: true,
+                enableHeaderHover: true,
+                filterSettings: { filterType: "excel" },
+                columns: [
+                         { field: "orderid", isPrimaryKey: true, headerText: "Order ID", width: 110 },
+                         { field: "username", headerText: "Customer Name", width: 160 },
+                         { field: "contactno", headerText: "Contact Number", width: 160 },
+                         { field: "pincode", headerText: "Pincode", width: 110 },
+                         { field: "adddress", headerText: "Customer Address", width: 230 },
+                         { field: "brand", headerText: "Brand ", width: 100 },
+                         { field: "model", headerText: "Model", width: 100 },
+                         { field: "prob", headerText: "Problem", width: 150 },
+                         { field: "subprob", headerText: "Problem Description", width: 230 },
+                         { field: "price", headerText: "Repair Price", width: 130 }
+                       
+                ]
+            });
+               
+              }
+            })
+
+              }
+            })
+
+
+
+          });        
+      
+      function Filter(){
+                var gridObj = $("#Grid").ejGrid("instance");
+                    gridObj.filterColumn([
+                        { field: "orderid", operator: "contains", value: 'S', predicate: "and", matchcase: false },
+                        { field: "orderid", operator: "contains", value: 'A', predicate: "and", matchcase: false },
+                    ])
+      }
+      function Clear(){
+                var gridObj = $("#Grid").ejGrid("instance");
+                    gridObj.clearFiltering();
+      }
+    </script>
+</body>
+</html>

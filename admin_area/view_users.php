@@ -53,7 +53,7 @@ else {
 
 <div class="table-responsive" ><!-- table-responsive Starts -->
 
-<table class="table table-bordered table-hover table-striped" ><!-- table table-bordered table-hover table-striped Starts -->
+<table class="table table-bordered table-hover table-striped" style="width:1000px;margin-left: auto;margin-right: auto;"><!-- table table-bordered table-hover table-striped Starts -->
 
 <thead><!-- thead Starts -->
 
@@ -70,10 +70,9 @@ else {
 
 <th>User Role</th>
 
-<th>Edit   </th>
-
 <th>Delete</th>
 
+<th >Edit </th>
 
 
 </tr>
@@ -121,19 +120,11 @@ $admin_role = $row_admin['admin_role'];
 <td><?php echo $admin_role; ?></td>
 
 <td>
-</a>
-<a href="index.php?user_profile=<?php echo $admin_id; ?>">
-
-<i class="fa fa-pencil"> </i> Edit
-
-</a>
-</td>
-<td>
 
 <?php 
 if($admin_id == 0)
 {
-    echo "<b>SuperAdmin</b>";
+    echo "<b style='font-size: 12px;'>SuperAdmin</b>";
 }
 else
 {
@@ -149,6 +140,15 @@ else
 }
 ?>
 
+</td>
+
+<td>
+</a>
+<a href="index.php?user_profile=<?php echo $admin_id; ?>">
+
+<i class="fa fa-pencil"> </i> Edit
+
+</a>
 </td>
 
 </tr>

@@ -10,7 +10,23 @@ echo "<script>window.open('login.php','_self')</script>";
 
 else {
 
+require_once('includes/db.php');
+$get_count ="Select
+            (select count(*) from req where status between 1 and 8) as req_p,
+            (select count(*) from users) as users_cnt,
+            (select count(*) from chat) as chat_cnt,
+            (select count(*) from req where status=9) as req_h
+            from DUAL";
 
+$run_order = mysqli_query($con,$get_count);
+
+while($row_order=mysqli_fetch_array($run_order)){
+    $req_p =  $row_order['req_p'];
+    $users_cnt =  $row_order['users_cnt'];
+    $chat_cnt =  $row_order['chat_cnt'];
+    $req_h =  $row_order['req_h'];
+
+}
 
 
 ?>
@@ -54,9 +70,9 @@ else {
 
 <div class="col-xs-9 text-right"><!-- col-xs-9 text-right Starts -->
 
-<div class="huge"> <?php echo $count_products; ?> </div>
+<div class="huge requests"> <?php echo $req_p; ?> </div>
 
-<div>Advertisements</div>
+<div>Requests in Process</div>
 
 </div><!-- col-xs-9 text-right Ends -->
 
@@ -64,7 +80,7 @@ else {
 
 </div><!-- panel-heading Ends -->
 
-<a href="index.php?view_products">
+<a href="index.php?track_enquiries">
 
 <div class="panel-footer"><!-- panel-footer Starts -->
 
@@ -99,7 +115,7 @@ else {
 
 <div class="col-xs-9 text-right"><!-- col-xs-9 text-right Starts -->
 
-<div class="huge"> <?php echo $count_customers; ?> </div>
+<div class="huge"> <?php echo $users_cnt; ?> </div>
 
 <div>Customers</div>
 
@@ -144,9 +160,9 @@ else {
 
 <div class="col-xs-9 text-right"><!-- col-xs-9 text-right Starts -->
 
-<div class="huge"> <?php echo $count_p_categories; ?> </div>
+<div class="huge"> <?php echo $chat_cnt; ?> </div>
 
-<div>Products Categories</div>
+<div>Customer Enquiries</div>
 
 </div><!-- col-xs-9 text-right Ends -->
 
@@ -154,7 +170,7 @@ else {
 
 </div><!-- panel-heading Ends -->
 
-<a href="index.php?view_p_cats">
+<a href="index.php?chat_response">
 
 <div class="panel-footer"><!-- panel-footer Starts -->
 
@@ -189,9 +205,9 @@ else {
 
 <div class="col-xs-9 text-right"><!-- col-xs-9 text-right Starts -->
 
-<div class="huge"> <?php echo $count_pending_orders; ?> </div>
+<div class="huge"> <?php echo $req_h; ?> </div>
 
-<div>Orders</div>
+<div>Completed Requests</div>
 
 </div><!-- col-xs-9 text-right Ends -->
 
@@ -199,7 +215,7 @@ else {
 
 </div><!-- panel-heading Ends -->
 
-<a href="index.php?view_orders">
+<a href="index.php?view_history">
 
 <div class="panel-footer"><!-- panel-footer Starts -->
 
@@ -230,7 +246,7 @@ else {
 
 <h3 class="panel-title" ><!-- panel-title Starts -->
 
-<i class="fa fa-money fa-fw" ></i> New Orders
+<i class="fa fa-money fa-fw" ></i> New Requests
 
 </h3><!-- panel-title Ends -->
 
@@ -245,15 +261,13 @@ else {
 <thead><!-- thead Starts -->
 
 <tr>
-<th>Order No:</th>
-<th>Customer Email:</th>
-<th>Invoice No:</th>
-<th>Product ID:</th>
-<th>Product Qty:</th>
-<th>Product Size:</th>
-<th>Status:</th>
-
-
+<th>Request ID</th>
+<th>Customer Name</th>
+<th>Contact Number</th>
+<th>Customer Address</th>
+<th>Address Pincode</th>
+<!-- <th>Under Warrenty</th> -->
+<th>Repair Price</th>
 </tr>
 
 </thead><!-- thead Ends -->
@@ -264,65 +278,35 @@ else {
 
 $i = 0;
 
-$get_order = "select * from pending_orders order by 1 DESC LIMIT 0,5";
+$get_order = "select * from req
+                inner join users on users.uid=req.uid
+                where status=0 LIMIT 0,5";
 $run_order = mysqli_query($con,$get_order);
 
 while($row_order=mysqli_fetch_array($run_order)){
 
+$rid = $row_order['rid'];
 
-$order_id = $row_order['order_id'];
+$username = $row_order['username'];
 
-$c_id = $row_order['customer_id'];
+$phonenum = $row_order['phonenum'];
 
-$invoice_no = $row_order['invoice_no'];
+$address = $row_order['address'];
 
-$product_id = $row_order['product_id'];
+$pincode = $row_order['pincode'];
 
-$qty = $row_order['qty'];
-
-$size = $row_order['size'];
-
-$order_status = $row_order['order_status'];
-
-
-$i++;
+$estprice = $row_order['estprice'];
 
 ?>
 
 <tr>
 
-<td><?php echo $i; ?></td>
-
-<td>
-<?php
-
-$get_customer = "select * from customers where customer_id='$c_id'";
-$run_customer = mysqli_query($con,$get_customer);
-$row_customer = mysqli_fetch_array($run_customer);
-$customer_email = $row_customer['customer_email'];
-echo $customer_email;
-?>
-</td>
-
-<td><?php echo $invoice_no; ?></td>
-<td><?php echo $product_id; ?></td>
-<td><?php echo $qty; ?></td>
-<td><?php echo $size; ?></td>
-<td>
-<?php
-if($order_status=='pending'){
-
-echo $order_status='pending';
-
-}
-else {
-
-echo $order_status='Complete';
-
-}
-
-?>
-</td>
+<td><?php echo "MR".sprintf("%05d",  $rid); ?></td>
+<td><?php echo $username; ?></td>
+<td><?php echo $phonenum; ?></td>
+<td><?php echo $address; ?></td>
+<td><?php echo $pincode; ?></td>
+<td><?php echo $estprice; ?></td>
 
 </tr>
 
@@ -337,9 +321,9 @@ echo $order_status='Complete';
 
 <div class="text-right" ><!-- text-right Starts -->
 
-<a href="index.php?view_orders" >
+<a href="index.php?view_enquiries" >
 
-View All Orders <i class="fa fa-arrow-circle-right" ></i>
+View All Requests <i class="fa fa-arrow-circle-right" ></i>
 
 </a>
 

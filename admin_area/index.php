@@ -271,13 +271,13 @@ if(isset($_GET['contact_response'])){
 
 if(isset($_GET['view_history'])){
 
-include("view_history.php");
+include("history.html");
     
 }
 
 if(isset($_GET['view_cancelled'])){
 
-include("view_cancelled.php");
+include("cancelled.html");
     
 }
 
@@ -326,6 +326,12 @@ if(isset($_GET['edit_pincode'])){
         
 }
 
+if(isset($_GET['view_customers'])){
+
+    include("view_customers.php");
+        
+}
+
 ?>
 
 </div><!-- container-fluid Ends -->
@@ -334,7 +340,7 @@ if(isset($_GET['edit_pincode'])){
 
 </div><!-- wrapper Ends -->
 
-<script src="js/jquery.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script> -->
 
 
 <script src="js/bootstrap.min.js"></script>
