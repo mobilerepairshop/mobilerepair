@@ -255,7 +255,6 @@ option{
   <div class="modal-content">
   <div class="modal-header">
   <h4 class="modal-title" id="alerttitle">High Level Quotation</h4>
-  <buttonget  type="button" class="close" data-dismiss="modal" id="modalclose1">&times;</button>
   </div>
   <div class="modal-body">
       <b id="alertcontent"></b> 
@@ -694,7 +693,7 @@ function paid(rid,status)
         $('#alert').modal({backdrop: 'static', keyboard: false})
         $('#alert').modal('show')
         $("#modalclose").click(function() {
-          window.setTimeout(function(){location.reload()},1000)
+          window.location.reload()
         });
       }
     }
@@ -725,7 +724,7 @@ function pickedup(rid,status)
             $('#alert').modal({backdrop: 'static', keyboard: false})
             $('#alert').modal('show')
             $("#modalclose").click(function() {
-              window.setTimeout(function(){location.reload()},1000)
+              window.location.reload()
             });        
         }
       })
@@ -747,7 +746,7 @@ function pickedup(rid,status)
         $('#alert').modal({backdrop: 'static', keyboard: false})
         $('#alert').modal('show')
         $("#modalclose").click(function() {
-          window.setTimeout(function(){location.reload()},1000)
+          window.location.reload()
         });
       }
     })
@@ -767,7 +766,7 @@ function SendOTPtoUser(rid,status)
   //   success:function(para)
   //   {
   //       alert("Done")
-  //       window.setTimeout(function(){location.reload()},1000)
+  //       window.location.reload()
   //   }
   // })
 }
@@ -799,7 +798,7 @@ function cancelled(rid,status)
         $('#alert').modal({backdrop: 'static', keyboard: false})
         $('#alert').modal('show')
         $("#modalclose").click(function() {
-          window.setTimeout(function(){location.reload()},1000)
+          window.location.reload()
         });
     }
   })
@@ -1041,17 +1040,14 @@ function signout()
                   $('#alert').modal({backdrop: 'static', keyboard: false})
                   $('#alert').modal('show')
                   $("#modalclose").click(function() {
-                    window.setTimeout(function(){location.reload()},1000)
+                    window.location.reload()
                   });
                 }
                 else
                 {
-                  alertdata("Cannot Login","Login Status")
+                  alertdata("Cannot Logout","Login Status")
                   $('#alert').modal({backdrop: 'static', keyboard: false})
                   $('#alert').modal('show')
-                  $("#modalclose").click(function() {
-                    window.setTimeout(function(){location.reload()},1000)
-                  });
                 }
             }
         })
@@ -1077,12 +1073,12 @@ function signout()
                   $('#alert').modal('show')
                   $("#modalclose").click(function() {
                     $("#username").hide()
-                    window.setTimeout(function(){location.reload()},1000)
+                    window.location.reload()
                   });
                 }
                 else
                 {
-                  alertdata("Cannot Logged Out","Login Status")
+                  alertdata("Cannot Logout","Login Status")
                   $('#alert').modal({backdrop: 'static', keyboard: false})
                   $('#alert').modal('show')
                 }
