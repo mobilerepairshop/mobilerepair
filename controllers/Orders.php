@@ -69,25 +69,46 @@
                     return $mc;
                 }
             }
-            public function getfiltords($type,$uid)
+            public function getfiltords($type,$uid,$rid)
             {
+                // echo $type;
                 $mc = array();
-                if($type=='active')
+                if($rid==-1)
                 {
-                    $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and (status<>9 and status<>6) group by r.rid';
+                    if($type=='active')
+                    {
+                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and (status<>9 and status<>6) group by r.rid';
+                    }
+                    else if($type=='cancel')
+                    {
+                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=6 group by r.rid';
+    
+                    }
+                    else if($type=='history')
+                    {
+                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=9 group by r.rid';
+                    }
                 }
-                else if($type=='cancel')
+                else
                 {
-                    $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=6 group by r.rid';
-
+                    if($type=='bill')
+                    {
+                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and r.rid=? group by r.rid';
+                    
+                    }
                 }
-                else if($type=='history')
-                {
-                    $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=9 group by r.rid';
-
-                }
+                
                 $stmt = $this->conn->prepare($query);
-                $stmt->bind_param('i',$uid);
+                if($type=='bill')
+                {
+                    $stmt->bind_param('ii',$uid,$rid);
+                }
+                else
+                {
+                    $stmt->bind_param('i',$uid);
+                }
+                
+               
                 if($stmt->execute())
                 {
                     $result = $stmt->get_result();   // <--- add this instead
@@ -263,6 +284,7 @@
                 }
             }
 
+            // repeated function - has to be removed
             public function getproblemsforadmin($rid)
             {
                 $mc = array();
@@ -330,6 +352,18 @@
                 {
                     return 400;
                 }
+            }
+
+            public function getbilldetails($rid,$uid)
+            {
+                $problems = $this->getproblems($uid,$rid);
+                $reqinfo = $this->getfiltords('bill',$uid,$rid);
+
+                $details = array();
+                $details[0] = $reqinfo;
+                $details[1] = $problems;
+                
+                return $details;
             }
     }
 ?>
