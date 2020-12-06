@@ -23,14 +23,11 @@
 </head>
 <body>
   
-  <button id="btn" onclick="Filter()">
-    Click here to filter
-  </button>
   
    <button id="btn1" onclick="Clear()">
     Click here to Clear Filter
   </button>
-
+<br><br>
     <div id="Grid"></div>
     <script type="text/javascript">
       var Data = [];
@@ -76,16 +73,16 @@
                 enableHeaderHover: true,
                 filterSettings: { filterType: "excel" },
                 columns: [
-                { field: "orderid", isPrimaryKey: true, headerText: "Order ID", textAlign: ej.TextAlign.Right, width: 75 },
-                         { field: "username", headerText: "User Name", width: 100 },
-                         { field: "contactno", headerText: "Contact Number", width: 100 },
-                         { field: "pincode", headerText: "Area Pincode", width: 90 },
-                         { field: "adddress", headerText: "User Address", width: 250 },
+                { field: "orderid", isPrimaryKey: true, headerText: "Order ID", width: 110 },
+                         { field: "username", headerText: "Customer Name", width: 160 },
+                         { field: "contactno", headerText: "Contact Number", width: 160 },
+                         { field: "pincode", headerText: "Pincode", width: 110 },
+                         { field: "adddress", headerText: "Customer Address", width: 230 },
                          { field: "brand", headerText: "Brand ", width: 100 },
                          { field: "model", headerText: "Model", width: 100 },
                          { field: "prob", headerText: "Problem", width: 150 },
-                         { field: "subprob", headerText: "Problem Description", width: 250 },
-                         { field: "price", headerText: "Repair Price", width: 100 }
+                         { field: "subprob", headerText: "Problem Description", width: 230 },
+                         { field: "price", headerText: "Repair Price", width: 130 }
                        
                 ]
             });
