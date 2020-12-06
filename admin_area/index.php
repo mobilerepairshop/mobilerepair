@@ -57,6 +57,11 @@ $admin_contact = $row_admin['admin_contact'];
 <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/2484/9148/files/SDQSDSQ_32x32.png?v=1511436147" type="image/png">
 <link rel="stylesheet" href="../public/css/forms.css">
 
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -240,7 +245,7 @@ include("view_allocation.php");
 
 if(isset($_GET['view_enquiries'])){
 
-include("view_enquiries.php");
+include("view_enquiries.html");
 
 }
 if(isset($_GET['track_enquiries'])){
@@ -340,10 +345,6 @@ if(isset($_GET['view_customers'])){
 
 </div><!-- wrapper Ends -->
 
-<!-- <script src="js/jquery.min.js"></script> -->
-
-
-<script src="js/bootstrap.min.js"></script>
 
 
 </body>
