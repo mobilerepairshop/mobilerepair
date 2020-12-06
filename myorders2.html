@@ -902,18 +902,17 @@ a{
 
 <div class="modal fade" id="person">
   <div class="modal-dialog modal-dialog-centered modal-lg" >
-  <div class="modal-content">
+  <div class="modal-content" style="width:80%;margin-left: 10%;">
   <div class="modal-header">
   <h4 class="modal-title">Assigned Person</h4>
   <button type="button" class="close" data-dismiss="modal">&times;</button>
   </div>
   <div class="modal-body person">
-      <table class="person-content" style="width:100%;">
+      <table class="person-content" style="width:80%;">
   
       </table>
   </div>
   <div class="modal-footer">
-  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
   </div></div></div></div>
 
   <!-- Problem Modal -->
@@ -1998,17 +1997,31 @@ function groupArrayOfObjects(list, key) {
         s1+='<div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">'
         for(let i=0;i<10;i++)
         {
+          str=''
+          if(i==1)
+          {
+            delivery_status=2
+            str = '<b><a style="color:blue;cursor:pointer;font-size:10px;" id="'+rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></b>'; 
+          }
+          else if(i==8)
+          {
+           delivery_status=1
+           str ='<b><a style="color:blue;cursor:pointer;font-size:10px;" id="'+rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></b>'; 
+          }
+          
           if(i==6)
           {
 
           }
           else if(i<=status)
           {
+            
+            console.log("This is - "+str)
             s1+='<div class="step completed">'
             s1+='<div class="step-icon-wrap">'
             s1+='<div class="step-icon"></div>'
             s1+=' </div>'
-            s1+='<h5 class="step-title">'+obj[i][0]+'</h4>'
+            s1+='<h5 class="step-title">'+obj[i][0]+'</h4><a style="font-size:10px;">'+str+'</a>'
             s1+='</div>'
           }
           else
