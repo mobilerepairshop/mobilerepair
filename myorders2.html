@@ -2237,6 +2237,7 @@ function groupArrayOfObjects(list, key) {
         success:function(para)
         {
           console.log("This is note - ",para)
+          $('#payment').modal('hide')
           alertdata("Submitted Successfully","Pricing Status")
           $('#alert').modal({backdrop: 'static', keyboard: false})
           $('#alert').modal('show')
