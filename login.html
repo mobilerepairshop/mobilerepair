@@ -1,0 +1,180 @@
+  <!-- Login Modal -->
+  <div class="modal fade login" id="loginModal">
+    <div class="modal-dialog login animated">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Login with</h4>
+        </div>
+        <div class="modal-body">
+          <div class="box">
+            <div class="content">
+              <div class="social">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm">
+                      <div onclick="googleSignin()" ><img class="google" src="google.png" style="cursor:pointer;"></img></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="division">
+                <div class="line l"></div>
+                <span>or</span>
+                <div class="line r"></div>
+              </div>
+              <div class="error"></div>
+                <div class="form loginBox">
+                  <form method="" action="" accept-charset="UTF-8">
+                    <input id="emaillog" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
+                    <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
+                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <div class="content registerBox" style="display:none;">
+                <div class="form">
+                  <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                    <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username" required>
+                    <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required onchange="checkusername()">
+                    <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password" required>
+                    <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required onkeyup="checkpasswordmatch()">
+                    <p id="errornote" style="display:none;"></p><br>
+                    <input type="checkbox" id="termsconditions" required> By signing up, you agree to our <a href="#" style="color: #0078ff;">Terms of Use</a> and <a href="#" style="color: #0078ff;">Privacy Policy</a>  <br><br>
+                    <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="registerAjax()">
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <div class="content resetBox" style="display:none;">
+                <div class="form">
+                  <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                    <input id="userreset" class="form-control" type="text" placeholder="Email/Mobile Number" name="userreset"><br>
+                    <input class="btn btn-default btn-register" id="otp" type="button" value="Send OTP" name="commit" onclick="resetAjax()">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <div class="content otpBox" style="display:none;">
+              <div class="form">
+                <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                  <p id="successsnote" style="display:none;"></p>
+                  <input id="enterotp" class="form-control" type="text" placeholder="Enter OTP" name="userreset">
+                  <input class="btn btn-default btn-register" id="otpc" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
+                </form>
+              </div>
+            </div>
+          </div> 
+          <div class="box">
+            <div class="content otppassword" style="display:none;">
+              <div class="form">
+                <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                  <input id="user" class="form-control" type="text" placeholder="Email/Mobile Number" name="user">
+                  <input id="passwordotp" class="form-control" type="password" placeholder="Password" name="passwordotp">
+                  <input id="password_confirmationotp" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmationotp">
+                  <p id="errnote" style="display:none;"></p>
+                  <input class="btn btn-default btn-register" type="button" value="Confirm Password" name="commit" onclick="resetpassword()">
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="forgot login-footer">
+              <span>Don't have an account?
+                <b><a href="javascript: showRegisterForm();" style="color: #0078ff;">Sign up</a></b>
+              </span><br>
+              <span>Don't remember password?
+                <b><a href="javascript: showResetForm();" style="color: #0078ff;"> Reset</a></b>
+              </span> 
+            </div>
+            <div class="forgot register-footer" style="display:none">
+              <span>Already have an account?</span>
+              <a href="javascript: showLoginForm();" style="color: #0078ff;">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Login Modal end -->
+
+
+<!-- Alert Modal -->
+
+  <div class="modal fade" id="alert">
+    <div class="modal-dialog modal-dialog-centered modal-lg" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="alerttitle">High Level Quotation</h4>
+        </div>
+        <div class="modal-body">
+          <b id="alertcontent"></b> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="modalclose" onclick="modalcloseclicked()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- Alert Modal -->
+
+<!-- editprofile Modal -->
+  
+  <div class="modal fade" id="editprofile">
+    <div class="modal-dialog modal-dialog-centered modal-lg" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="edit_title"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="box">
+            <div class="content registerBox">
+              <div class="form">
+                <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <b><span>Full Name</span></b>
+                      </div>
+                      <div class="col-md-10">
+                        <input id="user_fullname" class="form-control" type="text" placeholder="Full Name" name="username" required>
+                      </div>
+                    </div><br>
+                    <div class="row">
+                      <div class="col-md-2">
+                        <b><span>Mobile Number</span></b>
+                      </div>
+                      <div class="col-md-10">
+                        <input id="user_mobile" class="form-control" type="number" placeholder="Mobile Number" required>
+                      </div>
+                      </div><br>
+                      <div class="row">
+                        <div class="col-md-2">
+                          <b><span>Address</span></b>
+                        </div>
+                        <div class="col-md-10">
+                          <input id="user_address" class="form-control" type="text" placeholder="Address" required>
+                        </div>
+                      </div>
+                    </div><br>
+                    <p id="errornote" style="display:none;"></p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" name="updateprofile" id="" onclick="updateprofile(this.id)">Update</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  
+<!-- editprofile Modal -->
+  
