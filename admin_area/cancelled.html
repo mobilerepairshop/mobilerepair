@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta charset="utf-8" />
-  <link href="//cdn.syncfusion.com/17.1.0.38/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
-  <link href="//cdn.syncfusion.com/17.1.0.38/js/web/responsive-css/ej.responsive.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link href="//cdn.syncfusion.com/17.1.0.38/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
+    <link href="//cdn.syncfusion.com/17.1.0.38/js/web/responsive-css/ej.responsive.css" rel="stylesheet" />
 
 
-  <!-- <script src="js/jquery.min.js" rel="stylesheet"></script> -->
-  <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
-  <script type="text/javascript" src="//cdn.syncfusion.com/17.1.0.38/js/web/ej.web.all.min.js"></script>
-
+    <!-- <script src="js/jquery.min.js" rel="stylesheet"></script> -->
+    <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+    <script type="text/javascript" src="//cdn.syncfusion.com/17.1.0.38/js/web/ej.web.all.min.js"></script>
+  
 </head>
 <body>
   
+
+<!-- Problem Modal -->
+<div class="modal fade" id="problem">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <h4 class="modal-title problems"></h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body problem">
+      <table class="problem-content" style="width:100%;">
+  
+      </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div></div></div></div>
+  
+  <!-- Problem Modal -->
+
+
   
    <button id="btn1" onclick="Clear()">
     Click here to Clear Filter
@@ -25,20 +45,13 @@
     <script type="text/javascript">
       var Data = [];
         $(function () {
-          $.ajax({
-            url:"api/getcancelled_view.php",
-              type:"POST",
-              success:function(para){
                 $.ajax({
                 url:"api/getcancelled_req.php",
                   type:"POST",
                   success:function(para1){
-                    para = JSON.parse(para)
                     para1 = JSON.parse(para1)
                     for(let i=0;i<para1.length;i++)
                     {
-                      for(let j=0;j<para.length;j++){
-                       if(para[j][0]==para1[i][10]){
                         Data.push({
                       orderid:para1[i][0],
                       username:para1[i][1],
@@ -47,15 +60,14 @@
                       adddress:para1[i][9],
                       brand:para1[i][2],
                       model:para1[i][3],
-                      prob:para[j][1],
-                      subprob:para[j][2],
-                      price:para1[i][4]
-                      
-
+                      problems:'<a href="#" id="'+para1[i][10]+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>',
+                      price:para1[i][4],
+                      status:"Cancelled",
+                     
                   });
-                       } 
+                       
 
-                  }}
+                  }
                     
                 
                   $("#Grid").ejGrid({
@@ -73,19 +85,15 @@
                          { field: "adddress", headerText: "Customer Address", width: 230 },
                          { field: "brand", headerText: "Brand ", width: 100 },
                          { field: "model", headerText: "Model", width: 100 },
-                         { field: "prob", headerText: "Problem", width: 150 },
-                         { field: "subprob", headerText: "Problem Description", width: 230 },
-                         { field: "price", headerText: "Repair Price", width: 130 }
-                       
+                         { field: "problems", headerText: "View Problems", width: 150 },
+                         { field: "price", headerText: "Repair Price", width: 130 },
+                         { field: "status", headerText: "Status", width: 100 },
+                        
                 ]
             });
                
               }
             })
-
-              }
-            })
-
 
 
           });        
@@ -101,6 +109,58 @@
                 var gridObj = $("#Grid").ejGrid("instance");
                     gridObj.clearFiltering();
       }
+
+
+
+    function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+    
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null;
+}
+
+    function getproblems(rid)
+    {
+      var sid = getCookie("sid");
+      $(".problems").html("Problems For Request ID : MR"+String(rid).padStart(5, '0'))
+        
+        $.ajax({
+            url:'../api/getproblems.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+
+               for(let i=0;i<para.length;i++)
+               {
+                    console.log(para[i].problem)
+                    
+                    s2+='<tr><td class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
+                    $('.problem-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
+
+
     </script>
 </body>
 </html>
