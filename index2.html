@@ -85,58 +85,14 @@ a{
 
 <div id="loginmodals"></div>
 
-<!-- loginmodals & alertmodal will append here from login.html -->  
+<!-- loginmodals will append here from login.html -->  
 
-<!-- verify user-delivery Modal -->
-<div class="modal fade" id="verifyuserdelivery">
-  <div class="modal-dialog modal-dialog-centered modal-lg" >
-  <div class="modal-content">
-  <div class="modal-header">
-  <h4 class="modal-title">Please Enter OTP sent on Customer's Mobile</h4>
-  <button type="button" class="close" data-dismiss="modal">&times;</button>
-  </div>
-  <div class="modal-body">
-    <div class="box">
-      <div class="content">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-2">
-                <b><span>OTP</span></b>
-              </div>
-              <div class="col-md-10">
-                <input id="verificationotp" class="form-control" type="text" placeholder="OTP">
-              </div>            
-          </div>
-          </div>
-      </div>
-  </div>
-  </div>
-  <div class="modal-footer">
-  <button type="button" class="btn btn-success" onclick="verifyuserdelivery()">Verify</button>
-  </div></div></div></div>
-  
-  <!-- end verify user-delivery Modal -->
+<!-- delivery_personmodals & alertmodal will append here from login.html -->
 
-<!-- Problem Modal -->
-<div class="modal fade" id="problem">
-  <div class="modal-dialog modal-dialog-centered modal-lg" >
-  <div class="modal-content">
-  <div class="modal-header">
-  <h4 class="modal-title">Your Request</h4>
-  <button type="button" class="close" data-dismiss="modal">&times;</button>
-  </div>
-  <div class="modal-body problem">
-      <table class="problem-content" style="width:110%;">
-  
-      </table>
-  </div>
-  <div class="modal-footer">
-  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-  </div></div></div></div>
-  
-  <!-- Problem Modal -->
+<div id="delivery_personmodals"></div>
 
-  
+<!-- delivery_personmodals will append here from login.html --> 
+
   <!--/ Nav Star /-->
   <nav class="navbar navbar-b navbar-reduce navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
@@ -319,12 +275,14 @@ a{
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
 
-  <!-- loginmodals will be loaded from here -->
+  <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
 
   <script src="js/login.js"></script>
+  <script src="js/delivery_person.js"></script>
   <script> 
     $(function(){
       $("#loginmodals").load("login.html"); 
+      $("#delivery_personmodals").load("delivery_person.html"); 
     });
     </script> 
 
@@ -332,33 +290,6 @@ a{
 
 
 <script>
-
-function paid(rid,status)
-{
-  $.ajax({
-    url:'./api/paid.php',
-    type:'POST',
-    data:{
-      'rid':rid,
-      'status':status,
-      'sid':sid
-    },
-    success:function(para)
-    {
-      if(para == "200")
-      {
-        alertdata("Done")     
-        $('#alert').modal({backdrop: 'static', keyboard: false})
-        $('#alert').modal('show')
-        $("#modalclose").click(function() {
-          window.location.reload()
-        });
-      }
-    }
-  })
-}
-
-
 
 $.ajax({
     url:'./api/getcarousel.php',
@@ -394,137 +325,7 @@ $.ajax({
        
     }
   })
-  function pickedup(rid,status)
-{if(status == 1 || status == 8)
-  {
-    if(window.otpverified == 0)
-    {
-      alertdata("Please Verify OTP First","")
-        $('#alert').modal('show')
-    }
-    else
-    {
-      $.ajax({
-        url:'./api/pickedup.php',
-        type:'POST',
-        data:{
-          'rid':rid,
-          'status':status,
-          'sid':sid
-        },
-        success:function(para)
-        {
-            alertdata("Done","Delivery Status")
-            $('#alert').modal({backdrop: 'static', keyboard: false})
-            $('#alert').modal('show')
-            $("#modalclose").click(function() {
-              window.location.reload()
-            });        
-        }
-      })
-    }
-  }
-  else
-  {
-    $.ajax({
-      url:'./api/pickedup.php',
-      type:'POST',
-      data:{
-        'rid':rid,
-        'status':status,
-        'sid':sid
-      },
-      success:function(para)
-      {
-        alertdata("Done","Delivery Status")
-        $('#alert').modal({backdrop: 'static', keyboard: false})
-        $('#alert').modal('show')
-        $("#modalclose").click(function() {
-          window.location.reload()
-        });
-      }
-    })
-  }
-}
-window.otpverified = 0
-function SendOTPtoUser(rid,status)
-{
-  // $.ajax({
-  //   // url:'./api/sendotptouser.php',
-  //   type:'POST',
-  //   data:{
-  //     'rid':rid,
-  //     'status':status,
-  //     'sid':sid
-  //   },
-  //   success:function(para)
-  //   {
-  //       alert("Done")
-  //       window.setTimeout(function(){location.reload()},1000)
-  //   }
-  // })
-}
-
-function verifyuserdelivery()
-{
-  // alert($("#verificationotp").val())
-  window.otpverified = 1
-  alertdata("Verified","Verification Status")
-  $('#alert').modal('show')
-  $('[name="sendotpbutton"]').html('Re-send OTP');
-  $('#verifyuserdelivery').modal('hide');
-}
-
-function cancelled(rid,status)
-{
-
-  $.ajax({
-    url:'./api/cancelled.php',
-    type:'POST',
-    data:{
-      'rid':rid,
-      'status':status,
-      'sid':sid
-    },
-    success:function(para)
-    {
-      alertdata("Cancelled","Delivery Status")
-        $('#alert').modal({backdrop: 'static', keyboard: false})
-        $('#alert').modal('show')
-        $("#modalclose").click(function() {
-          window.location.reload()
-        });
-    }
-  })
-}
-
-
-
-function getproblems_admin(rid)
-    {
-        $.ajax({
-            url:'./api/getproblemsforadmin.php',
-            type:'POST',
-            data:{'rid':rid,'sid':sid},
-            success:function(para)
-            {
-                s2=""
-                console.log("This is note - ",para)
-                para = JSON.parse(para)
-
-               for(let i=0;i<para.length;i++)
-               {
-                    console.log(para[i].problem)
-                    
-                    s2+='<tr><td class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
-                    $('.problem-content').html(s2)
-               }
-                
-                
-            }
-        })
-    }
-
+  
     var alterClass = function() {
 	  var ww = document.body.clientWidth;
    
