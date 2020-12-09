@@ -192,6 +192,46 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
     </div>
   </div>
 
+  
+<div class="row" ><!-- 1 row Starts -->
+
+<div class="col-lg-12" ><!-- col-lg-12 Starts -->
+
+<ol class="breadcrumb" ><!-- breadcrumb Starts -->
+
+<li class="active" >
+
+<i class="fa fa-dashboard" ></i> Dashboard / Active Enquiries / Track Enquiries
+</li>
+
+</ol><!-- breadcrumb Ends -->
+
+
+</div><!-- col-lg-12 Ends -->
+
+</div><!-- 1 row Ends -->
+
+
+<div class="row" ><!-- 2 row Starts -->
+
+<div class="col-lg-12" ><!-- col-lg-12 Starts -->
+
+<div class="panel panel-default" ><!-- panel panel-default Starts -->
+
+<div class="panel-heading" ><!-- panel-heading Starts -->
+
+<h3 class="panel-title" ><!-- panel-title Starts -->
+
+<i class="fa fa-money fa-fw" ></i> Track Enquiries
+
+<a href="./index.php?view_enquiries" style="float:right;color:blue;">Refresh</a>
+
+</h3><!-- panel-title Ends -->
+
+
+</div><!-- panel-heading Ends -->
+
+<br>
    <button id="btn1" onclick="Clear()">
     Click here to Clear Filter
   </button>
@@ -285,13 +325,13 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                 { field: "orderid", isPrimaryKey: true, headerText: "Order ID", width: 110 },
                          { field: "username", headerText: "Customer Name", width: 160 },
                          { field: "phonenum", headerText: "Contact Number", width: 160 },
-                         { field: "address", headerText: "Customer Address", width: 110 },
+                         { field: "address", headerText: "Customer Address", width: 180 },
                          { field: "admin_name", headerText: "Delivery Person", width: 230 },
                          { field: "date", headerText: "Date ", width: 100 },
                          { field: "time", headerText: "Time", width: 100 },
                          { field: "status", headerText: "Status", width: 150 },
                          { field: "action", headerText: "Action", width: 150 },
-                         { field: "pricing", headerText: "Confirm Pricing", width: 150 },
+                         { field: "pricing", headerText: "Confirm Pricing", width: 160 },
 
                 ]
             });
