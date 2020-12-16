@@ -22,13 +22,14 @@
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
   <!-- Main Stylesheet File -->
   <script src="https://apis.google.com/js/platform.js" ></script>
   <meta name="google-signin-client_id" content="411937557386-8fdmnh35is2oo4bckud4bgmg8okeanql.apps.googleusercontent.com">
 <meta name="theme-color" content="black"/>
   <link href="css/style.css" rel="stylesheet">
   <link href="./login/css/login.css" rel="stylesheet">
+  <link rel="stylesheet" href="./chat/chat.css">
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   
   <style>
@@ -77,6 +78,42 @@ a{
     width:25%;
   }
  
+}
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:110px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float{
+	margin-top:16px;
+}
+.float2{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:lightblue;
+	color:blue;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float2{
+	margin-top:16px;
 }
   </style>
 </head>
@@ -146,7 +183,43 @@ a{
   <!-- <br><br> -->
    <!--/ Section Blog-Single Star /-->
    <br><br>
+   <a class="float">
+    <a href="https://api.whatsapp.com/send?phone=+917218340969&text=Hello Sir can I get some more info about mobile repair." class="float" target="_blank">
+      <i class="fa fa-whatsapp my-float"></i>
+    </a>
+  </a>
+  <a class="float2 chat-btn">
+      <i class="fa fa-user-circle-o my-float2"></i>
+  </a>
+  
+<!-- Chatbot start msg -->
+<div class="chat-popup">
+  <div class="chat-area">
+   <div class="income-msg">
+       <img src="img/bot1.jpg" class="avatar" alt="">
+       <span class="msg">Welcome,Are you looking for</span> 
+   </div>
+  
+   <div class="income-msg">
+      <img src="img/bot1.jpg" class="avatar" alt="">
+     
+      <span class="msg">Mobile Repairing</span>
+  </div>
+  <div class="income-msg">
+  <img src="img/bot1.jpg" class="avatar" alt="">
+  <span class="msg">Mobile Insuarance</span>
+  </div>
 
+  </div>
+
+  <div class="input-area">
+      <input type="text" id="inptext">
+      <button id="emoji-btn"> &#127773;</button>
+      <button class="submit" id="mybtn"> <i class="material-icons"> send</i></button>
+  </div>
+</div>
+
+<!-- Chatbot start msg end -->
   <section class="blog-wrapper sect-pt4" id="blog">
     <div class="container">
       <div class="row">
@@ -185,7 +258,7 @@ a{
   </section>
   <!--/ Section Blog-Single End /-->
 
-
+  
 <!-- Floating Div  -->
 
 <div class="botnavbar">
@@ -254,6 +327,7 @@ a{
   </div>
 </section>
 
+
 <!--/ Section Contact-footer for Admin End /-->
 
   <!-- JavaScript Libraries -->
@@ -273,9 +347,10 @@ a{
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
- 
+  <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
+  <script src="js/chat.js"></script>
 
   <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
 
