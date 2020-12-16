@@ -435,7 +435,7 @@ else {
 
 <a href="index.php?view_customers" data-toggle="collapse" data-target="#customers">
 
-<i class="fa fa-envelope-o"></i> View Customers 
+<i class="fa fa-user"></i> View Customers 
 
 </a>
 

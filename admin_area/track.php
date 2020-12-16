@@ -224,8 +224,9 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
 
 <i class="fa fa-money fa-fw" ></i> Track Enquiries
 
-<a href="./index.php?track_enquiries" style="float:right;color:blue;">Refresh</a>
+<a href="./index.php?track_enquiries" style="float:right;color:blue;"><i class="fa fa-refresh" ></i></a>&nbsp;&nbsp;&nbsp;
 
+<a href="./index.php?cancel" style="float:right;color:blue;">  <i class="fa fa-times" aria-hidden="true"></i></a>
 </h3><!-- panel-title Ends -->
 
 

@@ -39,6 +39,7 @@ else {
 <h3 class="panel-title" ><!-- panel-title Starts -->
 
 <i class="fa fa-money fa-fw" ></i> View Response
+<a href="./index.php?cancel" style="float:right;color:blue;">  <i class="fa fa-times" aria-hidden="true"></i></a>
 
 </h3><!-- panel-title Ends -->
 

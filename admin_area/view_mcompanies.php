@@ -45,6 +45,8 @@ else {
 
 <i class="fa fa-money fa-fw" ></i> View Mobile Companies
 
+<a href="./index.php?cancel" style="float:right;color:blue;">  <i class="fa fa-times" aria-hidden="true"></i></a>
+
 </h3><!-- panel-title Ends -->
 
 
