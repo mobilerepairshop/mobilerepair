@@ -120,7 +120,7 @@ window.onload = () => {
 	'use strict';     
 	if('serviceWorker' in navigator) {
 		navigator.serviceWorker
-				 .register('https://ef607bc6cbb9.ngrok.io/mobilerepair/js/sw.js')
+				 .register('./sw.js')
 				 .then(function() { console.log("Service Worker Registered"); });
 	  }
 	}

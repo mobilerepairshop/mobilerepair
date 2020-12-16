@@ -2,7 +2,7 @@
     "name": "Hello World",   
     "short_name": "Hello", 
     "lang": "en-US",     
-    "start_url": "https://ef607bc6cbb9.ngrok.io/mobilerepair/splashsc.html", 
+    "start_url": "./splashsc.html", 
     "display": "standalone",  
     "background_color": "white",   
     "theme_color": "black" 

@@ -1,6 +1,6 @@
 var cacheName = 'hello-pwa'; 
 var filesToCache = [
-'https://ef607bc6cbb9.ngrok.io//mobilerepair/splashsc.html',   
+'../splashsc.html',   
 ];  
 self.addEventListener('install', function(e) { 
 e.waitUntil(
