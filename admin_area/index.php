@@ -250,7 +250,7 @@ include("view_enquiries.html");
 }
 if(isset($_GET['track_enquiries'])){
 
-include("track_enquiries.php");
+include("track.php");
 
 }
 if(isset($_GET['insert_user'])){
