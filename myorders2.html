@@ -576,10 +576,10 @@ a{
             <a class="nav-link js-scroll" href="./index2.html">Home</a>
           </li>
           <li class="nav-item" id="servicenav">
-            <a class="nav-link js-scroll" href="about.html">About Us</a>
+            <a class="nav-link js-scroll" href="aboutus.html">About Us</a>
           </li>
           <li class="nav-item" id="contactnav">
-            <a class="nav-link js-scroll" href="contact.html">Contact</a>
+            <a class="nav-link js-scroll" href="enquiry.html">Enquiry</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll" id="login_button" style="cursor:pointer;" onclick="openLoginModal()">Login</a>
@@ -614,9 +614,9 @@ a{
           <div class="widget-sidebar">
             <a href="./index2.html" class="sidebar-title">Services Home Page</a> <br><br>
             <a href="./eg2.html" class="sidebar-title">Mobile Repair Service</a> <br><br>
-            <a href="./myorders2.html" class="sidebar-title" style="color:#0078ff;">Track Mobile Repair Orders</a> <br><br>
-            <a class="sidebar-title">Mobile Repair Payments</a> <br><br>
-            <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a>
+            <a href="./myorders2.html" class="sidebar-title" style="color:#0078ff;font-weight: bold;text-decoration: underline;">Track Repair Orders</a> <br><br>
+            <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a> <br><br>
+            <a href="./contactus.html" class="sidebar-title">Contact Us from here</a>
           </div>
         </div>
         <div class="col-md-8" id="filterorders">
@@ -2288,7 +2288,8 @@ function groupArrayOfObjects(list, key) {
    
 	  if (ww > 600) {
       console.log("Desktop")
-      $('.google').attr('src','googlesignin3.png')
+      $('.google').attr('src','google.png')
+      $('.google').css('width','25%')
     }
     else{
       console.log("Mobile")
