@@ -95,7 +95,44 @@
         border-top: 2px solid #eee;
         font-weight: bold;
     }
-    
+
+    .btn-group{
+      margin-left: 15%;
+    }
+
+    .btn-group .active{
+      background-color: #0078ff;
+    }
+
+    .btn-group button {
+      background-color: white; /* Green background */
+      border: 1px solid 0078ff; /* Green border */
+      color: black; /* White text */
+      padding: 10px 24px; /* Some padding */
+      cursor: pointer; /* Pointer/hand icon */
+      float: left; /* Float the buttons side by side */
+    }
+
+    /* Clear floats (clearfix hack) */
+    .btn-group:after {
+      content: "";
+      clear: both;
+      display: table;
+      background-color: #0078ff;
+    }
+
+    .btn-group button:not(:last-child) {
+      border-right: none; /* Prevent double borders */
+    }
+
+    /* Add a background color on hover */
+    .btn-group button:hover {
+      background-color: #0077ff96;
+    }
+    .btn-group button:focus {
+      background-color: #0077ff96;
+      font-weight: bold;
+    }
     @media only screen and (max-width: 600px) {
         .invoice-box table tr.top table td {
             width: 100%;
@@ -159,14 +196,14 @@ a{
   background-color: #0078ff;
   color: white;
 }
-.filterbtn{
+/* .filterbtn{
   width:30%;
   height:3vw;
   text-align: center;
   border:2px solid gray;
   background-color: #fff;
   cursor:pointer;
-}
+} */
 @media only screen and (max-width: 600px) {
 
   .botnavbar{
@@ -179,7 +216,10 @@ a{
    {     
        overflow-x: scroll; 
   } 
- 
+  .btn-group{
+      margin-left: 10%;
+      width: 25%;
+    }
 }
 
 .steps .step {
@@ -286,10 +326,10 @@ a{
 .ordercard{
   width: 95%;
 }
-.filterbtn{
+/* .filterbtn{
       width:32%;
       height:15vw;
-  }
+  } */
 }
 
 @media (max-width: 991px) {
@@ -621,16 +661,13 @@ a{
         </div>
         <div class="col-md-8" id="filterorders">
             <div class="row">
-                <div class="active filterbtn"  onclick="filter('active')">
-                    Active Orders
-                </div>
-                <div class="cancel filterbtn"  onclick="filter('cancel')">
-                    Cancelled Orders
-                </div>
-                <div class="history filterbtn"  onclick="filter('history')">
-                    History
-                </div>
-            </div>           <br>
+              <div class="btn-group">
+                <button autofocus onclick="filter('active')" style="width:100;">Active Orders</button>
+                <button onclick="filter('cancel')">Cancelled Orders</button>
+                <button onclick="filter('history')">Order History</button>
+              </div>
+            </div>
+            <br><br>
             <div class="row mycards">
            
 
@@ -969,187 +1006,198 @@ function filter(type)
     },
     success:function(para)
     {
-      console.log(para)
-      $('.mycards').empty();
-      para = $.parseJSON(para)
-      var groupedPeople=groupArrayOfObjects(para,"rid");
-      console.log("After process here is the thing - ")
-      console.log(groupedPeople)
-      flag=0
-      s1 = ""
-      rids = []
-      var size = Object.keys(groupedPeople).length;
-      console.log(size)
-      for(x in groupedPeople)
-                    {
-                      if (groupedPeople.hasOwnProperty(x)) {
-                          console.log(x + " -> " + groupedPeople[x]);
-                          var innersize = Object.keys(groupedPeople[x]).length;
-                          console.log("Inner Size - ",innersize)
-                            for(let j=0;j<innersize;j++)
-                            {
-                                console.log("Maps - ",groupedPeople[x][j].problem)
-                                    if(j==innersize-1)
+      if(para != "")
+      {
+        console.log(para)
+        $('.mycards').empty();
+        para = $.parseJSON(para)
+
+        if(para == "")
+        {
+          var norecords = '<div class="form-comments ordercard" ><center><b>No Records Found</b></center></div>' 
+
+          $('.mycards').append(norecords);
+        }
+
+        var groupedPeople=groupArrayOfObjects(para,"rid");
+        console.log("After process here is the thing - ")
+        console.log(groupedPeople)
+        flag=0
+        s1 = ""
+        rids = []
+        var size = Object.keys(groupedPeople).length;
+        console.log(size)
+        for(x in groupedPeople)
+        {
+          if (groupedPeople.hasOwnProperty(x)) {
+              console.log(x + " -> " + groupedPeople[x]);
+              var innersize = Object.keys(groupedPeople[x]).length;
+              console.log("Inner Size - ",innersize)
+                for(let j=0;j<innersize;j++)
+                {
+                    console.log("Maps - ",groupedPeople[x][j].problem)
+                        if(j==innersize-1)
+                        {
+                              // 0 New Request
+                            // 1 Person Assigned
+                            // 2 Phone picked up
+                            // 3 Phone Dropped to Admin
+                            // 4 New problems added price changed by admin. Give an option to accept new price or go with old one or cancel
+                            // 5 User accepts the old price/new price
+                            // 6 Order Cancel
+                            // 7 Admin has started the repair
+                            // 8 Delivery Person Assigned 
+                            // 9 Completed
+                            var orderid = String(x).padStart(5, '0')
+                            s1+='<div class="form-comments ordercard" ><div class="row"><div class="col-sm-6 " ><b>Order Number : MR'+orderid+'</b> <br><br><div class="scroll" > <table style="width:220%;">'
+                            s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+groupedPeople[x][j].mcname+'</td>'
+                            s1+='<td class="ordhead">Mobile Model</td><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
+                            s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td> '  
+                            s1+='<td class="ordhead"><b>Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</b></td></tr>'
+                            s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td>'
+                            s1+='<td class="ordhead">Delivery(days)</td><td>3</td></tr>'
+
+                            
+                            switch (groupedPeople[x][j].status)
+                              {
+                                case 0:
+                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
+                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
+                                      s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
+                                  break;
+                                case 1:
+                                      // Person Assigned
+                                      delivery_status=2
+                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                      s1+='<td class="ordhead">Total Problems </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr><tr><td class="ordhead">Assigned Person </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></td></tr></table></div></div></div>'
+                                      s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
+                                  break;
+                                case 2:
+                                        // Phone picked up
+                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
+                                      s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
+                                  break;
+                                case 3:
+                                      // Phone Dropped to Admin
+                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div></div>'
+                                      s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
+                                  break;
+                                case 4:
+                                      // New problems added price changed by admin. Give an option to accept new price or go with old one or cancel
+                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
+                                      s1+='<br><br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-success" data-toggle="modal" data-target="#payment" id="'+groupedPeople[x][j].rid+'" onclick="getchgprice(this.id)">Select Final Price</button></td><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
+                                  break;
+                                case 5:
+                                    // User accepts the old price/new price
+                                    if(groupedPeople[x][j].pay_method != "")
                                     {
-                                         // 0 New Request
-                                        // 1 Person Assigned
-                                        // 2 Phone picked up
-                                        // 3 Phone Dropped to Admin
-                                        // 4 New problems added price changed by admin. Give an option to accept new price or go with old one or cancel
-                                        // 5 User accepts the old price/new price
-                                        // 6 Order Cancel
-                                        // 7 Admin has started the repair
-                                        // 8 Delivery Person Assigned 
-                                        // 9 Completed
-                                        var orderid = String(x).padStart(5, '0')
-                                        s1+='<div class="form-comments ordercard" ><div class="row"><div class="col-sm-6 " ><b>Order Number : MR'+orderid+'</b> <br><br><div class="scroll" > <table style="width:220%;">'
-                                        s1+='<tr><td class="ordhead">Mobile Brand</td><td>'+groupedPeople[x][j].mcname+'</td>'
-                                        s1+='<td class="ordhead">Mobile Model</td><td>'+groupedPeople[x][j].mmodel+'</td></tr>'
-                                        s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td> '  
-                                        s1+='<td class="ordhead"><b>Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</b></td></tr>'
-                                        s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td>'
-                                        s1+='<td class="ordhead">Delivery(days)</td><td>3</td></tr>'
-
-                                        
-                                        switch (groupedPeople[x][j].status)
-                                         {
-                                            case 0:
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
-                                                  s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
-                                                  s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
-                                              break;
-                                            case 1:
-                                                  // Person Assigned
-                                                  delivery_status=2
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                  s1+='<td class="ordhead">Total Problems </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr><tr><td class="ordhead">Assigned Person </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></td></tr></table></div></div></div>'
-                                                  s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
-                                              break;
-                                            case 2:
-                                                   // Phone picked up
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                  s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div>'
-                                                  s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
-                                              break;
-                                            case 3:
-                                                  // Phone Dropped to Admin
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                  s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div></div>'
-                                                  s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#problem" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
-                                              break;
-                                            case 4:
-                                                  // New problems added price changed by admin. Give an option to accept new price or go with old one or cancel
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                  s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
-                                                  s1+='<br><br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-success" data-toggle="modal" data-target="#payment" id="'+groupedPeople[x][j].rid+'" onclick="getchgprice(this.id)">Select Final Price</button></td><td><button class="btn btn-danger" onclick="cancelRequest('+groupedPeople[x][j].rid+')">Cancel</button></td></tr></table></div></div>'
-                                              break;
-                                            case 5:
-                                               // User accepts the old price/new price
-                                               if(groupedPeople[x][j].pay_method != "")
-                                               {
-                                                //  if payment method is confirmed
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                  s1+='<td class="ordhead">Total Problems </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
-                                                  s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)" disabled >Payment</button></tr></table></div></div>'
-                                               }
-                                               else
-                                               {
-                                                //  payment method is not confirmed yet
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                  s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
-                                                  s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)">Payment</button></tr></table></div></div>'                                              
-                                               }
-                                              break;
-                                            case 6:
-                                                  //Cancel Request 
-                                                  s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                  s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div></div>'
-                                              break;
-                                            case 7:
-                                                  // Admin has started the repair
-                                                  if(groupedPeople[x][j].pay_method != "")
-                                                  {
-                                                    //  if payment method is confirmed
-                                                    s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                    s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
-                                                    s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)" disabled>Payment</button></tr></table></div></div>'
-                                                  }
-                                                  else
-                                                  {
-                                                    //  payment method is not confirmed yet
-                                                    s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                    s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
-                                                    s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)">Payment</button></tr></table></div></div>'
-                                                  }
-                                                  break;
-                                            case 8:
-                                                  //Delivery Person Assigned 
-                                                  if(groupedPeople[x][j].pay_method != "")
-                                                  {
-                                                    //  if payment method is confirmed
-                                                    delivery_status=1
-                                                    s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a  style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                    s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr><tr><td class="ordhead">Assigned Person </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></td></tr></table></div></div></div>'
-                                                    s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)"  disabled>Payment</button></tr></table></div></div>'
-                                                  }
-                                                  else
-                                                  {
-                                                    //  payment method is not confirmed yet
-                                                    delivery_status=1
-                                                    s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a  style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
-                                                    s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr><tr><td class="ordhead">Assigned Person </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></td></tr></table></div></div></div>'
-                                                    s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)">Payment</button></tr></table></div></div>'
-                                                  }
-                                                break;
-                                            case 9:
-                                             // Order Successfull
-                                                  var today = new Date();
-                                                  var dd = today.getDate();
-                                                  var mm = today.getMonth()+1; 
-                                                  var yyyy = today.getFullYear();
-                                                  if(dd<10) 
-                                                  {
-                                                      dd='0'+dd;
-                                                  } 
-
-                                                  if(mm<10) 
-                                                  {
-                                                      mm='0'+mm;
-                                                  } 
-                                                  today = yyyy+'-'+mm+'-'+dd;
-                                                  var d1 = parseDate(today);
-                                                  if(groupedPeople[x][j].warranty != "" && groupedPeople[x][j].warranty != "nowarr")
-                                                  {
-                                                    console.log(groupedPeople[x][j].warranty)
-                                                    var d2 = parseDate(groupedPeople[x][j].warranty);
-                                                    console.log(d1.getTime()<d2.getTime());
-                                                    if(d1.getTime()<d2.getTime())
-                                                    {
-                                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
-                                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
-                                                      s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" onclick="initiate('+groupedPeople[x][j].rid+')">Reinitiate</button></td></tr></table></div></div>'
-                                                    
-                                                    }
-                                                    else
-                                                    {
-                                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
-                                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
-                                                    
-                                                    }
-                                                  }                                                  
-                                                    
-                                                break;
-                                              }
-                                        s1+='</div></div></div>'
-                                      
-                                        flag=1
+                                    //  if payment method is confirmed
+                                      s1+='<tr><td class="ordhead"><b>Status</b></td><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                      s1+='<td class="ordhead">Total Problems </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
+                                      s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)" disabled >Payment</button></tr></table></div></div>'
                                     }
-                            }                      
-                      }
-                    }
+                                    else
+                                    {
+                                    //  payment method is not confirmed yet
+                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
+                                      s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)">Payment</button></tr></table></div></div>'                                              
+                                    }
+                                  break;
+                                case 6:
+                                      //Cancel Request 
+                                      s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                      s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div></div></div>'
+                                  break;
+                                case 7:
+                                      // Admin has started the repair
+                                      if(groupedPeople[x][j].pay_method != "")
+                                      {
+                                        //  if payment method is confirmed
+                                        s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                        s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
+                                        s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)" disabled>Payment</button></tr></table></div></div>'
+                                      }
+                                      else
+                                      {
+                                        //  payment method is not confirmed yet
+                                        s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                        s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
+                                        s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)">Payment</button></tr></table></div></div>'
+                                      }
+                                      break;
+                                case 8:
+                                      //Delivery Person Assigned 
+                                      if(groupedPeople[x][j].pay_method != "")
+                                      {
+                                        //  if payment method is confirmed
+                                        delivery_status=1
+                                        s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a  style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                        s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr><tr><td class="ordhead">Assigned Person </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></td></tr></table></div></div></div>'
+                                        s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)"  disabled>Payment</button></tr></table></div></div>'
+                                      }
+                                      else
+                                      {
+                                        //  payment method is not confirmed yet
+                                        delivery_status=1
+                                        s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a  style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
+                                        s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr><tr><td class="ordhead">Assigned Person </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></td></tr></table></div></div></div>'
+                                        s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)">Payment</button></tr></table></div></div>'
+                                      }
+                                    break;
+                                case 9:
+                                  // Order Successfull
+                                      var today = new Date();
+                                      var dd = today.getDate();
+                                      var mm = today.getMonth()+1; 
+                                      var yyyy = today.getFullYear();
+                                      if(dd<10) 
+                                      {
+                                          dd='0'+dd;
+                                      } 
+
+                                      if(mm<10) 
+                                      {
+                                          mm='0'+mm;
+                                      } 
+                                      today = yyyy+'-'+mm+'-'+dd;
+                                      var d1 = parseDate(today);
+                                      if(groupedPeople[x][j].warranty != "" && groupedPeople[x][j].warranty != "nowarr")
+                                      {
+                                        console.log(groupedPeople[x][j].warranty)
+                                        var d2 = parseDate(groupedPeople[x][j].warranty);
+                                        console.log(d1.getTime()<d2.getTime());
+                                        if(d1.getTime()<d2.getTime())
+                                        {
+                                          s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
+                                          s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
+                                          s1+='<br><br><div class="row"><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" onclick="initiate('+groupedPeople[x][j].rid+')">Reinitiate</button></td></tr></table></div></div>'
+                                        
+                                        }
+                                        else
+                                        {
+                                          s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td></div></div>'
+                                          s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td><tr></table></div>'
+                                        
+                                        }
+                                      }                                                  
+                                        
+                                    break;
+                                  }
+                            s1+='</div></div></div>'
+                          
+                            flag=1
+                        }
+                }                      
+          }
+        }
                     $(".mycards").append(s1)
       
     }
+  }
   })
 }
 
