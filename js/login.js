@@ -133,12 +133,8 @@ var firebaseConfig = {
                     if(para=='200')
                     {
                       $('#loginModal').modal('hide')
-                      alertdata("Successfully Registered","Login Status")
-                      $('#alert').modal({backdrop: 'static', keyboard: false})
-                      $('#alert').modal('show')
-                      $("#modalclose").click(function() {
-                        window.location.reload()
-                      });
+                      console.log("Successfully Registered")
+                      window.location.reload()
                     }
                     else
                     {
@@ -205,12 +201,8 @@ function signout()
                 console.log(para)
                 if(para=='200')
                 {
-                  alertdata("Successfully Logged Out","Login Status")
-                  $('#alert').modal({backdrop: 'static', keyboard: false})
-                  $('#alert').modal('show')
-                  $("#modalclose").click(function() {
-                    window.location.reload()
-                  });
+                  console.log("Successfully Logged Out")
+                  window.location.reload()
                 }
                 else
                 {
@@ -237,13 +229,8 @@ function signout()
                 console.log(para)
                 if(para=='200')
                 {
-                  alertdata("Successfully Logged Out","Login Status")
-                  $('#alert').modal({backdrop: 'static', keyboard: false})
-                  $('#alert').modal('show')
-                  $("#modalclose").click(function() {
-                    $("#username").hide()
-                    window.location.reload()
-                  });
+                  console.log("Successfully Logged Out")
+                  window.location.reload()
                 }
                 else
                 {
@@ -349,12 +336,8 @@ function registerAjax()
                     if(para=='200')
                     {
                       $('#loginModal').modal('hide')
-                      alertdata("Registered Successfully","Registration Status")
-                      $('#alert').modal({backdrop: 'static', keyboard: false})
-                      $('#alert').modal('show')
-                      $("#modalclose").click(function() {
-                        window.location.replace("./index2.html");   
-                      });
+                      console.log("Registered Successfully")
+                      window.location.replace("./index2.html");   
                     }
                     else
                     {
@@ -503,14 +486,9 @@ function loginAjax(){
         
         if(para=="200")
         {
-            $('#loginModal').modal('hide')
-            alertdata("Successfully Loggedin","Login Status")
-            $('#alert').modal({backdrop: 'static', keyboard: false})
-            $('#alert').modal('show')
-            $("#modalclose").click(function() {
-                $("#login_button").hide()
-                window.location.reload()
-            });
+            console.log("Successfully Loggedin")
+            $("#login_button").hide()
+            window.location.reload()
         }
         else
         {
