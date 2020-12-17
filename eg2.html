@@ -504,16 +504,16 @@ option{
                 <div class="col-md-6 mb-3">
                     <div class="dropdown" id="mobile_details">
                       <b>Select Mobile Company</b> <br>
-                      <select id="editable-select" required>
-                  
+                      <select class="form-control mcomp" required>
+                      
                       </select>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="dropdown" id="es2div">
                     <b>Select Mobile Model</b> <br>
-                    <select id="editable-select2" required>
-                     
+                    <select class="form-control mmod" required>
+                      
                     </select>
                   </div>
               </div>
@@ -1566,6 +1566,42 @@ function getvalue(id)
         }
       })
 
+      $("select.mcomp").change(function(){
+        var selectedComp = $(this).children("option:selected").val();
+        alert(selectedComp)
+        $.ajax(
+            {
+              url: "./api/getMobileModel.php", 
+              method:"POST",
+              data:{'id':selectedComp},
+              success: function(para)
+              {
+                s1 = ""
+                console.log(para)
+                para = JSON.parse(para)
+                s1 += '<option selected disabled>Choose Model</option>'
+                for(i=0;i<para.length;i++)
+                {
+                  console.log("Model - ",para[i][1])
+                  console.log("Model - ",para[i][1])
+                  s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
+
+                }
+              
+                if($(".mmod").html(s1))
+                {
+                  $("#es2div").show()
+                }
+                else
+                {
+                  alert('hjell')
+                }
+              
+              }
+           });
+
+        });
+    });
      
       $.ajax(
       {
@@ -1576,52 +1612,12 @@ function getvalue(id)
           console.log(para)
           s1 = ""
           para = JSON.parse(para)
+          s1 += '<option selected disabled>Choose Company</option>'
           for(i=0;i<para.length;i++)
           {
-            
             s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
-
           }
-          $("#editable-select").html(s1)
-          $('#editable-select').editableSelect()
-          .on('select.editable-select', function (e, li) {
-          $("#es2div").show()
-            window.mcname = li.val();
-            $.ajax(
-            {
-              url: "./api/getMobileModel.php", 
-              method:"POST",
-              data:{'id':li.val()},
-              success: function(para)
-              {
-                s1 = ""
-                console.log(para)
-                para = JSON.parse(para)
-                for(i=0;i<para.length;i++)
-                {
-                  console.log("Model - ",para[i][1])
-                  console.log("Model - ",para[i][1])
-                  s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
-
-                }
-              
-                if($("#editable-select2").html(s1))
-                {
-                  console.log("Aftre - ",s1)
-                }
-                else
-                {
-                  console.log("Aftre false - ",s1)
-
-                }
-                $('#editable-select2').editableSelect().on('select.editable-select', function (e, li) {
-                    window.mmodel = li.val()
-                })
-              }
-           });
-
-        });
-         
+          $(".mcomp").html(s1)
         }
 
       });
@@ -1645,10 +1641,8 @@ function getvalue(id)
            });
       // 
 
-    })
-    $('#editable-select').on('select.editable-select', function (e, li) {
-      
-    })
+  
+
 
 
     // get pincodes from cities
@@ -1758,7 +1752,7 @@ function getquote(){
         method:"POST",
         data:{
                 'sid':sid,
-                'mmodel':window.mmodel,
+                'mmodel':$(".mmod").val(),
                 'problems':problem
             },
         success: function(para)
@@ -1789,7 +1783,7 @@ $("#requestquotation").click(function(){
             data:{
                     'sid':sid,
                     'pincode':$("#pincode").val(),
-                    'mmodel':window.mmodel,
+                    'mmodel':$(".mmod").val(),
                     'problems':problem,
                     'estprice':window.estprice,
                     'phonenum':$("#phonenum").val(),
