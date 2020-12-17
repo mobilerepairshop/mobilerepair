@@ -333,7 +333,7 @@ if(isset($_GET['edit_pincode'])){
 
 if(isset($_GET['view_customers'])){
 
-    include("view_customers.php");
+    include("customers.html");
         
 }
 if(isset($_GET['cancel'])){
