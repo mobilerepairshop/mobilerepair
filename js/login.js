@@ -639,11 +639,12 @@ $.ajax({
           if(para=='400')
           {
             window.userexist = 1
-            alertdata("Please Choose Different Email/Mobile Number","Registration Status")
+            alertdata("You Already Have an Account. Please Login Directly","Registration Status")
             $('#alert').modal({backdrop: 'static', keyboard: false})
             $('#alert').modal('show')
             $("#modalclose").click(function() {
                 $("#emailreg").val("")
+                openLoginModal()
             });
           }
           else

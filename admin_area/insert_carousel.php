@@ -60,7 +60,7 @@
 <h3 class="panel-title" >
 
 <i class="fa fa-money fa-fw" ></i> Insert Carousel Image
-
+<a href="./index.php?cancel" style="float:right;color:blue;">  <i class="fa fa-times" aria-hidden="true"></i></a>
 </h3>
 
 

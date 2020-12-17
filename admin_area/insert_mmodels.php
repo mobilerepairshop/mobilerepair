@@ -46,6 +46,7 @@
 
 <i class="fa fa-money fa-fw" ></i> Insert Mobile Models
 
+<a href="./index.php?cancel" style="float:right;color:blue;">  <i class="fa fa-times" aria-hidden="true"></i></a>
 </h3>
 
 

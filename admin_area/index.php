@@ -336,6 +336,11 @@ if(isset($_GET['view_customers'])){
     include("view_customers.php");
         
 }
+if(isset($_GET['cancel'])){
+
+    include("dashboard.php");
+        
+    }
 
 ?>
 

@@ -80,7 +80,7 @@ a{
 </head>
 
 <body id="page-top">
-
+  
 <!-- loginmodals & alertmodal will append here from login.html -->
 
 <div id="loginmodals"></div>
@@ -111,13 +111,13 @@ a{
             <a class="nav-link js-scroll " href="./index2.html">Home</a>
           </li>
           <li class="nav-item" id="servicenav">
-            <a class="nav-link js-scroll active" href="about.html">About Us</a>
+            <a class="nav-link js-scroll" href="aboutus.html">About Us</a>
           </li>
           <li class="nav-item" id="contactnav">
-            <a class="nav-link js-scroll" href="contact.html">Contact</a>
+            <a class="nav-link js-scroll" style="font-weight: bold;text-decoration: underline;" href="enquiry.html">Enquiry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" id="login_button" style="cursor:pointer;" onclick="openLoginModal()">Login</a>
+            <a class="nav-link js-scroll" id="login_button"style="cursor:pointer;" onclick="openLoginModal()">Login</a>
           </li>
           <li>
             
@@ -151,83 +151,53 @@ a{
           <div class="widget-sidebar">
             <a href="./index2.html" class="sidebar-title">Services Home Page</a> <br><br>
             <a href="./eg2.html" class="sidebar-title">Mobile Repair Service</a> <br><br>
-            <a href="./myorders2.html" class="sidebar-title">Track Mobile Repair Orders</a> <br><br>
-            <a class="sidebar-title">Mobile Repair Payments</a> <br><br>
-            <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a>
+            <a href="./myorders2.html" class="sidebar-title">Track Repair Orders</a> <br><br>
+            <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a> <br><br>
+            <a href="./contactus.html" class="sidebar-title">Contact Us from here</a>
           </div>
         </div>
-           <!--  -->
-           <div class="col-md-8" id="aboutusdetails">
-            <div class="post-box">
-              <table class="table-responsive">
-                <tr>
-                  <td>
-                    <div class="article-content">
-                      <blockquote class="blockquote">
-                        <p class="mb-0">Admin Name </p>
-                      </blockquote>
+        <div class="col-md-8">
+          <div class="title-box-2">
+            <h5 class="title-left">
+              Send Us Message
+            </h5>
+          </div>
+          <div>
+              <form class="contactForm">
+              <div id="sendmessage">Your message has been sent. Thank you!</div>
+              <div id="errormessage"></div>
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="customer_name" placeholder="Your Name"/>
+                    <div class="validation"></div>
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="email" id="customer_email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                    <div class="validation"></div>
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                      <input type="number" class="form-control" id="customer_phone" placeholder="Contact Number" />
+                      <div class="validation"></div>
                     </div>
-                  </td>
-                  <td>
-                    <div class="article-content">
-                      <blockquote>
-                        <b style="font-size: 120%;" id="admin_name"></b>
-                      </blockquote>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="article-content">
-                      <blockquote class="blockquote">
-                        <p class="mb-0">Admin Address </p>
-                      </blockquote>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="article-content">
-                      <blockquote >
-                        <b style="font-size: 120%;" id="admin_address"></b>
-                      </blockquote>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="article-content">
-                      <blockquote class="blockquote">
-                        <p class="mb-0">Admin Contact </p>
-                      </blockquote>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="article-content">
-                      <blockquote >
-                        <b style="font-size: 120%;" id="admin_contact">+91 </b>
-                      </blockquote>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="article-content">
-                      <blockquote class="blockquote">
-                        <p class="mb-0">Admin Email </p>
-                      </blockquote>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="article-content">
-                      <blockquote >
-                        <b style="font-size: 120%;" id="admin_email"></b>
-                      </blockquote>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-              
-            </div>
-           <!--  -->
+                </div>
+                <div class="col-md-12 mb-3">
+                  <div class="form-group">
+                    <textarea class="form-control" name="message" id="customer_subject" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                    <div class="validation"></div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="button button-a button-big button-rouded" onclick="submitForm()">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -307,7 +277,6 @@ a{
 
   <a href="#carouselExampleIndicators" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
-
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>
@@ -344,21 +313,37 @@ a{
 
 <script>
 
-$(document).ready(function()
-{
-  $.ajax({
-    url:'./api/getaboutus.php',
-    type:'POST',
-    success:function(para)
-    {
-      para = JSON.parse(para)
-      $("#admin_name").append(para[0])
-      $("#admin_address").append(para[1])
-      $("#admin_contact").append(para[2])
-      $("#admin_email").append(para[3])
-    }
-})
-})
+
+
+
+function submitForm(){
+	 $.ajax({
+		type: "POST",
+		url: "api/savecontact.php",
+		cache:false,
+    data: {
+      "name" : $("#customer_name").val(),
+      "email" : $("#customer_email").val(),
+      "subject" : $("#customer_subject").val(),
+      "phone" : $("#customer_phone").val()
+    },
+		success: function(response){
+			if(response){
+        alertdata(response,"")
+        $('#alert').modal({backdrop: 'static', keyboard: false})
+        $('#alert').modal('show')
+        $("#modalclose").click(function() {
+          window.location.reload();   
+        });
+			  }
+	
+		},
+		error: function(){
+      alertdata("Error Occured");
+      $('#alert').modal('show')
+		}
+	});
+}
 
 </script>
 </body>
