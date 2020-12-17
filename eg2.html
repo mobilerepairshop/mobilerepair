@@ -383,7 +383,7 @@ option{
                    <div class="form">
                     <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
                       <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username" required>
-                      <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required>
+                      <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required onchange="checkusername()">
                       <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password" required>
                       <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required>
                       <p id="errornote" style="display:none;"></p>
@@ -1167,33 +1167,35 @@ function showLoginForm(){
      $('.error').removeClass('alert alert-danger').html(''); 
 }
 window.userexist = 0
-$('#emailreg').change(function (){
-  $.ajax({
-    url:'./api/checkusername.php',
-    type:'POST',
-    data:{
-      'userid':$('#emailreg').val()
-    },
-    success:function(para)
-    {
-        if(para=='400')
-        {
-          window.userexist = 1
-          alertdata("Please Choose Different Email/Mobile Number","Registration Status")
-          $('#alert').modal({backdrop: 'static', keyboard: false})
-          $('#alert').modal('show')
-          $("#modalclose").click(function() {
-              $("#emailreg").val("")
-          });
-        }
-        else
-        {
-          window.userexist = 0
-        }
-    }
-})
-})
-
+function checkusername (){
+    $.ajax({
+      url:'./api/checkusername.php',
+      type:'POST',
+      data:{
+        'userid':$('#emailreg').val()
+      },
+      success:function(para)
+      {
+          if(para=='400')
+          {
+            window.userexist = 1
+            $('#loginModal').modal('hide');    
+            alertdata("You Already Have an Account. Please Login Directly","Registration Status")
+            $('#alert').modal({backdrop: 'static', keyboard: false})
+            $('#alert').modal('show')
+            $("#modalclose").click(function() {
+                $("#emailreg").val("")
+                openLoginModal()
+            });
+          }
+          else
+          {
+            window.userexist = 0
+          }
+      }
+  })
+  }
+  
 function registerAjax()
 {
   if(window.userexist == 0)
