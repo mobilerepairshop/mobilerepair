@@ -497,11 +497,11 @@ option{
           <div class="form-comments">
             <div class="title-box-2">
               <h3 class="title-left" id="divtitle">
-                Check Service Availability
+                Register a Request
               </h3>
             </div>
             <div class="form-mf">
-              <div class="row">
+              <div class="row deviceinfo">
                 <div class="col-md-8" id="selectcity">
                   <div class="dropdown">
                     <select name="city" id="city" class="browser-default custom-select custom-select-lg mb-3 selectcity">
@@ -541,36 +541,44 @@ option{
                 </div>
                 <div class="col-md-12 mb-6 checkpincode">
                     <div class="form-group">
-                      <input type="button" class="button button-a browser-default custom-select-lg checkavailability" id="proceedtoproblems" value="Proceed Next">
+                      <input type="button" class="button button-a browser-default custom-select-lg checkavailability" id="proceedtoproblems" value="Proceed Next" onclick="proceedtoproblems()">
                     </div>
                 </div>
-                <div class="col-md-12 mb-6" id="proceednext">
-                    <div class="form-group">
-                      <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Go Back" onclick="gobacktodevice()">
-                    </div>
-                </div>
-              <br><br><br><br>
-              
+              </div>
               <div class="row problem" id="problemdiv">
                 
               </div>
-              <div class="col-md-8" id="contact_details">
+              <div class="col-md-12 mb-6" id="problemdiv1">
                 <div class="form-group">
-                  <b>Enter Mobile Number</b>
-                  <input type="text" class="browser-default form-control custom-select-lg mb-3" id="phonenum" placeholder="Mobile Number *" required>
-                </div>
-                <div class="form-group">
-                  <b>Enter Address</b>
-                  <input type="text" class="browser-default form-control custom-select-lg mb-3" id="address" placeholder="Address *" required>
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Proceed Next" id="proceedtocontactinfo" onclick="proceedtocontactinfo()">
                 </div>
               </div>
-                <div class="col-md-12" id="quotebuttons">
-                  <br><button id="getqoute" class="button button-a button-small" data-toggle="modal" data-target="#quotation" onclick="getquote()">Get Quotation</button>
-                  <button id="getqoute" class="button button-a button-small" onclick="gobacktopincode()">Back to City</button>
-                  <p class="pricing"></p>
-                  <br><button id="requestquotation" class="button button-a button-small">Take Service</button>
-                
+              <div class="col-md-12 mb-6" id="problemdiv2">
+                <div class="form-group">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Go Back" onclick="backtodeviceinfo()">
                 </div>
+              </div>
+              <div class="col-md-8" id="contact_details">
+                <div class="form-group">
+                  <textarea class="browser-default form-control custom-select-lg mb-3 selectpincode" id="exampleFormControlTextarea1" rows="3" placeholder="Address *"></textarea>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" id="address" placeholder="Landmark" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" id="phonenum" placeholder="Mobile Number *" required>
+                </div>
+              </div>
+              <div class="col-md-12 mb-6" id="contact_details1">
+                <div class="form-group">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Submit Request" onclick="gobacktodevice()">
+                </div>
+              </div>
+              <div class="col-md-12 mb-6" id="contact_details2">
+                <div class="form-group">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Go Back" onclick="gobacktodevice()">
+                </div>
+              </div>
               </div>
             </div>
           </div>
@@ -650,6 +658,31 @@ option{
 
  <script>
 
+function proceedtoproblems()
+{
+  $(".deviceinfo").fadeOut()
+  $("#problemdiv").fadeIn()
+  $("#problemdiv1").fadeIn()
+  $("#problemdiv2").fadeIn()
+}
+
+function backtodeviceinfo()
+{
+  $("#problemdiv").fadeOut()
+  $("#problemdiv1").fadeOut()
+  $("#problemdiv2").fadeOut()
+  $(".deviceinfo").fadeIn()
+}
+
+function proceedtocontactinfo()
+{
+  $("#problemdiv").fadeOut()
+  $("#problemdiv1").fadeOut()
+  $("#problemdiv2").fadeOut()
+  $("#contact_details").fadeIn()
+  $("#contact_details1").fadeIn()
+  $("#contact_details1").fadeIn()
+}
 function editprofile(id)
 {
   $.ajax({
@@ -1484,10 +1517,14 @@ function getvalue(id)
         // $("#otherproblemlist").hide()
         // $("#ownproblemlist").hide()
         // $("#es2div").hide()
-        // $("#contact_details").hide()
+        $("#contact_details").hide()
+        $("#contact_details1").hide()
+        $("#contact_details2").hide()
         // // $("#pincode").hide() 
         // $("#mobile_details").hide()
-        // $("#problemdiv").hide()
+        $("#problemdiv").hide()
+        $("#problemdiv1").hide()
+        $("#problemdiv2").hide()
         // $("#quotebuttons").hide()
       }
       else
