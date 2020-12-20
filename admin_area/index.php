@@ -316,7 +316,7 @@ if(isset($_GET['insert_pincode'])){
 
 if(isset($_GET['view_pincode'])){
 
-    include("view_pincode.php");
+    include("pincode.html");
         
 }
 

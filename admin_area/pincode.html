@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link href="//cdn.syncfusion.com/17.1.0.38/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
+    <link href="//cdn.syncfusion.com/17.1.0.38/js/web/responsive-css/ej.responsive.css" rel="stylesheet" />
+
+
+    <!-- <script src="js/jquery.min.js" rel="stylesheet"></script> -->
+    <script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+    <script type="text/javascript" src="//cdn.syncfusion.com/17.1.0.38/js/web/ej.web.all.min.js"></script>
+  
+</head>
+<body>
+  
+
+
+
+
+<div class="row" ><!-- 1 row Starts -->
+
+  <div class="col-lg-12" ><!-- col-lg-12 Starts -->
+  
+  <ol class="breadcrumb" ><!-- breadcrumb Starts -->
+  
+  <li class="active" >
+  
+  <i class="fa fa-dashboard" ></i> Dashboard / Active Enquiries / View Enquiries
+  </li>
+  
+  </ol><!-- breadcrumb Ends -->
+  
+  
+  </div><!-- col-lg-12 Ends -->
+  
+  </div><!-- 1 row Ends -->
+  
+  
+  <div class="row" ><!-- 2 row Starts -->
+  
+  <div class="col-lg-12" ><!-- col-lg-12 Starts -->
+  
+  <div class="panel panel-default" ><!-- panel panel-default Starts -->
+  
+  <div class="panel-heading" ><!-- panel-heading Starts -->
+  
+  <h3 class="panel-title" ><!-- panel-title Starts -->
+  
+  <i class="fa fa-money fa-fw" ></i> View Enquiries
+  
+  <a href="./index.php?view_enquiries" style="float:right;color:blue;"> <i class="fa fa-refresh" ></i></a>&nbsp;&nbsp;&nbsp;
+  <a href="./index.php?cancel" style="float:right;color:blue;">  <i class="fa fa-times" aria-hidden="true"></i></a>
+  
+  </h3><!-- panel-title Ends -->
+  
+  
+  </div><!-- panel-heading Ends -->
+  
+<br>
+   <button id="btn1" onclick="Clear()">
+    Click here to Clear Filter
+  </button>
+<br><br>
+    <div id="Grid"></div>
+    <script type="text/javascript">
+      var Data = [];
+        $(function () {
+                $.ajax({
+                url:"api/get_pincode.php",
+                  type:"POST",
+                  success:function(para1){
+                    para1 = JSON.parse(para1)
+                    for(let i=0;i<para1.length;i++)
+                    {
+                        Data.push({
+                        id:para1[i][0],
+                        pincode:para1[i][2],
+                        city:para1[i][3],
+                        delete:'<a href="./index.php?delete_pincode="'+para1[i][1]+'">Delete</a>',
+                        edit:'<a href="./index.php?edit_pincode="'+para1[i][1]+'">Edit</a>'
+                     
+                      
+
+                  });
+                       
+
+                  }
+                    
+                
+                  $("#Grid").ejGrid({
+                dataSource: Data,
+                allowPaging: true,
+                allowFiltering: true,
+                allowScrolling:true,
+                enableHeaderHover: true,
+                filterSettings: { filterType: "excel" },
+                columns: [
+                { field: "id", isPrimaryKey: true, headerText: "ID", width: 110 },
+                         { field: "pincode", headerText: "Pincode", width: 160 },
+                         { field: "city", headerText: "City", width: 160 },
+                         { field: "edit", headerText: "Action", width: 110 },
+                         { field: "delete", headerText: "Action", width: 230 }
+                        
+                ]
+            });
+               
+              }
+            })
+
+
+          });        
+      
+      function Filter(){
+                var gridObj = $("#Grid").ejGrid("instance");
+                    gridObj.filterColumn([
+                        { field: "orderid", operator: "contains", value: 'S', predicate: "and", matchcase: false },
+                        { field: "orderid", operator: "contains", value: 'A', predicate: "and", matchcase: false },
+                    ])
+      }
+      function Clear(){
+                var gridObj = $("#Grid").ejGrid("instance");
+                    gridObj.clearFiltering();
+      }
+
+      function modaldata(rid)
+    {
+          $.ajax({
+            url:"api/getdeliveryboys.php",
+            type:"POST",
+            data:{"rid":rid},
+            success:function(para)
+            {
+              if(para != "")
+              {
+                para = JSON.parse(para)
+                var str = ""
+                for(let i=0;i<para.length;i++)
+                {
+                  str += "<option value='"+para[i][0]+"'>"+para[i][1]+"</option>";
+                }  
+                $("#boy_name").append(str)
+              }            
+            }
+        })
+        $("#exampleModalLabel").empty()
+        $("#exampleModalLabel").append("Assign Delivery boy for Request No: "+rid)
+        $('[name="quotes"]').attr("id",rid)
+    }
+
+    function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+    
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null;
+}
+
+    function getproblems(rid)
+    {
+      var sid = getCookie("sid");
+      $(".problems").html("Problems For Request ID : MR"+String(rid).padStart(5, '0'))
+        
+        $.ajax({
+            url:'./api/getproblemsforadmin.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+
+               for(let i=0;i<para.length;i++)
+               {
+                    console.log(para[i].problem)
+                    
+                    s2+='<tr><td class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
+                    $('.problem-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
+
+    function updateModal(rid)
+    {
+        $.ajax({
+        url:"api/assigndeliveryboy.php",
+        type:"POST",
+        data:{"rid":rid , "boy_date":$("#boy_date").val() ,"boy_name":$("#boy_name").val() , "boy_time":$("#boy_time").val()},
+        success:function(para)
+        {
+            if(para=='success')
+            {
+                alert("Assigned")
+                window.setTimeout(function(){location.reload()},1000)
+            }else{
+              alert("Not Assigned")
+                window.setTimeout(function(){location.reload()},1000)
+            }
+            
+        }
+    })
+    }
+    </script>
+</body>
+</html>

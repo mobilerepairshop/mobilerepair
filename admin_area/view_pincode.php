@@ -122,9 +122,7 @@ $ctr += 1;
 
 <?php } ?>
 
-
 </tbody>
-
 
 </table><!-- table table-bordered table-hover table-striped Ends -->
 
@@ -137,8 +135,5 @@ $ctr += 1;
 </div><!-- col-lg-12 Ends -->
 
 </div><!-- 2 row Ends -->
-
-
-
 
 <?php } ?>
