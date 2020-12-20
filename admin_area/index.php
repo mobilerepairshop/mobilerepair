@@ -119,7 +119,7 @@ include("insert_mcompanies.php");
 
 if(isset($_GET['view_mmodels'])){
 
-include("view_mmodels.php");
+include("mmodel.html");
 
 }
 
@@ -316,7 +316,7 @@ if(isset($_GET['insert_pincode'])){
 
 if(isset($_GET['view_pincode'])){
 
-    include("view_pincode.php");
+    include("pincode.html");
         
 }
 
@@ -333,7 +333,7 @@ if(isset($_GET['edit_pincode'])){
 
 if(isset($_GET['view_customers'])){
 
-    include("view_customers.php");
+    include("customers.html");
         
 }
 if(isset($_GET['cancel'])){

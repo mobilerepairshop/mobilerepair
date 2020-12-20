@@ -21,7 +21,7 @@
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   
-  <link href="jquery-editable-select/dist/jquery-editable-select.min.css" rel="stylesheet">
+  <!-- <link href="jquery-editable-select/dist/jquery-editable-select.min.css" rel="stylesheet"> -->
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
   <link href="./public/css/forms.css" rel="stylesheet">
@@ -41,7 +41,11 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
   <style>
-
+.addborder{
+  border: 2px solid black; 
+  border-radius: 4px;
+  font-weight: bold;
+}
 a{
   cursor: pointer;
 }
@@ -85,6 +89,19 @@ option{
   color: white;
 }
 
+.selectcity{
+  margin-left: 26%;
+}
+
+.selectpincode{
+  margin-left: 26%;
+}
+
+.checkavailability{
+  width:66%;
+  font-weight: bold;
+  margin-top:2%;
+}
 @media only screen and (max-width: 600px) {
 
   .botnavbar{
@@ -116,6 +133,19 @@ option{
 {
   display: none;
 }
+  .selectcity{
+    margin-left: 3%;
+  }
+  .selectpincode{
+    margin-left: 3%;
+  }
+  .checkavailability{
+    width:100%;
+    font-weight: bold;
+    margin-top:2%;
+    margin-left: 2%;
+  }
+
 }
     .containercheck {
   display: block;
@@ -221,145 +251,33 @@ option{
 .my-float2{
 	margin-top:16px;
 }
-.float3{
-	position:fixed;
-	width:50px;
-	height:50px;
-	background-color:#25d366;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-  font-size:30px;
-	box-shadow: 2px 2px 3px #999;
-  z-index:100;
-}
 
-.my-float3{
-	margin-top:11px;
+.form-comments{
+  text-align: center;
+  align-items: center;
 }
-.float4{
-	position:fixed;
-	width:50px;
-	height:50px;
-  top:3%;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-  font-size:30px;
-	box-shadow: 2px 2px 3px #999;
-  z-index:100;
-}
-
-.my-float4{
-	margin-top:11px;
+.problem{
+  text-align: left;
+  align-items: left;
 }
 
   </style>
 </head>
 
 <body>
-
-<!-- verify user-delivery Modal -->
-<div class="modal fade" id="verifyuserdelivery">
-  <div class="modal-dialog modal-dialog-centered modal-lg" >
-  <div class="modal-content">
-  <div class="modal-header">
-  <h4 class="modal-title">Please Enter OTP sent on Customer's Mobile</h4>
-  <button type="button" class="close" data-dismiss="modal">&times;</button>
-  </div>
-  <div class="modal-body">
-    <div class="box">
-      <div class="content">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-2">
-                <b><span>OTP</span></b>
-              </div>
-              <div class="col-md-10">
-                <input id="verificationotp" class="form-control" type="text" placeholder="OTP">
-              </div>            
-          </div>
-          </div>
-      </div>
-  </div>
-  </div>
-  <div class="modal-footer">
-  <button type="button" class="btn btn-success" onclick="verifyuserdelivery()">Verify</button>
-  </div></div></div></div>
-  
-  <!-- end verify user-delivery Modal -->
-
-
-<!-- editprofile Modal -->
-<div class="modal fade" id="editprofile">
-  <div class="modal-dialog modal-dialog-centered modal-lg" >
-  <div class="modal-content">
-  <div class="modal-header">
-  <h4 class="modal-title" id="edit_title"></h4>
-  <button type="button" class="close" data-dismiss="modal">&times;</button>
-  </div>
-  <div class="modal-body">
-    <div class="box">
-      <div class="content registerBox">
-       <div class="form">
-          <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-2">
-                <b><span>Full Name</span></b>
-              </div>
-              <div class="col-md-10">
-                <input id="user_fullname" class="form-control" type="text" placeholder="Full Name" name="username" required>
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-md-2">
-                <b><span>Mobile Number</span></b>
-              </div>
-              <div class="col-md-10">
-                <input id="user_mobile" class="form-control" type="number" placeholder="Mobile Number" required>
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-md-2">
-                <b><span>Address</span></b>
-              </div>
-              <div class="col-md-10">
-                <input id="user_address" class="form-control" type="text" placeholder="Address" required>
-              </div>
-            </div>
-          </div><br>
-          <p id="errornote" style="display:none;"></p>
-          </form>
-          </div>
-      </div>
-  </div>
-  </div>
-  <div class="modal-footer">
-  <button type="button" class="btn btn-success" name="updateprofile" id="" onclick="updateprofile(this.id)">Update</button>
-  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-  </div></div></div></div>
-  
-  <!-- editprofile Modal -->
-  
-      
-<!-- Alert Modal -->
-<div class="modal fade" id="alert">
-  <div class="modal-dialog modal-dialog-centered modal-lg" >
-  <div class="modal-content">
-  <div class="modal-header">
-  <h4 class="modal-title" id="alerttitle">High Level Quotation</h4>
-  </div>
-  <div class="modal-body">
-      <b id="alertcontent"></b> 
-  </div>
-  <div class="modal-footer">
-  <button type="button" class="btn btn-danger" data-dismiss="modal" id="modalclose">Close</button>
-  </div></div></div></div>
-  
-  <!-- Alert Modal -->
-  
     
+<!-- loginmodals & alertmodal will append here from login.html -->
+
+<div id="loginmodals"></div>
+
+<!-- loginmodals will append here from login.html -->  
+
+<!-- delivery_personmodals & alertmodal will append here from login.html -->
+
+<div id="delivery_personmodals"></div>
+
+<!-- delivery_personmodals will append here from login.html --> 
+
 <!-- Quotation Modal -->
 <div class="modal fade" id="quotation">
   <div class="modal-dialog modal-dialog-centered modal-lg" >
@@ -382,7 +300,7 @@ option{
   <!--/ Nav Star /-->
   <nav class="navbar navbar-b navbar-reduce navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll" href="#page-top">Mobile Repair Service</a>
+      <a class="navbar-brand js-scroll" href="#page-top">Device Repair Service</a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
         aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
@@ -398,7 +316,7 @@ option{
             <a class="nav-link js-scroll" href="aboutus.html">About Us</a>
           </li>
           <li class="nav-item" id="contactnav">
-            <a class="nav-link js-scroll" href="enquiry.html">Enquiry</a>
+            <a class="nav-link js-scroll" href="contactus.html">Contact Us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll" id="login_button" style="cursor:pointer;" onclick="openLoginModal()">Login</a>
@@ -427,122 +345,6 @@ option{
   <!--/ Nav End /-->
 
 
-
-<!-- Login Modal -->
-<div class="modal fade login" id="loginModal">
-  <div class="modal-dialog login animated">
-      <div class="modal-content">
-         <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-                <h4 class="modal-title">Login with</h4>
-            </div>
-            <div class="modal-body">
-                <div class="box">
-                     <div class="content">
-                        <div class="social">
-                            <!-- <a class="circle github" href="#">
-                                <i class="fa fa-github fa-fw"></i>
-                            </a> -->
-          
-                            <div class="container">
-                              <div class="row">
-                                <div class="col-sm">
-                                  <div onclick="googleSignin()" ><img class="google" src="google.png" style="cursor:pointer;"></img></div>
-                                </div>
-                                <!-- <div class="col-sm">
-                                  <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
-                                </div> -->
-                              </div>
-                            </div>
-                            <!-- <a id="facebook_login" class="circle facebook" href="#">
-                                <i class="fa fa-facebook fa-fw"></i>
-                            </a> -->
-                        </div>
-                        <div class="division">
-                            <div class="line l"></div>
-                              <span>or</span>
-                            <div class="line r"></div>
-                        </div>
-                        <div class="error"></div>
-                        <div class="form loginBox">
-                            <form method="" action="" accept-charset="UTF-8">
-                            <input id="emaillog" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
-                            <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
-                            <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
-                            </form>
-                        </div>
-                     </div>
-                </div>
-                <div class="box">
-                  <div class="content registerBox" style="display:none;">
-                   <div class="form">
-                    <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                      <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username" required>
-                      <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required onchange="checkusername()">
-                      <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password" required>
-                      <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required>
-                      <p id="errornote" style="display:none;"></p>
-                      <br><input type="checkbox" id="termsconditions" required> By signing up, you agree to our <a href="#" style="color: #0078ff;">Terms of Use</a> and <a href="#" style="color: #0078ff;">Privacy Policy</a>  <br><br>
-                      <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="registerAjax()">
-                      </form>
-                      </div>
-                  </div>
-              </div>
-              <div class="box">
-                <div class="content resetBox" style="display:none;">
-                 <div class="form">
-                    <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                    <input id="userreset" class="form-control" type="text" placeholder="Email/Mobile Number" name="userreset"><br>
-                    <input class="btn btn-default btn-register" id="otp" type="button" value="Send OTP" name="commit" onclick="resetAjax()">
-                    </form>
-                 </div>
-                </div>
-              </div>
-          </div>
-          <div class="box">
-            <div class="content otpBox" style="display:none;">
-             <div class="form">
-                <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                  <p id="successsnote" style="display:none;"></p>
-                <input id="enterotp" class="form-control" type="text" placeholder="Enter OTP" name="userreset">
-                <input class="btn btn-default btn-register" id="otpc" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
-                </form>
-                </div>
-            </div>
-        </div> 
-        <div class="box">
-          <div class="content otppassword" style="display:none;">
-           <div class="form">
-              <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                      <input id="user" class="form-control" type="text" placeholder="Email/Mobile Number" name="user">
-                      <input id="passwordotp" class="form-control" type="password" placeholder="Password" name="passwordotp">
-                      <input id="password_confirmationotp" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmationotp">
-                      <p id="errnote" style="display:none;"></p>
-                      <input class="btn btn-default btn-register" type="button" value="Confirm Password" name="commit" onclick="resetpassword()">
-              </form>
-              </div>
-          </div>
-        </div>
-            <div class="modal-footer">
-              <div class="forgot login-footer">
-                <span>Don't have an account?
-                  <b><a href="javascript: showRegisterForm();" style="color: #0078ff;">Sign up</a></b>
-                </span><br>
-                <span>Don't remember password?
-                  <b><a href="javascript: showResetForm();" style="color: #0078ff;"> Reset</a></b>
-                </span> 
-              </div>
-                <div class="forgot register-footer" style="display:none">
-                     <span>Already have an account?</span>
-                     <a href="javascript: showLoginForm();" style="color: #0078ff;">Login</a>
-                </div>
-            </div>
-      </div>
-  </div>
-</div>
-
-<!-- Login Modal end -->
-
 <br><br><br>
   <!--/ Section Blog-Single Star /-->
   <section class="blog-wrapper sect-pt4" id="blog">
@@ -550,84 +352,110 @@ option{
       <div class="row">
         <div class="col-md-4" id="leftnavpane">
             <div class="widget-sidebar">
-              <a href="./index2.html" class="sidebar-title">Services Home Page</a> <br><br>
-              <a href="./eg2.html" class="sidebar-title" style="color:#0078ff;font-weight: bold;text-decoration: underline;">Mobile Repair Service</a> <br><br>
+              <a href="./eg2.html" class="sidebar-title" style="color:#0078ff;font-weight: bold;text-decoration: underline;">Device Repair Service</a> <br><br>
               <a href="./myorders2.html" class="sidebar-title">Track Repair Orders</a> <br><br>
               <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a> <br><br>
-              <a href="./contactus.html" class="sidebar-title">Contact Us from here</a>
+              <a href="./enquiry.html" class="sidebar-title">Enquiry</a>
             </div>
           </div>
         <div class="col-md-8">
+          <div class="form-comments2">
+            <div class="title-box-2">
+              <h3 class="title-left">
+              <a onclick="openLoginModal()">Login</a> to View this Page
+              </h3>
+            </div>
+          </div>
           <div class="form-comments">
             <div class="title-box-2">
               <h3 class="title-left" id="divtitle">
-                Check Service Availability
+                Register a Request
               </h3>
             </div>
             <div class="form-mf">
-              <div class="row">
-                <div class="col-md-6 mb-3" id="selectcity">
-                  <div class="form-group">
-                    <select name="city" id="city" class="browser-default custom-select custom-select-lg mb-3">
-                      <option value="">Select Your City</option>
-                    </select>  
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3" id="selectpincode">
-                  <div class="form-group">
-                    <select name="pincode" id="pincode" class="browser-default custom-select custom-select-lg mb-3">
-                      <option value="">Select Your Pincode</option>
+              <div class="row deviceinfo">
+                <div class="col-md-8" id="selectcity">
+                  <div class="dropdown">
+                    <select name="city" id="city" class="browser-default custom-select custom-select-lg mb-3 selectcity addborder">
+                        <option value="" selected disabled>Select Your City</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-md-12 mb-3">
-                  <div class="form-group">
-                    <input type="button" class="button button-a button-small" id="checkpincode" value="Check Availability" data-toggle="modal" data-target="#alert">
+                <div class="col-md-8" id="selectpincode">
+                    <div class="dropdown">
+                      <select name="pincode" id="pincode" class="browser-default custom-select custom-select-lg mb-3 selectpincode addborder">
+                          <option value="">Select Your Pincode</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-12 mb-6" id="contact_details">
-                  <div class="form-group">
-                    <b>Enter Mobile Number</b>
-                    <input type="text" class="browser-default form-control custom-select-lg mb-3" id="phonenum" placeholder="Mobile Number *" required>
+                <div class="col-md-8">
+                    <div class="dropdown" id="device_type">
+                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode addborder" id="repairdevice" required>
+                          <option value="" selected disabled>Select Your Device</option>
+                          <option value="mobile">Mobile</option>
+                          <option value="laptop">Laptop</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <b>Enter Address</b>
-                    <input type="text" class="browser-default form-control custom-select-lg mb-3" id="address" placeholder="Address *" required>
-                  </div>
-                </div>
-                <br><br><br><br>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-8">
                     <div class="dropdown" id="mobile_details">
-                      <b>Select Mobile Company</b> <br>
-                      <select class="form-control mcomp" required>
-                      
+                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mcomp addborder" id="devicecompany" required>
+                        <option value="" selected disabled>Select Device Company</option>
                       </select>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-8">
                   <div class="dropdown" id="es2div">
-                    <b>Select Mobile Model</b> <br>
-                    <select class="form-control mmod" required>
-                      
+                    <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mmod addborder" id="devicemodel" required>
+                        <option value="">Select Device Model</option>
                     </select>
                   </div>
+                </div>
+                <div class="col-md-12 mb-6 checkpincode">
+                    <div class="form-group">
+                      <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" id="proceedtoproblems" value="Proceed Next" onclick="proceedtoproblems()">
+                    </div>
+                </div>
               </div>
-
-
-              
-              <br><br><br><br>
-
               <div class="row problem" id="problemdiv">
                 
               </div>
-    
-                <div class="col-md-12" id="quotebuttons">
-                  <br><button id="getqoute" class="button button-a button-small" data-toggle="modal" data-target="#quotation" onclick="getquote()">Get Quotation</button>
-                  <button id="getqoute" class="button button-a button-small" onclick="gobacktopincode()">Back to City</button>
-                  <p class="pricing"></p>
-                  <br><button id="requestquotation" class="button button-a button-small">Take Service</button>
-                
+              <div class="col-md-12 mb-6" id="problemdiv1">
+                <div class="form-group">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Get Quotation" onclick="getquote()">
                 </div>
+              </div>
+              <div class="col-md-12 mb-6" id="problemdiv2">
+                <div class="form-group">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Proceed Next" id="proceedtocontactinfo" onclick="proceedtocontactinfo()">
+                </div>
+              </div>
+              <div class="col-md-12 mb-6" id="problemdiv3">
+                <div class="form-group">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Go Back" onclick="backtodeviceinfo()">
+                </div>
+              </div>
+              <div class="col-md-8" id="contact_details">
+                <div class="form-group">
+                  <textarea class="browser-default form-control custom-select-lg mb-3 selectpincode addborder" id="address" rows="3" placeholder="Address *"></textarea>
+                </div>
+                <!-- <div class="form-group">
+                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" id="" placeholder="Landmark" required>
+                </div> -->
+                <div class="form-group">
+                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" style="border: 2px solid black; border-radius: 4px;font-weight: bold;" id="phonenum" placeholder="Mobile Number *" required>
+                </div>
+              </div>
+              <div class="col-md-12 mb-6" id="contact_details1">
+                <div class="form-group">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Submit Request" id="submitrequest" onclick="submitrequest()">
+                </div>
+              </div>
+              <div class="col-md-12 mb-6" id="contact_details2">
+                <div class="form-group">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Go Back" onclick="backtoproblems()">
+                </div>
+              </div>
               </div>
             </div>
           </div>
@@ -682,7 +510,7 @@ option{
 
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
-  <script src="jquery-editable-select/dist/jquery-editable-select.min.js"></script>
+  <!-- <script src="jquery-editable-select/dist/jquery-editable-select.min.js"></script> -->
 
   <script src="lib/jquery/jquery-migrate.min.js"></script>
   <script src="lib/popper/popper.min.js"></script>
@@ -702,798 +530,94 @@ option{
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
 
   <!-- Template Main Javascript File -->
+
+  
+  <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
+  
+  <script src="js/login.js"></script>
+  <script src="js/delivery_person.js"></script>
   <script src="js/main.js"></script>
+  <script src="chat/chat.js"></script>
+ 
+ 
+  <script> 
+    $(function(){
+      $("#loginmodals").load("login.html"); 
+      $("#delivery_personmodals").load("delivery_person.html"); 
+    });
+    </script> 
+
+  <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
+
 
 
  <script>
 
-function editprofile(id)
+function proceedtoproblems()
 {
-  $.ajax({
-    url:'./api/getprofiledata.php',
-    type:'POST',
-    data:{
-      'uid':id,
-      'sid':sid
-    },
-    success:function(para)
-    {
-      para = JSON.parse(para)
-      $('[name="updateprofile"]').attr("id", para[0].uid);
-      $("#user_fullname").val(para[0].fullname)
-      $("#edit_title").html("Login ID: "+para[0].loginid)
-      $("#user_mobile").val(para[0].contact)
-      $("#user_address").val(para[0].address)
-    }
-  })  
-}
-
-function updateprofile(id)
-{
-  $.ajax({
-    url:'./api/updateprofiledata.php',
-    type:'POST',
-    data:{
-      'uid':id,
-      'fullname':$("#user_fullname").val(),
-      'mobile':$("#user_mobile").val(),
-      'address':$("#user_address").val(),
-      'sid':sid
-    },
-    success:function(para)
-    {
-      if(para == "200")
-      {
-        $('#editprofile').modal('hide')
-        alertdata("Information Updated Successfully","Update Status")
-        $('#alert').modal({backdrop: 'static', keyboard: false})
-        $('#alert').modal('show')
-        $("#modalclose").click(function() {
-          window.location.reload()
-        });
-      }
-      else
-      {
-        alertdata(para)
-        $('#alert').modal('show')
-      }
-    }
-  })  
-}
-
-
-
-function alertdata(data,title)
-{
-  $("#alerttitle").empty()
-  $("#alertcontent").empty()
-  $("#alerttitle").append(title)
-  $("#alertcontent").append(data)
-}
-
-function paid(rid,status)
-{
-  $.ajax({
-    url:'./api/paid.php',
-    type:'POST',
-    data:{
-      'rid':rid,
-      'status':status,
-      'sid':sid
-    },
-    success:function(para)
-    {
-      if(para == "200")
-      {
-        alertdata("Done")     
-        $('#alert').modal({backdrop: 'static', keyboard: false})
-        $('#alert').modal('show')
-        $("#modalclose").click(function() {
-          window.location.reload()
-        });
-      }
-    }
-  })
-}
-
-function pickedup(rid,status)
-{if(status == 1 || status == 8)
+  if($("#city").val() != "" && $("#pincode").val() != "" && $("#repairdevice").val() != "" && $("#devicecompany").val() != "" && $("#devicemodel").val() != null)
   {
-    if(window.otpverified == 0)
-    {
-      alertdata("Please Verify OTP First","")
-        $('#alert').modal('show')
-    }
-    else
-    {
-      $.ajax({
-        url:'./api/pickedup.php',
-        type:'POST',
-        data:{
-          'rid':rid,
-          'status':status,
-          'sid':sid
-        },
-        success:function(para)
-        {
-            alertdata("Done","Delivery Status")
-            $('#alert').modal({backdrop: 'static', keyboard: false})
-            $('#alert').modal('show')
-            $("#modalclose").click(function() {
-              window.location.reload()
-            });        
-        }
-      })
-    }
+    $(".deviceinfo").fadeOut()
+    $("#problemdiv").fadeIn(1000)
+    $("#problemdiv1").fadeIn(1000)
+    $("#problemdiv2").fadeIn(1000)
+    $("#problemdiv3").fadeIn(1000)
   }
   else
   {
-    $.ajax({
-      url:'./api/pickedup.php',
-      type:'POST',
-      data:{
-        'rid':rid,
-        'status':status,
-        'sid':sid
-      },
-      success:function(para)
-      {
-        alertdata("Done","Delivery Status")
-        $('#alert').modal({backdrop: 'static', keyboard: false})
-        $('#alert').modal('show')
-        $("#modalclose").click(function() {
-          window.location.reload()
-        });
-      }
-    })
-  }
-}
-window.otpverified = 0
-function SendOTPtoUser(rid,status)
-{
-  // $.ajax({
-  //   // url:'./api/sendotptouser.php',
-  //   type:'POST',
-  //   data:{
-  //     'rid':rid,
-  //     'status':status,
-  //     'sid':sid
-  //   },
-  //   success:function(para)
-  //   {
-  //       alert("Done")
-  //       window.location.reload()
-  //   }
-  // })
-}
-
-function verifyuserdelivery()
-{
-  // alert($("#verificationotp").val())
-  window.otpverified = 1
-  alertdata("Verified","Verification Status")
-  $('#alert').modal('show')
-  $('[name="sendotpbutton"]').html('Re-send OTP');
-  $('#verifyuserdelivery').modal('hide');
-}
-
-
-function cancelled(rid,status)
-{
-  $.ajax({
-    url:'./api/cancelled.php',
-    type:'POST',
-    data:{
-      'rid':rid,
-      'status':status,
-      'sid':sid
-    },
-    success:function(para)
-    {
-      alertdata("Cancelled","Delivery Status")
-        $('#alert').modal({backdrop: 'static', keyboard: false})
-        $('#alert').modal('show')
-        $("#modalclose").click(function() {
-          window.location.reload()
-        });
-    }
-  })
-}
-
-var firebaseConfig = {
-    apiKey: "AIzaSyDyQhgM0Q5UUIt-MbIIDzPpbpLVudkmKK4",
-    authDomain: "hopeful-summer-292810.firebaseapp.com",
-    databaseURL: "https://hopeful-summer-292810.firebaseio.com",
-    projectId: "hopeful-summer-292810",
-    storageBucket: "hopeful-summer-292810.appspot.com",
-    messagingSenderId: "411937557386",
-    appId: "1:411937557386:web:838b8dd854ca6d9a165673"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  function fbSignin()
-  {
-    const provider =  new firebase.auth.FacebookAuthProvider();
-    provider.setCustomParameters({
-      prompt: 'select_account',
-      display: 'popup'
-
-    }); 
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      console.log(user)
-      // ...
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
-
-  }
-  function googleSignin(){
-    var provider = new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({
-      prompt: 'select_account'
-    });
-    firebase.auth().signInWithPopup(provider).then
-    (
-      function(result) 
-      {
-        console.log("Google linked")
-        console.log(result.additionalUserInfo.profile.email)
-        id = result.id;
-        // Ajax Google sign in
-            $.ajax({
-                url:'./login/api/login.php',
-                type:'POST',
-                data:{
-                  'email':result.additionalUserInfo.profile.email,
-                  'pwd':result.additionalUserInfo.profile.id,
-                  'username':result.additionalUserInfo.profile.name,
-                  'authtype':'google',
-                  'role':'user'
-                },
-                success:function(para)
-                {
-                    console.log("This is - ",para)
-                    para = JSON.parse(para)
-                    if(para=='200')
-                    {
-                      $('#loginModal').modal('hide')
-                      alertdata("Successfully Registered","Login Status")
-                      $('#alert').modal({backdrop: 'static', keyboard: false})
-                      $('#alert').modal('show')
-                      $("#modalclose").click(function() {
-                        window.location.reload()
-                      });
-                    }
-                    else
-                    {
-                      shakeModal(); 
-                    }
-                }
-            })
-
-      }
-   )
-
-  }
-
-  function getCookie(name) {
-    // Split cookie string and get all individual name=value pairs in an array
-    var cookieArr = document.cookie.split(";");
-    
-    // Loop through the array elements
-    for(var i = 0; i < cookieArr.length; i++) {
-        var cookiePair = cookieArr[i].split("=");
-        
-        /* Removing whitespace at the beginning of the cookie name
-        and compare it with the given string */
-        if(name == cookiePair[0].trim()) {
-            // Decode the cookie value and return
-            return decodeURIComponent(cookiePair[1]);
-        }
-    }
-    
-    // Return null if not found
-    return null;
-}
-
-  var sid = getCookie("sid");
-  console.log(sid)
-  $.ajax({
-        url:'./login/api/checksession.php',
-        type:'POST',
-        data:{'sid':sid},
-        success:function(para)
-        {
-            console.log(para)
-            para = $.parseJSON(para)
-            if(para[0]=='200')
-            {
-              $("#login_button").hide()
-              // $(".botnavbar").css("display", "none")
-
-              $("#username").show()
-              $("#username").html(para[1])
-              $('[name="editprofile"]').attr("id", para[2]);
-
-              // check if user is admin
-              if(para[1] == "Admin_User")
-              {
-                $(".botnavbar").css("display", "none")
-                $("#homenav").hide()
-                $("#servicenav").hide()
-                $("#contactnav").hide()
-                $("#carouselExampleIndicators").hide()
-                $("#work").hide()
-                $("#info").hide()
-                $("#client").hide()
-                $("#contactform-user").hide()
-                $("#servicerequestform").hide()
-                $("#leftnavpane").hide()
-                $('[name="editprofile"]').hide();
-                $('[name="dashboard"]').hide();
-                $("#contactform-admin").css("display", "block");
-                $.ajax({
-                  url:'./admin_area/api/view_assignments.php',
-                  type:'POST',
-                  data : {"sid":sid},
-                  success:function(para)
-                  {
-                      para = JSON.parse(para)
-                      console.log(para[0])
-
-                      var str = ''
-                      var status = ["","Picked Up","Dropped to Admin","","","","","","Dropped to user",""]
-                      for(let i=0;i<para.length;i++)
-                      {
-                        var disable_button = para[i].status==1?"":"disabled"
-                        str += '<div class="form-comments"><div class="title-box-2"><h3 class="title-left">Task Number : '+(i+1)+'</h3></div><div class="form-mf"><div class="row"><div class="col-md-10"><table class="table table-responsive"><tbody id="taskdetails">'
-                        str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
-                        str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
-                        str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;cursor:pointer;" data-toggle="modal" data-target="#problem" onclick="getproblems('+para[i].rid+')">Problems</a></td></tr>'
-                        if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
-                        {
-                          str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="paid(this.id,'+para[i].status+')">Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')" '+disable_drop+'>'+status[para[i].status]+'</button></div></div></div></div>'
-                        }
-                        else if(para[i].delivery_status==1 && para[i].pay_status=="1")
-                        {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
-                        }
-                        else if(para[i].delivery_status==0 && para[i].status==1)
-                        {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-small button-rouded" onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
-                        }
-                        else if(para[i].delivery_status==1 && para[i].status==8)
-                        {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
-                        }
-                        else
-                        {
-                          str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small button-rouded" onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
-                        }
-                      }
-                      $(".mycards").append(str) 
-                  }
-                })
-              }
-            }
-            else
-            {
-              $("#login_button").show()
-              $("#username").hide()
-              $(".form-comments").hide()
-
-            }
-        }
-        
-    })
-
-
-  firebase.auth().onAuthStateChanged(function(user) {
-    console.log(user)
-  if (user) {
-    console.log("User Signed in")
-    // name = user.displayName;
-    // email = user.email;
-    // photoUrl = user.photoURL;
-    // $("#login_button").hide()
-    // $("#name").html(name)
-  } else {
-    console.log("User Signed out")
-    // $("#login_button").show()
-    // $("#username").hide()
-
-  }
-});
-// firebase.auth().signOut()
-function signout()
-{
-  var user = firebase.auth().currentUser;
-  if(user)
-  {
-      firebase.auth().signOut().then(function() {
-        console.log("SIgnout success")
-        $.ajax({
-            url:'./login/api/logout.php',
-            type:'POST',
-            success:function(para)
-            {
-                console.log(para)
-                if(para=='200')
-                {
-                  alertdata("Successfully Logged Out","Login Status")
-                  $('#alert').modal({backdrop: 'static', keyboard: false})
-                  $('#alert').modal('show')
-                  $("#modalclose").click(function() {
-                    window.location.reload()
-                  });
-                }
-                else
-                {
-                  alertdata("Cannot Logout","Login Status")
-                  $('#alert').modal({backdrop: 'static', keyboard: false})
-                  $('#alert').modal('show')
-                }
-            }
-        })
-
-
-
-      }).catch(function(error) {
-        // An error happened.
-      });
-  }
-  else
-  {
-    $.ajax({
-            url:'./login/api/logout.php',
-            type:'POST',
-            success:function(para)
-            {
-                console.log(para)
-                if(para=='200')
-                {
-                  alertdata("Successfully Logged Out","Login Status")
-                  $('#alert').modal({backdrop: 'static', keyboard: false})
-                  $('#alert').modal('show')
-                  $("#modalclose").click(function() {
-                    $("#username").hide()
-                    window.location.reload()
-                  });
-                }
-                else
-                {
-                  alertdata("Cannot Logout","Login Status")
-                  $('#alert').modal({backdrop: 'static', keyboard: false})
-                  $('#alert').modal('show')
-                }
-            }
-        })
-  }
-  
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  $("#password_confirmationreg").keyup(function(){
-    pwd = String($('#passwordreg').val())   
-    confpwd = String($('#password_confirmationreg').val());
-    if(pwd==confpwd && pwd != "" && confpwd != "")
-    {
-      $("#errornote").show()
-      $("#errornote").text("Password match")
-      $("#errornote").css('color','green')
-    }
-    else
-    {
-      $("#errornote").show()
-      $("#errornote").text("Password does not matach")
-      $("#errornote").css('color','red')
-    }
-    
-  });
-
-  function openLoginModal(){
-    showLoginForm();
-    setTimeout(function(){
-        $('#loginModal').modal('show');    
-    }, 230);
-    
-}
-function showRegisterForm(){
-    $('.loginBox').fadeOut('fast',function(){
-        $('.registerBox').fadeIn('fast');
-        $('.login-footer').fadeOut('fast',function(){
-            $('.register-footer').fadeIn('fast');
-        });
-        $('.modal-title').html('Register with');
-    }); 
-    $('.error').removeClass('alert alert-danger').html('');
-       
-}
-
-
-function showResetForm(){
-    $('.loginBox').fadeOut('fast',function(){
-        $('.resetBox').fadeIn('fast');
-        $('.login-footer').fadeOut('fast',function(){
-            $('.register-footer').fadeIn('fast');
-        });
-        $('.modal-title').html('Register with');
-    }); 
-    $('.error').removeClass('alert alert-danger').html('');
-       
-}
-
-function showLoginForm(){
-    $('#loginModal .registerBox').fadeOut('fast',function(){
-        $('.loginBox').fadeIn('fast');
-        $('.register-footer').fadeOut('fast',function(){
-            $('.login-footer').fadeIn('fast');    
-        });
-        
-        $('.modal-title').html('Login with');
-    });       
-     $('.error').removeClass('alert alert-danger').html(''); 
-}
-window.userexist = 0
-function checkusername (){
-    $.ajax({
-      url:'./api/checkusername.php',
-      type:'POST',
-      data:{
-        'userid':$('#emailreg').val()
-      },
-      success:function(para)
-      {
-          if(para=='400')
-          {
-            window.userexist = 1
-            $('#loginModal').modal('hide');    
-            alertdata("You Already Have an Account. Please Login Directly","Registration Status")
-            $('#alert').modal({backdrop: 'static', keyboard: false})
-            $('#alert').modal('show')
-            $("#modalclose").click(function() {
-                $("#emailreg").val("")
-                openLoginModal()
-            });
-          }
-          else
-          {
-            window.userexist = 0
-          }
-      }
-  })
-  }
-  
-function registerAjax()
-{
-  if(window.userexist == 0)
-  {
-    if($('#userreg').val() != "" && $('#emailreg').val() != "" && $('#passwordreg').val() != "" && $('#password_confirmationreg').val() != "" && $('#termsconditions').prop("checked"))
-    {
-        username = $('#userreg').val();
-        email = $('#emailreg').val();
-        pwd = String($('#passwordreg').val());
-        pwdcnf = String($('#password_confirmationreg').val());
-        if(pwd==pwdcnf)
-        {
-              $.ajax({
-                url:'./login/api/register.php',
-                type:'POST',
-                data:{
-                  'username':username,
-                  'email':email,
-                  'pwd':pwd
-                },
-                success:function(para)
-                {
-                    console.log("This is - ",para)
-                    if(para=='200')
-                    {
-                      alertdata("Registered Successfully","Registration Status")
-                      $('#alert').modal({backdrop: 'static', keyboard: false})
-                      $('#alert').modal('show')
-                      $("#modalclose").click(function() {
-                        window.location.replace("./index2.html");   
-                      });
-                    }
-                    else
-                    {
-                      shakeModal(); 
-                    }
-                }
-            })
-        }
-        else
-        {
-          $("#errornote").text("Password does not matach")
-          $("#errornote").css('color','red')
-        }
-
-      } 
-      else
-      {
-        alertdata("Please Fill and Check All the Fields","")
-        $('#alert').modal('show')
-      }
-  }
-  else
-  {
-    alertdata("Please Choose Different Email/Mobile Number","")
+    alertdata("Please Select All Fields","")
     $('#alert').modal('show')
   }
 }
 
-
-function resetpassword()
+function backtodeviceinfo()
 {
-        user = String($('#user').val());
-        pwd = String($('#passwordotp').val());
-        pwdcnf = String($('#password_confirmationotp').val());
-        if(pwd==pwdcnf)
-        {
-              if(user.split("_").length == 3 && user.split("_")[1] == "admin" && !isNaN(user.split("_")[2]))
-              {
-                role = "admin"
-              }
-              else
-              {
-                role = "user"
-              }
-              $.ajax({
-                url:'api/resetpassword.php',
-                type:'POST',
-                data:{
-                  'username':user,
-                  'pwd':pwd,
-                  'role':role
-                },
-                success:function(para)
-                {
-                    console.log("This is - ",para)
-                    if(para=='200')
-                    {
-                      alertdata("Updated Successfully","")
-                      $('#alert').modal({backdrop: 'static', keyboard: false})
-                      $('#alert').modal('show')
-                      $("#modalclose").click(function() {
-                        window.location.replace("./index2.html");   
-                      });
-                    }
-                    else
-                    {
-                      shakeModal(); 
-                    }
-                }
-            })
-        }
-        else
-        {
-          $("#errornote").text("Password does not matach")
-          $("#errornote").css('color','red')
-        }
-
-        
+  $("#problemdiv").fadeOut()
+  $("#problemdiv1").fadeOut()
+  $("#problemdiv2").fadeOut()
+  $("#problemdiv3").fadeOut()
+  $(".deviceinfo").fadeIn()
 }
 
-function resetAjax()
-
+function proceedtocontactinfo()
 {
-        var username = $('#userreset').val();
-              $.ajax({
-                url:'api/reset.php',
-                type:'POST',
-                data:{
-                  'username':username
-                },
-                success:function(para)
-                {
-                  $('.resetBox').fadeOut('fast',function(){
-                  $('.otpBox').fadeIn('fast');
-                  $('.login-footer').fadeOut('fast',function(){
-                  $('.register-footer').fadeIn('fast');
-                  });
-                  $('.modal-title').html('Register with');
-                  }); 
-                  $('.error').removeClass('alert alert-danger').html('');
-
-                  $("#otp").hide()
-                  $("#successsnote").show()
-                
-                  $("#successsnote").text("OTP sent successfully to registerd email/mobile number")
-                  $("#successsnote").css('color','green')
-                }
-            })   
-}
-function resetotp()
-{
-  $('.otpBox').fadeOut('fast',function(){
-                  $('.otppassword').fadeIn('fast');
-                  $('.login-footer').fadeOut('fast',function(){
-                  $('.register-footer').fadeIn('fast');
-                  });
-                  $('.modal-title').html('Register with');
-                  }); 
-                  $('.error').removeClass('alert alert-danger').html('');    
-}
-
-function loginAjax(){
-
-  email = $('#emaillog').val();
-  pwd = $('#passwordlog').val();
-  if(email.split("_").length == 3 && email.split("_")[1] == "admin" && !isNaN(email.split("_")[2]))
+  if(problems != "")
   {
-    role = "admin"
+    $.ajax({
+    url:"./api/getcontactdetails.php",
+    method:"POST",
+    data:{"sid":sid},
+    success: function(para){
+      para = JSON.parse(para)
+      $("#phonenum").val(para[0])
+      $("#address").val(para[1])
+    }
+  })
+  $("#problemdiv").fadeOut()
+  $("#problemdiv1").fadeOut()
+  $("#problemdiv2").fadeOut()
+  $("#problemdiv3").fadeOut()
+  $("#contact_details").fadeIn()
+  $("#contact_details1").fadeIn()
+  $("#contact_details2").fadeIn()
   }
   else
   {
-    role = "user"
+    alertdata("Please Select at least 1 Problem")
+    $('#alert').modal('show')
   }
-  $.ajax({
-    url:'./login/api/login.php',
-    type:'POST',
-    data:{
-      'email':email,
-      'pwd':pwd,
-      'authtype':'emailpass',
-      'role':role
-    },
-    success:function(para)
-    {
-        console.log("This is - ",para)
-        
-        if(para=="200")
-        {
-          $("#login_button").hide()
-          location.reload()
-        }
-        else
-        {
-          shakeModal(); 
-        }
-    }
-  }) 
-}
-/*   Simulate error message from the server   */
-    //  shakeModal();
-
-
-function shakeModal(){
-    $('#loginModal .modal-dialog').addClass('shake');
-             $('.error').addClass('alert alert-danger').html("Invalid email/password combination");
-             $('input[type="password"]').val('');
-             setTimeout( function(){ 
-                $('#loginModal .modal-dialog').removeClass('shake'); 
-    }, 1000 ); 
 }
 
-
+function backtoproblems()
+{
+  $("#contact_details").fadeOut()
+  $("#contact_details1").fadeOut()
+  $("#contact_details2").fadeOut()
+  $("#problemdiv").fadeIn()
+  $("#problemdiv1").fadeIn()
+  $("#problemdiv2").fadeIn()
+  $("#problemdiv3").fadeIn()
+}
 function groupArrayOfObjects(list, key) {
       return list.reduce(function(rv, x) {
         (rv[x[key]] = rv[x[key]] || []).push(x);
@@ -1540,32 +664,18 @@ function getvalue(id)
       var sid = getCookie("sid");
       if(sid)
       {
-        $(".form-comments").show()
-        $("#requestquotation").hide()
-        $("#damageproblemlist").hide()
-        $("#touchdisplayproblemlist").hide()
-        $("#hardwareproblemlist").hide()
-        $("#batteryproblemlist").hide()
-        $("#memorycardproblemlist").hide()
-        $("#networkproblemlist").hide()
-        $("#otherproblemlist").hide()
-        $("#ownproblemlist").hide()
-        $("#es2div").hide()
+        $(".form-comments2").hide()
         $("#contact_details").hide()
-        $("#pincode").hide() 
-        $("#mobile_details").hide()
+        $("#contact_details1").hide()
+        $("#contact_details2").hide()
         $("#problemdiv").hide()
-        $("#quotebuttons").hide()
+        $("#problemdiv1").hide()
+        $("#problemdiv2").hide()
+        $("#problemdiv3").hide()
       }
       else
       {
-        alertdata("You Are Not Logged In. Please Login To View This Page")
-        $('#alert').modal({backdrop: 'static', keyboard: false})
-        $('#alert').modal('show')
-        $("#modalclose").click(function() {
-          openLoginModal()
-        });
-
+        $(".form-comments2").show()
         $(".form-comments").hide()
         $("#damageproblemlist").hide()
         $("#touchdisplayproblemlist").hide()
@@ -1575,7 +685,7 @@ function getvalue(id)
         $("#networkproblemlist").hide()
         $("#otherproblemlist").hide()
         $("#ownproblemlist").hide()
-        $("#es2div").hide()
+        // $("#es2div").hide()
         $("#contact_details").hide()
         $("#pincode").hide()
       }
@@ -1637,7 +747,7 @@ function getvalue(id)
                     // s1+='<input type="checkbox" class="custom-control-input" id="'+x+'"  onclick="showproblems(this.id)">'
                     // s1+='<label class="custom-control-label" for="'+x+'">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
                    
-                    s1+='<div class="col-md-6 mb-2 "><div class="form-group "><div class="form-check"><div class="custom-checkbox">'
+                    s1+='<div class="col-md-6 mb-2 "><div class="form-group"><div class="form-check"><div class="custom-checkbox">'
                     s1+='<input type="checkbox" class="custom-control-input" id="'+x+'" onclick="showproblems(this.id)">'
                     s1+='<label class="custom-control-label" for="'+x+'">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
 
@@ -1666,7 +776,6 @@ function getvalue(id)
 
       $("select.mcomp").change(function(){
         var selectedComp = $(this).children("option:selected").val();
-        alert(selectedComp)
         $.ajax(
             {
               url: "./api/getMobileModel.php", 
@@ -1677,7 +786,7 @@ function getvalue(id)
                 s1 = ""
                 console.log(para)
                 para = JSON.parse(para)
-                s1 += '<option selected disabled>Choose Model</option>'
+                s1 += '<option selected disabled value="">Select Device Model</option>'
                 for(i=0;i<para.length;i++)
                 {
                   console.log("Model - ",para[i][1])
@@ -1686,36 +795,30 @@ function getvalue(id)
 
                 }
               
-                if($(".mmod").html(s1))
-                {
-                  $("#es2div").show()
-                }
-                else
-                {
-                  alert('hjell')
-                }
-              
+                $(".mmod").html(s1)
+                $("#es2div").show()
+                
+
               }
            });
 
         });
-    });
+      });
      
-      $.ajax(
-      {
-        url: "./api/getMobileFilter.php", 
-        method:"POST",
-        success: function(para)
-        {
-          console.log(para)
-          s1 = ""
-          para = JSON.parse(para)
-          s1 += '<option selected disabled>Choose Company</option>'
-          for(i=0;i<para.length;i++)
-          {
-            s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
-          }
-          $(".mcomp").html(s1)
+     $.ajax(
+     {
+       url: "./api/getMobileFilter.php",
+       method:"POST",
+       success: function(para)
+       {
+         console.log(para)
+         s1 = ""
+         para = JSON.parse(para)
+         for(i=0;i<para.length;i++)
+         {
+           s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
+         }
+         $(".mcomp").append(s1)
         }
 
       });
@@ -1739,8 +842,6 @@ function getvalue(id)
            });
       // 
 
-  
-
 
 
     // get pincodes from cities
@@ -1758,7 +859,7 @@ function getvalue(id)
           success: function(para)
           {
             para = JSON.parse(para)
-            var str = '<option value="">Select Your Pincode</option>'
+            var str = '<option value="" selected disabled>Select Your Pincode</option>'
             for(let i=0;i<para.length;i++)
             {
               str += '<option value="'+para[i]+'">'+para[i]+'</option>'
@@ -1797,55 +898,6 @@ function getvalue(id)
       console.log(problems)
     }
 
-    $("#checkpincode").click(function(){
-      if($("#pincode").val() == "")
-      {
-        alertdata("Please Select Pincode First","")
-      }
-      else
-      {
-        $.ajax(
-        {
-          url: "./api/checkpincode.php", 
-          method:"POST",
-          data:{'pincode':$("#pincode").val()},
-          success: function(para)
-          {
-            if(para == 0)
-            {
-              alertdata("This Pincode is currently not available for our service","")
-
-              window.available = false
-              $("#contact_details").hide()
-            }
-            else
-            {
-              alertdata("This Pincode is Available","")
-              window.available = true
-              $.ajax({
-                url:"./api/getcontactdetails.php",
-                method:"POST",
-                data:{"sid":sid},
-                success: function(para){
-                  para = JSON.parse(para)
-                  $("#selectcity").hide()
-                  $("#selectpincode").hide()
-                  $("#checkpincode").hide()
-                  $("#divtitle").html("Enter Details")
-                  $("#contact_details").show()
-                  $("#phonenum").val(para[0])
-                  $("#address").val(para[1])
-                  $("#mobile_details").show()
-                  $("#problemdiv").show()
-                  $("#quotebuttons").show()
-                }
-              })
-            }
-          }
-        })
-      }
-    })
-    
 function getquote(){
 
     $.ajax(
@@ -1859,9 +911,9 @@ function getquote(){
             },
         success: function(para)
         {
-            $("#quotation_amt").text("Estimated Price for your request is Rs "+para)
+            alertdata("Estimated Price for your request is Rs "+para , "")
             window.estprice = para
-            $("#requestquotation").show()
+            $('#alert').modal('show')
         }
         })
 }
@@ -1878,7 +930,7 @@ function gobacktopincode(){
   $("#networkproblemlist").hide()
   $("#otherproblemlist").hide()
   $("#ownproblemlist").hide()
-  $("#es2div").hide()
+  // $("#es2div").hide()
   $("#contact_details").hide()
   $("#pincode").hide() 
   $("#mobile_details").hide()
@@ -1886,16 +938,14 @@ function gobacktopincode(){
   $("#quotebuttons").hide()
 
   $("#selectcity").show()
-  $("#selectpincode").show()
-  $("#checkpincode").show()
+  // $("#selectpincode").show()
+  $(".checkpincode").show()
   $("#divtitle").html("Check Service Availability")
 
 }
 
-$("#requestquotation").click(function(){
-
-  if(window.available)
-  {
+function submitrequest()
+{
     var sid = getCookie("sid");
     if(sid)
     {
@@ -1904,7 +954,7 @@ $("#requestquotation").click(function(){
         console.log(window.mcname)
         if($("#phonenum").val() != "" && $("#address").val() != "")
         {
-          $("#requestquotation").prop("disabled","true")
+          $("#submitrequest").prop("disabled","true")
             $.ajax(
             {
             url: "./api/submitproblem.php", 
@@ -1940,13 +990,7 @@ $("#requestquotation").click(function(){
     {
 
     }
- 
   }
-  else
-  {
-    alertdata("Check Availability of Pincode First")
-  }
-})
 
 var alterClass = function() {
 	  var ww = document.body.clientWidth;

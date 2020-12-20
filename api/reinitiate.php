@@ -38,7 +38,7 @@ if($success == '200')
             {
                 echo 'Your warranty request has been submitted successfully,
                 Our customer care executive shall be contact you soon,
-                You can track your request status at “Track Mobile Repair Service” menu
+                You can track your request status at “Track Device Repair Service” menu
                 Price may very if more problems found during repair”';
             }
             else
