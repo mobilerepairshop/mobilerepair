@@ -305,7 +305,7 @@ function showLoginForm(){
             $('.login-footer').fadeIn('fast');    
         });
         
-        $('.modal-title').html('Login to your account');
+        $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button><br>Login to your account');
     });       
      $('.error').removeClass('alert alert-danger').html(''); 
 }
