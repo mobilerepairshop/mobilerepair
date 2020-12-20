@@ -294,7 +294,7 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                             actionn="<input type='button' id='"+array[i].rid+"' name='warranty' value='Warranty Period' class='btn btn-primary form-control' data-toggle='modal' data-target='#warranty' onclick='modaldata(this.id)' >"
                           }
                           else{
-                            actionn="<input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+">"
+                            actionn="<input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+" style='font-weight:bold;color:black;'>"
                           }
                          
                       Data.push({
@@ -306,7 +306,7 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                       address:array[i].address,
                       status:statuss,
                       admin_name:'<input type="button" style="color:#337ab7;" id="'+array[i].rid+'" name="assign" value="'+array[i].admin_name+'"  class="unstyled-button" data-toggle="modal" data-target="#eModal" onclick="deliverymodaldata(this.id)">',
-                      pricing:"<input type='button' id='"+array[i].rid+"' name='pricing' value='Pricing' class='btn btn-primary form-control' "+disabled1+" onclick='pricemodaldata(this.id)' >",
+                      pricing:"<input type='button' id='"+array[i].rid+"' name='pricing' value='Pricing' class='btn btn-primary form-control' "+disabled1+" onclick='pricemodaldata(this.id)' style='font-weight:bold;color:black;'>",
                       action:actionn,
                       delivery_status:array[i].delivery_status,
                       warranty:array[i].warranty,

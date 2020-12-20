@@ -21,7 +21,7 @@
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   
-  <!-- <link href="jquery-editable-select/dist/jquery-editable-select.min.css" rel="stylesheet"> -->
+  <link href="jquery-editable-select/dist/jquery-editable-select.min.css" rel="stylesheet">
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
   <link href="./public/css/forms.css" rel="stylesheet">
@@ -41,11 +41,7 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
   <style>
-.addborder{
-  border: 2px solid black; 
-  border-radius: 4px;
-  font-weight: bold;
-}
+
 a{
   cursor: pointer;
 }
@@ -89,19 +85,6 @@ option{
   color: white;
 }
 
-.selectcity{
-  margin-left: 26%;
-}
-
-.selectpincode{
-  margin-left: 26%;
-}
-
-.checkavailability{
-  width:66%;
-  font-weight: bold;
-  margin-top:2%;
-}
 @media only screen and (max-width: 600px) {
 
   .botnavbar{
@@ -110,19 +93,6 @@ option{
   .botnavbar a{
     width:25%;
   }
-  .selectcity{
-    margin-left: 3%;
-  }
-  .selectpincode{
-    margin-left: 3%;
-  }
-  .checkavailability{
-    width:100%;
-    font-weight: bold;
-    margin-top:2%;
-    margin-left: 2%;
-  }
-
 }
     .containercheck {
   display: block;
@@ -190,16 +160,6 @@ option{
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
-.form-comments{
-  text-align: center;
-  align-items: center;
-}
-.problem{
-  text-align: left;
-  align-items: left;
-}
-
   </style>
 </head>
 
@@ -505,93 +465,73 @@ option{
           <div class="form-comments">
             <div class="title-box-2">
               <h3 class="title-left" id="divtitle">
-                Register a Request
+                Check Service Availability
               </h3>
             </div>
             <div class="form-mf">
-              <div class="row deviceinfo">
-                <div class="col-md-8" id="selectcity">
-                  <div class="dropdown">
-                    <select name="city" id="city" class="browser-default custom-select custom-select-lg mb-3 selectcity addborder">
-                        <option value="" selected disabled>Select Your City</option>
+              <div class="row">
+                <div class="col-md-6 mb-3" id="selectcity">
+                  <div class="form-group">
+                    <select name="city" id="city" class="browser-default custom-select custom-select-lg mb-3">
+                      <option value="">Select Your City</option>
+                    </select>  
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3" id="selectpincode">
+                  <div class="form-group">
+                    <select name="pincode" id="pincode" class="browser-default custom-select custom-select-lg mb-3">
+                      <option value="">Select Your Pincode</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-md-8" id="selectpincode">
-                    <div class="dropdown">
-                      <select name="pincode" id="pincode" class="browser-default custom-select custom-select-lg mb-3 selectpincode addborder">
-                          <option value="">Select Your Pincode</option>
-                      </select>
-                    </div>
+                <div class="col-md-12 mb-3">
+                  <div class="form-group">
+                    <input type="button" class="button button-a button-small" id="checkpincode" value="Check Availability" data-toggle="modal" data-target="#alert">
                   </div>
-                <div class="col-md-8">
-                    <div class="dropdown" id="device_type">
-                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode addborder" id="repairdevice" required>
-                          <option value="" selected disabled>Select Your Device</option>
-                          <option value="mobile">Mobile</option>
-                          <option value="laptop">Laptop</option>
-                      </select>
-                    </div>
+                </div>
+                <div class="col-md-12 mb-6" id="contact_details">
+                  <div class="form-group">
+                    <b>Enter Mobile Number</b>
+                    <input type="text" class="browser-default form-control custom-select-lg mb-3" id="phonenum" placeholder="Mobile Number *" required>
                   </div>
-                <div class="col-md-8">
+                  <div class="form-group">
+                    <b>Enter Address</b>
+                    <input type="text" class="browser-default form-control custom-select-lg mb-3" id="address" placeholder="Address *" required>
+                  </div>
+                </div>
+                <br><br><br><br>
+                <div class="col-md-6 mb-3">
                     <div class="dropdown" id="mobile_details">
-                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mcomp addborder" id="devicecompany" required>
-                        <option value="" selected disabled>Select Device Company</option>
+                      <b>Select Mobile Company</b> <br>
+                      <select class="form-control mcomp" required>
+                      
                       </select>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6 mb-3">
                   <div class="dropdown" id="es2div">
-                    <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mmod addborder" id="devicemodel" required>
-                        <option value="">Select Device Model</option>
+                    <b>Select Mobile Model</b> <br>
+                    <select class="form-control mmod" required>
+                      
                     </select>
                   </div>
-                </div>
-                <div class="col-md-12 mb-6 checkpincode">
-                    <div class="form-group">
-                      <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" id="proceedtoproblems" value="Proceed Next" onclick="proceedtoproblems()">
-                    </div>
-                </div>
               </div>
+
+
+              
+              <br><br><br><br>
+
               <div class="row problem" id="problemdiv">
                 
               </div>
-              <div class="col-md-12 mb-6" id="problemdiv1">
-                <div class="form-group">
-                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Get Quotation" onclick="getquote()">
+    
+                <div class="col-md-12" id="quotebuttons">
+                  <br><button id="getqoute" class="button button-a button-small" data-toggle="modal" data-target="#quotation" onclick="getquote()">Get Quotation</button>
+                  <button id="getqoute" class="button button-a button-small" onclick="gobacktopincode()">Back to City</button>
+                  <p class="pricing"></p>
+                  <br><button id="requestquotation" class="button button-a button-small">Take Service</button>
+                
                 </div>
-              </div>
-              <div class="col-md-12 mb-6" id="problemdiv2">
-                <div class="form-group">
-                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Proceed Next" id="proceedtocontactinfo" onclick="proceedtocontactinfo()">
-                </div>
-              </div>
-              <div class="col-md-12 mb-6" id="problemdiv3">
-                <div class="form-group">
-                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Go Back" onclick="backtodeviceinfo()">
-                </div>
-              </div>
-              <div class="col-md-8" id="contact_details">
-                <div class="form-group">
-                  <textarea class="browser-default form-control custom-select-lg mb-3 selectpincode addborder" id="address" rows="3" placeholder="Address *"></textarea>
-                </div>
-                <!-- <div class="form-group">
-                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" id="" placeholder="Landmark" required>
-                </div> -->
-                <div class="form-group">
-                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" style="border: 2px solid black; border-radius: 4px;font-weight: bold;" id="phonenum" placeholder="Mobile Number *" required>
-                </div>
-              </div>
-              <div class="col-md-12 mb-6" id="contact_details1">
-                <div class="form-group">
-                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Submit Request" id="submitrequest" onclick="submitrequest()">
-                </div>
-              </div>
-              <div class="col-md-12 mb-6" id="contact_details2">
-                <div class="form-group">
-                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability addborder" value="Go Back" onclick="backtoproblems()">
-                </div>
-              </div>
               </div>
             </div>
           </div>
@@ -646,7 +586,7 @@ option{
 
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
-  <!-- <script src="jquery-editable-select/dist/jquery-editable-select.min.js"></script> -->
+  <script src="jquery-editable-select/dist/jquery-editable-select.min.js"></script>
 
   <script src="lib/jquery/jquery-migrate.min.js"></script>
   <script src="lib/popper/popper.min.js"></script>
@@ -671,71 +611,6 @@ option{
 
  <script>
 
-function proceedtoproblems()
-{
-  if($("#city").val() != "" && $("#pincode").val() != "" && $("#repairdevice").val() != "" && $("#devicecompany").val() != "" && $("#devicemodel").val() != null)
-  {
-    $(".deviceinfo").fadeOut()
-    $("#problemdiv").fadeIn(1000)
-    $("#problemdiv1").fadeIn(1000)
-    $("#problemdiv2").fadeIn(1000)
-    $("#problemdiv3").fadeIn(1000)
-  }
-  else
-  {
-    alertdata("Please Select All Fields","")
-    $('#alert').modal('show')
-  }
-}
-
-function backtodeviceinfo()
-{
-  $("#problemdiv").fadeOut()
-  $("#problemdiv1").fadeOut()
-  $("#problemdiv2").fadeOut()
-  $("#problemdiv3").fadeOut()
-  $(".deviceinfo").fadeIn()
-}
-
-function proceedtocontactinfo()
-{
-  if(problems != "")
-  {
-    $.ajax({
-    url:"./api/getcontactdetails.php",
-    method:"POST",
-    data:{"sid":sid},
-    success: function(para){
-      para = JSON.parse(para)
-      $("#phonenum").val(para[0])
-      $("#address").val(para[1])
-    }
-  })
-  $("#problemdiv").fadeOut()
-  $("#problemdiv1").fadeOut()
-  $("#problemdiv2").fadeOut()
-  $("#problemdiv3").fadeOut()
-  $("#contact_details").fadeIn()
-  $("#contact_details1").fadeIn()
-  $("#contact_details2").fadeIn()
-  }
-  else
-  {
-    alertdata("Please Select at least 1 Problem")
-    $('#alert').modal('show')
-  }
-}
-
-function backtoproblems()
-{
-  $("#contact_details").fadeOut()
-  $("#contact_details1").fadeOut()
-  $("#contact_details2").fadeOut()
-  $("#problemdiv").fadeIn()
-  $("#problemdiv1").fadeIn()
-  $("#problemdiv2").fadeIn()
-  $("#problemdiv3").fadeIn()
-}
 function editprofile(id)
 {
   $.ajax({
@@ -1556,13 +1431,22 @@ function getvalue(id)
       var sid = getCookie("sid");
       if(sid)
       {
+        $(".form-comments").show()
+        $("#requestquotation").hide()
+        $("#damageproblemlist").hide()
+        $("#touchdisplayproblemlist").hide()
+        $("#hardwareproblemlist").hide()
+        $("#batteryproblemlist").hide()
+        $("#memorycardproblemlist").hide()
+        $("#networkproblemlist").hide()
+        $("#otherproblemlist").hide()
+        $("#ownproblemlist").hide()
+        $("#es2div").hide()
         $("#contact_details").hide()
-        $("#contact_details1").hide()
-        $("#contact_details2").hide()
+        $("#pincode").hide() 
+        $("#mobile_details").hide()
         $("#problemdiv").hide()
-        $("#problemdiv1").hide()
-        $("#problemdiv2").hide()
-        $("#problemdiv3").hide()
+        $("#quotebuttons").hide()
       }
       else
       {
@@ -1582,7 +1466,7 @@ function getvalue(id)
         $("#networkproblemlist").hide()
         $("#otherproblemlist").hide()
         $("#ownproblemlist").hide()
-        // $("#es2div").hide()
+        $("#es2div").hide()
         $("#contact_details").hide()
         $("#pincode").hide()
       }
@@ -1644,7 +1528,7 @@ function getvalue(id)
                     // s1+='<input type="checkbox" class="custom-control-input" id="'+x+'"  onclick="showproblems(this.id)">'
                     // s1+='<label class="custom-control-label" for="'+x+'">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
                    
-                    s1+='<div class="col-md-6 mb-2 "><div class="form-group"><div class="form-check"><div class="custom-checkbox">'
+                    s1+='<div class="col-md-6 mb-2 "><div class="form-group "><div class="form-check"><div class="custom-checkbox">'
                     s1+='<input type="checkbox" class="custom-control-input" id="'+x+'" onclick="showproblems(this.id)">'
                     s1+='<label class="custom-control-label" for="'+x+'">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
 
@@ -1673,6 +1557,7 @@ function getvalue(id)
 
       $("select.mcomp").change(function(){
         var selectedComp = $(this).children("option:selected").val();
+        alert(selectedComp)
         $.ajax(
             {
               url: "./api/getMobileModel.php", 
@@ -1683,7 +1568,7 @@ function getvalue(id)
                 s1 = ""
                 console.log(para)
                 para = JSON.parse(para)
-                s1 += '<option selected disabled value="">Select Device Model</option>'
+                s1 += '<option selected disabled>Choose Model</option>'
                 for(i=0;i<para.length;i++)
                 {
                   console.log("Model - ",para[i][1])
@@ -1692,30 +1577,36 @@ function getvalue(id)
 
                 }
               
-                $(".mmod").html(s1)
-                $("#es2div").show()
-                
-
+                if($(".mmod").html(s1))
+                {
+                  $("#es2div").show()
+                }
+                else
+                {
+                  alert('hjell')
+                }
+              
               }
            });
 
         });
-      });
+    });
      
-     $.ajax(
-     {
-       url: "./api/getMobileFilter.php",
-       method:"POST",
-       success: function(para)
-       {
-         console.log(para)
-         s1 = ""
-         para = JSON.parse(para)
-         for(i=0;i<para.length;i++)
-         {
-           s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
-         }
-         $(".mcomp").append(s1)
+      $.ajax(
+      {
+        url: "./api/getMobileFilter.php", 
+        method:"POST",
+        success: function(para)
+        {
+          console.log(para)
+          s1 = ""
+          para = JSON.parse(para)
+          s1 += '<option selected disabled>Choose Company</option>'
+          for(i=0;i<para.length;i++)
+          {
+            s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
+          }
+          $(".mcomp").html(s1)
         }
 
       });
@@ -1739,6 +1630,8 @@ function getvalue(id)
            });
       // 
 
+  
+
 
 
     // get pincodes from cities
@@ -1756,7 +1649,7 @@ function getvalue(id)
           success: function(para)
           {
             para = JSON.parse(para)
-            var str = '<option value="" selected disabled>Select Your Pincode</option>'
+            var str = '<option value="">Select Your Pincode</option>'
             for(let i=0;i<para.length;i++)
             {
               str += '<option value="'+para[i]+'">'+para[i]+'</option>'
@@ -1795,11 +1688,55 @@ function getvalue(id)
       console.log(problems)
     }
 
-function proceednext()
-{
-  
-}
+    $("#checkpincode").click(function(){
+      if($("#pincode").val() == "")
+      {
+        alertdata("Please Select Pincode First","")
+      }
+      else
+      {
+        $.ajax(
+        {
+          url: "./api/checkpincode.php", 
+          method:"POST",
+          data:{'pincode':$("#pincode").val()},
+          success: function(para)
+          {
+            if(para == 0)
+            {
+              alertdata("This Pincode is currently not available for our service","")
 
+              window.available = false
+              $("#contact_details").hide()
+            }
+            else
+            {
+              alertdata("This Pincode is Available","")
+              window.available = true
+              $.ajax({
+                url:"./api/getcontactdetails.php",
+                method:"POST",
+                data:{"sid":sid},
+                success: function(para){
+                  para = JSON.parse(para)
+                  $("#selectcity").hide()
+                  $("#selectpincode").hide()
+                  $("#checkpincode").hide()
+                  $("#divtitle").html("Enter Details")
+                  $("#contact_details").show()
+                  $("#phonenum").val(para[0])
+                  $("#address").val(para[1])
+                  $("#mobile_details").show()
+                  $("#problemdiv").show()
+                  $("#quotebuttons").show()
+                }
+              })
+            }
+          }
+        })
+      }
+    })
+    
 function getquote(){
 
     $.ajax(
@@ -1813,9 +1750,9 @@ function getquote(){
             },
         success: function(para)
         {
-            alertdata("Estimated Price for your request is Rs "+para , "")
+            $("#quotation_amt").text("Estimated Price for your request is Rs "+para)
             window.estprice = para
-            $('#alert').modal('show')
+            $("#requestquotation").show()
         }
         })
 }
@@ -1832,7 +1769,7 @@ function gobacktopincode(){
   $("#networkproblemlist").hide()
   $("#otherproblemlist").hide()
   $("#ownproblemlist").hide()
-  // $("#es2div").hide()
+  $("#es2div").hide()
   $("#contact_details").hide()
   $("#pincode").hide() 
   $("#mobile_details").hide()
@@ -1840,14 +1777,16 @@ function gobacktopincode(){
   $("#quotebuttons").hide()
 
   $("#selectcity").show()
-  // $("#selectpincode").show()
-  $(".checkpincode").show()
+  $("#selectpincode").show()
+  $("#checkpincode").show()
   $("#divtitle").html("Check Service Availability")
 
 }
 
-function submitrequest()
-{
+$("#requestquotation").click(function(){
+
+  if(window.available)
+  {
     var sid = getCookie("sid");
     if(sid)
     {
@@ -1856,7 +1795,7 @@ function submitrequest()
         console.log(window.mcname)
         if($("#phonenum").val() != "" && $("#address").val() != "")
         {
-          $("#submitrequest").prop("disabled","true")
+          $("#requestquotation").prop("disabled","true")
             $.ajax(
             {
             url: "./api/submitproblem.php", 
@@ -1892,7 +1831,13 @@ function submitrequest()
     {
 
     }
+ 
   }
+  else
+  {
+    alertdata("Check Availability of Pincode First")
+  }
+})
 
 var alterClass = function() {
 	  var ww = document.body.clientWidth;

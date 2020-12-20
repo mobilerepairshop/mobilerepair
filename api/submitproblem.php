@@ -28,7 +28,7 @@ if($success == '200')
         $res = mysqli_query($conn,$query);
         $rid = mysqli_num_rows($res) + 1;
         
-        $query = "insert into req values(".$rid.",'".$mmodel."','".$user[1]."','".$estprice."','".$status."','".$calprice."','".$created_date."','".$note."','','','','0','')";
+        $query = "insert into req values(".$rid.",'".$mmodel."','".$user[1]."','".$estprice."','".$status."','".$calprice."','".$created_date."','".$note."','','','','0','',0)";
         $userquery = "update users set pincode='".$pincode."',address='".$address."',phonenum='".$phonenum."' where uid=".$user[1];
         $userres = mysqli_query($conn,$userquery);
         $res = mysqli_query($conn,$query);
@@ -44,7 +44,7 @@ if($success == '200')
             {
                 echo 'Your request has been submitted successfully,
 Our customer care executive shall be contact you soon,
-You can track your request status at “Track Mobile Repair Service” menu
+You can track your request status at “Track Device Repair Service” menu
 Price may very if more problems found during repair”';
             }
             else
