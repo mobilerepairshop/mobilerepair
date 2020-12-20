@@ -119,7 +119,7 @@ include("insert_mcompanies.php");
 
 if(isset($_GET['view_mmodels'])){
 
-include("view_mmodels.php");
+include("mmodel.html");
 
 }
 

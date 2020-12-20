@@ -27,7 +27,7 @@
   
   <li class="active" >
   
-  <i class="fa fa-dashboard" ></i> Dashboard / Active Enquiries / View Enquiries
+  <i class="fa fa-dashboard" ></i> Dashboard / View Mobile model
   </li>
   
   </ol><!-- breadcrumb Ends -->
@@ -48,9 +48,9 @@
   
   <h3 class="panel-title" ><!-- panel-title Starts -->
   
-  <i class="fa fa-money fa-fw" ></i> View Enquiries
+  <i class="fa fa-money fa-fw" ></i> View Mobile Models
   
-  <a href="./index.php?view_enquiries" style="float:right;color:blue;"> <i class="fa fa-refresh" ></i></a>&nbsp;&nbsp;&nbsp;
+  <a href="./index.php?view_mmodels" style="float:right;color:blue;"> <i class="fa fa-refresh" ></i></a>&nbsp;&nbsp;&nbsp;
   <a href="./index.php?cancel" style="float:right;color:blue;">  <i class="fa fa-times" aria-hidden="true"></i></a>
   
   </h3><!-- panel-title Ends -->
@@ -68,19 +68,18 @@
       var Data = [];
         $(function () {
                 $.ajax({
-                url:"api/get_pincode.php",
+                url:"api/getmodel_view.php",
                   type:"POST",
                   success:function(para1){
                     para1 = JSON.parse(para1)
                     for(let i=0;i<para1.length;i++)
                     {
-                        Data.push
-                        ({
+                        Data.push({
                         id:para1[i][0],
-                        pincode:para1[i][2],
-                        city:para1[i][3],
-                        delete:'<a href="./index.php?delete_pincode="'+para1[i][1]+'">Delete</a>',
-                        edit:'<a href="./index.php?edit_pincode="'+para1[i][1]+'">Edit</a>'
+                        model:para1[i][2],
+                        company:para1[i][3],
+                        delete:'<a href="./index.php?delete_mmodels="'+para1[i][2]+'">Delete</a>',
+                        edit:'<a href="./index.php?edit_mmodels="'+para1[i][2]+'">Edit</a>',
                      
                       
 
@@ -98,11 +97,11 @@
                 enableHeaderHover: true,
                 filterSettings: { filterType: "excel" },
                 columns: [
-                { field: "id", isPrimaryKey: true, headerText: "ID", width: 110 },
-                         { field: "pincode", headerText: "Pincode", width: 160 },
-                         { field: "city", headerText: "City", width: 160 },
-                         { field: "edit", headerText: "Action", width: 110 },
-                         { field: "delete", headerText: "Action", width: 230 }
+                { field: "id", isPrimaryKey: true, headerText: "ID", width: 100 },
+                         { field: "company", headerText: "Company", width: 100 },
+                         { field: "model", headerText: "Model", width: 100 },
+                         { field: "edit", headerText: "Action", width: 100 },
+                         { field: "delete", headerText: "Action", width: 100}
                         
                 ]
             });
