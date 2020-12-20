@@ -302,6 +302,7 @@ function showResetForm(){
         $('.resetBox').fadeIn('fast');
         $('.login-footer').fadeOut('fast',function(){
             $('.register-footer').fadeIn('fast');
+           
         });
         $('.modal-title').html('Register with');
     }); 
@@ -311,13 +312,13 @@ function showResetForm(){
 
 function showLoginForm(){
     $('#loginModal .registerBox').fadeOut('fast',function(){
-
+      $('.resetBox').fadeOut('fast');
         $('.loginBox').fadeIn('fast');
         $('.register-footer').fadeOut('fast',function(){
             $('.login-footer').fadeIn('fast');    
         });
         
-        $('.modal-title').html('Login with');
+        $('.modal-title').html('Login to your account');
     });       
      $('.error').removeClass('alert alert-danger').html(''); 
 }

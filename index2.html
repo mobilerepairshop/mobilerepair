@@ -79,6 +79,7 @@ a{
   }
   .float{
    margin-bottom:14%;
+   display: block;
 }
 
 .my-float{
@@ -90,6 +91,14 @@ a{
 
 .my-float2{
 	margin-top:16px;
+}
+.float3
+{
+  display: none;
+}
+.float4
+{
+  display: none;
 }
 }
 .float{
@@ -105,6 +114,7 @@ a{
   font-size:30px;
 	box-shadow: 2px 2px 3px #999;
   z-index:100;
+  display: none;
 }
 
 .my-float{
@@ -123,11 +133,45 @@ a{
   font-size:30px;
 	box-shadow: 2px 2px 3px #999;
   z-index:100;
+  display:none;
 }
 
 .my-float2{
 	margin-top:16px;
 }
+.float3{
+	position:fixed;
+	width:50px;
+	height:50px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float3{
+	margin-top:11px;
+}
+.float4{
+	position:fixed;
+	width:50px;
+	height:50px;
+  top:3%;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float4{
+	margin-top:11px;
+}
+
   </style>
 </head>
 
@@ -147,7 +191,7 @@ a{
 
   <!--/ Nav Star /-->
   <nav class="navbar navbar-b navbar-reduce navbar-expand-md fixed-top" id="mainNav">
-    <div class="container">
+    <!-- <div class="container">
       <a class="navbar-brand js-scroll" href="#page-top">MobileRepair</a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
         aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -161,6 +205,7 @@ a{
           <li class="nav-item" id="homenav">
             <a class="nav-link js-scroll" style="font-weight: bold;text-decoration: underline;" href="./index2.html">Home</a>
           </li>
+          
           <li class="nav-item" id="servicenav">
             <a class="nav-link js-scroll" href="aboutus.html">About Us</a>
           </li>
@@ -171,6 +216,8 @@ a{
           <li class="nav-item" id="loginav" >
             <a class="nav-link js-scroll" id="login_button" style="cursor:pointer;" onclick="openLoginModal()">Login</a>
           </li>
+          
+          
           <li>
             
             <div class="navbar-collapse" id="navbar-list-4 prodrop">
@@ -188,9 +235,21 @@ a{
               </ul>
             </div>
           </li>
+        
+          <li class="nav-item" id="whatsapp">
+            <a>
+             <a href="https://api.whatsapp.com/send?phone=+917218340969&text=Hello Sir can I get some more info about mobile repair." class="float3" target="_blank">
+               <i class="fa fa-whatsapp my-float3"></i>
+            </a>
+          </li>
+          <li class="nav-item" id="chatbot">
+            <a class="float4 chat-btn">
+              <i class="fa fa-user-circle-o my-float4"></i> 
+            </a>
+          </li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </nav>
   <!--/ Nav End /-->
   <!-- <br><br> -->
@@ -285,23 +344,23 @@ a{
 
  
   <!--/ Section Contact-Footer Star for User /-->
-  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg);">
     <div class="overlay-mf"></div>
-    <footer>
+    <footer >
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
             <div class="copyright-box">
               <p class="copyright">&copy; Copyright <strong>MobileRepair</strong>. All Rights Reserved</p>
-              <div class="credits">
-                <!--
+              <!-- <div class="credits">
+                
                   All the links in the footer should remain intact.
                   You can delete the links only if you purchased the pro version.
                   Licensing information: https://bootstrapmade.com/license/
                   Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
-                -->
+               
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -359,24 +418,26 @@ a{
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script> -->
 
   <!-- Template Main Javascript File -->
 
   <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
-  
-  <script src="js/login.js"></script>
-  <script src="js/delivery_person.js"></script>
-  <script src="js/main.js"></script>
-  <script src="chat/chat.js"></script>
- 
- 
   <script> 
     $(function(){
+      $("#mainNav").load("header.html"); 
       $("#loginmodals").load("login.html"); 
       $("#delivery_personmodals").load("delivery_person.html"); 
     });
     </script> 
+  <!-- <script src="js/login.js"></script> -->
+  
+  <script src="js/delivery_person.js"></script>
+  <script src="js/main.js"></script>
+  <script src="chat/chat.js"></script>
+ 
+  
+  
 
   <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
 
