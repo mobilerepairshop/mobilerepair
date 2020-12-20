@@ -202,7 +202,7 @@ function signout()
                 if(para=='200')
                 {
                   console.log("Successfully Logged Out")
-                  window.location.reload()
+                  window.location.replace("./index2.html");   
                 }
                 else
                 {
@@ -230,7 +230,7 @@ function signout()
                 if(para=='200')
                 {
                   console.log("Successfully Logged Out")
-                  window.location.reload()
+                  window.location.replace("/index2.html");
                 }
                 else
                 {
