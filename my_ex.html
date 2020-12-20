@@ -518,8 +518,8 @@ option{
                   </div>
                 <div class="col-md-8">
                     <div class="dropdown" id="device_type">
-                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode" required>
-                          <option value="">Select Your Device</option>
+                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode" id="repairdevice" required>
+                          <option value="" selected disabled>Select Your Device</option>
                           <option value="mobile">Mobile</option>
                           <option value="laptop">Laptop</option>
                       </select>
@@ -527,14 +527,14 @@ option{
                   </div>
                 <div class="col-md-8">
                     <div class="dropdown" id="mobile_details">
-                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mcomp" required>
-                        <option value="">Select Device Company</option>
+                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mcomp" id="devicecompany" required>
+                        <option value="" selected disabled>Select Device Company</option>
                       </select>
                     </div>
                 </div>
                 <div class="col-md-8">
                   <div class="dropdown" id="es2div">
-                    <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mmod" required>
+                    <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mmod" id="devicemodel" required>
                         <option value="">Select Device Model</option>
                     </select>
                   </div>
@@ -550,33 +550,38 @@ option{
               </div>
               <div class="col-md-12 mb-6" id="problemdiv1">
                 <div class="form-group">
-                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Proceed Next" id="proceedtocontactinfo" onclick="proceedtocontactinfo()">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Get Quotation" onclick="getquote()">
                 </div>
               </div>
               <div class="col-md-12 mb-6" id="problemdiv2">
+                <div class="form-group">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Proceed Next" id="proceedtocontactinfo" onclick="proceedtocontactinfo()">
+                </div>
+              </div>
+              <div class="col-md-12 mb-6" id="problemdiv3">
                 <div class="form-group">
                   <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Go Back" onclick="backtodeviceinfo()">
                 </div>
               </div>
               <div class="col-md-8" id="contact_details">
                 <div class="form-group">
-                  <textarea class="browser-default form-control custom-select-lg mb-3 selectpincode" id="exampleFormControlTextarea1" rows="3" placeholder="Address *"></textarea>
+                  <textarea class="browser-default form-control custom-select-lg mb-3 selectpincode" id="address" rows="3" placeholder="Address *"></textarea>
                 </div>
-                <div class="form-group">
-                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" id="address" placeholder="Landmark" required>
-                </div>
+                <!-- <div class="form-group">
+                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" id="" placeholder="Landmark" required>
+                </div> -->
                 <div class="form-group">
                   <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" id="phonenum" placeholder="Mobile Number *" required>
                 </div>
               </div>
               <div class="col-md-12 mb-6" id="contact_details1">
                 <div class="form-group">
-                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Submit Request" onclick="gobacktodevice()">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Submit Request" id="submitrequest" onclick="submitrequest()">
                 </div>
               </div>
               <div class="col-md-12 mb-6" id="contact_details2">
                 <div class="form-group">
-                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Go Back" onclick="gobacktodevice()">
+                  <input type="button" class="button button-a browser-default custom-select-lg checkavailability" value="Go Back" onclick="backtoproblems()">
                 </div>
               </div>
               </div>
@@ -660,10 +665,19 @@ option{
 
 function proceedtoproblems()
 {
-  $(".deviceinfo").fadeOut()
-  $("#problemdiv").fadeIn()
-  $("#problemdiv1").fadeIn()
-  $("#problemdiv2").fadeIn()
+  if($("#city").val() != "" && $("#pincode").val() != "" && $("#repairdevice").val() != "" && $("#devicecompany").val() != "" && $("#devicemodel").val() != null)
+  {
+    $(".deviceinfo").fadeOut()
+    $("#problemdiv").fadeIn(1000)
+    $("#problemdiv1").fadeIn(1000)
+    $("#problemdiv2").fadeIn(1000)
+    $("#problemdiv3").fadeIn(1000)
+  }
+  else
+  {
+    alertdata("Please Select All Fields","")
+    $('#alert').modal('show')
+  }
 }
 
 function backtodeviceinfo()
@@ -671,17 +685,48 @@ function backtodeviceinfo()
   $("#problemdiv").fadeOut()
   $("#problemdiv1").fadeOut()
   $("#problemdiv2").fadeOut()
+  $("#problemdiv3").fadeOut()
   $(".deviceinfo").fadeIn()
 }
 
 function proceedtocontactinfo()
 {
+  if(problems != "")
+  {
+    $.ajax({
+    url:"./api/getcontactdetails.php",
+    method:"POST",
+    data:{"sid":sid},
+    success: function(para){
+      para = JSON.parse(para)
+      $("#phonenum").val(para[0])
+      $("#address").val(para[1])
+    }
+  })
   $("#problemdiv").fadeOut()
   $("#problemdiv1").fadeOut()
   $("#problemdiv2").fadeOut()
+  $("#problemdiv3").fadeOut()
   $("#contact_details").fadeIn()
   $("#contact_details1").fadeIn()
-  $("#contact_details1").fadeIn()
+  $("#contact_details2").fadeIn()
+  }
+  else
+  {
+    alertdata("Please Select at least 1 Problem")
+    $('#alert').modal('show')
+  }
+}
+
+function backtoproblems()
+{
+  $("#contact_details").fadeOut()
+  $("#contact_details1").fadeOut()
+  $("#contact_details2").fadeOut()
+  $("#problemdiv").fadeIn()
+  $("#problemdiv1").fadeIn()
+  $("#problemdiv2").fadeIn()
+  $("#problemdiv3").fadeIn()
 }
 function editprofile(id)
 {
@@ -1503,29 +1548,13 @@ function getvalue(id)
       var sid = getCookie("sid");
       if(sid)
       {
-        // $(".form-comments").show()
-        // $("#device_type").hide()
-        // $("#availablemsg").hide()
-        // $("#proceednext").hide()
-        // $("#requestquotation").hide()
-        // $("#damageproblemlist").hide()
-        // $("#touchdisplayproblemlist").hide()
-        // $("#hardwareproblemlist").hide()
-        // $("#batteryproblemlist").hide()
-        // $("#memorycardproblemlist").hide()
-        // $("#networkproblemlist").hide()
-        // $("#otherproblemlist").hide()
-        // $("#ownproblemlist").hide()
-        // $("#es2div").hide()
         $("#contact_details").hide()
         $("#contact_details1").hide()
         $("#contact_details2").hide()
-        // // $("#pincode").hide() 
-        // $("#mobile_details").hide()
         $("#problemdiv").hide()
         $("#problemdiv1").hide()
         $("#problemdiv2").hide()
-        // $("#quotebuttons").hide()
+        $("#problemdiv3").hide()
       }
       else
       {
@@ -1646,7 +1675,7 @@ function getvalue(id)
                 s1 = ""
                 console.log(para)
                 para = JSON.parse(para)
-                s1 += '<option selected disabled>Choose Model</option>'
+                s1 += '<option selected disabled value="">Select Device Model</option>'
                 for(i=0;i<para.length;i++)
                 {
                   console.log("Model - ",para[i][1])
@@ -1719,7 +1748,7 @@ function getvalue(id)
           success: function(para)
           {
             para = JSON.parse(para)
-            var str = '<option value="">Select Your Pincode</option>'
+            var str = '<option value="" selected disabled>Select Your Pincode</option>'
             for(let i=0;i<para.length;i++)
             {
               str += '<option value="'+para[i]+'">'+para[i]+'</option>'
@@ -1760,23 +1789,7 @@ function getvalue(id)
 
 function proceednext()
 {
-  $.ajax({
-    url:"./api/getcontactdetails.php",
-    method:"POST",
-    data:{"sid":sid},
-    success: function(para){
-      para = JSON.parse(para)
-      $("#selectcity").hide()
-      $("#selectpincode").hide()
-      $(".checkpincode").hide()
-      $("#availablemsg").hide()
-      $("#proceednext").hide()
-      $("#divtitle").html("Select Your Device Details")
-      $("#device_type").show()
-      $("#mobile_details").show()
-      $("#es2div").show()
-    }
-  })
+  
 }
 
 function getquote(){
@@ -1792,9 +1805,9 @@ function getquote(){
             },
         success: function(para)
         {
-            $("#quotation_amt").text("Estimated Price for your request is Rs "+para)
+            alertdata("Estimated Price for your request is Rs "+para , "")
             window.estprice = para
-            $("#requestquotation").show()
+            $('#alert').modal('show')
         }
         })
 }
@@ -1825,8 +1838,8 @@ function gobacktopincode(){
 
 }
 
-$("#requestquotation").click(function(){
-
+function submitrequest()
+{
     var sid = getCookie("sid");
     if(sid)
     {
@@ -1835,7 +1848,7 @@ $("#requestquotation").click(function(){
         console.log(window.mcname)
         if($("#phonenum").val() != "" && $("#address").val() != "")
         {
-          $("#requestquotation").prop("disabled","true")
+          $("#submitrequest").prop("disabled","true")
             $.ajax(
             {
             url: "./api/submitproblem.php", 
@@ -1871,8 +1884,7 @@ $("#requestquotation").click(function(){
     {
 
     }
-
-})
+  }
 
 var alterClass = function() {
 	  var ww = document.body.clientWidth;
