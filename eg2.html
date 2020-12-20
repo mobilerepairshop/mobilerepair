@@ -44,7 +44,7 @@
 .addborder{
   border: 2px solid black; 
   border-radius: 4px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 a{
   cursor: pointer;
@@ -368,7 +368,7 @@ option{
           </div>
           <div class="form-comments">
             <div class="title-box-2">
-              <h3 class="title-left" id="divtitle">
+              <h3 class="title" id="divtitle" style="color:red;">
                 Register a Request
               </h3>
             </div>
@@ -376,22 +376,22 @@ option{
               <div class="row deviceinfo">
                 <div class="col-md-8" id="selectcity">
                   <div class="dropdown">
-                    <select name="city" id="city" class="browser-default custom-select custom-select-lg mb-3 selectcity addborder">
-                        <option value="" selected disabled>Select Your City</option>
+                    <select name="city" id="city" class="browser-default custom-select-lg mb-3 selectcity addborder">
+                        <option value="" selected disabled>Select City</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-md-8" id="selectpincode">
                     <div class="dropdown">
-                      <select name="pincode" id="pincode" class="browser-default custom-select custom-select-lg mb-3 selectpincode addborder">
-                          <option value="">Select Your Pincode</option>
+                      <select name="pincode" id="pincode" class="browser-default custom-select-lg mb-3 selectpincode addborder">
+                          <option value="">Select Pin</option>
                       </select>
                     </div>
                   </div>
                 <div class="col-md-8">
                     <div class="dropdown" id="device_type">
-                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode addborder" id="repairdevice" required>
-                          <option value="" selected disabled>Select Your Device</option>
+                      <select class="browser-default custom-select-lg mb-3 selectpincode addborder" id="repairdevice" required>
+                          <option value="" selected disabled>Select Device</option>
                           <option value="mobile">Mobile</option>
                           <option value="laptop">Laptop</option>
                       </select>
@@ -399,14 +399,14 @@ option{
                   </div>
                 <div class="col-md-8">
                     <div class="dropdown" id="mobile_details">
-                      <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mcomp addborder" id="devicecompany" required>
+                      <select class="browser-default custom-select-lg mb-3 selectpincode mcomp addborder" id="devicecompany" required>
                         <option value="" selected disabled>Select Device Company</option>
                       </select>
                     </div>
                 </div>
                 <div class="col-md-8">
                   <div class="dropdown" id="es2div">
-                    <select class="browser-default custom-select custom-select-lg mb-3 selectpincode mmod addborder" id="devicemodel" required>
+                    <select class="browser-default custom-select-lg mb-3 selectpincode mmod addborder" id="devicemodel" required>
                         <option value="">Select Device Model</option>
                     </select>
                   </div>
@@ -443,7 +443,7 @@ option{
                   <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" id="" placeholder="Landmark" required>
                 </div> -->
                 <div class="form-group">
-                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" style="border: 2px solid black; border-radius: 4px;font-weight: bold;" id="phonenum" placeholder="Mobile Number *" required>
+                  <input type="text" class="browser-default form-control custom-select-lg mb-3 selectpincode" style="border: 2px solid black; border-radius: 4px;" id="phonenum" placeholder="Mobile Number *" required>
                 </div>
               </div>
               <div class="col-md-12 mb-6" id="contact_details1">
