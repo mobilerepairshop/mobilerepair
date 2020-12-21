@@ -134,7 +134,7 @@ var firebaseConfig = {
                     {
                       $('#loginModal').modal('hide')
                       console.log("Successfully Registered")
-                      window.location.reload()
+                      window.location.replace("./index2.html")
                     }
                     else
                     {
@@ -230,7 +230,7 @@ function signout()
                 if(para=='200')
                 {
                   console.log("Successfully Logged Out")
-                  window.location.replace("/index2.html");
+                  window.location.replace("./index2.html");
                 }
                 else
                 {
@@ -489,7 +489,7 @@ function loginAjax(){
         {
             console.log("Successfully Loggedin")
             $("#login_button").hide()
-            window.location.reload()
+            window.location.replace('./index2.html')
         }
         else
         {
