@@ -87,7 +87,8 @@ else {
 
 <select name="userrole" id="userrole">
 	<option value="delivery_boy">Delivery Boy</option>
-	<option value="admin">Admin</option>
+	<option value="system_manager">System Manager</option>
+	<option value="super_admin">Super Admin</option>
 </select>
 
 </div><!-- col-md-6 Ends -->
