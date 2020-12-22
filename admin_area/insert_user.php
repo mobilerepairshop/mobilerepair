@@ -87,9 +87,56 @@ else {
 
 <select name="userrole" id="userrole">
 	<option value="delivery_boy">Delivery Boy</option>
-	<option value="system_manager">System Manager</option>
-	<option value="super_admin">Super Admin</option>
+	<option value="admin">Admin</option>
 </select>
+
+</div><!-- col-md-6 Ends -->
+
+</div><!-- form-group Ends -->
+
+
+<div class="form-group"><!-- form-group Starts -->
+
+<label class="col-md-3 control-label">User Rights: </label>
+
+<div class="col-md-6"><!-- col-md-6 Starts -->
+
+<table>
+
+  <tr>
+    <td><input type="checkbox" name="role[]" value="1" />Add User<br /></td>
+<td><input type="checkbox" name="role[]" value="2" />Add Mobile company<br /></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" name="role[]" value="3" />Add Mobile Model<br /></td>
+    <td><input type="checkbox" name="role[]" value="4" />Add City<br /></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" name="role[]" value="5" />Add Pincode<br /></td>
+    <td><input type="checkbox" name="role[]" value="6" />Add Problem<br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="role[]" value="7" />Add Sub-Problem<br /></td>
+    <td><input type="checkbox" name="role[]" value="8" />Add Pricing<br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="role[]" value="9" />Add carousel Image<br /></td>
+    <td><input type="checkbox" name="role[]" value="10" />Track Enquiries<br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="role[]" value="11" />View History<br /></td>
+    <td><input type="checkbox" name="role[]" value="12" />View cancelled Request<br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="role[]" value="13" />View Chat Response<br /></td>
+     <td><input type="checkbox" name="role[]" value="14" />View Contact Us Response<br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="role[]" value="15" />View Customers<br /></td>
+  </tr>
+</table>
 
 </div><!-- col-md-6 Ends -->
 
@@ -199,7 +246,7 @@ else {
 <?php
 require_once('includes/db.php');
 
-if(isset($_POST['submit'])){
+if(isset($_POST['role'])){
 
 $admin_name = $_POST['admin_name'];
 
@@ -213,13 +260,27 @@ $admin_contact = $_POST['admin_contact'];
 
 $admin_role = $_POST['userrole'];
 
+$temp = $_POST['role'];
+
+console.log($temp);
+$N = count($temp);
+$str1="";
+for($i=0; $i < $N; $i++)
+{
+	//echo "<script>alert('$temp[$i]')</script>";
+	$str1=$str1.$temp[$i].",";
+  
+
+}
+console.log($str1);
+
 $admin_image = $_FILES['admin_image']['name'];
 
 $temp_admin_image = $_FILES['admin_image']['tmp_name'];
 
 move_uploaded_file($temp_admin_image,"admin_images/$admin_image");
 
-$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address,admin_role) values ('$admin_name','$username','$admin_pass','$admin_image','$admin_contact','$admin_address','$admin_role')";
+$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address,admin_role,admin_rights) values ('$admin_name','$username','$admin_pass','$admin_image','$admin_contact','$admin_address','$admin_role','$str1')";
 
 $run_admin = mysqli_query($con,$insert_admin);
 
