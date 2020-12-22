@@ -79,69 +79,6 @@ else {
 
 </div><!-- form-group Ends -->
 
-<div class="form-group"><!-- form-group Starts -->
-
-<label class="col-md-3 control-label">User Role: </label>
-
-<div class="col-md-6"><!-- col-md-6 Starts -->
-
-<select name="userrole" id="userrole">
-	<option value="delivery_boy">Delivery Boy</option>
-	<option value="system_manager">System Manager</option>
-	<option value="super_admin">Super Admin</option>
-</select>
-
-</div><!-- col-md-6 Ends -->
-
-</div><!-- form-group Ends -->
-
-
-<div class="form-group"><!-- form-group Starts -->
-
-<label class="col-md-3 control-label">User Rights: </label>
-
-<div class="col-md-6"><!-- col-md-6 Starts -->
-
-<table>
-
-  <tr>
-    <td><input type="checkbox" name="role[]" value="1" />Add User<br /></td>
-<td><input type="checkbox" name="role[]" value="2" />Add Mobile company<br /></td>
-  </tr>
-
-  <tr>
-    <td><input type="checkbox" name="role[]" value="3" />Add Mobile Model<br /></td>
-    <td><input type="checkbox" name="role[]" value="4" />Add City<br /></td>
-  </tr>
-
-  <tr>
-    <td><input type="checkbox" name="role[]" value="5" />Add Pincode<br /></td>
-    <td><input type="checkbox" name="role[]" value="6" />Add Problem<br /></td>
-  </tr>
-  <tr>
-    <td><input type="checkbox" name="role[]" value="7" />Add Sub-Problem<br /></td>
-    <td><input type="checkbox" name="role[]" value="8" />Add Pricing<br /></td>
-  </tr>
-  <tr>
-    <td><input type="checkbox" name="role[]" value="9" />Add carousel Image<br /></td>
-    <td><input type="checkbox" name="role[]" value="10" />Track Enquiries<br /></td>
-  </tr>
-  <tr>
-    <td><input type="checkbox" name="role[]" value="11" />View History<br /></td>
-    <td><input type="checkbox" name="role[]" value="12" />View cancelled Request<br /></td>
-  </tr>
-  <tr>
-    <td><input type="checkbox" name="role[]" value="13" />View Chat Response<br /></td>
-     <td><input type="checkbox" name="role[]" value="14" />View Contact Us Response<br /></td>
-  </tr>
-  <tr>
-    <td><input type="checkbox" name="role[]" value="15" />View Customers<br /></td>
-  </tr>
-</table>
-
-</div><!-- col-md-6 Ends -->
-
-</div><!-- form-group Ends -->
 
 
 <div class="form-group"><!-- form-group Starts -->
@@ -195,6 +132,70 @@ else {
 </div><!-- form-group Ends -->
 
 
+
+<div class="form-group"><!-- form-group Starts -->
+
+<label class="col-md-3 control-label">User Role: </label>
+
+<div class="col-md-6"><!-- col-md-6 Starts -->
+
+<select name="userrole" id="userrole" onchange="myFunction()">
+	<option value="delivery_boy">Delivery Boy</option>
+	<option value="admin">Admin</option>
+</select>
+
+</div><!-- col-md-6 Ends -->
+
+</div><!-- form-group Ends -->
+
+
+<div class="form-group"><!-- form-group Starts -->
+
+<label class="col-md-3 control-label userright">User Rights: </label>
+
+<div class="col-md-6"><!-- col-md-6 Starts -->
+
+<table>
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="1" /><label class="userright"> Add User</label><br /></td>
+<td><input type="checkbox" class="userright" name="role[]" value="2" /><label class="userright"> Add Mobile company</label><br /></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="3" /><label class="userright">Add Mobile Model</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="4" /><label class="userright">Add City</label><br /></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="5" /><label class="userright">Add Pincode</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="6" /><label class="userright">Add Problem</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="7" /><label class="userright">Add Sub-Problem</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="8" /><label class="userright">Add Pricing</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="9" /><label class="userright">Add carousel Image</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="10" /><label class="userright">Track Enquiries</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="11" /><label class="userright">View History</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="12" /><label class="userright">View cancelled Request</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="13" /><label class="userright">View Chat Response</label><br /></td>
+     <td><input type="checkbox" class="userright" name="role[]" value="14" /><label class="userright">View Contact Us Response</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="15" /><label class="userright">View Customers</label><br /></td>
+  </tr>
+</table>
+
+</div><!-- col-md-6 Ends -->
+
+</div><!-- form-group Ends -->
+
 <div class="form-group"><!-- form-group Starts -->
 
 <label class="col-md-3 control-label"></label>
@@ -219,6 +220,18 @@ else {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <script>
+
+$(document).ready(function(){
+	$(".userright").hide();
+});
+
+function myFunction() {
+  var x = document.getElementById("userrole").value;
+  alert(x);
+  if(x){
+	$(".userright").show();
+  }
+}
 	$("#admin_name").change(function() {
 		var nm = $("#admin_name").val().split(" ")
 		var unm = nm[0]
