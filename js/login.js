@@ -134,7 +134,7 @@ var firebaseConfig = {
                     {
                       $('#loginModal').modal('hide')
                       console.log("Successfully Registered")
-                      window.location.reload()
+                      window.location.replace("./index2.html")
                     }
                     else
                     {
@@ -202,7 +202,7 @@ function signout()
                 if(para=='200')
                 {
                   console.log("Successfully Logged Out")
-                  window.location.reload()
+                  window.location.replace("./index2.html");   
                 }
                 else
                 {
@@ -230,7 +230,7 @@ function signout()
                 if(para=='200')
                 {
                   console.log("Successfully Logged Out")
-                  window.location.reload()
+                  window.location.replace("./index2.html");
                 }
                 else
                 {
@@ -289,6 +289,7 @@ function showResetForm(){
         $('.resetBox').fadeIn('fast');
         $('.login-footer').fadeOut('fast',function(){
             $('.register-footer').fadeIn('fast');
+           
         });
         $('.modal-title').html('Register with');
     }); 
@@ -298,13 +299,13 @@ function showResetForm(){
 
 function showLoginForm(){
     $('#loginModal .registerBox').fadeOut('fast',function(){
-
+      $('.resetBox').fadeOut('fast');
         $('.loginBox').fadeIn('fast');
         $('.register-footer').fadeOut('fast',function(){
             $('.login-footer').fadeIn('fast');    
         });
         
-        $('.modal-title').html('Login with');
+        $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button><br>Login to your account');
     });       
      $('.error').removeClass('alert alert-danger').html(''); 
 }
@@ -488,7 +489,7 @@ function loginAjax(){
         {
             console.log("Successfully Loggedin")
             $("#login_button").hide()
-            window.location.reload()
+            window.location.replace('./index2.html')
         }
         else
         {

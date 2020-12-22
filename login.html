@@ -1,9 +1,61 @@
+
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+<style> 
+.google-btn {
+  width: 100%;
+  height: 46px;
+  margin-left: 1%;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+}
+  .google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: #fff;
+  }
+  .google-icon {
+    position: absolute;
+    margin-top: 14px;
+    margin-left: -12px;
+    width: 30px;
+height: 18px;
+    
+  }
+  .btn-text {
+    float: right;
+    margin: 13px 70px 0 0;
+    color: #000 ;
+    font-size: 15px;
+    letter-spacing: 0.2px;
+    
+  }
+  .google-btn:hover {
+    box-shadow: 0 0 6px  #4285f4;
+  }
+  .google-btn:active {
+    background:  #4285f4;
+  }
+  .modal-title{
+    margin-left:15%;
+  }
+  
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+  </style>
   <!-- Login Modal -->
-  <div class="modal fade login" id="loginModal">
-    <div class="modal-dialog login animated">
+  <div class="modal fade login" id="loginModal" style="background-color: whitesmoke;">
+    <div class="modal-dialog login animated" style=" box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);margin-top:8%;" >
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Login with</h4>
+         
+            <h4 class="modal-title">Login to your account</h4>
+          
+         
         </div>
         <div class="modal-body">
           <div class="box">
@@ -12,22 +64,28 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-sm">
-                      <div onclick="googleSignin()" ><img class="google" src="google.png" style="cursor:pointer;"></img></div>
+                      <!-- <div onclick="googleSignin()" ><img class="google" src="googlesignin2.png" style="cursor:pointer;"></img></div> -->
+                      <div class="google-btn" onclick="googleSignin()" style="cursor:pointer;">
+                        <div class="google-icon-wrapper">
+                          <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                        </div>
+                        <p class="btn-text"><b>Continue with Google</b></p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="division">
-                <div class="line l"></div>
-                <span>or</span>
-                <div class="line r"></div>
-              </div>
+            
               <div class="error"></div>
                 <div class="form loginBox">
                   <form method="" action="" accept-charset="UTF-8">
                     <input id="emaillog" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
                     <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
+                    
                     <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                    <br>
+                    <center><input type="checkbox" name="remember" id="remember" />
+                      <label for="remember-me">Remember me</label></center>
                   </form>
                 </div>
               </div>
@@ -84,12 +142,13 @@
           </div>
           <div class="modal-footer">
             <div class="forgot login-footer">
+             
+              <span>Or 
+                <a href="javascript: showResetForm();" style="color: #0078ff;">Forgot Password</a>
+              </span> <br>
               <span>Don't have an account?
-                <b><a href="javascript: showRegisterForm();" style="color: #0078ff;">Sign up</a></b>
+                <a href="javascript: showRegisterForm();" style="color: #0078ff;">Sign up</a>
               </span><br>
-              <span>Don't remember password?
-                <b><a href="javascript: showResetForm();" style="color: #0078ff;"> Reset</a></b>
-              </span> 
             </div>
             <div class="forgot register-footer" style="display:none">
               <span>Already have an account?</span>
