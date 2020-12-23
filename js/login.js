@@ -535,6 +535,7 @@ $.ajax({
             if(para[1] == "Admin_User")
             {
               $(".botnavbar").css("display", "none")
+              $("#blog").hide()
               $("#homenav").hide()
               $("#servicenav").hide()
               $("#contactnav").hide()
@@ -553,7 +554,7 @@ $.ajax({
               $.ajax({
                 url:'./admin_area/api/view_assignments.php',
                 type:'POST',
-                data : {"sid":sid},
+                data : {"sid":sid,"filter":"active"},
                 success:function(para)
                 {
                     para = JSON.parse(para)
