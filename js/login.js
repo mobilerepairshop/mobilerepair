@@ -134,7 +134,7 @@ var firebaseConfig = {
                     {
                       $('#loginModal').modal('hide')
                       console.log("Successfully Registered")
-                      window.location.reload()
+                      window.location.replace("./index2.html")
                     }
                     else
                     {
@@ -202,7 +202,7 @@ function signout()
                 if(para=='200')
                 {
                   console.log("Successfully Logged Out")
-                  window.location.reload()
+                  window.location.replace("./index2.html");   
                 }
                 else
                 {
@@ -230,7 +230,7 @@ function signout()
                 if(para=='200')
                 {
                   console.log("Successfully Logged Out")
-                  window.location.reload()
+                  window.location.replace("./index2.html");
                 }
                 else
                 {
@@ -305,7 +305,7 @@ function showLoginForm(){
             $('.login-footer').fadeIn('fast');    
         });
         
-        $('.modal-title').html('Login to your account');
+        $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button><br>Login to your account');
     });       
      $('.error').removeClass('alert alert-danger').html(''); 
 }
@@ -489,7 +489,7 @@ function loginAjax(){
         {
             console.log("Successfully Loggedin")
             $("#login_button").hide()
-            window.location.reload()
+            window.location.replace('./index2.html')
         }
         else
         {
@@ -534,6 +534,7 @@ $.ajax({
             if(para[1] == "Admin_User")
             {
               $(".botnavbar").css("display", "none")
+              $("#blog").hide()
               $("#homenav").hide()
               $("#servicenav").hide()
               $("#contactnav").hide()
@@ -550,7 +551,7 @@ $.ajax({
               $.ajax({
                 url:'./admin_area/api/view_assignments.php',
                 type:'POST',
-                data : {"sid":sid},
+                data : {"sid":sid,"filter":"active"},
                 success:function(para)
                 {
                     para = JSON.parse(para)
@@ -610,6 +611,53 @@ $.ajax({
       
   })
 
+  function admin_filter(filter)
+  {
+    $.ajax({
+      url:'./admin_area/api/view_assignments.php',
+      type:'POST',
+      data : {"sid":sid,"filter":filter},
+      success:function(para)
+      {
+          para = JSON.parse(para)
+          console.log(para[0])
+          $(".mycards").empty() 
+          var str = ''
+          var status = ["","Picked Up","Dropped to Admin","","","","","","Dropped to user",""]
+          for(let i=0;i<para.length;i++)
+          {
+            var disable_button = para[i].status==1?"":"disabled"
+            var disable_drop = para[i].pay_status!="1"?"disabled":""
+            str += '<div class="form-comments"><div class="title-box-2"><h3 class="title-left">Task Number : '+(i+1)+'</h3></div><div class="form-mf"><div class="row"><div class="col-md-10"><table class="table table-responsive"><tbody id="taskdetails">'
+            str += '<tr><th>Customer Name </th><td>'+para[i].customer+'</td><th>Pickup Date </th><td>'+para[i].date+'</td></tr>'
+            str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
+            str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
+            str += '<tr><th>Customer Address </th><td>'+para[i].address+'</td><th>Customer Contact </th><td><a href="tel:'+para[i].phonenum+'">'+para[i].phonenum+'</td></tr>'
+            if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
+            {
+              str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="paid(this.id,'+para[i].status+')">Amount Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')" '+disable_drop+'>'+status[para[i].status]+'</button></div></div></div></div>'
+            }
+            else if(para[i].delivery_status==1 && para[i].pay_status=="1")
+            {
+              str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+            }
+            else if(para[i].delivery_status==0 && para[i].status==1)
+            {
+              str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-small " onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
+            }
+            else if(para[i].delivery_status==1 && para[i].status==8)
+            {
+              str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+            }
+            else
+            {
+              str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+            }
+          }
+          $(".mycards").append(str) 
+      }
+    })
+  }
 
   window.userexist = 0
   function checkusername (){

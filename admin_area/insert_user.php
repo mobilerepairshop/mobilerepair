@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 if($_COOKIE['sid'] == null){
 
 echo "<script>window.open('login.php','_self')</script>";
@@ -79,21 +79,6 @@ else {
 
 </div><!-- form-group Ends -->
 
-<div class="form-group"><!-- form-group Starts -->
-
-<label class="col-md-3 control-label">User Role: </label>
-
-<div class="col-md-6"><!-- col-md-6 Starts -->
-
-<select name="userrole" id="userrole">
-	<option value="delivery_boy">Delivery Boy</option>
-	<option value="system_manager">System Manager</option>
-	<option value="super_admin">Super Admin</option>
-</select>
-
-</div><!-- col-md-6 Ends -->
-
-</div><!-- form-group Ends -->
 
 
 <div class="form-group"><!-- form-group Starts -->
@@ -147,6 +132,71 @@ else {
 </div><!-- form-group Ends -->
 
 
+
+<div class="form-group"><!-- form-group Starts -->
+
+<label class="col-md-3 control-label">User Role: </label>
+
+<div class="col-md-6"><!-- col-md-6 Starts -->
+
+<select name="userrole" id="userrole" onchange="myFunction()">
+	<option value="delivery_boy">Delivery Boy</option>
+	<option value="admin">Admin</option>
+</select>
+
+</div><!-- col-md-6 Ends -->
+
+</div><!-- form-group Ends -->
+
+
+<div class="form-group userright"><!-- form-group Starts -->
+
+<label class="col-md-3 control-label userright">User Rights: </label>
+
+<div class="col-md-6"><!-- col-md-6 Starts -->
+
+<table class="table">
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="0" />&nbsp;&nbsp;<label class="userright"> Dashboard</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="1" />&nbsp;&nbsp;<label class="userright"> Add User</label><br /></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="2" />&nbsp;&nbsp;<label class="userright"> Add Mobile company</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="3" />&nbsp;&nbsp;<label class="userright">Add Mobile Model</label><br /></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="4" />&nbsp;&nbsp;<label class="userright">Add City</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="5" />&nbsp;&nbsp;<label class="userright">Add Pincode</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="6" />&nbsp;&nbsp;<label class="userright">Add Problem</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="7" />&nbsp;&nbsp;<label class="userright">Add Sub-Problem</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="8" />&nbsp;&nbsp;<label class="userright">Add Pricing</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="9" />&nbsp;&nbsp;<label class="userright">Add carousel Image</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="10" />&nbsp;&nbsp;<label class="userright">Track Enquiries</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="11" />&nbsp;&nbsp;<label class="userright">View History</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="12" />&nbsp;&nbsp;<label class="userright">View cancelled Request</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="13" />&nbsp;&nbsp;<label class="userright">View Chat Response</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="14" />&nbsp;&nbsp;<label class="userright">View Contact Us Response</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="15" />&nbsp;&nbsp;<label class="userright">View Customers</label><br /></td>
+  </tr>
+</table>
+
+</div><!-- col-md-6 Ends -->
+
+</div><!-- form-group Ends -->
+
 <div class="form-group"><!-- form-group Starts -->
 
 <label class="col-md-3 control-label"></label>
@@ -171,6 +221,20 @@ else {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <script>
+
+$(document).ready(function(){
+	$(".userright").hide();
+});
+
+function myFunction() {
+  var x = document.getElementById("userrole").value;
+  if(x == 'admin'){
+	$(".userright").show();
+  }
+  if(x == 'delivery_boy'){
+	$(".userright").hide();
+  }
+}
 	$("#admin_name").change(function() {
 		var nm = $("#admin_name").val().split(" ")
 		var unm = nm[0]
@@ -199,7 +263,7 @@ else {
 <?php
 require_once('includes/db.php');
 
-if(isset($_POST['submit'])){
+if(isset($_POST['role'])){
 
 $admin_name = $_POST['admin_name'];
 
@@ -213,13 +277,24 @@ $admin_contact = $_POST['admin_contact'];
 
 $admin_role = $_POST['userrole'];
 
+$temp = $_POST['role'];
+
+$N = count($temp);
+$str1="";
+for($i=0; $i < $N; $i++)
+{
+	//echo "<script>alert('$temp[$i]')</script>";
+	$str1=$str1.$temp[$i].",";
+}
+console.log($str1);
+
 $admin_image = $_FILES['admin_image']['name'];
 
 $temp_admin_image = $_FILES['admin_image']['tmp_name'];
 
 move_uploaded_file($temp_admin_image,"admin_images/$admin_image");
 
-$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address,admin_role) values ('$admin_name','$username','$admin_pass','$admin_image','$admin_contact','$admin_address','$admin_role')";
+$insert_admin = "insert into admins (admin_name,admin_email,admin_pass,admin_image,admin_contact,admin_address,admin_role,admin_rights) values ('$admin_name','$username','$admin_pass','$admin_image','$admin_contact','$admin_address','$admin_role','$str1')";
 
 $run_admin = mysqli_query($con,$insert_admin);
 

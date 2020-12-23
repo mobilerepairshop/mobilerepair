@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2020 at 07:50 AM
+-- Generation Time: Dec 23, 2020 at 05:06 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -35,17 +35,21 @@ CREATE TABLE `admins` (
   `admin_image` text NOT NULL,
   `admin_contact` varchar(255) NOT NULL,
   `admin_address` text DEFAULT NULL,
-  `admin_role` varchar(100) NOT NULL
+  `admin_role` varchar(100) NOT NULL,
+  `admin_rights` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `admin_image`, `admin_contact`, `admin_address`, `admin_role`) VALUES
-(0, 'Vinod Kumbhar', 'vk@gmail.com', '123', 'admin.jpg', '8421208111', 'Plot 34, NavVinayak Society, Jijai Nagar', 'super_admin'),
-(5, 'Atharva ', 'atharvadeshpande99@gmail.com', '123', 'bed-1-2.jpg', '7218340969', 'KESHAV NAGAR, NEAR GULMOHAR MARKET', 'system_manager'),
-(6, 'Atharva Santosh Deshpande', 'AtharvaSD_admin_5', '111', 'Photograph.jpg', '7563210245', 'Pune', 'delivery_boy');
+INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `admin_image`, `admin_contact`, `admin_address`, `admin_role`, `admin_rights`) VALUES
+(0, 'Vinod Kumbhar', 'vk@gmail.com', '123', 'admin.jpg', '8421208111', 'Plot 34, NavVinayak Society, Jijai Nagar', 'super_admin', ''),
+(5, 'Atharva ', 'atharvadeshpande99@gmail.com', '123', 'bed-1-2.jpg', '7218340969', 'KESHAV NAGAR, NEAR GULMOHAR MARKET', 'system_manager', ''),
+(6, 'Atharva Santosh Deshpande', 'AtharvaSD_admin_5', '111', 'Photograph.jpg', '7563210245', 'Pune', 'delivery_boy', ''),
+(8, 'AAA', 'AAA_admin_6', '111', 'shivaji maharaj.jpg', '1111111111', '111', 'delivery_boy', ''),
+(9, 'Sarang K Barshikar', 'SarangKB_admin_8', '123', 'Blank diagram (3).jpeg', '9654102348', 'Viman Nagar', 'admin', '1,3,5,'),
+(11, 'ABC XYZ', 'ABCX_admin_9', '123', 'Blank diagram (3).jpeg', '312', '132', 'admin', '0,1,2,3,4,5,');
 
 -- --------------------------------------------------------
 
@@ -63,8 +67,9 @@ CREATE TABLE `carousel` (
 --
 
 INSERT INTO `carousel` (`id`, `image`) VALUES
-(2, 'work-1.jpg'),
-(3, 'work-3.jpg');
+(6, 'work-1.jpg'),
+(7, 'work-3.jpg'),
+(8, 'work-4.jpg');
 
 -- --------------------------------------------------------
 
@@ -262,7 +267,8 @@ CREATE TABLE `req` (
   `imeino` varchar(100) NOT NULL,
   `pay_method` varchar(20) NOT NULL,
   `pay_status` varchar(5) NOT NULL,
-  `warranty` varchar(10) NOT NULL
+  `warranty` varchar(10) NOT NULL,
+  `inwarr` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -370,7 +376,12 @@ INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, 
 (16, 'a370453431cea129c9fcf1778c79e9a1', 'asdeshpande@mitaoe.ac.in', '2020-10-31', 'atharva deshpande', '', '', ''),
 (17, 'b706835de79a2b4e80506f582af3676a', 'aa@gmail.com', '2020-11-04', 'qweryuioihgf', '', '', ''),
 (18, '202cb962ac59075b964b07152d234b70', 'ad@gmail.com', '2020-11-05', 'AD', '', '', ''),
-(19, '10f54dd835a02a70320e86e5bf25af5e', 'pristineacanditsolutions@gmail.com', '2020-11-15', 'Pristine Solutions', '', '', '');
+(19, '10f54dd835a02a70320e86e5bf25af5e', 'pristineacanditsolutions@gmail.com', '2020-11-15', 'Pristine Solutions', '', '', ''),
+(27, 'f27f6f1c7c5cbf4e3e192e0a47b85300', 'ppp', '2020-12-07', 'ppp', '', '', ''),
+(28, 'b3cd915d758008bd19d0f2428fbb354a', 'mm', '2020-12-07', 'mm', '411033', '11', '11'),
+(29, '5b54c0a045f179bcbbbc9abcb8b5cd4c', 'll', '2020-12-07', 'll', '', '', ''),
+(30, 'e4da3b7fbbce2345d7772b0674a318d5', '5', '2020-12-07', '5', '', '', ''),
+(31, '0cc175b9c0f1b6a831c399e269772661', 'a', '2020-12-17', 'a', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -465,13 +476,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `carousel`
 --
 ALTER TABLE `carousel`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -519,7 +530,7 @@ ALTER TABLE `subproblem_master`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
