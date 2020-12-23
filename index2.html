@@ -389,10 +389,10 @@ a{
             <form>
               <div class="input-group">
                 <span class="input-group-btn">
-                  <button class="btn btn-secondary btn-block" type="button">Active Orders</button> <br><br>
-                  <button class="btn btn-secondary btn-block" type="button">Cancelled Orders</button> <br><br>
-                  <button class="btn btn-secondary btn-block" type="button">Unavailable Orders</button> <br><br>
-                  <button class="btn btn-secondary btn-block" type="button">Order History</button>
+                  <button class="btn btn-secondary btn-block" type="button" onclick="admin_filter('active')">Active Orders</button> <br><br>
+                  <button class="btn btn-secondary btn-block" type="button" onclick="admin_filter('cancelled')">Cancelled Orders</button> <br><br>
+                  <button class="btn btn-secondary btn-block" type="button" onclick="admin_filter('unavailable')">Unavailable Orders</button> <br><br>
+                  <button class="btn btn-secondary btn-block" type="button" onclick="admin_filter('history')">Order History</button>
                 </span>
               </div>
             </form>

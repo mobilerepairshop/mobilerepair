@@ -18,6 +18,36 @@ else
                 inner join session on session.uid = scheduled_request.admin_id
                 where session.sesid = "'.$sid.'" AND req.status in(1,2,8) AND scheduled_request.delivery_status <> 2';
     }
+    if($_POST['filter'] == "cancelled")
+    {
+        $sql = 'select * from scheduled_request
+                inner join req on req.rid = scheduled_request.rid
+                inner join mobilemodel on mobilemodel.mmid = req.mmid
+                inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
+                inner join users on users.uid = req.uid
+                inner join session on session.uid = scheduled_request.admin_id
+                where session.sesid = "'.$sid.'" AND req.status in(1,2,8) AND scheduled_request.delivery_status <> 2';
+    }
+    if($_POST['filter'] == "unavailable")
+    {
+        $sql = 'select * from scheduled_request
+                inner join req on req.rid = scheduled_request.rid
+                inner join mobilemodel on mobilemodel.mmid = req.mmid
+                inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
+                inner join users on users.uid = req.uid
+                inner join session on session.uid = scheduled_request.admin_id
+                where session.sesid = "'.$sid.'" AND req.status in(1,2,8) AND scheduled_request.delivery_status <> 2';
+    }
+    if($_POST['filter'] == "history")
+    {
+        $sql = 'select * from scheduled_request
+                inner join req on req.rid = scheduled_request.rid
+                inner join mobilemodel on mobilemodel.mmid = req.mmid
+                inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
+                inner join users on users.uid = req.uid
+                inner join session on session.uid = scheduled_request.admin_id
+                where session.sesid = "'.$sid.'" AND req.status in(1,2,8) AND scheduled_request.delivery_status <> 2';
+    }
     $result = mysqli_query($con,$sql);
     $arr = [];
     if (mysqli_num_rows($result) > 0) 
