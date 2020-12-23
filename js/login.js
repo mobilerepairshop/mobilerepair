@@ -521,13 +521,12 @@ $.ajax({
       success:function(para)
       {
           console.log(para)
-          para = $.parseJSON(para)
+          para = JSON.parse(para)
           if(para[0]=='200')
           {
             $("#login_button").hide()
             // $(".botnavbar").css("display", "none")
 
-          
             $("#username").html(para[1])
             $("#username").show()
             $('[name="editprofile"]').attr("id", para[2]);
@@ -546,9 +545,7 @@ $.ajax({
               $("#leftnavpane").hide()
               $('[name="editprofile"]').hide();
               $('[name="dashboard"]').hide();
-              $(".float").hide()
-              $(".float2").hide()
-
+              
               $("#contactform-admin").css("display", "block");
               $.ajax({
                 url:'./admin_area/api/view_assignments.php',
@@ -599,7 +596,14 @@ $.ajax({
           else
           {
             $("#login_button").show()
-            $("#username").hide()
+            if($("#username").css('display','none'))
+            {
+              console.log('Hidden')
+            }
+            else
+            {
+              console.log('Not Hidden')
+            }
 
           }
       }

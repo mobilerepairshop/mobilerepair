@@ -28,7 +28,7 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="./login/css/login.css" rel="stylesheet">
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  
+  <link rel="stylesheet" href="./chat/chat.css">
   <style>
 
 a{
@@ -75,7 +75,57 @@ a{
   .botnavbar a{
     width:25%;
   }
+ 
+  a.float4.chat-btn{
+    top: 65%;
+    left: 50%;
+  }
+  a.float3{
+    top: 65%;
+    left: 25%;
+  }
+  .widget-sidebar{
+    height:76vw;
+  }
+
 }
+.float3{
+	position: absolute;;
+	width:50px;
+	height:50px;
+	background-color:#25d366;
+  color:#FFF;
+  top: 43%;
+  right:58%;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float3{
+	margin-top:11px;
+}
+.float4{
+	position: absolute;;
+	width:50px;
+	height:50px;
+	color:#FFF;
+  top: 43%;
+  right:40%;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float4{
+	margin-top:11px;
+}
+
+
   </style>
 </head>
 
@@ -135,13 +185,25 @@ a{
               </ul>
             </div>
           </li>
+       
         </ul>
       </div>
     </div>
   </nav>
+
+
   <!--/ Nav End /-->
+
+
+<!-- Chatbot start msg end -->
+
   <!-- <br><br> -->
+
+
+<!-- Chatbot start msg end -->
+
    <!--/ Section Blog-Single Star /-->
+
    <br><br>
 
   <section class="blog-wrapper sect-pt4" id="blog">
@@ -152,7 +214,43 @@ a{
             <a href="./eg2.html" class="sidebar-title">Device Repair Service</a> <br><br>
             <a href="./myorders2.html" class="sidebar-title">Track Repair Orders</a> <br><br>
             <a href="./insurance.html" class="sidebar-title">Take Insurance Service</a> <br><br>
-            <a href="./enquiry.html" style="color:#0078ff;font-weight: bold;text-decoration: underline;" class="sidebar-title">Enquiry</a>
+            <a href="./enquiry.html" style="color:#0078ff;font-weight: bold;text-decoration: underline;" class="sidebar-title">Enquiry</a><br><br>
+        
+              <a class="float3" href="https://api.whatsapp.com/send?phone=+917218340969&text=Hello Sir can I get some more info about mobile repair."  target="_blank" >
+                <i class="fa fa-whatsapp my-float3" ></i>
+              </a>
+              <a class="float4 chat-btn">
+                <i class="fa fa-user-circle-o my-float4"></i> 
+              </a>
+              <!-- Chatbot start msg -->
+                <div class="chat-popup">
+                  <div class="chat-area">
+                  <div class="income-msg">
+                      <img src="img/bot1.jpg" class="avatar" alt="">
+                      <span class="msg">Welcome,Are you looking for</span> 
+                  </div>
+                  
+                  <div class="income-msg">
+                      <img src="img/bot1.jpg" class="avatar" alt="">
+                    
+                      <span class="msg">Mobile Repairing</span>
+                  </div>
+                  <div class="income-msg">
+                  <img src="img/bot1.jpg" class="avatar" alt="">
+                  <span class="msg">Mobile Insuarance</span>
+                  </div>
+
+                  </div>
+
+                  <div class="input-area">
+                      <input type="text" id="inptext">
+                      <button id="emoji-btn"> &#127773;</button>
+                      <button class="submit" id="mybtn"> <i class="material-icons"> send</i></button>
+                  </div>
+                </div>
+
+                <!-- Chatbot start msg end -->
+            
           </div>
         </div>
         <div class="col-md-8">
@@ -293,7 +391,8 @@ a{
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
- 
+  <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
+
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
 
@@ -301,6 +400,8 @@ a{
 
   <script src="js/login.js"></script>
   <script src="js/delivery_person.js"></script>
+  <script src="chat/chat.js"></script>
+ 
   <script> 
     $(function(){
       $("#loginmodals").load("login.html"); 
