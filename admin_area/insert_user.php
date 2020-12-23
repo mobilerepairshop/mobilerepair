@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 if($_COOKIE['sid'] == null){
 
 echo "<script>window.open('login.php','_self')</script>";
@@ -149,46 +149,47 @@ else {
 </div><!-- form-group Ends -->
 
 
-<div class="form-group"><!-- form-group Starts -->
+<div class="form-group userright"><!-- form-group Starts -->
 
 <label class="col-md-3 control-label userright">User Rights: </label>
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<table>
+<table class="table">
 
   <tr>
-    <td><input type="checkbox" class="userright" name="role[]" value="1" /><label class="userright"> Add User</label><br /></td>
-<td><input type="checkbox" class="userright" name="role[]" value="2" /><label class="userright"> Add Mobile company</label><br /></td>
-  </tr>
-
-  <tr>
-    <td><input type="checkbox" class="userright" name="role[]" value="3" /><label class="userright">Add Mobile Model</label><br /></td>
-    <td><input type="checkbox" class="userright" name="role[]" value="4" /><label class="userright">Add City</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="0" />&nbsp;&nbsp;<label class="userright"> Dashboard</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="1" />&nbsp;&nbsp;<label class="userright"> Add User</label><br /></td>
   </tr>
 
   <tr>
-    <td><input type="checkbox" class="userright" name="role[]" value="5" /><label class="userright">Add Pincode</label><br /></td>
-    <td><input type="checkbox" class="userright" name="role[]" value="6" /><label class="userright">Add Problem</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="2" />&nbsp;&nbsp;<label class="userright"> Add Mobile company</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="3" />&nbsp;&nbsp;<label class="userright">Add Mobile Model</label><br /></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="4" />&nbsp;&nbsp;<label class="userright">Add City</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="5" />&nbsp;&nbsp;<label class="userright">Add Pincode</label><br /></td>
   </tr>
   <tr>
-    <td><input type="checkbox" class="userright" name="role[]" value="7" /><label class="userright">Add Sub-Problem</label><br /></td>
-    <td><input type="checkbox" class="userright" name="role[]" value="8" /><label class="userright">Add Pricing</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="6" />&nbsp;&nbsp;<label class="userright">Add Problem</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="7" />&nbsp;&nbsp;<label class="userright">Add Sub-Problem</label><br /></td>
   </tr>
   <tr>
-    <td><input type="checkbox" class="userright" name="role[]" value="9" /><label class="userright">Add carousel Image</label><br /></td>
-    <td><input type="checkbox" class="userright" name="role[]" value="10" /><label class="userright">Track Enquiries</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="8" />&nbsp;&nbsp;<label class="userright">Add Pricing</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="9" />&nbsp;&nbsp;<label class="userright">Add carousel Image</label><br /></td>
   </tr>
   <tr>
-    <td><input type="checkbox" class="userright" name="role[]" value="11" /><label class="userright">View History</label><br /></td>
-    <td><input type="checkbox" class="userright" name="role[]" value="12" /><label class="userright">View cancelled Request</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="10" />&nbsp;&nbsp;<label class="userright">Track Enquiries</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="11" />&nbsp;&nbsp;<label class="userright">View History</label><br /></td>
   </tr>
   <tr>
-    <td><input type="checkbox" class="userright" name="role[]" value="13" /><label class="userright">View Chat Response</label><br /></td>
-     <td><input type="checkbox" class="userright" name="role[]" value="14" /><label class="userright">View Contact Us Response</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="12" />&nbsp;&nbsp;<label class="userright">View cancelled Request</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="13" />&nbsp;&nbsp;<label class="userright">View Chat Response</label><br /></td>
   </tr>
   <tr>
-    <td><input type="checkbox" class="userright" name="role[]" value="15" /><label class="userright">View Customers</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="14" />&nbsp;&nbsp;<label class="userright">View Contact Us Response</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="15" />&nbsp;&nbsp;<label class="userright">View Customers</label><br /></td>
   </tr>
 </table>
 
@@ -227,9 +228,11 @@ $(document).ready(function(){
 
 function myFunction() {
   var x = document.getElementById("userrole").value;
-  alert(x);
-  if(x){
+  if(x == 'admin'){
 	$(".userright").show();
+  }
+  if(x == 'delivery_boy'){
+	$(".userright").hide();
   }
 }
 	$("#admin_name").change(function() {
@@ -276,15 +279,12 @@ $admin_role = $_POST['userrole'];
 
 $temp = $_POST['role'];
 
-console.log($temp);
 $N = count($temp);
 $str1="";
 for($i=0; $i < $N; $i++)
 {
 	//echo "<script>alert('$temp[$i]')</script>";
 	$str1=$str1.$temp[$i].",";
-  
-
 }
 console.log($str1);
 
