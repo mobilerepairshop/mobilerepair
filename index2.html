@@ -34,6 +34,16 @@
   
   <style>
 
+.clickedButton { 
+ font-weight: bold; 
+ background-color: #0077ff96;
+ border: 1px solid 0078ff;
+} 
+
+.input-group-btn button:hover { 
+ background-color: #0077ff96;
+} 
+
 .customnavbar{
   color:#000;
 }
@@ -389,10 +399,10 @@ a{
             <form>
               <div class="input-group">
                 <span class="input-group-btn">
-                  <button class="btn btn-secondary btn-block" type="button" onclick="admin_filter('active')">Active Orders</button> <br><br>
-                  <button class="btn btn-secondary btn-block" type="button" onclick="admin_filter('cancelled')">Cancelled Orders</button> <br><br>
-                  <button class="btn btn-secondary btn-block" type="button" onclick="admin_filter('unavailable')">Unavailable Orders</button> <br><br>
-                  <button class="btn btn-secondary btn-block" type="button" onclick="admin_filter('history')">Order History</button>
+                  <button id="active" class="btn btn-secondary btn-block" type="button" onclick="admin_filter('active')">Active Orders</button> <br><br>
+                  <button id="cancelled" class="btn btn-secondary btn-block" type="button" onclick="admin_filter('cancelled')">Cancelled Orders</button> <br><br>
+                  <!-- <button class="btn btn-secondary btn-block" type="button" onclick="admin_filter('unavailable')">Unavailable Orders</button> <br><br> -->
+                  <button id="history" class="btn btn-secondary btn-block" type="button" onclick="admin_filter('history')">Order History</button>
                 </span>
               </div>
             </form>
@@ -450,7 +460,10 @@ a{
 
 
 <script>
-
+$(document).ready(function()
+{
+  $('#active').addClass('clickedButton');
+})
 $.ajax({
     url:'./api/getcarousel.php',
     type:'POST',
