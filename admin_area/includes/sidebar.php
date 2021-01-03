@@ -54,58 +54,6 @@ else {
 
 <li><!-- li Starts -->
 
-<a href="index.php?user_profile=<?php echo $admin_id; ?>" >
-
-<i class="fa fa-fw fa-user" ></i> Profile
-
-
-</a>
-
-</li><!-- li Ends -->
-
-<li><!-- li Starts -->
-
-<a href="index.php?view_products" >
-
-<i class="fa fa-fw fa-envelope" ></i> Products 
-
-<span class="badge" ><?php echo $count_products; ?></span>
-
-
-</a>
-
-</li><!-- li Ends -->
-
-<li><!-- li Starts -->
-
-<a href="index.php?view_customers" >
-
-<i class="fa fa-fw fa-gear" ></i> Customers
-
-<span class="badge" ><?php echo $count_customers; ?></span>
-
-
-</a>
-
-</li><!-- li Ends -->
-
-<li><!-- li Starts -->
-
-<a href="index.php?view_p_cats" >
-
-<i class="fa fa-fw fa-gear" ></i> Product Categories
-
-<span class="badge" ><?php echo $count_p_categories; ?></span>
-
-
-</a>
-
-</li><!-- li Ends -->
-
-<li class="divider"></li>
-
-<li><!-- li Starts -->
-
 <a href="./logout.php">
 
 <i class="fa fa-fw fa-power-off"> </i> Logout
@@ -115,8 +63,6 @@ else {
 </li><!-- li Ends -->
 
 </ul><!-- dropdown-menu Ends -->
-
-
 
 
 </li><!-- dropdown Ends -->
@@ -438,6 +384,32 @@ else {
 <i class="fa fa-user"></i> View Customers 
 
 </a>
+
+</li><!-- li Ends -->
+
+
+<li><!-- li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#contactus">
+
+<i class="fa fa-user"></i>  Contact Locations
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="contactus" class="collapse">
+
+<li>
+<a href="index.php?insert_locations"> Insert Loations </a>
+</li>
+
+<li>
+<a href="index.php?view_locations"> View Locations </a>
+</li>
+
+</ul>
 
 </li><!-- li Ends -->
 
