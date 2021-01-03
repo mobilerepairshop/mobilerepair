@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2020 at 05:06 AM
+-- Generation Time: Jan 03, 2021 at 05:13 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -49,7 +49,8 @@ INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `ad
 (6, 'Atharva Santosh Deshpande', 'AtharvaSD_admin_5', '111', 'Photograph.jpg', '7563210245', 'Pune', 'delivery_boy', ''),
 (8, 'AAA', 'AAA_admin_6', '111', 'shivaji maharaj.jpg', '1111111111', '111', 'delivery_boy', ''),
 (9, 'Sarang K Barshikar', 'SarangKB_admin_8', '123', 'Blank diagram (3).jpeg', '9654102348', 'Viman Nagar', 'admin', '1,3,5,'),
-(11, 'ABC XYZ', 'ABCX_admin_9', '123', 'Blank diagram (3).jpeg', '312', '132', 'admin', '0,1,2,3,4,5,');
+(11, 'ABC XYZ', 'ABCX_admin_9', '123', 'Blank diagram (3).jpeg', '312', '132', 'admin', '0,1,2,3,4,5,'),
+(12, 'q', 'q_admin_11', 'q', 'WhatsApp Image 2020-12-24 at 11.48.19 AM.jpeg', 'q', 'q', 'delivery_boy', '');
 
 -- --------------------------------------------------------
 
@@ -103,6 +104,28 @@ INSERT INTO `cities` (`cid`, `cname`) VALUES
 (1, 'Pune'),
 (2, 'Mumbai'),
 (3, 'Nagpur');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contactlocations`
+--
+
+CREATE TABLE `contactlocations` (
+  `clid` int(20) NOT NULL,
+  `ccity` varchar(20) NOT NULL,
+  `cadmin` varchar(50) NOT NULL,
+  `cnumber` varchar(20) NOT NULL,
+  `cemail` varchar(20) NOT NULL,
+  `caddress` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contactlocations`
+--
+
+INSERT INTO `contactlocations` (`clid`, `ccity`, `cadmin`, `cnumber`, `cemail`, `caddress`) VALUES
+(6, 'Pune', 'Vinod Kumbhar', '8421208111', 'vk@gmail.com', 'Plot 34, NavVinayak Society, Jijai Nagar');
 
 -- --------------------------------------------------------
 
@@ -406,6 +429,12 @@ ALTER TABLE `cities`
   ADD PRIMARY KEY (`cid`);
 
 --
+-- Indexes for table `contactlocations`
+--
+ALTER TABLE `contactlocations`
+  ADD PRIMARY KEY (`clid`);
+
+--
 -- Indexes for table `mobilecompany`
 --
 ALTER TABLE `mobilecompany`
@@ -476,7 +505,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `carousel`
@@ -489,6 +518,12 @@ ALTER TABLE `carousel`
 --
 ALTER TABLE `cities`
   MODIFY `cid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `contactlocations`
+--
+ALTER TABLE `contactlocations`
+  MODIFY `clid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `mobilecompany`
