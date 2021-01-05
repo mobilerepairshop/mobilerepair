@@ -263,7 +263,7 @@ function myFunction() {
 <?php
 require_once('includes/db.php');
 
-if(isset($_POST)){
+if(isset($_POST['username'])){
 
 $admin_name = $_POST['admin_name'];
 

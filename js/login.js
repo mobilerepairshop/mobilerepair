@@ -513,11 +513,13 @@ function shakeModal(){
 
 
 var sid = getCookie("sid");
+var user_role = getCookie("role");
 console.log(sid)
+console.log(user_role)
 $.ajax({
       url:'./login/api/checksession.php',
       type:'POST',
-      data:{'sid':sid},
+      data:{'sid':sid,'role':user_role},
       success:function(para)
       {
           console.log(para)
@@ -531,7 +533,7 @@ $.ajax({
             $("#username").show()
             $('[name="editprofile"]').attr("id", para[2]);
             // check if user is admin
-            if(para[1] == "Admin_User")
+            if(para[3] == "Admin_User")
             {
               $(".botnavbar").css("display", "none")
               $("#blog").hide()

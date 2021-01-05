@@ -71,12 +71,14 @@ class UserAuth{
             $query = 'select uid from users where email=? and password=?';
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param('ss',$email,md5($pwd));
+            setcookie('role', 'user' , time()+60*60*7 , '/');
         }
         else if($role == "admin")
         {
             $query = 'select admin_id from admins where admin_email=? and admin_pass=?';
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param('ss',$email,$pwd);
+            setcookie('role', 'admin' , time()+60*60*7 , '/');
         }
         if($stmt->execute())
         {
@@ -132,6 +134,8 @@ class UserAuth{
          if($stmt->execute())
          {
             setcookie("sid",$_COOKIE['sid'] , time()-3600 , '/');
+            setcookie("role",'user' , time()-3600 , '/');
+            setcookie("role",'admin' , time()-3600 , '/');
             return '200';
          }
          else
