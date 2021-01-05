@@ -282,7 +282,7 @@ ConvState.prototype.answerWith = function(answerText, answerObject) {
                         {
                             console.log("This is note - ",para)
                             $('#chat').append('<div class="message to ready">You can close the window now</div>')
-                            setTimeout(function(){ convState.form.submit(); }, 10000);
+                            setTimeout(function(){ convState.form.submit(); }, 1000);
                           }
                         })
                     
