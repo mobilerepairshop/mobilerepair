@@ -73,7 +73,7 @@ else {
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" id="username" name="username" class="form-control" readonly>
+<input type="text" id="username" name="username" class="form-control username" readonly>
 
 </div><!-- col-md-6 Ends -->
 
@@ -250,7 +250,7 @@ function myFunction() {
 			success:function(para)
 			{
 				unm += "_"+para
-				$("#username").val(unm)
+				$(".username").val(unm)
 			}
 		})
 
@@ -263,7 +263,7 @@ function myFunction() {
 <?php
 require_once('includes/db.php');
 
-if(isset($_POST['role'])){
+if(isset($_POST)){
 
 $admin_name = $_POST['admin_name'];
 
@@ -279,14 +279,18 @@ $admin_role = $_POST['userrole'];
 
 $temp = $_POST['role'];
 
-$N = count($temp);
-$str1="";
-for($i=0; $i < $N; $i++)
+$str1 = "";
+
+if($temp)
 {
-	//echo "<script>alert('$temp[$i]')</script>";
-	$str1=$str1.$temp[$i].",";
+  $N = count($temp);
+  for($i=0; $i < $N; $i++)
+  {
+    //echo "<script>alert('$temp[$i]')</script>";
+    $str1=$str1.$temp[$i].",";
+  }
 }
-console.log($str1);
+
 
 $admin_image = $_FILES['admin_image']['name'];
 
