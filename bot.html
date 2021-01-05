@@ -1,0 +1,77 @@
+<div class="col-sm-4 col-sm-offset-3 col-xs-offset-0" style="float: right;">
+<div class="card no border" style="border-style: solid;border-color: #0078ff;height: 30vw;" >
+<div style="background-color: #0078ff;
+width: 110%;
+height: 3vw;
+margin-left: -5%;
+margin-top:-2.5%;"><p style="font-size:125%;padding-top:2%;">Mobile Repair</p></div>
+<div id="chat" class="conv-form-wrapper">
+
+    <form  id="form" method="POST" class="hidden">
+        <select data-conv-question="Hello! I'm here to help you. Can we continue ?" name="first-question">
+            <option value="yes">Yes</option>
+            <option value="sure">Sure!</option>
+        </select>
+        <input type="text" name="name" id="fname" data-conv-question="Alright! First, tell me your full name, please.|Okay! Please, tell me your name first.">
+        <input type="text" data-conv-question="Howdy, {name}:0! It's a pleasure to meet you. (note that this question doesn't expect any answer)" data-no-answer="true">
+
+        <select data-conv-question="What kind of service are you looking for ??" name="first-question" id="serv">
+            <option value="Mobile Repairing">Mobile Repairing</option>
+            <option value="Mobile Insuarance">Mobile Insuarance</option>
+        </select>
+        <select name="programmer" data-callback="storeState" data-conv-question="What is your City?" id="city">
+            <option value="Pune">Pune</option>
+            <option value="Mumbai">Mumbai</option>
+        </select>
+        <input type="text" name="name" id="pincode"  data-conv-question="Enter your PIN Code number ">
+        <input type="text" name="name" id="mno" data-conv-question="Enter your Mobile Number ">
+        <input type="text" data-conv-question="Our customer executive will contact you soon.Thank you!" data-no-answer="true">
+        
+        <select data-conv-question="This is it! If you like me, consider donating! If you need support, contact me. When the form gets to the end, the plugin submits it normally, like you had filled it." id="">
+            <option value="">Awesome!</option>
+        </select> 
+    </form>
+</div>
+</div>
+</div>
+<script> 
+function google(stateWrapper, ready) {
+			window.open("https://google.com");
+			ready();
+		}
+		function bing(stateWrapper, ready) {
+			window.open("https://bing.com");
+			ready();
+		}
+		var rollbackTo = false;
+		var originalState = false;
+		function storeState(stateWrapper, ready) {
+			rollbackTo = stateWrapper.current;
+			console.log("storeState called: ",rollbackTo);
+			ready();
+		}
+		function rollback(stateWrapper, ready) {
+			console.log("rollback called: ", rollbackTo, originalState);
+			console.log("answers at the time of user input: ", stateWrapper.answers);
+			if(rollbackTo!=false) {
+				if(originalState==false) {
+					originalState = stateWrapper.current.next;
+						console.log('stored original state');
+				}
+				stateWrapper.current.next = rollbackTo;
+				console.log('changed current.next to rollbackTo');
+			}
+			ready();
+		}
+		function restore(stateWrapper, ready) {
+			if(originalState != false) {
+				stateWrapper.current.next = originalState;
+				console.log('changed current.next to originalState');
+			}
+			ready();
+		}
+    jQuery(function($){
+          convForm = $('#chat').convform({selectInputStyle: 'disable'});
+          console.log(convForm);
+      });
+      </script>
