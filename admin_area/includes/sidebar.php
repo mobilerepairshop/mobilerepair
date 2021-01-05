@@ -10,8 +10,6 @@ echo "<script>window.open('login.php','_self')</script>";
 else {
 
 
-
-
 ?>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" ><!-- navbar navbar-inverse navbar-fixed-top Starts -->
@@ -45,7 +43,7 @@ else {
 
 <i class="fa fa-user" ></i>
 
-<?php echo $admin_name; ?> <b class="caret" ></b>
+<b id="username"></b>
 
 
 </a><!-- dropdown-toggle Ends -->
@@ -75,7 +73,7 @@ else {
 
 <ul class="nav navbar-nav side-nav"><!-- nav navbar-nav side-nav Starts -->
 
-<li><!-- li Starts -->
+<li id="div0"><!-- li Starts -->
 
 <a href="index.php?dashboard">
 
@@ -86,7 +84,7 @@ else {
 </li><!-- li Ends -->
 
 
-<li><!-- li Starts -->
+<li id="div1"><!-- li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#users">
 
@@ -110,7 +108,7 @@ else {
 </ul>
 
 </li><!-- li Ends -->
-<li><!-- Companies li Starts -->
+<li id="div2"><!-- Companies li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#companies">
 
@@ -136,7 +134,7 @@ else {
 </li><!-- companies li Ends -->
 
 
-<li><!-- Models li Starts -->
+<li id="div3"><!-- Models li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#models">
 
@@ -162,7 +160,7 @@ else {
 </li><!-- Models li Ends -->
 
 
-<li><!-- city li Starts -->
+<li id="div4"><!-- city li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#city">
 
@@ -187,7 +185,7 @@ else {
 
 </li><!-- city li Ends -->
 
-<li><!-- city li Starts -->
+<li id="div5"><!-- city li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#pincode">
 
@@ -212,7 +210,7 @@ else {
 
 </li><!-- city li Ends -->
 
-<li><!-- Problems li Starts -->
+<li id="div6"><!-- Problems li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#problems">
 
@@ -237,7 +235,7 @@ else {
 
 </li><!-- Problems li Ends -->
 
-<li><!-- Subproblems li Starts -->
+<li id="div7"><!-- Subproblems li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#subproblems">
 
@@ -263,7 +261,7 @@ else {
 </li><!-- Subproblems li Ends -->
 
 
-<li><!-- Allocation li Starts -->
+<li id="div8"><!-- Allocation li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#allocation">
 
@@ -287,7 +285,7 @@ else {
 
 </li><!-- Allocation li Ends -->
 
-<li><!-- li Starts -->
+<li id="div9"><!-- li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#enquiries">
 
@@ -311,7 +309,7 @@ else {
 
 </li><!-- li Ends -->
 
-<li><!-- li Starts -->
+<li id="div10"><!-- li Starts -->
 
 <a href="index.php?view_history" data-toggle="collapse" data-target="#history">
 
@@ -321,7 +319,7 @@ else {
 
 </li><!-- li Ends -->
 
-<li><!-- li Starts -->
+<li id="div11"><!-- li Starts -->
 
 <a href="index.php?view_cancelled" data-toggle="collapse" data-target="#cancelled">
 
@@ -331,7 +329,7 @@ else {
 
 </li><!-- li Ends -->
 
-<li><!-- Requests li Starts -->
+<li id="div12"><!-- Requests li Starts -->
 
 <a href="index.php?chat_response">
 
@@ -341,7 +339,7 @@ else {
 
 </li><!-- Requests li Ends -->
 
-<li><!-- Requests li Starts -->
+<li id="div13"><!-- Requests li Starts -->
 
 <a href="index.php?contact_response">
 
@@ -352,7 +350,7 @@ else {
 </li><!-- Requests li Ends -->
 
 
-<li><!-- Carousel li Starts -->
+<li id="div14"><!-- Carousel li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#carousel">
 
@@ -377,7 +375,7 @@ else {
 
 </li><!-- Carousel li Ends -->
 
-<li><!-- li Starts -->
+<li id="div15"><!-- li Starts -->
 
 <a href="index.php?view_customers" data-toggle="collapse" data-target="#customers">
 
@@ -388,7 +386,7 @@ else {
 </li><!-- li Ends -->
 
 
-<li><!-- li Starts -->
+<li id="div16"><!-- li Starts -->
 
 <a href="#" data-toggle="collapse" data-target="#contactus">
 
@@ -430,3 +428,29 @@ else {
 </nav><!-- navbar navbar-inverse navbar-fixed-top Ends -->
 
 <?php } ?>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    
+    $.ajax({
+        url:"./api/getrights.php",
+        type:"POST",
+        success:function(para)
+        {
+            para = JSON.parse(para)
+            $("#username").html(para[0])
+            for(let i=0;i<=16;i++)
+            {
+                if(!(para[1].includes(i)))
+                {
+                    console.log("nahi hai : "+i)
+                    $("#div"+i).hide()
+                }
+            }
+        }
+    })
+})
+</script>

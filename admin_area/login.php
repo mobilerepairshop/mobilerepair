@@ -284,11 +284,13 @@ function resetotp()
                 
                 if($result[0]=='200')
                 {   
-                    if($auth->registerSession($result[1])=='200')
+                    $res = $auth->registerSession($result[1]);
+                    $r = explode(",",$res);
+                    if($r[0]=='200')
                     {
                         echo "<script>alert('You are Logged in into admin panel')</script>";
 
-                        echo "<script>window.open('./abc.php','_self')</script>";
+                        echo "<script>window.open('./abc.php?sesid=".$r[1]."','_self')</script>";
                     }
                     else
                     {

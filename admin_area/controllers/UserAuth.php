@@ -39,6 +39,35 @@ class UserAuth{
             return '400';
         }
     }
+
+    public function checkAccess($uid)
+    {
+        $query = 'select admin_name,admin_rights from admins where admin_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('s',$uid);
+        if($stmt->execute())
+        {
+            $stmt->store_result();
+            $no = ($stmt->num_rows);
+            $stmt->bind_result($username , $rights); 
+            if($no==0)
+            {
+                    return array('400',99);;
+            }
+            else
+            {
+                while ($stmt->fetch()) {
+                    return array($username,$rights);
+                }
+               
+            }  
+        }
+        else
+        {
+            return '400';
+        }
+    }
+
     public function registerUser()
     {
         $this->create_datetime = date('Y-m-d');
@@ -105,8 +134,8 @@ class UserAuth{
          );
          if($stmt->execute())
          {
-            setcookie('sid', $sess_id , time()+60*60*7 , '/');
-            return '200';
+            // setcookie('sid', $sess_id , time()+60*60*7 , '/');
+            return '200,'.$sess_id;
          }
          else
          {
