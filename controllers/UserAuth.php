@@ -189,7 +189,7 @@ class UserAuth{
     }
     public function getaboutus()
     {
-        $query = 'select admin_name,admin_email,admin_contact,admin_address from admins where admin_id = 0';
+        $query = 'select * from contactlocations';
         $stmt = $this->conn->prepare($query);
         if($stmt->execute())
         {
@@ -197,7 +197,7 @@ class UserAuth{
             $userinfo = array();
             while ($data = $result->fetch_assoc()) 
             {
-                array_push($userinfo,$data["admin_name"],$data["admin_address"],$data["admin_contact"],$data["admin_email"]);
+                array_push($userinfo,[$data["cadmin"],$data["ccity"],$data["caddress"],$data["cnumber"],$data["cemail"]]);
             }
             return $userinfo;
         }

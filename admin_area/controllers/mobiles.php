@@ -62,6 +62,41 @@ class Mobiles{
             }
 
         }
+
+        function createLocation()
+        {
+            //write query
+            $query = 'insert into contactlocations(ccity,cadmin,cnumber,cemail,caddress)
+            values(?,?,?,?,?)';
+
+            $stmt = $this->conn->prepare($query);
+            
+            // submitted values
+            $this->ccity=htmlspecialchars(strip_tags($this->ccity));
+            $this->caddress=htmlspecialchars(strip_tags($this->caddress));
+            $this->cadmin=htmlspecialchars(strip_tags($this->cadmin));
+            $this->cnumber=htmlspecialchars(strip_tags($this->cnumber));
+            $this->cemail=htmlspecialchars(strip_tags($this->cemail));
+
+
+            $stmt->bind_param('sssss',
+            $this->ccity,
+            $this->cadmin,
+            $this->cnumber,
+            $this->cemail,
+            $this->caddress
+           );
+        
+            if($stmt->execute())
+            {
+                return true;
+            }
+            else
+            {
+                return $this->conn->error;
+            }
+
+        }
 }
 
 

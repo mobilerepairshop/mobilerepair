@@ -339,9 +339,32 @@ if(isset($_GET['view_customers'])){
 if(isset($_GET['cancel'])){
 
     include("dashboard.php");
-        
-    }
 
+}
+
+if(isset($_GET['insert_locations'])){
+
+    include("insert_locations.php");
+    
+}
+
+if(isset($_GET['view_locations'])){
+
+    include("view_locations.php");
+    
+}
+
+if(isset($_GET['delete_location'])){
+
+    include("delete_contactlocations.php");
+    
+}
+
+if(isset($_GET['edit_location'])){
+
+    include("edit_contactlocation.php");
+    
+}
 ?>
 
 </div><!-- container-fluid Ends -->

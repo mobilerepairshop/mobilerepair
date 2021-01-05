@@ -217,7 +217,7 @@ a{
 
   <section class="blog-wrapper sect-pt4" id="blog">
     <div class="container">
-      <div class="row">
+      <div class="row citywisecards">
         <div class="col-md-4 leftnavpane" id="leftnavpane">
           <div class="widget-sidebar">
             <a href="./eg2.html" class="sidebar-title">Device Repair Service</a> <br><br>
@@ -226,78 +226,9 @@ a{
             <a href="./enquiry.html" class="sidebar-title">Enquiry</a>
           </div>
         </div>
-           <!--  -->
-           <div class="col-md-8" id="aboutusdetails">
-            <div class="post-box">
-              <table class="table-responsive">
-                <tr>
-                  <td>
-                    <div class="article-content">
-                      <blockquote class="blockquote">
-                        <p class="mb-0">Admin Name </p>
-                      </blockquote>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="article-content">
-                      <blockquote>
-                        <b style="font-size: 120%;" id="admin_name"></b>
-                      </blockquote>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="article-content">
-                      <blockquote class="blockquote">
-                        <p class="mb-0">Admin Address </p>
-                      </blockquote>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="article-content">
-                      <blockquote >
-                        <b style="font-size: 120%;" id="admin_address"></b>
-                      </blockquote>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="article-content">
-                      <blockquote class="blockquote">
-                        <p class="mb-0">Admin Contact </p>
-                      </blockquote>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="article-content">
-                      <blockquote >
-                        <b style="font-size: 120%;" id="admin_contact">+91 </b>
-                      </blockquote>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="article-content">
-                      <blockquote class="blockquote">
-                        <p class="mb-0">Admin Email </p>
-                      </blockquote>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="article-content">
-                      <blockquote >
-                        <b style="font-size: 120%;" id="admin_email"></b>
-                      </blockquote>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-              
-            </div>
-           <!--  -->
+           <!-- Contactus info start -->
+           
+           <!-- Contactus info end -->
       </div>
     </div>
   </section>
@@ -467,10 +398,17 @@ $(document).ready(function()
     success:function(para)
     {
       para = JSON.parse(para)
-      $("#admin_name").append(para[0])
-      $("#admin_address").append(para[1])
-      $("#admin_contact").append(para[2])
-      $("#admin_email").append(para[3])
+      var str = ''
+      for(let i=0;i<para.length;i++)
+      {
+        str += '<div class="col-md-8" id="aboutusdetails"><div class="post-box"><table class="table-responsive"><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Name </p></blockquote></div></td><td><div class="article-content"><blockquote><b style="font-size: 120%;" id="admin_name">'+para[i][0]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin City </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_city">'+para[i][1]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Address </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_address">'+para[i][2]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Contact </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_contact">+91 '+para[i][3]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Email </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_email">'+para[i][4]+'</b></blockquote></div></td></tr></table></div>'
+      }
+      $(".citywisecards").append(str)
+      // $("#admin_name").append(para[0])
+      // $("#admin_city").append(para[1])
+      // $("#admin_address").append(para[2])
+      // $("#admin_contact").append(para[3])
+      // $("#admin_email").append(para[4])
     }
 })
 })
