@@ -28,9 +28,77 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="./login/css/login.css" rel="stylesheet">
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  
+  <link rel="stylesheet" type="text/css" href="./convForm-master/dist/jquery.convform.css">
+ 
+  <link rel="stylesheet" type="text/css" href="./convForm-master/demo.css">
   <style>
+     .alert {
+      margin-right: 18%;
+background-color: #0078ff;
+color: white;
+margin-left: -25%;
+}
 
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+.ct-socials {
+    position: fixed;
+    top: 25%;
+    right: 0;
+    list-style: none;
+    padding-left: 0;
+    z-index: 10;
+    margin: 0;
+    -webkit-transition: right 0.25s ease-in-out;
+    transition: right 0.25s ease-in-out;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.ct-socials li {
+    padding: 0px 0;
+}
+.ct-socials li a {
+    background: #3f4653;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    width: 44px;
+    height: 54px;
+    -webkit-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+    float: right;
+    padding-left: 5px;
+}
+.ct-socials li a:hover {
+	width: 54px;
+	padding-left: 0;
+	text-decoration: none;
+	background: #3c9bd9;
+}
 a{
   cursor: pointer;
 }
@@ -306,7 +374,28 @@ a{
 </section>
 
 <!--/ Section Contact-footer for Admin End /-->
+<ul class="ct-socials">
+  <li>
+     <a href="/" target="_blank"><i class="fab fa-facebook"></i></a>
+  </li>
+  <li>
+     <a href="/" target="_blank"><i class="fab fa-instagram"></i></a>
+  </li>
+  <li>
+     <a href="/" ><i class="fab fa-whatsapp"></i></a>
+  </li>
+  <li >
+      <a class="chat-btns"><i class="fas fa-robot" style="color:white;"></i></a>
+      <div class="alert" style="display: none;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Hello</strong> I am here to help you !!
+      </div>
+   </li>
+</ul>
 
+<div class="demo">
+
+</div>
 
   <a href="#carouselExampleIndicators" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
@@ -336,12 +425,35 @@ a{
 
   <script src="js/login.js"></script>
   <script src="js/delivery_person.js"></script>
+  <script type="text/javascript" src="./convForm-master/dist/autosize.min.js"></script>
+  <script type="text/javascript" src="./convForm-master/dist/jquery.convform.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script type = "text/javascript" 
+         src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
+      </script>
   <script> 
+  	jQuery(function($){
+			convForm = $('#chat').convform({selectInputStyle: 'disable'});
+			console.log(convForm);
+		});
+   
+
+   
     $(function(){
       $("#loginmodals").load("login.html"); 
-      $("#delivery_personmodals").load("delivery_person.html"); 
+      $(".demo").load("./bot.html"); 
+      $("#delivery_personmodals").load("delivery_person.html");
+      $(".alert").effect( "bounce", {direction:'right',times:5}, 1000 );
+      var myAudio = new Audio('popup.mp3');
+      myAudio.play(); 
+      setTimeout(function(){  $(".alert").fadeOut(); }, 3000);
+      $('.chat-btns').click(function(){
+          $('.demo').toggle()
+      })
     });
-    </script> 
+
+	
+    </script>
 
   <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
 
