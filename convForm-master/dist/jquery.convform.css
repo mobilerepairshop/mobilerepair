@@ -150,6 +150,7 @@ div.conv-form-wrapper div.wrapper-messages {
     max-height: 71vh;
     overflow-y: scroll;
     transition: margin 0.1s;
+    margin-bottom: 40px;
 }
 div.conv-form-wrapper:before {
     content: '';
@@ -165,6 +166,8 @@ div.conv-form-wrapper:before {
 @media (max-width: 767px) {
     div.conv-form-wrapper div.wrapper-messages, div.conv-form-wrapper div#messages {
         max-height: 71vh;
+        height: 260px;
+        margin-bottom: 30px;
     }
 }
 

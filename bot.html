@@ -1,10 +1,6 @@
 <div class="col-sm-4 col-sm-offset-3 col-xs-offset-0" style="float: right;">
-<div class="card no border" style="border-style: solid;border-color: #0078ff;height: 30vw;" >
-<div style="background-color: #0078ff;
-width: 110%;
-height: 3vw;
-margin-left: -5%;
-margin-top:-2.5%;"><p style="font-size:125%;padding-top:2%;">Mobile Repair</p></div>
+<div class="card no border" >
+<div class="actionbar" ><p class="title" >Mobile Repair<span aria-hidden="true" class="clostbtns" onclick="hidediv()" >&times;</span></p></div>
 <div id="chat" class="conv-form-wrapper">
 
     <form  id="form" method="POST" class="hidden">
@@ -73,5 +69,9 @@ function google(stateWrapper, ready) {
     jQuery(function($){
           convForm = $('#chat').convform({selectInputStyle: 'disable'});
           console.log(convForm);
-      });
+	  });
+	  function hidediv()
+	  {
+		  $('.demo').fadeOut()
+	  }
       </script>
