@@ -1258,12 +1258,7 @@ $("#submitpaymethod").click(function(){
     {
         if(para == "200")
         {
-          alertdata("Done","")
-          $('#alert').modal({backdrop: 'static', keyboard: false})
-          $('#alert').modal('show')
-          $("#modalclose").click(function() {
-              window.location.reload()
-          });
+          window.location.reload()
         }      
         else
         {
