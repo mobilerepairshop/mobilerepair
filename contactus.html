@@ -32,11 +32,15 @@
  
   <link rel="stylesheet" type="text/css" href="./convForm-master/demo.css">
   <style>
-     .alert {
+   .chatbot {
       margin-right: 18%;
-background-color: #0078ff;
-color: white;
-margin-left: -25%;
+      background-color: #0078ff;
+      color: white;
+      margin-left: -25%;
+      height:3vw;
+      text-align: center;
+      border-radius: .25rem;
+      padding: 10px;
 }
 
 .closebtn {
@@ -317,7 +321,7 @@ a{
   </li>
   <li >
       <a class="chat-btns"><i class="fas fa-robot" style="color:white;"></i></a>
-      <div class="alert" style="display: none;">
+      <div class="chatbot" style="display: none;">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
         <strong>Hello</strong> I am here to help you !!
       </div>
@@ -374,10 +378,10 @@ a{
       $("#loginmodals").load("login.html"); 
       $(".demo").load("./bot.html"); 
       $("#delivery_personmodals").load("delivery_person.html");
-      $(".alert").effect( "bounce", {direction:'right',times:5}, 1000 );
+    $(".chatbot").effect( "bounce", 1000 );
       var myAudio = new Audio('popup.mp3');
       myAudio.play(); 
-      setTimeout(function(){  $(".alert").fadeOut(); }, 3000);
+      setTimeout(function(){  $(".chatbot").fadeOut(); }, 3000);
       $('.chat-btns').click(function(){
           $('.demo').toggle()
       })
