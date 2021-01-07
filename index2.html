@@ -499,7 +499,7 @@ a{
     $("#loginmodals").load("login.html"); 
     $(".demo").load("./bot.html"); 
     $("#delivery_personmodals").load("delivery_person.html"); 
-  $(".chatbot").effect( "bounce", 1000 );
+  $(".chatbot").fadeIn()
     var myAudio = new Audio('popup.mp3');
     myAudio.play();
     setTimeout(function(){  $(".chatbot").fadeOut(); }, 3000);
