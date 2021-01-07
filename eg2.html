@@ -434,7 +434,7 @@ option{
         </div>
         <div class="form-comments">
           <div class="title-box-2">
-            <h3 class="title" id="divtitle" style="color:red;">
+            <h3 class="title" id="divtitle" style="color:red;font-weight: bold;font-size:x-large;">
               Register a Request
             </h3>
           </div>
@@ -454,7 +454,7 @@ option{
                     </select>
                   </div>
                 </div>
-              <div class="col-md-8">
+              <!-- <div class="col-md-8">
                   <div class="dropdown" id="device_type">
                     <select class="browser-default custom-select-lg mb-3 selectpincode addborder" id="repairdevice" required>
                         <option value="" selected disabled>Select Device</option>
@@ -462,7 +462,7 @@ option{
                         <option value="laptop">Laptop</option>
                     </select>
                   </div>
-                </div>
+                </div> -->
               <div class="col-md-8">
                   <div class="dropdown" id="mobile_details">
                     <select class="browser-default custom-select-lg mb-3 selectpincode mcomp addborder" id="devicecompany" required>
@@ -607,7 +607,7 @@ option{
 
   function proceedtoproblems()
   {
-    if($("#city").val() != "" && $("#pincode").val() != "" && $("#repairdevice").val() != "" && $("#devicecompany").val() != "" && $("#devicemodel").val() != null)
+    if($("#city").val() != "" && $("#pincode").val() != "" && $("#devicecompany").val() != "" && $("#devicemodel").val() != null)
     {
       $(".deviceinfo").fadeOut()
       $("#problemdiv").fadeIn(1000)
@@ -635,23 +635,31 @@ option{
   {
     if(problems != "")
     {
-      $.ajax({
-      url:"./api/getcontactdetails.php",
-      method:"POST",
-      data:{"sid":sid},
-      success: function(para){
-        para = JSON.parse(para)
-        $("#phonenum").val(para[0])
-        $("#address").val(para[1])
+      if(quote == 1)
+      {
+        $.ajax({
+          url:"./api/getcontactdetails.php",
+          method:"POST",
+          data:{"sid":sid},
+          success: function(para){
+            para = JSON.parse(para)
+            $("#phonenum").val(para[0])
+            $("#address").val(para[1])
+          }
+        })
+        $("#problemdiv").fadeOut()
+        $("#problemdiv1").fadeOut()
+        $("#problemdiv2").fadeOut()
+        $("#problemdiv3").fadeOut()
+        $("#contact_details").fadeIn()
+        $("#contact_details1").fadeIn()
+        $("#contact_details2").fadeIn()
       }
-    })
-    $("#problemdiv").fadeOut()
-    $("#problemdiv1").fadeOut()
-    $("#problemdiv2").fadeOut()
-    $("#problemdiv3").fadeOut()
-    $("#contact_details").fadeIn()
-    $("#contact_details1").fadeIn()
-    $("#contact_details2").fadeIn()
+      else
+      {
+        alertdata("Please Check Quotation First")
+        $('#alert').modal('show')
+      }
     }
     else
     {
@@ -948,8 +956,8 @@ option{
         console.log(problems)
       }
   
+  var quote = 0
   function getquote(){
-  
       $.ajax(
           {
           url: "./api/getquote.php", 
@@ -964,6 +972,7 @@ option{
               alertdata("Estimated Price for your request is Rs "+para , "")
               window.estprice = para
               $('#alert').modal('show')
+              quote = 1
           }
           })
   }
