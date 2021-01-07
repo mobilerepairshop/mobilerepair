@@ -253,7 +253,7 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                     {
                       for(let j=0;j<groupedPeople[x].length;j++)
                       {
-                        if(groupedPeople[x][j].status >= 8 && groupedPeople[x][j].delivery_status == 1)
+                        if(groupedPeople[x][j].status >= 8 && (groupedPeople[x][j].delivery_status == 1 || groupedPeople[x][j].delivery_status == 3))
                         {
                           array.push(groupedPeople[x][j])
                         }
@@ -398,7 +398,7 @@ $(document).ready(function()
     $('#exModal').modal('hide');
     $('#exampleModal').modal('hide');
     $("input[type=radio]").change(function(){
-      alert(this.value)
+      // alert(this.value)
       if(this.value=='warr')
       {
           $('#datediv').show();
