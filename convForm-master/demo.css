@@ -43,6 +43,7 @@
 .clostbtns{
 	margin-left: 55%;
 	font-size: 20px;
+	cursor:pointer;
   }
 @media (max-width:400px){
   .card{
@@ -59,6 +60,7 @@
   }
   .clostbtns{
 	margin-left: 45%;
+	cursor:pointer;
   }
 
 }
