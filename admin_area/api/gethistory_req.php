@@ -11,7 +11,7 @@ $get_enquiries = "SELECT * FROM req
                   INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid 
                   INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid 
                   INNER JOIN users ON users.uid = req.uid 
-                  where  req.status=9";
+                  where  req.status=9 and req.warranty <> ''";
 $run_admin = mysqli_query($con,$get_enquiries);
 
 while($row_admin = mysqli_fetch_array($run_admin)){
