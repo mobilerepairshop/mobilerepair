@@ -348,6 +348,33 @@ option{
 
 <!-- delivery_personmodals will append here from login.html --> 
 
+<!-- Submit Alert Modal -->
+
+<div class="modal fade" id="submitalert">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Request Status</h4>
+      </div>
+      <div class="modal-body">
+        <b>
+          Your request has been submitted successfully,
+          Our customer care executive shall be contact you soon,
+          You can track your request status at “Track Device Repair Service” menu
+          Price may vary if more problems found during repair”
+        </b> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" onclick="window.location.replace('./myorders2.html')">Track Order</button>
+        <button type="button" class="btn btn-danger" onclick="window.location.replace('./index2.html')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Submit Alert Modal -->
+
+
 <!-- Quotation Modal -->
 <div class="modal fade" id="quotation">
   <div class="modal-dialog modal-dialog-centered modal-lg" >
@@ -1033,12 +1060,16 @@ option{
                   },
               success: function(para)
               {
-                alertdata(para,"Delivery Status")
-                $('#alert').modal({backdrop: 'static', keyboard: false})
-                $('#alert').modal('show')
-                $("#modalclose").click(function() {
-                  window.location.replace("./myorders2.html");
-                });
+                if(para != '400')
+                {
+                  $('#submitalert').modal({backdrop: 'static', keyboard: false})
+                  $('#submitalert').modal('show')
+                }
+                else
+                {
+                  alertdata("Something Went Wrong, Please Refill the Details","Request Status")
+                  $('#alert').modal('show')
+                }
               }
               })
           }
