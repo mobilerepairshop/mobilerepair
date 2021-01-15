@@ -165,7 +165,7 @@
     width: 92%;
     margin-left: 5%;
 }
-.login .btn-login:hover, .registerBox .btn-register:hover{
+.login .btn-login:hover, .registerBox .btn-login .btn-register:hover .otpsend{
     background-color: #00A4E4;
     color: #FFFFFF;
 }

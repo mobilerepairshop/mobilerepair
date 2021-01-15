@@ -1,3 +1,8 @@
+// alertdata(response,"")
+//         $('#alert').modal({backdrop: 'static', keyboard: false})
+//         $('#alert').modal('show')
+
+
 function editprofile(id)
 {
   $.ajax({
@@ -270,6 +275,23 @@ function checkpasswordmatch(){
         $('#loginModal').modal('show');    
     }, 230);
     
+}
+function openchgpassModal(){
+  showResetForm();
+  setTimeout(function(){
+        firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+         alertdata('You are logged in using google','')
+         $('#alert').modal({backdrop: 'static', keyboard: false})
+         $('#alert').modal('show')
+        } else {
+          $('#chngpassModal').modal('show'); 
+          
+        }
+      });
+       
+  }, 230);
+  
 }
 function showRegisterForm(){
     $('.loginBox').fadeOut('fast',function(){

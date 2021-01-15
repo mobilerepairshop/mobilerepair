@@ -202,7 +202,7 @@ a{
                   <a class="nav-link dropdown-toggle" id="username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="./myorders2.html" name="dashboard">Dashboard</a>
+                    <a class="dropdown-item" href="javascript: showResetForm();" name="dashboard">Change Password</a>
                     <a class="dropdown-item" id="" name="editprofile" data-toggle="modal" data-target="#editprofile" onclick="editprofile(this.id)">Edit Profile</a>
                     <a class="dropdown-item" onclick="signout()">Log Out</a>
                   </div>
@@ -358,7 +358,6 @@ a{
 
   <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
 
-  <script src="js/login.js"></script>
   <script src="js/delivery_person.js"></script>
   <script type="text/javascript" src="./convForm-master/dist/autosize.min.js"></script>
   <script type="text/javascript" src="./convForm-master/dist/jquery.convform.js"></script>
@@ -375,17 +374,23 @@ a{
 
    
     $(function(){
-      $("#loginmodals").load("login.html"); 
-      $(".demo").load("./bot.html"); 
-      $("#delivery_personmodals").load("delivery_person.html");
-    $(".chatbot").fadeIn()
-      var myAudio = new Audio('popup.mp3');
-      myAudio.play(); 
-      setTimeout(function(){  $(".chatbot").fadeOut(); }, 3000);
-      $('.chat-btns').click(function(){
-          $('.demo').toggle()
-      })
-    });
+      let myScript = document.createElement("script");
+      myScript.setAttribute("src", "./js/login.js");
+      document.body.appendChild(myScript);
+
+      
+         $("#mainNav").load("navbar.html"); 
+         $("#loginmodals").load("login.html"); 
+         $(".demo").load("./bot.html"); 
+         $("#delivery_personmodals").load("delivery_person.html");
+         $(".chatbot").effect( "bounce", {direction:'right',times:5}, 1000 );
+         var myAudio = new Audio('popup.mp3');
+         myAudio.play();
+         setTimeout(function(){  $(".alert").fadeOut(); }, 3000);
+         $('.chat-btns').click(function(){
+             $('.demo').toggle()
+         })
+       });
 
 	
     </script>
@@ -401,6 +406,7 @@ $(document).ready(function()
     type:'POST',
     success:function(para)
     {
+      console.log(para)
       para = JSON.parse(para)
       var str = ''
       for(let i=0;i<para.length;i++)
