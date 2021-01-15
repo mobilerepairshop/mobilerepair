@@ -310,8 +310,12 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                       action:actionn,
                       delivery_status:array[i].delivery_status,
                       warranty:array[i].warranty,
-                      orderid:array[i].orderid
-                     
+                      orderid:array[i].orderid,
+                      imeino:array[i].imeino,
+                      brand:array[i].mcname,
+                      model:array[i].mmname,
+                      problems:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>'
+                      
                   });           
                 }
                     
@@ -328,6 +332,10 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                          { field: "phonenum", headerText: "Contact Number", width: 160 },
                          { field: "address", headerText: "Customer Address", width: 180 },
                          { field: "admin_name", headerText: "Delivery Person", width: 230 },
+                         { field: "brand", headerText: "Brand ", width: 100 },
+                         { field: "model", headerText: "Model", width: 100 },
+                         { field: "problems", headerText: "View Problems", width: 150 },
+                         { field: "imeino", headerText: "IMEI Number", width: 150 },
                          { field: "date", headerText: "Date ", width: 100 },
                          { field: "time", headerText: "Time", width: 100 },
                          { field: "status", headerText: "Status", width: 150 },
@@ -586,6 +594,33 @@ $(document).ready(function()
     return null;
 }
 
+function getproblems(rid)
+    {
+      var sid = getCookie("sid");
+      $(".problems").html("Problems For Request ID : MR"+String(rid).padStart(5, '0'))
+        
+      $.ajax({
+            url:'./api/getproblemsforadmin.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                s2=""
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+
+               for(let i=0;i<para.length;i++)
+               {
+                    console.log(para[i].problem)
+                    
+                    s2+='<tr><td class="ordhead">Problem '+(i+1)+'</td> <td>'+para[i].problem+'</td><td class="ordhead">Sub-Problem '+(i+1)+'</td> <td>'+para[i].subproblem+'</td> </tr>'
+                    $('.problem-content').html(s2)
+               }
+                
+                
+            }
+        })
+    }
 
 
 
