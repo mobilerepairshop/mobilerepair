@@ -36,6 +36,12 @@
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   
   <style>
+
+.carousel-inner .carousel-item {
+  height: 450px;
+  object-fit: contain; 
+
+}
       .chatbot {
       margin-right: 18%;
       background-color: #0078ff;
@@ -259,9 +265,9 @@ a{
             <a class="nav-link js-scroll customnavbar" style="font-weight: bold;text-decoration: underline;color:#0078ff;" href="./index2.html">Home</a>
           </li>
           
-          <li class="nav-item" id="servicenav">
+          <!-- <li class="nav-item" id="servicenav">
             <a class="nav-link js-scroll customnavbar" href="aboutus.html">About Us</a>
-          </li>
+          </li> -->
           <li class="nav-item" id="contactnav">
             <a class="nav-link js-scroll" href="contactus.html">Contact Us</a>
           </li>
@@ -550,7 +556,7 @@ $.ajax({
               s2+='<li data-target="#carouselExampleIndicators" data-slide-to="'+i+'"></li>'
 
               s1+='<div class="carousel-item">'
-              s1+='<img class="d-block w-100" src="./storage/'+para[i]+'" alt="First slide">'
+              s1+='<img class="d-block w-100" src="./storage/'+para[i]+'" alt="First slide" >'
               s1+='</div>'
             }
            
