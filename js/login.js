@@ -328,6 +328,7 @@ function showLoginForm(){
     $('#loginModal .registerBox').fadeOut('fast',function(){
       $('.resetBox').fadeOut('fast');
       $('.otppassword').fadeOut('fast');
+      $('.otpBox').fadeOut('fast')
         $('.loginBox').fadeIn('fast');
         $('.register-footer').fadeOut('fast',function(){
             $('.login-footer').fadeIn('fast');    
@@ -468,7 +469,6 @@ function resetAjax()
                   }); 
                   $('.error').removeClass('alert alert-danger').html('');
 
-                  $("#otp").hide()
                   $("#successsnote").show()
                 
                   $("#successsnote").text("OTP sent successfully to registerd email/mobile number")
