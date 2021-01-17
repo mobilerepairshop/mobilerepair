@@ -124,9 +124,9 @@ height: 18px;
             <div class="content otpBox" style="display:none;">
               <div class="form">
                 <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                  <p id="successsnote" style="display:none;"></p>
+                  <div style="width: 80%;width: 90%;float: right;"><p id="successsnote" style="display:none;"></p></div>
                   <input id="enterotp" class="form-control" type="text" placeholder="Enter OTP" name="userreset">
-                  <input class="btn btn-default btn-register" id="otpc" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
+                  <input class="btn btn-default btn-login" id="otpc" type="button" value="Confirm OTP" name="commit" onclick="resetotp()">
                 </form>
               </div>
             </div>
@@ -139,7 +139,7 @@ height: 18px;
                   <input id="passwordotp" class="form-control" type="password" placeholder="Password" name="passwordotp">
                   <input id="password_confirmationotp" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmationotp">
                   <p id="errnote" style="display:none;"></p>
-                  <input class="btn btn-default btn-register" type="button" value="Confirm Password" name="commit" onclick="resetpassword()">
+                  <input class="btn btn-default btn-login" type="button" value="Reset Password" name="commit" onclick="resetpassword()">
                 </form>
               </div>
             </div>
