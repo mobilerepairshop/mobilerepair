@@ -224,36 +224,6 @@ function getvalue(id)
 
         }
       })
-
-      $("select.mcomp").change(function(){
-        var selectedComp = $(this).children("option:selected").val();
-        $.ajax(
-            {
-              url: "./api/getMobileModel.php", 
-              method:"POST",
-              data:{'id':selectedComp},
-              success: function(para)
-              {
-                s1 = ""
-                console.log(para)
-                para = JSON.parse(para)
-                s1 += '<option selected disabled value="">Select Device Model</option>'
-                for(i=0;i<para.length;i++)
-                {
-                  console.log("Model - ",para[i][1])
-                  console.log("Model - ",para[i][1])
-                  s1 += '<option value="'+para[i][0]+'">'+para[i][1]+'</option>'
-
-                }
-              
-                $(".mmod").html(s1)
-                $("#es2div").show()
-                
-
-              }
-           });
-
-        });
       });
      
      $.ajax(
@@ -422,12 +392,9 @@ function submitrequest()
                 },
             success: function(para)
             {
-              alertdata(para,"Delivery Status")
-              $('#alert').modal({backdrop: 'static', keyboard: false})
-              $('#alert').modal('show')
-              $("#modalclose").click(function() {
-                window.location.replace("./myorders2.html");
-              });
+            //   alertdata(para,"Delivery Status")
+              $('#submitalert').modal({backdrop: 'static', keyboard: false})
+              $('#submitalert').modal('show')
             }
             })
         }
