@@ -175,8 +175,8 @@
       var sid = getCookie("sid");
       $(".problems").html("Problems For Request ID : MR"+String(rid).padStart(5, '0'))
         
-        $.ajax({
-            url:'../api/getproblems.php',
+      $.ajax({
+            url:'./api/getproblemsforadmin.php',
             type:'POST',
             data:{'rid':rid,'sid':sid},
             success:function(para)
