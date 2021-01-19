@@ -131,6 +131,7 @@
                       problems:'<a href="#" id="'+para1[i][10]+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>',
                       price:para1[i][4],
                       warrenty:para1[i][11]!=""?"New Request":"New Request",
+                      imeino:para1[i][12]!=""?para1[i][12]:"New Request",
                       action:'<input type="button" id="'+para1[i][10]+'" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false" onclick="modaldata(this.id)">'
                       
 
@@ -155,6 +156,7 @@
                          { field: "adddress", headerText: "Customer Address", width: 230 },
                          { field: "brand", headerText: "Brand ", width: 100 },
                          { field: "model", headerText: "Model", width: 100 },
+                         { field: "imeino", headerText: "IMEI Number", width: 150 },
                          { field: "problems", headerText: "View Problems", width: 150 },
                          { field: "warrenty", headerText: "Under Warrenty", width: 160 },
                          { field: "price", headerText: "Repair Price", width: 130 },
