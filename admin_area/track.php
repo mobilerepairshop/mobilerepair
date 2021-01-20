@@ -181,7 +181,8 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
           </button>
         </div>
         <div class="modal-body">
-          Mobile IMEI Number *<input type="text" placeholder="Enter Mobile IMEI Number " id="imeino">
+          Mobile IMEI Number *<input type="text" placeholder="Enter Mobile IMEI Number " id="imeino" onchange="checkimei(this.value)">
+          <p id="imeinote" style="display:none;color:green;">This IMEI Number is Present in the Database</p>
           Repair Person Name *<input type="text" placeholder="Enter Repair Person Name " id="repairperson">
         </div>
         <div class="modal-footer">
@@ -311,7 +312,7 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                       delivery_status:array[i].delivery_status,
                       warranty:array[i].warranty,
                       orderid:array[i].orderid,
-                      imeino:array[i].imeino,
+                      imeino:array[i].imeino!=""?array[i].imeino:"Not Updated",
                       brand:array[i].mcname,
                       model:array[i].mmname,
                       problems:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>'
@@ -622,7 +623,21 @@ function getproblems(rid)
         })
     }
 
-
+    function checkimei(imei)
+    {
+      $.ajax({
+            url:'./api/checkimei.php',
+            type:'POST',
+            data:{'imei':imei},
+            success:function(para)
+            {
+              if(para == "200")
+              {
+                $("#imeinote").css("display","block")
+              }              
+            }
+        })
+    }
 
     </script>
 </body>
