@@ -6,7 +6,7 @@ class UserAuth{
     public $email;
     public $password;  
     public $create_datetime;  
-
+    public $logtype=0;
     public function __construct($db){
         $this->conn = $db;  
     }
@@ -14,8 +14,7 @@ class UserAuth{
     {
         $query = 'select uid from session where sesid=?';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('s',$sid);
-        if($stmt->execute())
+        $stmt->bind_param('s',$sid);        if($stmt->execute())
         {
             $stmt->store_result();
             $no = ($stmt->num_rows);
@@ -44,16 +43,17 @@ class UserAuth{
         $this->pincode = "";
         $this->phonenum = "";
         $this->address = "";
-        $query = 'insert into users(email,password,create_datetime,username,pincode,phonenum,address)values(?,?,?,?,?,?,?)';
+        $query = 'insert into users(email,password,create_datetime,username,pincode,phonenum,address,logtype)values(?,?,?,?,?,?,?,?)';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('sssssss',
+        $stmt->bind_param('ssssssss',
             $this->email,
             $this->password,
             $this->create_datetime,
             $this->username,
             $this->pincode,
             $this->phonenum,
-            $this->address
+            $this->address,
+            $this->logtype
            );
            if($stmt->execute())
            {

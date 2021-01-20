@@ -12,6 +12,7 @@
             $auth->email = $database->sanitize($_REQUEST['email']);
             $auth->password = md5($database->sanitize($_REQUEST['pwd']));
             $auth->username = $database->sanitize($_REQUEST['username']);
+            $auth->logtype = 0;
             if($auth->registerUser()=='200')
             {
                 echo '200';

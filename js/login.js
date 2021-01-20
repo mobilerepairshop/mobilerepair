@@ -358,7 +358,8 @@ function registerAjax()
                 data:{
                   'username':username,
                   'email':email,
-                  'pwd':pwd
+                  'pwd':pwd,
+                  'authtype':0,
                 },
                 success:function(para)
                 {
@@ -397,11 +398,21 @@ function registerAjax()
 }
 
 
-function resetpassword()
+function resetpassword(type)
 {
-        user = String($('#user').val());
-        pwd = String($('#passwordotp').val());
-        pwdcnf = String($('#password_confirmationotp').val());
+        if(type=='before')
+        {
+          user = $('#user').val();
+          pwd = $('#passwordotp').val();
+          pwdcnf = $('#password_confirmationotp').val();
+        }
+        else if(type=='after')
+        {
+          user = $('#chngemail').val();
+          pwd = $('#chngpasswordotp').val();
+          pwdcnf = $('#chngpassword_confirmationotp').val();
+        }
+       
         if(pwd==pwdcnf)
         {
               if(user.split("_").length == 3 && user.split("_")[1] == "admin" && !isNaN(user.split("_")[2]))
@@ -410,6 +421,7 @@ function resetpassword()
               }
               else
               {
+                alert(user)
                 role = "user"
               }
               $.ajax({
@@ -431,6 +443,19 @@ function resetpassword()
                       $("#modalclose").click(function() {
                         window.location.replace("./index2.html");   
                       });  
+                    }
+                    else if(para=='google')
+                    {
+                      // skbarshikar@mitaoe.ac.in
+                      alertdata("Cannot change password because you have logged in using google","")
+                      $('#alert').modal({backdrop: 'static', keyboard: false})
+                      $('#alert').modal('show')
+                    }
+                    else if(para=='nouser')
+                    {
+                      alertdata("No such user registered","")
+                      $('#alert').modal({backdrop: 'static', keyboard: false})
+                      $('#alert').modal('show')
                     }
                     else
                     {

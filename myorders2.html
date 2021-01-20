@@ -35,8 +35,8 @@
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   
   <style>
-     .chatbot {
-      margin-right: 18%;
+    .chatbot {
+      margin-right: 25%;
       background-color: #0078ff;
       color: white;
       margin-left: -25%;
@@ -93,7 +93,7 @@
     -ms-flex-pack: center;
     justify-content: center;
     color: #fff;
-    width: 44px;
+    width: 55px;
     height: 54px;
     -webkit-transition: all 0.15s ease-in-out;
     transition: all 0.15s ease-in-out;
@@ -101,7 +101,7 @@
     padding-left: 5px;
 }
 .ct-socials li a:hover {
-	width: 54px;
+	width: 60px;
 	padding-left: 0;
 	text-decoration: none;
 	background: #3c9bd9;
@@ -837,16 +837,16 @@ a{
 
   <ul class="ct-socials">
     <li>
-       <a href="/" target="_blank"><i class="fab fa-facebook"></i></a>
+       <a href="/" target="_blank"><i class="fab fa-facebook" style="font-size:25px"></i></a>
     </li>
     <li>
-       <a href="/" target="_blank"><i class="fab fa-instagram"></i></a>
+       <a href="/" target="_blank"><i class="fab fa-instagram" style="font-size:25px"></i></a>
     </li>
     <li>
-       <a href="/" ><i class="fab fa-whatsapp"></i></a>
+       <a href="https://api.whatsapp.com/send?phone=+917218340969&text=Hello Sir can I get some more info about mobile repair." ><i class="fab fa-whatsapp" style="font-size:25px"></i></a>
     </li>
      <li >
-      <a class="chat-btns"><i class="fas fa-robot" style="color:white;"></i></a>
+      <a class="chat-btns"><i class="fas fa-robot" style="color:white;" style="font-size:25px"></i></a>
       <div class="chatbot" style="display: none;">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
         <strong>Hello</strong> I am here to help you !!
@@ -917,7 +917,7 @@ a{
       $("#mainNav").load("navbar.html"); 
       var myAudio = new Audio('popup.mp3');
       myAudio.play();
-      setTimeout(function(){  $(".alert").fadeOut(); }, 3000);
+      setTimeout(function(){  $(".chatbot").fadeOut(); }, 2000);
         $('.chat-btns').click(function(){
           $('.demo').toggle()
       })

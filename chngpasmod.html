@@ -87,13 +87,13 @@ height: 18px;
           </div> 
           <div class="box">
             <div class="content otppassword" style="display:none;">
-              <div class="form">
-                <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                  <input id="user" class="form-control" type="text" placeholder="Email/Mobile Number" name="user">
-                  <input id="passwordotp" class="form-control" type="password" placeholder="Password" name="passwordotp">
-                  <input id="password_confirmationotp" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmationotp">
+              <div class="form" >
+                <form method="" onsubmit="event.preventDefault(); resetpassword('after')" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                  <input id="chngemail" class="form-control" type="text" placeholder="Email/Mobile Number" name="user">
+                  <input id="chngpasswordotp" class="form-control" type="password" placeholder="Password" name="passwordotp">
+                  <input id="chngpassword_confirmationotp" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmationotp">
                   <p id="errnote" style="display:none;"></p>
-                  <input class="btn btn-default btn-register" type="button" value="Confirm Password" name="commit" onclick="resetpassword()">
+                  <input class="btn btn-default btn-login" type="submit" value="Confirm Password" name="commit" >
                 </form>
               </div>
             </div>
