@@ -71,7 +71,7 @@ class UserAuth{
             $query = 'select uid from users where email=? and password=?';
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param('ss',$email,md5($pwd));
-            setcookie('role', 'user' , time()+60*60*7 , '/');
+            setcookie('role', 'user' , time()+(10 * 365 * 24 * 60 * 60) , '/');
         }
         else if($role == "admin")
         {
@@ -115,7 +115,7 @@ class UserAuth{
          );
          if($stmt->execute())
          {
-            setcookie('sid', $sess_id , time()+60*60*7 , '/');
+            setcookie('sid', $sess_id , time()+(10 * 365 * 24 * 60 * 60) , '/');
             return '200';
          }
          else
