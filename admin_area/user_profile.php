@@ -232,11 +232,11 @@ $run_admin = mysqli_query($con,$update_admin);
 
 if($run_admin){
 
-echo "<script>alert('User Has Been Updated successfully and login again')</script>";
+echo "<script>alert('User Has Been Updated successfully')</script>";
 
-echo "<script>window.open('login.php','_self')</script>";
+echo "<script>window.open('index.php?view_users','_self')</script>";
 
-session_destroy();
+// session_destroy();
 
 }
 
