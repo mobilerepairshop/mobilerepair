@@ -267,6 +267,7 @@ ConvState.prototype.answerWith = function(answerText, answerObject) {
             eventList : {
                 onSubmitForm : function(convState) {
                     console.log("fname = ",$('#fname').val())
+                    // console.log("fname = ",$('#fname').val())
                     var formData = {
                         'fname': $('#fname').val(),
                         'serv': $('#serv').val(),
