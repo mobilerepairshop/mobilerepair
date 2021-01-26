@@ -100,14 +100,14 @@ function filter(type)
                                     //  if payment method is confirmed
                                       s1+='<tr><td class="ordhead"><b>Status</b></td><td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
                                       s1+='<td class="ordhead">Total Problems </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
-                                      s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)" disabled >Payment</button></tr></table></div></div>'
+                                      s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#bill"  onclick="downloadbill(this.id)" >View Bill</button></td></tr></table></div></div>'
                                     }
                                     else
                                     {
                                     //  payment method is not confirmed yet
                                       s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
                                       s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
-                                      s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)">Payment</button></tr></table></div></div>'                                              
+                                      s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td></tr></table></div></div>'                                              
                                     }
                                   break;
                                 case 6:
@@ -121,7 +121,7 @@ function filter(type)
                                         //  if payment method is confirmed
                                         s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
                                         s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr></table></div></div></div>'
-                                        s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)" disabled>Payment</button></tr></table></div></div>'
+                                        s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#bill"  onclick="downloadbill(this.id)" >View Bill</button></td></tr></table></div></div>'
                                       }
                                       else
                                       {
@@ -139,7 +139,7 @@ function filter(type)
                                         delivery_status=1
                                         s1+='<tr><td class="ordhead"><b>Status</b></td> <td><a  style="color:blue;cursor:pointer;" data-toggle="modal" id="'+groupedPeople[x][j].status+'" data-target="#status"  onclick="getstatus(this.id,'+x+')">Track Product</a></td>'
                                         s1+='<td class="ordhead">Total Problems </td> <td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#problem" onclick="getproblems(this.id)">View Problem</a></td></tr><tr><td class="ordhead">Assigned Person </td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></td></tr></table></div></div></div>'
-                                        s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)"  disabled>Payment</button></tr></table></div></div>'
+                                        s1+='<br><div class="row" ><div class="col-sm-6"><table><tr><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#myModal" onclick="getnote(this.id)" >View Note</button></td><td><button class="btn btn-primary" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#bill"  onclick="downloadbill(this.id)" >View Bill</button></td><td><button class="btn btn-success" id="'+groupedPeople[x][j].rid+'" data-toggle="modal" data-target="#payModal" onclick="paydetails(this.id)"  disabled>Payment</button></tr></table></div></div>'
                                       }
                                       else
                                       {
@@ -205,42 +205,43 @@ function filter(type)
 
 function downloadbill(rid)
 {
-
-  $.ajax({
-    url:'./api/getbilldata.php',
-    type:'POST',
-    data:{
-      'rid':rid,
-      'sid':sid
-    },
-    success:function(para)
-    {
+    // window.open('../bill.html?ordidus='+rid+')
+    window.open("./bill.html?ordidus="+ rid);
+  // $.ajax({
+  //   url:'./api/getbilldata.php',
+  //   type:'POST',
+  //   data:{
+  //     'rid':rid,
+  //     'sid':sid
+  //   },
+  //   success:function(para)
+  //   {
       
-      para = JSON.parse(para)
-      console.log("This is all - ",para[0])
-      console.log("This is wada - ",para[0][0].mcname)
-      // $('[name="updateprofile"]').attr("id", para[0].uid);
-      $(".brand").html(para[0][0].mcname)
-      $(".model").html(para[0][0].mmodel)
-      $(".createdon").html(para[0][0].created_date)
-      console.log("This is all - ",para[1])
-      problems = para[1];
-      s2=''
-      for(let i=0;i<problems.length;i++)
-      {
-          if(i==problems.length-1)
-          {
-            s2+='<tr class="item last"><td>'+problems[i].problem+'</td><td>'+problems[i].subproblem+'</td></tr>'
-          }
-          else
-          {
-            s2+='<tr class="item"><td>'+problems[i].problem+'</td><td>'+problems[i].subproblem+'</td></tr>'
-          } 
-      }
-      s2+='<tr class="total"><td></td><td>Total: '+para[0][0].calprice+'</td></tr>';
-      $('.billcontent').append(s2)
-    }
-  })
+  //     para = JSON.parse(para)
+  //     console.log("This is all - ",para[0])
+  //     console.log("This is wada - ",para[0][0].mcname)
+  //     // $('[name="updateprofile"]').attr("id", para[0].uid);
+  //     $(".brand").html(para[0][0].mcname)
+  //     $(".model").html(para[0][0].mmodel)
+  //     $(".createdon").html(para[0][0].created_date)
+  //     console.log("This is all - ",para[1])
+  //     problems = para[1];
+  //     s2=''
+  //     for(let i=0;i<problems.length;i++)
+  //     {
+  //         if(i==problems.length-1)
+  //         {
+  //           s2+='<tr class="item last"><td>'+problems[i].problem+'</td><td>'+problems[i].subproblem+'</td></tr>'
+  //         }
+  //         else
+  //         {
+  //           s2+='<tr class="item"><td>'+problems[i].problem+'</td><td>'+problems[i].subproblem+'</td></tr>'
+  //         } 
+  //     }
+  //     s2+='<tr class="total"><td></td><td>Total: '+para[0][0].calprice+'</td></tr>';
+  //     $('.billcontent').append(s2)
+  //   }
+  // })
 
   
 }

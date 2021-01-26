@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MobileRepair</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <script src="https://apis.google.com/js/platform.js" ></script>
+  <meta name="google-signin-client_id" content="411937557386-8fdmnh35is2oo4bckud4bgmg8okeanql.apps.googleusercontent.com">
+
+  <link href="css/style.css" rel="stylesheet">
+  <link href="chat/chat.css" rel="stylesheet">
+  <link href="./login/css/login.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./convForm-master/dist/jquery.convform.css">
+ 
+  <link rel="stylesheet" type="text/css" href="./convForm-master/demo.css">
+<style>
+    
+      /* Bill Style start */
+      .invoice-box {
+          background-color:white;
+        max-width: 800px;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+    }
+    
+    .invoice-box table {
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+    }
+    
+    .invoice-box table td {
+        padding: 5px;
+        vertical-align: top;
+    }
+    
+    .invoice-box table tr td:nth-child(2) {
+        text-align: right;
+    }
+    
+    .invoice-box table tr.top table td {
+        padding-bottom: 20px;
+    }
+    
+    .invoice-box table tr.top table td.title {
+        font-size: 45px;
+        line-height: 45px;
+        color: #333;
+    }
+    
+    .invoice-box table tr.information table td {
+        padding-bottom: 40px;
+    }
+    
+    .invoice-box table tr.heading td {
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+    
+    .invoice-box table tr.details td {
+        padding-bottom: 20px;
+    }
+    
+    .invoice-box table tr.item td{
+        border-bottom: 1px solid #eee;
+    }
+    
+    .invoice-box table tr.item.last td {
+        border-bottom: none;
+    }
+    
+    .invoice-box table tr.total td:nth-child(2) {
+        border-top: 2px solid #eee;
+        font-weight: bold;
+    }
+
+    .btn-group{
+      margin-left: 15%;
+    }
+
+    .btn-group .active{
+      background-color: #0078ff;
+    }
+
+    .btn-group button {
+      background-color: white; /* Green background */
+      border: 1px solid 0078ff; /* Green border */
+      color: black; /* White text */
+      padding: 10px 24px; /* Some padding */
+      cursor: pointer; /* Pointer/hand icon */
+      float: left; /* Float the buttons side by side */
+    }
+
+    /* Clear floats (clearfix hack) */
+    .btn-group:after {
+      content: "";
+      clear: both;
+      display: table;
+      background-color: #0078ff;
+    }
+
+    .btn-group button:not(:last-child) {
+      border-right: none; /* Prevent double borders */
+    }
+
+    /* Add a background color on hover */
+    .btn-group button:hover {
+      background-color: #0077ff96;
+    }
+    .btn-group button:focus {
+      background-color: #0077ff96;
+      font-weight: bold;
+    }
+    @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+        
+        .invoice-box table tr.information table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+    
+    /** RTL **/
+    .rtl {
+        direction: rtl;
+        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+    
+    .rtl table {
+        text-align: right;
+    }
+    
+    .rtl table tr td:nth-child(2) {
+        text-align: left;
+    } 
+    /* Bill style complete */
+</style>
+<br><center><button class="btn btn-primary" onclick="printbill()">Print Bill</button></center><br>
+<div class="invoice-box" id="invoice">
+    <table class="billcontent" cellpadding="0" cellspacing="0">
+        <tr class="top">
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td class="title">
+                           <p>Mobile Repair</p>
+                        </td>
+                        
+                        <td>
+                            <p class="billno">Invoice #: 123</p><br>
+                            <p class="billdate"></p><br>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        
+        <tr class="information">
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td>
+                            Mobile Repair<br>
+                            12345 Sunny Road<br>
+                            Sunnyville, CA 12345
+                            
+                        </td>
+                        
+                        <td>
+                            Acme Corp.<br>
+                            John Doe<br>
+                            john@example.com
+                           
+                        </td>
+                    </tr>
+                </table>
+                <hr>
+            </td>
+        </tr>
+        
+        
+<tr><td>Mobile Brand</td><td class="brand"></td></tr>
+<tr><td>Mobile Model</td><td class="model"></td></tr>
+<tr><td>Date Requested</td><td class="createdon"></td></tr>
+<tr  class="heading"><td>Problems</td><td >Sub-Problem</td></tr>
+        <!-- Jquery  -->
+        <!-- <tr class="item"><td>Website design</td><td>$300.00</td></tr>
+        <tr class="item last"><td>Domain name</td><td>$10.00</td></tr>
+        <tr class="total"><td></td><td>Total: $385.00</td></tr> -->
+    </table>
+    
+</div>
+ 
+ 
+ <!-- JavaScript Libraries -->
+ <script src="lib/jquery/jquery.min.js"></script>
+ <script src="lib/jquery/jquery-migrate.min.js"></script>
+ <script src="lib/popper/popper.min.js"></script>
+ <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+ <script src="lib/easing/easing.min.js"></script>
+ <script src="lib/counterup/jquery.waypoints.min.js"></script>
+ <script src="lib/counterup/jquery.counterup.js"></script>
+ <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+ <script src="lib/lightbox/js/lightbox.min.js"></script>
+ <script src="lib/typed/typed.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script> 
+
+ <!-- Contact Form JavaScript File -->
+ <script src="contactform/contactform.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
+ <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+ <!-- Template Main Javascript File -->
+ <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
+ 
+ 
+ <script type="text/javascript" src="./convForm-master/dist/autosize.min.js"></script>
+ <script type="text/javascript" src="./convForm-master/dist/jquery.convform.js"></script>
+
+ <script src="./js/delivery_person.js"></script>
+ <script src="./js/main.js"></script>
+
+ <script type = "text/javascript" 
+        src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
+     </script>
+
+
+<script>
+function printbill()
+{
+    window.print();
+}
+$( document ).ready(function() {
+
+    console.log( "ready!" );
+    let myScript = document.createElement("script");
+    myScript.setAttribute("src", "./js/login.js");
+    document.body.appendChild(myScript);
+
+    let myScript1 = document.createElement("script");
+    myScript1.setAttribute("src", "./js/bill.js");
+    document.body.appendChild(myScript1);
+
+    // window.sid = getCookie("sid");
+    
+}); 
+
+</script>

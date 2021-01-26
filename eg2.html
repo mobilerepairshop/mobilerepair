@@ -463,80 +463,8 @@
 
 
 <!-- Login Modal -->
-<div class="modal fade login" id="loginModal">
-  <div class="modal-dialog login animated">
-      <div class="modal-content">
-         <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-                <h4 class="modal-title">Login with</h4>
-            </div>
-            <div class="modal-body">
-                <div class="box">
-                     <div class="content">
-                        <div class="social">
-                            <!-- <a class="circle github" href="#">
-                                <i class="fa fa-github fa-fw"></i>
-                            </a> -->
-          
-                            <div class="container">
-                              <div class="row">
-                                <div class="col-sm">
-                                  <div onclick="googleSignin()" ><img class="google" src="google.png" style="cursor:pointer;"></img></div>
-                                </div>
-                                <!-- <div class="col-sm">
-                                  <div onclick="fbSignin()" ><img src="fb2.png" style="width:50%;cursor:pointer;"></img></div>
-                                </div> -->
-                              </div>
-                            </div>
-                            <!-- <a id="facebook_login" class="circle facebook" href="#">
-                                <i class="fa fa-facebook fa-fw"></i>
-                            </a> -->
-                        </div>
-                        <div class="division">
-                            <div class="line l"></div>
-                              <span>or</span>
-                            <div class="line r"></div>
-                        </div>
-                        <div class="error"></div>
-                        <div class="form loginBox">
-                            <form method="" action="" accept-charset="UTF-8">
-                            <input id="emaillog" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
-                            <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
-                            <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
-                            </form>
-                        </div>
-                     </div>
-                </div>
-                <div class="box">
-                    <div class="content registerBox" style="display:none;">
-                     <div class="form">
-                      <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                        <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username" required>
-                        <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required>
-                        <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password" required>
-                        <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required>
-                        <p id="errornote" style="display:none;"></p>
-                        <br><input type="checkbox" id="termsconditions" required> By signing up, you agree to our <a href="#" style="color: #0078ff;">Terms of Use</a> and <a href="#" style="color: #0078ff;">Privacy Policy</a>  <br><br>
-                        <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="registerAjax()">
-                        </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-              <div class="forgot login-footer">
-                <span>Don't have an account?
-                  <b><a href="javascript: showRegisterForm();" style="color: #0078ff;">Sign up</a></b>
-                </span>
-              </div>
-                <div class="forgot register-footer" style="display:none">
-                     <span>Already have an account?</span>
-                     <a href="javascript: showLoginForm();" style="color: #0078ff;">Login</a>
-                </div>
-            </div>
-      </div>
-  </div>
-</div>
+<div id="loginmodals"></div>
+
 
 <!-- Login Modal end -->
 
@@ -763,23 +691,27 @@
      $(function(){
       let myScript = document.createElement("script");
       myScript.setAttribute("src", "./js/login.js");
-      document.body.appendChild(myScript);
-
       let myScript1 = document.createElement("script");
       myScript1.setAttribute("src", "./js/eg2.js");
+      
+      
+      document.body.appendChild(myScript);
       document.body.appendChild(myScript1);
-      $("#mainNav").load("navbar.html"); 
-         $("#loginmodals").load("login.html"); 
-         $(".demo").load("./bot.html"); 
-         $("#delivery_personmodals").load("delivery_person.html");
-         $(".chatbot").effect( "bounce", {direction:'right',times:5}, 1000 );
-         var myAudio = new Audio('popup.mp3');
-         myAudio.play();
-         setTimeout(function(){  $(".chatbot").fadeOut(); }, 3000);
-         $('.chat-btns').click(function(){
-             $('.demo').toggle()
-         })
-       });
+      $("#mainNav").load("./navbar.html"); 
+      $("#loginmodals").load("./login.html"); 
+      $(".demo").load("./bot.html"); 
+      $("#delivery_personmodals").load("./delivery_person.html"); 
+      $(".chatbot").effect( "bounce", {times:5},1000);
+   
+      var myAudio = new Audio('popup.mp3');
+      myAudio.play();
+      setTimeout(function(){  $(".chatbot").fadeOut(); }, 2000);
+        $('.chat-btns').click(function(){
+          $('.demo').toggle()
+      })
+    });
+
+     
 
 
 
