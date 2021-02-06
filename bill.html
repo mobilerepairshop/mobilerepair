@@ -1,236 +1,222 @@
-<!DOCTYPE html>
-<html lang="en">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <head>
-  <meta charset="utf-8">
-  <title>MobileRepair</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+    <style>
+         /* @media print {
+        .outerdiv{
+            width: 80%;
+            height:1000vw;
+    }
+  } */
 
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
-
-  <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-  <!-- Main Stylesheet File -->
-  <script src="https://apis.google.com/js/platform.js" ></script>
-  <meta name="google-signin-client_id" content="411937557386-8fdmnh35is2oo4bckud4bgmg8okeanql.apps.googleusercontent.com">
-
-  <link href="css/style.css" rel="stylesheet">
-  <link href="chat/chat.css" rel="stylesheet">
-  <link href="./login/css/login.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./convForm-master/dist/jquery.convform.css">
- 
-  <link rel="stylesheet" type="text/css" href="./convForm-master/demo.css">
-<style>
+        th, td {
+  padding: 8px;
+}
+        .terms{
+            text-align: left;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .outerdiv{
+            background-color: whitesmoke;
+            
+            width: 50%;
+            height:120vw;
+            border-style: double;
+            padding: 15px;
+        }
     
-      /* Bill Style start */
-      .invoice-box {
-          background-color:white;
-        max-width: 800px;
-        margin: auto;
-        padding: 30px;
-        border: 1px solid #eee;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-        font-size: 16px;
-        line-height: 24px;
-        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        color: #555;
-    }
-    
-    .invoice-box table {
-        width: 100%;
-        line-height: inherit;
-        text-align: left;
-    }
-    
-    .invoice-box table td {
-        padding: 5px;
-        vertical-align: top;
-    }
-    
-    .invoice-box table tr td:nth-child(2) {
-        text-align: right;
-    }
-    
-    .invoice-box table tr.top table td {
-        padding-bottom: 20px;
-    }
-    
-    .invoice-box table tr.top table td.title {
-        font-size: 45px;
-        line-height: 45px;
-        color: #333;
-    }
-    
-    .invoice-box table tr.information table td {
-        padding-bottom: 40px;
-    }
-    
-    .invoice-box table tr.heading td {
-        background: #eee;
-        border-bottom: 1px solid #ddd;
-        font-weight: bold;
-    }
-    
-    .invoice-box table tr.details td {
-        padding-bottom: 20px;
-    }
-    
-    .invoice-box table tr.item td{
-        border-bottom: 1px solid #eee;
-    }
-    
-    .invoice-box table tr.item.last td {
-        border-bottom: none;
-    }
-    
-    .invoice-box table tr.total td:nth-child(2) {
-        border-top: 2px solid #eee;
-        font-weight: bold;
-    }
-
-    .btn-group{
-      margin-left: 15%;
-    }
-
-    .btn-group .active{
-      background-color: #0078ff;
-    }
-
-    .btn-group button {
-      background-color: white; /* Green background */
-      border: 1px solid 0078ff; /* Green border */
-      color: black; /* White text */
-      padding: 10px 24px; /* Some padding */
-      cursor: pointer; /* Pointer/hand icon */
-      float: left; /* Float the buttons side by side */
-    }
-
-    /* Clear floats (clearfix hack) */
-    .btn-group:after {
-      content: "";
-      clear: both;
-      display: table;
-      background-color: #0078ff;
-    }
-
-    .btn-group button:not(:last-child) {
-      border-right: none; /* Prevent double borders */
-    }
-
-    /* Add a background color on hover */
-    .btn-group button:hover {
-      background-color: #0077ff96;
-    }
-    .btn-group button:focus {
-      background-color: #0077ff96;
-      font-weight: bold;
-    }
-    @media only screen and (max-width: 600px) {
-        .invoice-box table tr.top table td {
-            width: 100%;
-            display: block;
+        .dynvalue{
+            color:red;
+            font-weight: lighter;
+        }
+        .header{
             text-align: center;
         }
-        
-        .invoice-box table tr.information table td {
-            width: 100%;
-            display: block;
+        .header .titlediv{
+            font-size: 40px;
+        }
+        .watermark{
+            color:red;
+            font-size: 15px;
+            opacity:0.5;
             text-align: center;
         }
-    }
+        .personalinfo{
+            text-align: left;
+            color:red;
+        }
+        .billinfo{
+            width:99%;
+
+        }
+        .billinfo, th, td {
+        
+        border: 1px solid grey;
+        border-collapse: collapse;
+        }
+        .header .tablehead{
+            width: 98.8%;
+            border:1px solid grey;
+            background-color:  	#ffdbac;
+        }
     
-    /** RTL **/
-    .rtl {
-        direction: rtl;
-        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-    }
-    
-    .rtl table {
-        text-align: right;
-    }
-    
-    .rtl table tr td:nth-child(2) {
-        text-align: left;
-    } 
-    /* Bill style complete */
-</style>
-<br><center><button class="btn btn-primary" onclick="printbill()">Print Bill</button></center><br>
-<div class="invoice-box" id="invoice">
-    <table cellpadding="0" cellspacing="0">
-        <tr class="top">
-            <td colspan="2">
-                <table>
-                    <tr>
-                        <td class="title">
-                           <p>Mobile Repair</p>
-                        </td>
+    </style>
+</head>
+
+<center>
+    <br>
+<button class="btn btn-primary print" onclick="printbill()">Print Bill</button>
+<br><br>
+<div class="outerdiv">
+    <div class="header">
+        <div class="titlediv">
+            IBOFIX INVOICE Copy 
+        </div>
+        <div class="watermark">
+            101A, Chhaya Nivas, Sant Tukaram Nagar, Pune 411018
+        </div>
+    </div>
+    <br>
+    <div class="personalinfo">
+        <div class="username">
+            
+        </div>
+        <div class="address">
+           
+        </div>
+        <div class="pincode">
+           
+        </div>
+            
+           
+    </div>
+    <div>
+        <br>
+        <table class="billinfo">
+            <tr>
+                <td >
+                    Invoice Number - 
+                </td>
+                <td class="dynvalue invno">
                         
-                        <td>
-                            <p class="billno">Invoice #: 123</p><br>
-                            <p class="billdate"></p><br>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        
-        <tr class="information">
-            <td colspan="2">
-                <table>
-                    <tr>
-                        <td>
-                            Mobile Repair<br>
-                            12345 Sunny Road<br>
-                            Sunnyville, CA 12345
-                            
-                        </td>
+                </td>
+                <td>
+                    Mobile Company - 
+                </td>
+                <td class="dynvalue brand">
+                        Samsung
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    GST Number - 
+                </td>
+                <td class="dynvalue" >
+                        N.A
+                </td>
+                <td>
+                    Model Name - 
+                </td>
+                <td  class="dynvalue model">
+                        Guru 
+                </td>
+            </tr>
+            <tr>
+                <td >
+                   Email Id - 
+                </td>
+                <td class="dynvalue email">
                         
-                        <td>
-                            Acme Corp.<br>
-                            John Doe<br>
-                            john@example.com
-                           
-                        </td>
-                    </tr>
-                </table>
-                <hr>
-            </td>
-        </tr>
-        
-        
-<tr><td>Mobile Brand</td><td class="brand"></td></tr>
-<tr><td>Mobile Model</td><td class="model"></td></tr>
-<tr><td>Date Requested</td><td class="createdon"></td></tr>
-<tr  class="heading">
-    <td><center>Invoice Details</center></td></tr>
-    </table>
-    <table  class="billcontent">
-<tr  class="heading">
-    <td>Problems</td>
-    <td >Sub-Problem</td>
-    <td >Price</td>
-</tr>
-        <!-- Jquery  -->
-        <!-- <tr class="item"><td>Website design</td><td>$300.00</td></tr>
-        <tr class="item last"><td>Domain name</td><td>$10.00</td></tr>
-        <tr class="total"><td></td><td>Total: $385.00</td></tr> -->
-    </table>
-    
+                </td>
+                <td >
+                    Pickup Date - 
+                </td>
+                <td class="dynvalue pickupdate">
+                        22/2/88 
+                </td>
+            </tr>
+            <tr>
+                <td >
+                   Mobile Number - 
+                </td>
+                <td class="dynvalue phonenum">
+                        
+                </td>
+                <td>
+                    Delivery Date - 
+                </td>
+                <td class="dynvalue dropdate">
+                        
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table class="billinfo">
+            <tr>
+                <td>
+                   Your product has been - 
+                </td>
+                <td>
+                        Repaired
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div class="header">
+            <div class="tablehead">
+                Invoice details
+            </div>
+        </div>
+        <br>
+        <table class="billinfo problist">
+                <th>
+                   Sr No 
+                </th>
+                <th>
+                    Description
+                 </th>
+                 <th>
+                    Price
+               
+        </table>
+        <table class="billinfo">
+            <tr>
+                <td>
+                    Estimated Price 
+                </td>
+                <td class="dynvalue estprice">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Calculated Price 
+                </td>
+                <td class="dynvalue calprice">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Final Price 
+                </td>
+                <td class="dynvalue calprice">
+                     
+                </td>
+            </tr>
+        </table>
+     <br>
+        I (the customer) hereby state that the work (the service) stated above was done to my satisfaction. I aslo recognize that it is my responsibility
+        to inform IBOFIX of any faults or defects within the warranty period of the work. Claims of damage done by work (dents,scratches, etc..) must be made at the pickup time and not afetr claims made afetr are null and void.
+        The unit (and all accessories) are now in my (the customer's) possession. Repair place guarantees the labour of the work for a period of 3 days.
+    </div>
+
+    <br>
+    <div class="watermark">
+        This is a computer generated print. Signature is not required
+    </div>
 </div>
- 
- 
+</center>
  <!-- JavaScript Libraries -->
  <script src="lib/jquery/jquery.min.js"></script>
  <script src="lib/jquery/jquery-migrate.min.js"></script>
@@ -252,46 +238,78 @@
  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
- <!-- Template Main Javascript File -->
- <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
- 
- 
- <script type="text/javascript" src="./convForm-master/dist/autosize.min.js"></script>
- <script type="text/javascript" src="./convForm-master/dist/jquery.convform.js"></script>
-
- <script src="./js/delivery_person.js"></script>
- <script src="./js/main.js"></script>
-
- <script type = "text/javascript" 
-        src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
-     </script>
-
-
 <script>
-function printbill()
-{
-    window.print();
-}
-$( document ).ready(function() {
-
-    console.log( "ready!" );
+      
+  function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
     
-}); 
-// alertdata(response,"")
-//         $('#alert').modal({backdrop: 'static', keyboard: false})
-//         $('#alert').modal('show')
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null;
+}
+var sid = getCookie("sid");
+var user_role = getCookie("role");
+console.log(sid)
+console.log(user_role)
+$.ajax({
+      url:'./login/api/checksession.php',
+      type:'POST',
+      data:{'sid':sid,'role':user_role},
+      success:function(para)
+      {
+          console.log(para)
+          para = JSON.parse(para)
+          if(para[0]=='200')
+          {
+
+          }
+          else
+          {
+            alert("Please Login to the system")
+          }
+      }
+      
+  })
 
 
-
-  
-function downloadbill(rid)
+function downloadbill()
 {
 
-  $.ajax({
+    $.ajax({
+        url:"./api/getcontactdetails.php",
+        method:"POST",
+        data:{"sid":sid},
+        success: function(para){
+            console.log(para)
+          para = JSON.parse(para)
+    
+          console.log('Address - ',para[1])
+          $(".phonenum").html(para[0])
+          $(".address").html('Address - '+para[1])
+          $(".pincode").html('Pincode - '+para[2])
+          $(".email").html(para[3])
+          $(".username").html('Name - '+para[4].toUpperCase())
+          
+        }
+      })
+
+    $.ajax({
     url:'./api/getbilldata.php',
     type:'POST',
     data:{
-      'rid':rid,
+      'rid':1,
       'sid':sid
     },
     success:function(para)
@@ -301,10 +319,14 @@ function downloadbill(rid)
       console.log("This is all - ",para[0])
       console.log("This is wada - ",para[0][0].mcname)
       // $('[name="updateprofile"]').attr("id", para[0].uid);
+      $('.invno').html(para[0][0].rid)
       $(".brand").html(para[0][0].mcname)
       $(".model").html(para[0][0].mmodel)
-      $(".createdon").html(para[0][0].created_date)
-      console.log("This is all - ",para[1])
+      $('.calprice').html(para[0][0].calprice)
+      $('.estprice').html(para[0][0].estprice)
+      $(".pickupdate").html(para[0][0].pickupdate)
+      $(".dropdate").html(para[0][0].dropdate)
+      console.log("This is all - ",para[0])
       console.log("This is all - ",para[1])
       problems = para[1];
       s2=''
@@ -312,22 +334,22 @@ function downloadbill(rid)
       {
           if(i==problems.length-1)
           {
-            s2+='<tr class="item last"><td>'+problems[i].problem+'</td><td>'+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
+            s2+='<tr class="item last"><td>'+(i+1)+'</td><td>'+problems[i].problem+' -- '+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
           }
           else
           {
-            s2+='<tr class="item"><td>'+problems[i].problem+'</td><td>'+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
+            s2+='<tr class="item"><td>'+(i+1)+'</td><td>'+problems[i].problem+' -- '+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
           } 
       }
-      s2+='<tr class="total"><td></td><td></td><td style="float:right;">Total: '+para[0][0].calprice+'</td></tr>';
-      $('.billcontent').append(s2)
+    //   s2+='<tr class="total"><td></td><td></td><td style="float:right;">Total: '+para[0][0].calprice+'</td></tr>';
+      window.probsize = problems.length
+      $('.problist').append(s2)
+      $('.problist').append(s2)
+     
     }
   })
 
-  
 }
-
-
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
@@ -343,5 +365,25 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 var rid = getUrlParameter('ordidus');
-downloadbill(rid)
+
+downloadbill()
+function printbill()
+{
+    window.probsize =12
+    console.log(window.probsize)
+    if(window.probsize>=12)
+    {
+        console.log("Entered")
+        $(".outerdiv").css("width", "80%");
+        $(".outerdiv").css("height", "230vw");
+    }
+    else if(window.probsize<=10){
+        console.log("Entered")
+        $(".outerdiv").css("width", "80%");
+        $(".outerdiv").css("height", "173vw");
+    }   
+   
+    $('.print').hide()
+    window.print()
+}
 </script>
