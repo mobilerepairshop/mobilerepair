@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2020 at 05:02 AM
+-- Generation Time: Feb 06, 2021 at 09:43 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -41,16 +41,13 @@ CREATE TABLE `req` (
   `pay_method` varchar(20) NOT NULL,
   `pay_status` varchar(5) NOT NULL,
   `warranty` varchar(10) NOT NULL,
-  `inwarr` int(10) NOT NULL
+  `inwarr` int(10) NOT NULL,
+  `pincode` varchar(50) NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `phonenum` varchar(50) NOT NULL,
+  `pickupdate` varchar(50) NOT NULL,
+  `dropdate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `req`
---
-
-INSERT INTO `req` (`rid`, `mmid`, `uid`, `estprice`, `status`, `calprice`, `created_date`, `note`, `repairperson`, `imeino`, `pay_method`, `pay_status`, `warranty`, `inwarr`) VALUES
-(1, 6, 14, '3000', 8, '3000', '2020-12-20', 'Final', 'ABC', '123456', '', '0', '', 0),
-(2, 6, 14, '3000', 0, '0', '2020-12-20', 'NA', '', '', '', '0', '', 0);
 
 --
 -- Indexes for dumped tables
