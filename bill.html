@@ -168,7 +168,7 @@
 </style>
 <br><center><button class="btn btn-primary" onclick="printbill()">Print Bill</button></center><br>
 <div class="invoice-box" id="invoice">
-    <table class="billcontent" cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0">
         <tr class="top">
             <td colspan="2">
                 <table>
@@ -213,7 +213,15 @@
 <tr><td>Mobile Brand</td><td class="brand"></td></tr>
 <tr><td>Mobile Model</td><td class="model"></td></tr>
 <tr><td>Date Requested</td><td class="createdon"></td></tr>
-<tr  class="heading"><td>Problems</td><td >Sub-Problem</td></tr>
+<tr  class="heading">
+    <td><center>Invoice Details</center></td></tr>
+    </table>
+    <table  class="billcontent">
+<tr  class="heading">
+    <td>Problems</td>
+    <td >Sub-Problem</td>
+    <td >Price</td>
+</tr>
         <!-- Jquery  -->
         <!-- <tr class="item"><td>Website design</td><td>$300.00</td></tr>
         <tr class="item last"><td>Domain name</td><td>$10.00</td></tr>
@@ -267,16 +275,73 @@ function printbill()
 $( document ).ready(function() {
 
     console.log( "ready!" );
-    let myScript = document.createElement("script");
-    myScript.setAttribute("src", "./js/login.js");
-    document.body.appendChild(myScript);
-
-    let myScript1 = document.createElement("script");
-    myScript1.setAttribute("src", "./js/bill.js");
-    document.body.appendChild(myScript1);
-
-    // window.sid = getCookie("sid");
     
 }); 
+// alertdata(response,"")
+//         $('#alert').modal({backdrop: 'static', keyboard: false})
+//         $('#alert').modal('show')
 
+
+
+  
+function downloadbill(rid)
+{
+
+  $.ajax({
+    url:'./api/getbilldata.php',
+    type:'POST',
+    data:{
+      'rid':rid,
+      'sid':sid
+    },
+    success:function(para)
+    {
+      
+      para = JSON.parse(para)
+      console.log("This is all - ",para[0])
+      console.log("This is wada - ",para[0][0].mcname)
+      // $('[name="updateprofile"]').attr("id", para[0].uid);
+      $(".brand").html(para[0][0].mcname)
+      $(".model").html(para[0][0].mmodel)
+      $(".createdon").html(para[0][0].created_date)
+      console.log("This is all - ",para[1])
+      console.log("This is all - ",para[1])
+      problems = para[1];
+      s2=''
+      for(let i=0;i<problems.length;i++)
+      {
+          if(i==problems.length-1)
+          {
+            s2+='<tr class="item last"><td>'+problems[i].problem+'</td><td>'+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
+          }
+          else
+          {
+            s2+='<tr class="item"><td>'+problems[i].problem+'</td><td>'+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
+          } 
+      }
+      s2+='<tr class="total"><td></td><td></td><td style="float:right;">Total: '+para[0][0].calprice+'</td></tr>';
+      $('.billcontent').append(s2)
+    }
+  })
+
+  
+}
+
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+var rid = getUrlParameter('ordidus');
+downloadbill(rid)
 </script>

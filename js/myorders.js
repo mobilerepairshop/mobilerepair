@@ -205,8 +205,10 @@ function filter(type)
 
 function downloadbill(rid)
 {
+  console.log("Hello WOesssssss")
     // window.open('../bill.html?ordidus='+rid+')
-    window.open("./bill.html?ordidus="+ rid);
+    var printWindow =  window.open("../bill2.html?ordidus="+ rid);
+    printWindow.document.write('<link rel="stylesheet" href="../public/css/invoice.css">');
   // $.ajax({
   //   url:'./api/getbilldata.php',
   //   type:'POST',

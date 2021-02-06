@@ -77,23 +77,23 @@
                 {
                     if($type=='active')
                     {
-                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and (status<>9 and status<>6) group by r.rid';
+                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty,r.pickupdate,r.dropdate from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and (status<>9 and status<>6) group by r.rid';
                     }
                     else if($type=='cancel')
                     {
-                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=6 group by r.rid';
+                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty,r.pickupdate,r.dropdate from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=6 group by r.rid';
     
                     }
                     else if($type=='history')
                     {
-                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=9 group by r.rid';
+                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty,r.pickupdate,r.dropdate from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and status=9 group by r.rid';
                     }
                 }
                 else
                 {
                     if($type=='bill')
                     {
-                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and r.rid=? group by r.rid';
+                        $query = 'select count(problem) as problem,count(subproblem) as subproblem,mcname,mmname,created_date,estprice,status,calprice,r.rid,note,r.pay_method,r.pay_status,r.warranty,r.pickupdate,r.dropdate from req as r inner join problems as p inner join mobilemodel as m inner join mobilecompany as mc inner join subproblem_master  as sp inner join problem_master as pm on r.rid=p.rid and r.mmid=m.mmid and m.mcid=mc.mcid and sp.subproblem_code=p.subproblem and sp.problem_code=pm.problem_code where uid=? and r.rid=? group by r.rid';
                     
                     }
                 }
@@ -130,7 +130,9 @@
                                 "note"=>$data["note"],
                                 "pay_method"=>$data["pay_method"],
                                 "pay_status"=>$data["pay_status"],
-                                "warranty"=>$data["warranty"]
+                                "warranty"=>$data["warranty"],
+                                "pickupdate"=>$data["pickupdate"],
+                                "dropdate"=>$data["dropdate"],
                             ]);
                     }
                 }
@@ -260,9 +262,18 @@
             public function getproblems($uid,$rid)
             {
                 $mc = array();
-                $query = 'select main_problem,sub_problem,r.rid from req as r inner join problems as p inner join subproblem_master as sp INNER JOIN problem_master as pm on r.rid=p.rid and p.subproblem=sp.subproblem_code and sp.problem_code=pm.problem_code where r.uid=? AND r.rid=?';
+                // $query = 'select main_problem,sub_problem,r.rid from req as r inner join problems as p inner join subproblem_master as sp INNER JOIN problem_master as pm on r.rid=p.rid and p.subproblem=sp.subproblem_code and sp.problem_code=pm.problem_code where r.uid=? AND r.rid=?';
+                $query = 'select main_problem,sub_problem,r.rid,pa.price from req as r 
+                inner join problems as p 
+                inner join subproblem_master as sp 
+                INNER JOIN problem_master as pm inner join pricing_allocation as pa INNER JOIN mobilemodel as mm
+                on r.rid=p.rid and p.subproblem=sp.subproblem_code 
+                and sp.problem_code=pm.problem_code 
+                and mm.mmid=pa.mmid and pa.subproblem_code=sp.subproblem_code
+                where r.uid=? AND r.rid=?';
                 $stmt = $this->conn->prepare($query);
                 $stmt->bind_param('ii',$uid,$rid);
+                echo $this->conn->error;
                 if($stmt->execute())
                 {
                     $result = $stmt->get_result();   // <--- add this instead
@@ -273,6 +284,7 @@
                             [
                                 "problem"=>$data["main_problem"],
                                 "subproblem"=>$data["sub_problem"],
+                                "price"=>$data["price"],
                                 "rid"=>$data["rid"],
                             ]);
                     }

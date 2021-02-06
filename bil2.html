@@ -1,0 +1,389 @@
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<head>
+    <style>
+         /* @media print {
+        .outerdiv{
+            width: 80%;
+            height:1000vw;
+    }
+  } */
+
+        th, td {
+  padding: 8px;
+}
+        .terms{
+            text-align: left;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .outerdiv{
+            background-color: whitesmoke;
+            
+            width: 50%;
+            height:120vw;
+            border-style: double;
+            padding: 15px;
+        }
+    
+        .dynvalue{
+            color:red;
+            font-weight: lighter;
+        }
+        .header{
+            text-align: center;
+        }
+        .header .titlediv{
+            font-size: 40px;
+        }
+        .watermark{
+            color:red;
+            font-size: 15px;
+            opacity:0.5;
+            text-align: center;
+        }
+        .personalinfo{
+            text-align: left;
+            color:red;
+        }
+        .billinfo{
+            width:99%;
+
+        }
+        .billinfo, th, td {
+        
+        border: 1px solid grey;
+        border-collapse: collapse;
+        }
+        .header .tablehead{
+            width: 98.8%;
+            border:1px solid grey;
+            background-color:  	#ffdbac;
+        }
+    
+    </style>
+</head>
+
+<center>
+    <br>
+<button class="btn btn-primary print" onclick="printbill()">Print Bill</button>
+<br><br>
+<div class="outerdiv">
+    <div class="header">
+        <div class="titlediv">
+            IBOFIX INVOICE Copy 
+        </div>
+        <div class="watermark">
+            101A, Chhaya Nivas, Sant Tukaram Nagar, Pune 411018
+        </div>
+    </div>
+    <br>
+    <div class="personalinfo">
+        <div class="username">
+            
+        </div>
+        <div class="address">
+           
+        </div>
+        <div class="pincode">
+           
+        </div>
+            
+           
+    </div>
+    <div>
+        <br>
+        <table class="billinfo">
+            <tr>
+                <td >
+                    Invoice Number - 
+                </td>
+                <td class="dynvalue invno">
+                        
+                </td>
+                <td>
+                    Mobile Company - 
+                </td>
+                <td class="dynvalue brand">
+                        Samsung
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    GST Number - 
+                </td>
+                <td class="dynvalue" >
+                        N.A
+                </td>
+                <td>
+                    Model Name - 
+                </td>
+                <td  class="dynvalue model">
+                        Guru 
+                </td>
+            </tr>
+            <tr>
+                <td >
+                   Email Id - 
+                </td>
+                <td class="dynvalue email">
+                        
+                </td>
+                <td >
+                    Pickup Date - 
+                </td>
+                <td class="dynvalue pickupdate">
+                        22/2/88 
+                </td>
+            </tr>
+            <tr>
+                <td >
+                   Mobile Number - 
+                </td>
+                <td class="dynvalue phonenum">
+                        
+                </td>
+                <td>
+                    Delivery Date - 
+                </td>
+                <td class="dynvalue dropdate">
+                        
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table class="billinfo">
+            <tr>
+                <td>
+                   Your product has been - 
+                </td>
+                <td>
+                        Repaired
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div class="header">
+            <div class="tablehead">
+                Invoice details
+            </div>
+        </div>
+        <br>
+        <table class="billinfo problist">
+                <th>
+                   Sr No 
+                </th>
+                <th>
+                    Description
+                 </th>
+                 <th>
+                    Price
+               
+        </table>
+        <table class="billinfo">
+            <tr>
+                <td>
+                    Estimated Price 
+                </td>
+                <td class="dynvalue estprice">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Calculated Price 
+                </td>
+                <td class="dynvalue calprice">
+                     
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Final Price 
+                </td>
+                <td class="dynvalue calprice">
+                     
+                </td>
+            </tr>
+        </table>
+     <br>
+        I (the customer) hereby state that the work (the service) stated above was done to my satisfaction. I aslo recognize that it is my responsibility
+        to inform IBOFIX of any faults or defects within the warranty period of the work. Claims of damage done by work (dents,scratches, etc..) must be made at the pickup time and not afetr claims made afetr are null and void.
+        The unit (and all accessories) are now in my (the customer's) possession. Repair place guarantees the labour of the work for a period of 3 days.
+    </div>
+
+    <br>
+    <div class="watermark">
+        This is a computer generated print. Signature is not required
+    </div>
+</div>
+</center>
+ <!-- JavaScript Libraries -->
+ <script src="lib/jquery/jquery.min.js"></script>
+ <script src="lib/jquery/jquery-migrate.min.js"></script>
+ <script src="lib/popper/popper.min.js"></script>
+ <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+ <script src="lib/easing/easing.min.js"></script>
+ <script src="lib/counterup/jquery.waypoints.min.js"></script>
+ <script src="lib/counterup/jquery.counterup.js"></script>
+ <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+ <script src="lib/lightbox/js/lightbox.min.js"></script>
+ <script src="lib/typed/typed.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script> 
+
+ <!-- Contact Form JavaScript File -->
+ <script src="contactform/contactform.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
+ <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script>
+      
+  function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+    
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null;
+}
+var sid = getCookie("sid");
+var user_role = getCookie("role");
+console.log(sid)
+console.log(user_role)
+$.ajax({
+      url:'./login/api/checksession.php',
+      type:'POST',
+      data:{'sid':sid,'role':user_role},
+      success:function(para)
+      {
+          console.log(para)
+          para = JSON.parse(para)
+          if(para[0]=='200')
+          {
+
+          }
+          else
+          {
+            alert("Please Login to the system")
+          }
+      }
+      
+  })
+
+
+function downloadbill()
+{
+
+    $.ajax({
+        url:"./api/getcontactdetails.php",
+        method:"POST",
+        data:{"sid":sid},
+        success: function(para){
+            console.log(para)
+          para = JSON.parse(para)
+    
+          console.log('Address - ',para[1])
+          $(".phonenum").html(para[0])
+          $(".address").html('Address - '+para[1])
+          $(".pincode").html('Pincode - '+para[2])
+          $(".email").html(para[3])
+          $(".username").html('Name - '+para[4].toUpperCase())
+          
+        }
+      })
+
+    $.ajax({
+    url:'./api/getbilldata.php',
+    type:'POST',
+    data:{
+      'rid':1,
+      'sid':sid
+    },
+    success:function(para)
+    {
+      
+      para = JSON.parse(para)
+      console.log("This is all - ",para[0])
+      console.log("This is wada - ",para[0][0].mcname)
+      // $('[name="updateprofile"]').attr("id", para[0].uid);
+      $('.invno').html(para[0][0].rid)
+      $(".brand").html(para[0][0].mcname)
+      $(".model").html(para[0][0].mmodel)
+      $('.calprice').html(para[0][0].calprice)
+      $('.estprice').html(para[0][0].estprice)
+      $(".pickupdate").html(para[0][0].pickupdate)
+      $(".dropdate").html(para[0][0].dropdate)
+      console.log("This is all - ",para[0])
+      console.log("This is all - ",para[1])
+      problems = para[1];
+      s2=''
+      for(let i=0;i<problems.length;i++)
+      {
+          if(i==problems.length-1)
+          {
+            s2+='<tr class="item last"><td>'+(i+1)+'</td><td>'+problems[i].problem+' -- '+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
+          }
+          else
+          {
+            s2+='<tr class="item"><td>'+(i+1)+'</td><td>'+problems[i].problem+' -- '+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
+          } 
+      }
+    //   s2+='<tr class="total"><td></td><td></td><td style="float:right;">Total: '+para[0][0].calprice+'</td></tr>';
+      window.probsize = problems.length
+      $('.problist').append(s2)
+      $('.problist').append(s2)
+     
+    }
+  })
+
+}
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+var rid = getUrlParameter('ordidus');
+
+downloadbill()
+function printbill()
+{
+    window.probsize =12
+    console.log(window.probsize)
+    if(window.probsize>=12)
+    {
+        console.log("Entered")
+        $(".outerdiv").css("width", "80%");
+        $(".outerdiv").css("height", "230vw");
+    }
+    else if(window.probsize<=10){
+        console.log("Entered")
+        $(".outerdiv").css("width", "80%");
+        $(".outerdiv").css("height", "173vw");
+    }   
+   
+    $('.print').hide()
+    window.print()
+}
+</script>
