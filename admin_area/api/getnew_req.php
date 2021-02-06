@@ -1,13 +1,13 @@
 <?php
 
 error_reporting(0);
-if(isset($_POST))
+if(1)
 {
     require('../includes/db.php');
 
 
 $cancelled = [];
-$get_enquiries = "SELECT * FROM req 
+$get_enquiries = "SELECT *,req.phonenum,req.pincode,req.address FROM req 
                   INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid 
                   INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid 
                   INNER JOIN users ON users.uid = req.uid 

@@ -117,6 +117,7 @@ function getvalue(id)
       var sid = getCookie("sid");
       if(sid)
       {
+        $("#loginnotice").hide()
         $(".form-comments2").hide()
         $("#contact_details").hide()
         $("#contact_details1").hide()
@@ -128,6 +129,7 @@ function getvalue(id)
       }
       else
       {
+        $("#loginnotice").show()
         $(".form-comments2").show()
         $(".form-comments").hide()
         $("#damageproblemlist").hide()

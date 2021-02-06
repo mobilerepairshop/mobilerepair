@@ -3,7 +3,7 @@
 if(isset($_POST))
 {
     require_once("../includes/db.php");
-    $sql = "select estprice,calprice,note from requests where rid = ".$_POST['rid'];
+    $sql = "select estprice,calprice,note from req where rid = ".$_POST['rid'];
     $res = mysqli_query($con,$sql);
     if($res)
     {

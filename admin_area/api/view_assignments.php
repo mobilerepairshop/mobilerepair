@@ -10,7 +10,7 @@ else
     require('../includes/db.php');
     if($_POST['filter'] == "active")
     {
-        $sql = 'select * from scheduled_request
+        $sql = 'select *,req.phonenum,req.pincode,req.address from scheduled_request
                 inner join req on req.rid = scheduled_request.rid
                 inner join mobilemodel on mobilemodel.mmid = req.mmid
                 inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
@@ -20,7 +20,7 @@ else
     }
     if($_POST['filter'] == "cancelled")
     {
-        $sql = 'select * from scheduled_request
+        $sql = 'select *,req.phonenum,req.pincode,req.address from scheduled_request
                 inner join req on req.rid = scheduled_request.rid
                 inner join mobilemodel on mobilemodel.mmid = req.mmid
                 inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
@@ -30,7 +30,7 @@ else
     }
     // if($_POST['filter'] == "unavailable")
     // {
-    //     $sql = 'select * from scheduled_request
+    //     $sql = 'select *,req.phonenum,req.pincode,req.address from scheduled_request
     //             inner join req on req.rid = scheduled_request.rid
     //             inner join mobilemodel on mobilemodel.mmid = req.mmid
     //             inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
@@ -40,7 +40,7 @@ else
     // }
     if($_POST['filter'] == "history")
     {
-        $sql = 'select * from scheduled_request
+        $sql = 'select *,req.phonenum,req.pincode,req.address from scheduled_request
                 inner join req on req.rid = scheduled_request.rid
                 inner join mobilemodel on mobilemodel.mmid = req.mmid
                 inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
