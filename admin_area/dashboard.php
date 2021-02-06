@@ -278,7 +278,7 @@ while($row_order=mysqli_fetch_array($run_order)){
 
 $i = 0;
 
-$get_order = "select * from req
+$get_order = "select req.rid,users.username,req.phonenum,req.address,req.pincode,req.estprice from req
                 inner join users on users.uid=req.uid
                 where status=0 LIMIT 0,5";
 $run_order = mysqli_query($con,$get_order);

@@ -1,7 +1,7 @@
 <?php
 
 require_once("../includes/db.php");
-$get_enquiries = "SELECT * FROM scheduled_request 
+$get_enquiries = "SELECT *,req.phonenum,req.pincode,req.address FROM scheduled_request 
                   INNER join req on req.rid=scheduled_request.rid 
                   INNER JOIN mobilemodel ON mobilemodel.mmid = req.mmid 
                   INNER JOIN mobilecompany ON mobilecompany.mcid = mobilemodel.mcid 

@@ -58,7 +58,7 @@ function filter(type)
                             s1+='<tr><td class="ordhead">Estimated Price</td><td>'+groupedPeople[x][j].estprice+'</td> '  
                             s1+='<td class="ordhead"><b>Calculated Price</td> <td>'+groupedPeople[x][j].calprice+'</b></td></tr>'
                             s1+='<tr><td class="ordhead">Date Requested</td><td>'+groupedPeople[x][j].created_date+'</td>'
-                            s1+='<td class="ordhead">Delivery(days)</td><td>3</td></tr>'
+                            s1+='<td class="ordhead">Address Details</td><td><a style="color:blue;cursor:pointer;" id="'+groupedPeople[x][j].rid+'"  data-toggle="modal" data-target="#getaddressdetails" onclick="getaddressdetails(this.id)">View Details</a></td></tr>'
 
                             
                             switch (groupedPeople[x][j].status)
@@ -361,6 +361,60 @@ function groupArrayOfObjects(list, key) {
           s1+='</div></div></div></div>'
           $('.status-content').append(s1)
     }
+
+    function getaddressdetails(rid)
+    {
+        $.ajax({
+            url:'./api/getaddressdetails.php',
+            type:'POST',
+            data:{'rid':rid,'sid':sid},
+            success:function(para)
+            {
+                console.log("This is note - ",para)
+                para = JSON.parse(para)
+                $('[name="updateaddressdetails"]').attr("id", para[0].rid);
+
+                s2 = '<tr><td>Pincode</td><td><input type="text" class="browser-default form-control custom-select-lg mb-3 addborder" style="border: 2px solid black;border-radius: 4px;" id="pincodeline" value="'+para[0].pincode+'"></td></tr><tr><td>Address</td><td><textarea class="browser-default form-control custom-select-lg mb-3 addborder" id="addressline" rows="3" value="'+para[0].address+'">'+para[0].address+'</textarea></td></tr><tr><td>Phone Number</td><td><input type="text" class="browser-default form-control custom-select-lg mb-3 addborder" style="border: 2px solid black;border-radius: 4px;" id="phonenumline" value="'+para[0].phonenum+'"></td></tr>'
+                $('.addressdetails').html(s2)
+                
+            }
+        })
+    }
+
+    
+function updateaddressdetails(id)
+{
+  $.ajax({
+    url:'./api/updateaddressdetails.php',
+    type:'POST',
+    data:{
+      'rid':id,
+      'address':$("#addressline").val(),
+      'phonenum':$("#phonenumline").val(),
+      'pincode':$("#pincodeline").val(),
+      'sid':sid
+    },
+    success:function(para)
+    {
+      if(para == "200")
+      {
+        $('#getaddressdetails').modal('hide')
+        alertdata("Information Updated Successfully","Update Status")
+        $('#alert').modal({backdrop: 'static', keyboard: false})
+        $('#alert').modal('show')
+        $("#modalclose").click(function() {
+          window.location.reload()
+        });
+      }
+      else
+      {
+        alertdata(para)
+        $('#alert').modal('show')
+      }
+    }
+  })  
+}
+
     function getproblems(rid)
     {
         $.ajax({

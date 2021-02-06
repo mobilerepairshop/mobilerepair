@@ -10,7 +10,8 @@
         
         public function pickedupfromuser($rid)
         {
-            $query = 'update req set status = 2 where rid=?';
+            $date = date("Y-m-d");
+            $query = 'update req set status = 2 , pickupdate = "'.$date.'" where rid=?';
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param('i',$rid);
             if($stmt->execute())
@@ -43,7 +44,8 @@
         }
         public function droppedtouser($rid)
         {
-            $query = 'update req set status = 9 where rid=?';
+            $date = date("Y-m-d");
+            $query = 'update req set status = 9 , dropdate="'.$date.'" where rid=?';
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param('i',$rid);
 

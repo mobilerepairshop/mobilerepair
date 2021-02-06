@@ -151,6 +151,21 @@
                     return 400;
                 }
             }
+
+            public function updateaddressdetails($rid,$address,$phonenum,$pincode)
+            {
+                $query = 'update req set address="'.$address.'" , phonenum="'.$phonenum.'" , pincode="'.$pincode.'" where rid=?';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$rid);
+                if($stmt->execute())
+                {
+                    return 200;
+                }
+                else
+                {
+                    return 400;
+                }
+            }
             
             public function getnote($rid)
             {
@@ -257,6 +272,36 @@
                 }
   
             }
+
+            public function getaddressdetails($rid)
+            {
+                $mc = array();
+                $query = 'select rid,address,pincode,phonenum from req where rid=?';
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$rid);
+                if($stmt->execute())
+                {
+                    $result = $stmt->get_result();   // <--- add this instead
+                    $userinfo = array();
+                    while ($data = $result->fetch_assoc()) 
+                    {
+                        array_push($mc,
+                            [
+                                "address"=>$data["address"],
+                                "phonenum"=>$data["phonenum"],
+                                "pincode"=>$data["pincode"],
+                                "rid"=>$data["rid"]
+                            ]);
+                    }
+                    return $mc;
+                }
+                else
+                {
+                    return 400;
+                }
+            }
+
+
             public function getproblems($uid,$rid)
             {
                 $mc = array();
