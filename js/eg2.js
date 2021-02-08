@@ -323,23 +323,27 @@ function getvalue(id)
 
 var quote = 0
 function getquote(){
-    $.ajax(
-        {
-        url: "./api/getquote.php", 
-        method:"POST",
-        data:{
-                'sid':sid,
-                'mmodel':$(".mmod").val(),
-                'problems':problem
-            },
-        success: function(para)
-        {
-            alertdata("Estimated Price for your request is Rs "+para , "")
-            window.estprice = para
-            $('#alert').modal('show')
-            quote = 1
-        }
-        })
+  // window.open('../estbill.html')
+  window.problems = problem
+  window.open("./estbill.html?ordidus");
+    // $.ajax(
+    //     {
+    //     url: "./api/getquote.php", 
+    //     method:"POST",
+    //     data:{
+    //             'sid':sid,
+    //             'mmodel':$(".mmod").val(),
+    //             'problems':problem
+    //         },
+    //     success: function(para)
+    //     {
+
+    //         alertdata("Estimated Price for your request is Rs "+para , "")
+    //         window.estprice = para
+    //         $('#alert').modal('show')
+    //         quote = 1
+    //     }
+    //     })
 }
 
 function gobacktopincode(){

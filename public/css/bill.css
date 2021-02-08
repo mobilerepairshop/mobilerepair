@@ -1,0 +1,50 @@
+th, td {
+    padding: 8px;
+  }
+          .terms{
+              text-align: left;
+              border: 1px solid black;
+              border-collapse: collapse;
+          }
+          .outerdiv{
+              background-color: whitesmoke;
+              width: 50%;
+              height:100vw;
+              border:1px solid black;
+              padding: 15px;
+          }
+      
+          .dynvalue{
+              color:red;
+              font-weight: lighter;
+          }
+          .header{
+              text-align: center;
+          }
+          .header .titlediv{
+              font-size: 40px;
+          }
+          .watermark{
+              color:red;
+              font-size: 15px;
+              opacity:0.5;
+              text-align: center;
+          }
+          .personalinfo{
+              text-align: left;
+              color:red;
+          }
+          .billinfo{
+              width:99%;
+  
+          }
+          .billinfo, th, td {
+          
+          border: 1px solid grey;
+          border-collapse: collapse;
+          }
+          .header .tablehead{
+              width: 98.8%;
+              border:1px solid grey;
+              background-color:  	#ffdbac;
+          }
