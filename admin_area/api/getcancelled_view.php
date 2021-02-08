@@ -10,7 +10,7 @@ if(isset($_POST))
           INNER JOIN problems ON problems.rid = req.rid
           INNER JOIN problem_master ON problems.problem = problem_master.problem_code
           INNER JOIN subproblem_master ON problems.subproblem = subproblem_master.subproblem_code
-          where  req.status=6";
+          where  req.status=6 or req.status<0";
 
 $run_r = mysqli_query($con,$get_r);
 

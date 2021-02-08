@@ -638,9 +638,10 @@ $.ajax({
                       }
                       else if(para[i].delivery_status==0 && para[i].status==1)
                       {
-                        str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+                        // str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
                         // Cancelled button removed
                         // str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-small " onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
+                        str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-small " data-toggle="modal" data-target="#cancelledreason" data-backdrop="static" data-keyboard="false" onclick="cancelledreason(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
                       }
                       else if(para[i].delivery_status==1 && para[i].status==8)
                       {
@@ -698,7 +699,7 @@ $.ajax({
             str += '<tr><th>Mobile Company </th><td>'+para[i].mcompany+'</td><th>Pickup Time </th><td>'+para[i].time+'</td></tr>'
             str += '<tr><th>Mobile Model </th><td>'+para[i].mmodel+'</td><th>Problems </th><td><a style="color:blue;" data-toggle="modal" data-target="#problem" onclick="getproblems_admin('+para[i].rid+')">Problems</a></td></tr>'
             str += '<tr><th>Customer Address </th><td>'+para[i].address+'</td><th>Customer Contact </th><td><a href="tel:'+para[i].phonenum+'">'+para[i].phonenum+'</td></tr>'
-            if(para[i].status == 6 || para[i].delivery_status == '2' || para[i].status == 9 || para[i].delivery_status == '3')
+            if(para[i].status == 6 || para[i].delivery_status == '2' || para[i].status == 9 || para[i].delivery_status == '3' || parseInt(para[i].status) < 0)
             {
               str += ''
             }
@@ -716,9 +717,9 @@ $.ajax({
             }
             else if(para[i].delivery_status==0 && para[i].status==1)
             {
-              str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
+              // str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div></div></div></div>'
               // Cancelled button removed
-              // str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-small " onclick="cancelled(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
+              str += '</tbody></table></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " data-toggle="modal" data-target="#verifyuserdelivery" data-backdrop="static" data-keyboard="false" onclick="SendOTPtoUser(this.id,'+para[i].status+')" name="sendotpbutton">Send OTP</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')">'+status[para[i].status]+'</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-danger button-small " onclick="cancelledreason(this.id,'+para[i].status+')">Cancelled</button></div></div></div></div>'
             }
             else if(para[i].delivery_status==1 && para[i].status==8)
             {
@@ -762,4 +763,3 @@ $.ajax({
       }
   })
   }
-  
