@@ -71,7 +71,7 @@
                 Estimation details
             </div>
         </div>
-        <table class="billinfo">
+        <table class="billinfo problist">
                 <th>
                    Sr No 
                 </th>
@@ -81,47 +81,15 @@
                  <th>
                     Price
                  </th>
-                 <tr>
-                     <td >
-                         1
-                     </td>
-                    <td>
-                       Broken or dirty camera lens Finger touch sensor not working
-                    </td>
-                    <td class="dynvalue">
-                            500
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                       Broken or dirty camera lens Finger touch sensor not working
-                    </td>
-                    <td class="dynvalue">
-                            500
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                       Broken or dirty camera lens Finger touch sensor not working
-                    </td>
-                    <td class="dynvalue">
-                            500
-                    </td>
-                </tr>
+                 
         </table>
         <table class="billinfo">
             <tr>
                 <td>
                     Estimated Price 
                 </td>
-                <td class="dynvalue">
-                    1200 
+                <td class="dynvalue estprice">
+                     
                 </td>
             </tr>
         </table>
@@ -162,8 +130,73 @@
         This is a computer generated print. Signature is not required
     </div>
 </div>
+<script src="lib/jquery/jquery.min.js"></script>
+ <script src="lib/jquery/jquery-migrate.min.js"></script>
+ <script src="lib/popper/popper.min.js"></script>
+ <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+ <script src="lib/easing/easing.min.js"></script>
+ <script src="lib/counterup/jquery.waypoints.min.js"></script>
+ <script src="lib/counterup/jquery.counterup.js"></script>
+ <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+ <script src="lib/lightbox/js/lightbox.min.js"></script>
+ <script src="lib/typed/typed.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script> 
 
+ <!-- Contact Form JavaScript File -->
+ <script src="contactform/contactform.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
+ <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script>
-	tmp = window.opener.problems[0];
-	alert(tmp);
+    tmp = window.problems;
+    // alert(window.problems[0])
+    // alert(parent.window.opener.problems)
+    console.log(window.problems);
+    $.ajax(
+        {
+        url: "./api/getquote.php", 
+        method:"POST",
+        data:{
+                'mmodel':window.model,
+                'problems':window.problems
+            },
+        success: function(para)
+        {
+
+            console.log("Ths is -",para)
+            s2=''
+            para = JSON.parse(para)
+            problems = para[0]
+            finalprice = para[1]
+            console.log(problems)
+            console.log(finalprice)
+            for(let i=0;i<problems.length;i++)
+            {
+                if(i==problems.length-1)
+                {
+                    s2+='<tr class="item last"><td>'+(i+1)+'</td><td>'+problems[i].problem+' -- '+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
+                }
+                else
+                {
+                    s2+='<tr class="item"><td>'+(i+1)+'</td><td>'+problems[i].problem+' -- '+problems[i].subproblem+'</td><td>'+problems[i].price+'</td></tr>'
+                } 
+            }
+            //   s2+='<tr class="total"><td></td><td></td><td style="float:right;">Total: '+para[0][0].calprice+'</td></tr>';
+            window.probsize = problems.length
+
+            parent.window.opener.setestimate(finalprice)
+            try{
+            if(parent.window.opener != null && !parent.window.opener.closed)
+            {
+                parent.window.opener.setestimate(finalprice);
+            }
+
+            }catch(e){ alert(e.description);}   
+            $('.problist').append(s2)
+            $('.estprice').html(finalprice)
+        }
+        })
 </script>

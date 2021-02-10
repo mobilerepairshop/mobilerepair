@@ -422,5 +422,44 @@
                 
                 return $details;
             }
+            public function getquotedetails($model, $problems)
+            {
+                $details = array();
+                $mc = array();
+                $final = 0;
+             
+                for($i=0;$i<count($problems);$i++)
+                {
+                        $query = 'select p.main_problem,sp.sub_problem,pa.price from 
+                                pricing_allocation as pa inner join 
+                                problem_master as p INNER JOIN 
+                                subproblem_master as sp on pa.subproblem_code=sp.subproblem_code
+                                where pa.mmid = '.(int)$model.' and pa.subproblem_code='.$problems[$i][1].' and p.problem_code='.$problems[$i][0];
+
+                        $stmt = $this->conn->prepare($query);
+            
+                        if($stmt->execute())
+                        {
+                            $result = $stmt->get_result();   // <--- add this instead
+                            $userinfo = array();
+                            while ($data = $result->fetch_assoc()) 
+                            {
+                                $final+=(int)$data['price'];
+                                array_push($mc,
+                                    [
+                                        "problem"=>$data["main_problem"],
+                                        "subproblem"=>$data["sub_problem"],
+                                        "price"=>$data["price"],
+                                    ]);
+                            }
+                           
+                        }      
+                }
+               
+                $details[0] = $mc;
+                $details[1] = $final;
+                
+                return $details;
+            }
     }
 ?>

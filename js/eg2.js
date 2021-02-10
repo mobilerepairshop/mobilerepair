@@ -203,8 +203,8 @@ function getvalue(id)
                     // s1+='<label class="custom-control-label" for="'+x+'">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
                    
                     s1+='<div class="col-md-6 mb-2 "><div class="form-group "><div class="form-check"><div class="custom-checkbox">'
-                    s1+='<input type="checkbox" class="custom-control-input" id="'+x+'" onclick="showproblems(this.id)">'
-                    s1+='<label class="custom-control-label" for="'+x+'">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
+                    s1+='<input type="checkbox" class="custom-control-input" id="'+x+'-i" onclick="showproblems(this.id)">'
+                    s1+='<label class="custom-control-label" for="'+x+'-i">'+groupedPeople[x][0].problem+'</label></div></div><div id="'+x+'list" style="display:none;">'
 
                     var innersize = Object.keys(groupedPeople[x]).length;
                     console.log("Inner size - ",innersize)
@@ -298,9 +298,14 @@ function getvalue(id)
     problems = []
     function showproblems(id)
     {
+      previd = id
+      id=id.split('-')[0]
         console.log("ID - ",id)
-      if($("#"+id).is(":checked"))
+        console.log('Displayed1')
+        console.log('id - ',$("#"+previd).is(":checked"))
+      if($("#"+previd).is(":checked"))
       {
+        console.log('Displayed2',"#"+id+"list")
         $("#"+id+"list").fadeIn(1000)
         $('[name="'+id+'"]').attr("required", "true");
         // problems.push(id,)
@@ -308,6 +313,7 @@ function getvalue(id)
       }
       else
       {
+        console.log('Displayed23')
         $("#"+id+"list").fadeOut(100)
         $('[name="'+id+'"]').attr("required", "false");
         for (var i = 0; i < problems.length; i++)
@@ -322,10 +328,19 @@ function getvalue(id)
     }
 
 var quote = 0
+
+function setestimate(est)
+{
+    window.estprice = est
+}
 function getquote(){
   // window.open('../estbill.html')
+  console.log(problem)
   window.problems = problem
-  window.open("./estbill.html?ordidus");
+  wind = window.open("./estbill.html");
+  wind.problems = problem
+  wind.model = $(".mmod").val()
+  quote = 1
     // $.ajax(
     //     {
     //     url: "./api/getquote.php", 
@@ -379,9 +394,10 @@ function submitrequest()
     {
         console.log(problem)
     
-        console.log(window.mcname)
+        console.log(window.estprice)
         if($("#phonenum").val() != "" && $("#address").val() != "")
         {
+          console.log(problem)
           $("#submitrequest").prop("disabled","true")
             $.ajax(
             {
@@ -398,9 +414,10 @@ function submitrequest()
                 },
             success: function(para)
             {
-            //   alertdata(para,"Delivery Status")
-              $('#submitalert').modal({backdrop: 'static', keyboard: false})
-              $('#submitalert').modal('show')
+              console.log(para)
+              alertdata(para,"Delivery Status")
+              // $('#submitalert').modal({backdrop: 'static', keyboard: false})
+              // $('#submitalert').modal('show')
             }
             })
         }
