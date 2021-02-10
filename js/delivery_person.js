@@ -104,19 +104,28 @@ function verifyuserdelivery()
   $('#verifyuserdelivery').modal('hide');
 }
 
-function cancelled(rid,status)
+function cancelledreason(rid,status)
 {
+  $('[name="sendcancelledreason"]').attr('id',rid+","+status);
+}
 
+function cancelled(ridstatus)
+{
+  var rid = ridstatus.split(",")[0]
+  var status = ridstatus.split(",")[1]
+  var creason = $("#reasonforcancellation").val()
   $.ajax({
     url:'./api/cancelled.php',
     type:'POST',
     data:{
       'rid':rid,
       'status':status,
+      'creason':creason,
       'sid':sid
     },
     success:function(para)
     {
+      $('#cancelledreason').modal('hide')
       alertdata("Cancelled","Delivery Status")
         $('#alert').modal({backdrop: 'static', keyboard: false})
         $('#alert').modal('show')

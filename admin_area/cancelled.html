@@ -16,6 +16,35 @@
 <body>
   
 
+<!-- Delivery boy assign Modal Start-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <label>Delivery Boy</label>
+        <select  name="boy_name" id="boy_name">
+     
+      <label>Time and Date</label>
+      <input type="date" placeholder="Enter Date " id="boy_date" name="boy_date">
+      <input type="time" placeholder="Enter Date " id="boy_time" name="boy_time">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="" name="quotes" class="btn btn-primary" onclick="updateModal(this.id)">Assign</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delivery boy assign Modal End -->
+
+
 <!-- Problem Modal -->
 <div class="modal fade" id="problem">
   <div class="modal-dialog modal-dialog-centered modal-lg" >
@@ -103,7 +132,8 @@
                       problems:'<a href="#" id="'+para1[i][10]+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>',
                       price:para1[i][4],
                       status:"Cancelled",
-                     
+                      creason:para1[i][12],
+                      action:'<input type="button" id="'+para1[i][10]+','+para1[i][13]+'" name="assign" value="Assign" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false" onclick="modaldata(this.id)">'
                   });
                        
 
@@ -128,7 +158,8 @@
                          { field: "problems", headerText: "View Problems", width: 150 },
                          { field: "price", headerText: "Repair Price", width: 130 },
                          { field: "status", headerText: "Status", width: 100 },
-                        
+                         { field: "creason", headerText: "Cancelled Reason", width: 200 },
+                         { field: "action", headerText: "Action", width: 100 }
                 ]
             });
                
@@ -200,6 +231,55 @@
         })
     }
 
+    function modaldata(rid)
+    {
+          $.ajax({
+            url:"api/getdeliveryboys.php",
+            type:"POST",
+            data:{"rid":rid.split(",")[0]},
+            success:function(para)
+            {
+              if(para != "")
+              {
+                para = JSON.parse(para)
+                var str = ""
+                for(let i=0;i<para.length;i++)
+                {
+                  str += "<option value='"+para[i][0]+"'>"+para[i][1]+"</option>";
+                }  
+                $("#boy_name").append(str)
+              }            
+            }
+        })
+        $("#exampleModalLabel").empty()
+        $("#exampleModalLabel").append("Assign Delivery boy for Request No: "+rid.split(",")[0])
+        $('[name="quotes"]').attr("id",rid)
+    }
+
+    function updateModal(rid1)
+    {
+      var rid = rid1.split(",")[0]
+      var status = rid1.split(",")[1]
+
+        $.ajax({
+        url:"api/assigndeliveryboy.php",
+        type:"POST",
+        data:{"rid":rid , "status":status, "boy_date":$("#boy_date").val() ,"boy_name":$("#boy_name").val() , "boy_time":$("#boy_time").val()},
+        success:function(para)
+        {
+            if(para=='success')
+            {
+                alert("Assigned")
+                window.setTimeout(function(){location.reload()},1000)
+            }
+            else
+            {
+                window.setTimeout(function(){location.reload()},1000)
+            }
+            
+        }
+    })
+    }
 
     </script>
 </body>

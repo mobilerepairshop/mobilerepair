@@ -62,9 +62,9 @@
                 return 400;
             }
         }
-        public function pickupcancel($rid)
+        public function pickupcancel($rid,$creason)
         {
-            $query = 'update req set status = 10 where rid=?';
+            $query = 'update req set status = -'.$rid.' , creason="'.$creason.'" where rid=?';
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param('i',$rid);
             if($stmt->execute())

@@ -18,9 +18,10 @@
             $orders = new Delivery($conn);
             $rid = $_POST['rid'];
             $status = $_POST['status'];
+            $creason = $_POST['creason'];
             if($status == 1)
             {
-                echo $orders->pickupcancel($rid);
+                echo $orders->pickupcancel($rid,$creason);
             }
         }
     }

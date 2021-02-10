@@ -26,7 +26,7 @@ else
                 inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
                 inner join users on users.uid = req.uid
                 inner join session on session.uid = scheduled_request.admin_id
-                where session.sesid = "'.$sid.'" AND req.status = 6';
+                where session.sesid = "'.$sid.'" AND req.status < 0';
     }
     // if($_POST['filter'] == "unavailable")
     // {
