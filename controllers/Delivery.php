@@ -62,9 +62,23 @@
                 return 400;
             }
         }
-        public function pickupcancel($rid,$creason)
+        public function pickupcancel($rid,$status,$creason)
         {
-            $query = 'update req set status = -'.$rid.' , creason="'.$creason.'" where rid=?';
+            $query = 'update req set status = -'.$status.' , creason="'.$creason.'" where rid=?';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param('i',$rid);
+            if($stmt->execute())
+            {
+                return 200;
+            }
+            else
+            {
+                return 400;
+            }
+        }
+        public function dropcancel($rid,$status,$creason)
+        {
+            $query = 'update req set status = -'.$status.' , creason="'.$creason.'" where rid=?';
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param('i',$rid);
             if($stmt->execute())

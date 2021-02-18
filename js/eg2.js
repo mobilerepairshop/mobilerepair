@@ -416,8 +416,8 @@ function submitrequest()
             {
               console.log(para)
               alertdata(para,"Delivery Status")
-              // $('#submitalert').modal({backdrop: 'static', keyboard: false})
-              // $('#submitalert').modal('show')
+              $('#submitalert').modal({backdrop: 'static', keyboard: false})
+              $('#submitalert').modal('show')
             }
             })
         }
