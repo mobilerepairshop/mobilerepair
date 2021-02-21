@@ -234,6 +234,329 @@ a{
 
 <body id="page-top">
 
+  <!-- verify user-delivery Modal -->
+
+<div class="modal fade" id="verifyuserdelivery">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Please Answer Following Questions</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="box">
+          <div class="content">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2">
+                  <!-- <b><span>OTP</span></b> -->
+                </div>
+                <div class="col-md-10">
+                  <b>1. Customer has removed his/her password</b><br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="phonelock" id="lock_yes" value="yes">
+                    <label class="form-check-label" for="lock_yes">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="phonelock" id="lock_no" value="no">
+                    <label class="form-check-label" for="lock_no">No</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="phonelock" id="lock_notapplicable" value="notapplicable">
+                    <label class="form-check-label" for="lock_notapplicable">Not Applicable</label>
+                  </div>
+
+                  <br><br><br>
+
+                  <b>2. Customers following mobile/tab functions are working properly</b><br>
+                  <table class="table">
+                    <tr>
+                      <td><b>A. Display</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="display" id="display_yes" value="yes">
+                          <label class="form-check-label" for="display_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="display" id="display_no" value="no">
+                          <label class="form-check-label" for="display_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="display" id="display_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="display_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>B.	Touch/keypad</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="touchkey" id="touchkey_yes" value="yes">
+                          <label class="form-check-label" for="touchkey_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="touchkey" id="touchkey_no" value="no">
+                          <label class="form-check-label" for="touchkey_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="touchkey" id="touchkey_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="touchkey_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>C.	Headphone jack</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="headphone" id="headphone_yes" value="yes">
+                          <label class="form-check-label" for="headphone_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="headphone" id="headphone_no" value="no">
+                          <label class="form-check-label" for="headphone_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="headphone" id="headphone_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="headphone_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>D.	Mobile is charging	</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="charging" id="charging_yes" value="yes">
+                          <label class="form-check-label" for="charging_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="charging" id="charging_no" value="no">
+                          <label class="form-check-label" for="charging_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="charging" id="charging_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="charging_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>E.	Vibration</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="vibration" id="vibration_yes" value="yes">
+                          <label class="form-check-label" for="vibration_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="vibration" id="vibration_no" value="no">
+                          <label class="form-check-label" for="vibration_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="vibration" id="vibration_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="vibration_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>F.	Ringer</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="ringer" id="ringer_yes" value="yes">
+                          <label class="form-check-label" for="ringer_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="ringer" id="ringer_no" value="no">
+                          <label class="form-check-label" for="ringer_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="ringer" id="ringer_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="ringer_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>G.	Loudspeaker	</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="loudspeaker" id="loudspeaker_yes" value="yes">
+                          <label class="form-check-label" for="loudspeaker_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="loudspeaker" id="loudspeaker_no" value="no">
+                          <label class="form-check-label" for="loudspeaker_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="loudspeaker" id="loudspeaker_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="loudspeaker_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>H.	Mic</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="mic" id="mic_yes" value="yes">
+                          <label class="form-check-label" for="mic_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="mic" id="mic_no" value="no">
+                          <label class="form-check-label" for="mic_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="mic" id="mic_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="mic_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>I.	Ear speaker</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="earspeaker" id="earspeaker_yes" value="yes">
+                          <label class="form-check-label" for="earspeaker_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="earspeaker" id="earspeaker_no" value="no">
+                          <label class="form-check-label" for="earspeaker_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="earspeaker" id="earspeaker_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="earspeaker_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>J.	Camera	</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="camera" id="camera_yes" value="yes">
+                          <label class="form-check-label" for="camera_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="camera" id="camera_no" value="no">
+                          <label class="form-check-label" for="camera_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="camera" id="camera_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="camera_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>K.	Finger touch</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="fintouch" id="fintouch_yes" value="yes">
+                          <label class="form-check-label" for="fintouch_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="fintouch" id="fintouch_no" value="no">
+                          <label class="form-check-label" for="fintouch_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="fintouch" id="fintouch_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="fintouch_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>L.	Power button	</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="powerbtn" id="powerbtn_yes" value="yes">
+                          <label class="form-check-label" for="powerbtn_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="powerbtn" id="powerbtn_no" value="no">
+                          <label class="form-check-label" for="powerbtn_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="powerbtn" id="powerbtn_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="powerbtn_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>M.	Volume up-down button</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="volbutton" id="volbutton_yes" value="yes">
+                          <label class="form-check-label" for="volbutton_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="volbutton" id="volbutton_no" value="no">
+                          <label class="form-check-label" for="volbutton_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="volbutton" id="volbutton_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="volbutton_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>N.	Network is detecting	</b></td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="netdetect" id="netdetect_yes" value="yes">
+                          <label class="form-check-label" for="netdetect_yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="netdetect" id="netdetect_no" value="no">
+                          <label class="form-check-label" for="netdetect_no">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="netdetect" id="netdetect_notapplicable" value="notapplicable">
+                          <label class="form-check-label" for="netdetect_notapplicable">Not Applicable</label>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <br><br>
+
+                  <b>3. Customer has created his mobile/tab complete backup with him.</b><br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="backup" id="backup_yes" value="yes">
+                    <label class="form-check-label" for="backup_yes">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="backup" id="backup_no" value="no">
+                    <label class="form-check-label" for="backup_no">No</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="backup" id="backup_notapplicable" value="notapplicable">
+                    <label class="form-check-label" for="backup_notapplicable">Not Applicable</label>
+                  </div>
+
+                  <br><br><br>
+
+                  <b>4.	Customer has removed his memory card & SIM card from the mobile.</b><br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="simcard" id="simcard_yes" value="yes">
+                    <label class="form-check-label" for="simcard_yes">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="simcard" id="simcard_no" value="no">
+                    <label class="form-check-label" for="simcard_no">No</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="simcard" id="simcard_notapplicable" value="notapplicable">
+                    <label class="form-check-label" for="simcard_notapplicable">Not Applicable</label>
+                  </div>
+                </div>            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="" name="setridtoquestions" class="btn btn-success" onclick="verifyuserdelivery(this.id)">Submit Answers</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<!-- end verify user-delivery Modal -->
+  
 <!-- loginmodals & alertmodal will append here from login.html -->
 
 <div id="loginmodals"></div>
