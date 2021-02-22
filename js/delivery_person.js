@@ -26,32 +26,42 @@ function paid(rid,status)
 function pickedup(rid,status)
 {if(status == 1 || status == 8)
   {
-    if(window.otpverified == 0)
-    {
-      alertdata("Please Fillout Mandatory Questions First","")
-        $('#alert').modal('show')
-    }
-    else
-    {
-      $.ajax({
-        url:'./api/pickedup.php',
-        type:'POST',
-        data:{
-          'rid':rid,
-          'status':status,
-          'sid':sid
-        },
-        success:function(para)
+    $.ajax({
+      url:'./api/checkquestions.php',
+      type:'POST',
+      data:{
+        "rid":rid
+      },
+      success:function(para)
+      {
+        if(para == "200")
         {
-            alertdata("Done","Delivery Status")
-            $('#alert').modal({backdrop: 'static', keyboard: false})
-            $('#alert').modal('show')
-            $("#modalclose").click(function() {
-              window.location.reload()
-            });        
+          $.ajax({
+            url:'./api/pickedup.php',
+            type:'POST',
+            data:{
+              'rid':rid,
+              'status':status,
+              'sid':sid
+            },
+            success:function(para)
+            {
+                alertdata("Done","Delivery Status")
+                $('#alert').modal({backdrop: 'static', keyboard: false})
+                $('#alert').modal('show')
+                $("#modalclose").click(function() {
+                  window.location.reload()
+                });        
+            }
+          })
         }
-      })
-    }
+        else
+        {
+          alertdata("Please Fillout Mandatory Questions First","")
+          $('#alert').modal('show')
+        }
+      }
+    })
   }
   else
   {
@@ -75,7 +85,6 @@ function pickedup(rid,status)
     })
   }
 }
-window.otpverified = 0
 function SendOTPtoUser(rid,status)
 {
   $('[name="setridtoquestions"]').attr('id',rid);
@@ -96,7 +105,7 @@ function SendOTPtoUser(rid,status)
       else
       {
         $('#verifyuserdelivery').modal('show')
-        $('#alert').modal({backdrop: 'static', keyboard: false})
+        $('#verifyuserdelivery').modal({backdrop: 'static', keyboard: false})
         // $('#verifyuserdelivery').modal('hide')
       }
     }
@@ -131,11 +140,11 @@ function verifyuserdelivery(rid)
     success:function(para)
     {
       // alert(para)
-      window.otpverified = 1
-      $('#setridtoquestions').modal('hide');
+      $('#verifyuserdelivery').modal('hide');
       alertdata("Answers Submitted","Submission Status")
       $('#alert').modal('show')
       $('[name="sendotpbutton"]').prop('disabled','true');
+      window.location.reload()
     }
   })
 }
