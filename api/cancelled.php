@@ -21,7 +21,11 @@
             $creason = $_POST['creason'];
             if($status == 1)
             {
-                echo $orders->pickupcancel($rid,$creason);
+                echo $orders->pickupcancel($rid,$status,$creason);
+            }
+            else if($status == 8)
+            {
+                echo $orders->dropcancel($rid,$status,$creason);
             }
         }
     }

@@ -65,6 +65,145 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
   </div>
   
   <!-- Modal End -->
+
+
+  
+  <!-- verify user-delivery Modal -->
+
+<div class="modal fade" id="verifyuserdelivery" aria-hidden="true">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title verifyuserdelivery">Questions Answered by Customer</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="box">
+          <div class="content">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2">
+                  <!-- <b><span>OTP</span></b> -->
+                </div>
+                <div class="col-md-6">
+                  <b>1. Customer has removed his/her password</b><br>
+                  <b id="0"></b>
+
+                  <br><br><br>
+
+                  <b>2. Customers following mobile/tab functions are working properly</b><br>
+                  <table class="table">
+                    <tr>
+                      <td><b>A. Display</b></td>
+                      <td>
+                      <b id="1"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>B.	Touch/keypad</b></td>
+                      <td>
+                      <b id="2"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>C.	Headphone jack</b></td>
+                      <td>
+                      <b id="3"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>D.	Mobile is charging	</b></td>
+                      <td>
+                      <b id="4"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>E.	Vibration</b></td>
+                      <td>
+                      <b id="5"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>F.	Ringer</b></td>
+                      <td>
+                      <b id="6"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>G.	Loudspeaker	</b></td>
+                      <td>
+                      <b id="7"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>H.	Mic</b></td>
+                      <td>
+                      <b id="8"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>I.	Ear speaker</b></td>
+                      <td>
+                      <b id="9"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>J.	Camera	</b></td>
+                      <td>
+                      <b id="10"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>K.	Finger touch</b></td>
+                      <td>
+                      <b id="11"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>L.	Power button	</b></td>
+                      <td>
+                      <b id="12"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>M.	Volume up-down button</b></td>
+                      <td>
+                      <b id="13"></b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>N.	Network is detecting	</b></td>
+                      <td>
+                      <b id="14"></b>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <br><br>
+
+                  <b>3. Customer has created his mobile/tab complete backup with him.</b><br>
+                  <b id="15"></b>
+
+                  <br><br><br>
+
+                  <b>4.	Customer has removed his memory card & SIM card from the mobile.</b><br>
+                  <b id="16"></b>
+
+                </div>            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<!-- end verify user-delivery Modal -->
+  
   
   <!-- Warranty Modal Start-->
   <div class="modal fade" id="warranty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -315,8 +454,8 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                       imeino:array[i].imeino!=""?array[i].imeino:"Not Updated",
                       brand:array[i].mcname,
                       model:array[i].mmname,
-                      problems:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>'
-                      
+                      problems:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>',
+                      qna:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#verifyuserdelivery" onclick="verifyuserdelivery(this.id)">View Questions Answers</a>'
                   });           
                 }
                     
@@ -340,6 +479,7 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                          { field: "date", headerText: "Date ", width: 100 },
                          { field: "time", headerText: "Time", width: 100 },
                          { field: "status", headerText: "Status", width: 150 },
+                         { field: "qna", headerText: "Question & Answers", width: 150 },
                          { field: "action", headerText: "Action", width: 150 },
                          { field: "pricing", headerText: "Confirm Pricing", width: 160 },
 
@@ -635,6 +775,37 @@ function getproblems(rid)
               {
                 $("#imeinote").css("display","block")
               }              
+            }
+        })
+    }
+
+    function verifyuserdelivery(rid)
+    {
+      $.ajax({
+            url:'./api/getqna.php',
+            type:'POST',
+            data:{'rid':rid},
+            success:function(para)
+            {
+              para = JSON.parse(para) 
+              var str = ''
+              for(let i=0;i<para[0].length;i++)
+              {
+                if(para[0][i] == "yes")
+                {
+                  str = "Yes"
+                }
+                else if(para[0][i] == "no")
+                {
+                  str = "No"
+                }
+                else if(para[0][i] == "notapplicable")
+                {
+                  str = "Not Applicable"
+                }
+                $("#"+i).append(str)
+                $("#"+i).css("color","blue")
+              }     
             }
         })
     }

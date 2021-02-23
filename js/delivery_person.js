@@ -26,32 +26,42 @@ function paid(rid,status)
 function pickedup(rid,status)
 {if(status == 1 || status == 8)
   {
-    if(window.otpverified == 0)
-    {
-      alertdata("Please Verify OTP First","")
-        $('#alert').modal('show')
-    }
-    else
-    {
-      $.ajax({
-        url:'./api/pickedup.php',
-        type:'POST',
-        data:{
-          'rid':rid,
-          'status':status,
-          'sid':sid
-        },
-        success:function(para)
+    $.ajax({
+      url:'./api/checkquestions.php',
+      type:'POST',
+      data:{
+        "rid":rid
+      },
+      success:function(para)
+      {
+        if(para == "200")
         {
-            alertdata("Done","Delivery Status")
-            $('#alert').modal({backdrop: 'static', keyboard: false})
-            $('#alert').modal('show')
-            $("#modalclose").click(function() {
-              window.location.reload()
-            });        
+          $.ajax({
+            url:'./api/pickedup.php',
+            type:'POST',
+            data:{
+              'rid':rid,
+              'status':status,
+              'sid':sid
+            },
+            success:function(para)
+            {
+                alertdata("Done","Delivery Status")
+                $('#alert').modal({backdrop: 'static', keyboard: false})
+                $('#alert').modal('show')
+                $("#modalclose").click(function() {
+                  window.location.reload()
+                });        
+            }
+          })
         }
-      })
-    }
+        else
+        {
+          alertdata("Please Fillout Mandatory Questions First","")
+          $('#alert').modal('show')
+        }
+      }
+    })
   }
   else
   {
@@ -75,33 +85,68 @@ function pickedup(rid,status)
     })
   }
 }
-window.otpverified = 0
 function SendOTPtoUser(rid,status)
 {
-  // $.ajax({
-  //   // url:'./api/sendotptouser.php',
-  //   type:'POST',
-  //   data:{
-  //     'rid':rid,
-  //     'status':status,
-  //     'sid':sid
-  //   },
-  //   success:function(para)
-  //   {
-  //       alert("Done")
-  //       window.setTimeout(function(){location.reload()},1000)
-  //   }
-  // })
+  $('[name="setridtoquestions"]').attr('id',rid);
+  $.ajax({
+    url:'./api/checkquestions.php',
+    type:'POST',
+    data:{
+      "rid":rid
+    },
+    success:function(para)
+    {
+      if(para == "200")
+      {
+        $('#verifyuserdelivery').modal('hide')
+        alertdata("Already Submitted","Questions Status")
+        $('#alert').modal('show')
+      }
+      else
+      {
+        $('#verifyuserdelivery').modal('show')
+        $('#verifyuserdelivery').modal({backdrop: 'static', keyboard: false})
+        // $('#verifyuserdelivery').modal('hide')
+      }
+    }
+  })
 }
 
-function verifyuserdelivery()
+function verifyuserdelivery(rid)
 {
-  // alert($("#verificationotp").val())
-  window.otpverified = 1
-  alertdata("Verified","Verification Status")
-  $('#alert').modal('show')
-  $('[name="sendotpbutton"]').html('Re-send OTP');
-  $('#verifyuserdelivery').modal('hide');
+  $.ajax({
+    url:'./api/submitanswers.php',
+    type:'POST',
+    data:{
+      'rid':rid,
+      'q1':$("input[name='phonelock']:checked").val(),
+      'q2A':$("input[name='display']:checked").val(),
+      'q2B':$("input[name='touchkey']:checked").val(),
+      'q2C':$("input[name='headphone']:checked").val(),
+      'q2D':$("input[name='charging']:checked").val(),
+      'q2E':$("input[name='vibration']:checked").val(),
+      'q2F':$("input[name='ringer']:checked").val(),
+      'q2G':$("input[name='loudspeaker']:checked").val(),
+      'q2H':$("input[name='mic']:checked").val(),
+      'q2I':$("input[name='earspeaker']:checked").val(),
+      'q2J':$("input[name='camera']:checked").val(),
+      'q2K':$("input[name='fintouch']:checked").val(),
+      'q2L':$("input[name='powerbtn']:checked").val(),
+      'q2M':$("input[name='volbutton']:checked").val(),
+      'q2N':$("input[name='netdetect']:checked").val(),
+      'q3':$("input[name='backup']:checked").val(),
+      'q4':$("input[name='simcard']:checked").val()
+    },
+    success:function(para)
+    {
+      // alert(para)
+      $('#verifyuserdelivery').modal('hide');
+      alertdata("Answers Submitted","Submission Status")
+      $('#alert').modal('show')
+      $('[name="sendotpbutton"]').prop('disabled','true');
+      window.location.reload()
+    }
+  })
 }
 
 function cancelledreason(rid,status)
