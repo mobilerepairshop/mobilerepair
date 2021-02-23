@@ -1,3 +1,4 @@
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <head>
     <style>
         th, td {
@@ -9,10 +10,10 @@
             border-collapse: collapse;
         }
         .outerdiv{
-            background-color: white;
+            background-color: whitesmoke;
             width: 50%;
-            height:40vw;
-            border:1px solid black;
+            height:95vw;
+            border-style: double;
             padding: 15px;
         }
     
@@ -53,6 +54,10 @@
 
     </style>
 </head>
+<center>
+    <br>
+    <button class="btn btn-primary print" onclick="printbill()">Print Bill</button>
+    <br><br>
 
 <div class="outerdiv">
     <div class="header">
@@ -130,6 +135,7 @@
         This is a computer generated print. Signature is not required
     </div>
 </div>
+</center>
 <script src="lib/jquery/jquery.min.js"></script>
  <script src="lib/jquery/jquery-migrate.min.js"></script>
  <script src="lib/popper/popper.min.js"></script>
@@ -193,10 +199,39 @@
             {
                 parent.window.opener.setestimate(finalprice);
             }
+            else
+            {
+                alert("Not set")
+            }
 
             }catch(e){ alert(e.description);}   
+            $('.problist').append(s2)
+            $('.problist').append(s2)
+            $('.problist').append(s2)
+            $('.problist').append(s2)
+            $('.problist').append(s2)
             $('.problist').append(s2)
             $('.estprice').html(finalprice)
         }
         })
+
+        function printbill()
+        {
+            // window.probsize =12
+            console.log(window.probsize)
+            if(window.probsize>=12)
+            {
+                console.log("Entered")
+                $(".outerdiv").css("width", "80%");
+                $(".outerdiv").css("height", "230vw");
+            }
+            else if(window.probsize<=10){
+                console.log("Entered")
+                $(".outerdiv").css("width", "80%");
+                $(".outerdiv").css("height", "173vw");
+            }   
+        
+            $('.print').hide()
+            window.print()
+        }
 </script>

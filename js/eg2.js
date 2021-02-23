@@ -331,7 +331,17 @@ var quote = 0
 
 function setestimate(est)
 {
-    window.estprice = est
+  console.log('Opener screem')
+  alert("Sone")
+    if(est==0)
+    {
+       alert('Please select some problem')
+    }
+    else
+    {
+       window.estprice = est
+    }
+    
 }
 function getquote(){
   // window.open('../estbill.html')
@@ -414,10 +424,10 @@ function submitrequest()
                 },
             success: function(para)
             {
-              console.log(para)
+              // console.log(para)
               alertdata(para,"Delivery Status")
-              // $('#submitalert').modal({backdrop: 'static', keyboard: false})
-              // $('#submitalert').modal('show')
+              $('#submitalert').modal({backdrop: 'static', keyboard: false})
+              $('#submitalert').modal('show')
             }
             })
         }
