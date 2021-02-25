@@ -331,8 +331,8 @@ var quote = 0
 
 function setestimate(est)
 {
-  console.log('Opener screem')
-  alert("Sone")
+  console.log('Opener screen')
+  // alert("Sone")
     if(est==0)
     {
        alert('Please select some problem')
@@ -424,8 +424,8 @@ function submitrequest()
                 },
             success: function(para)
             {
-              // console.log(para)
-              alertdata(para,"Delivery Status")
+              console.log(para)
+              // alertdata(para,"Delivery Status")
               $('#submitalert').modal({backdrop: 'static', keyboard: false})
               $('#submitalert').modal('show')
             }
