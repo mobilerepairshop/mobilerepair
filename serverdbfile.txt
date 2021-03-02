@@ -1,3 +1,9 @@
 <?php
 $con = mysqli_connect("localhost","id15408953_vinod","Sarang@12345","id15408953_mobilerepair");
 ?>
+
+
+hostinger details
+<?php
+$con = mysqli_connect("localhost","u757786120_vinod","Vinod@12345","u757786120_mobilerepair");
+?>
