@@ -38,7 +38,7 @@
                     $auth->logtype = 1;
                     if($auth->registerUser()=='200')
                     {
-                        if($auth->registerSession($result[1])=='200')
+                        if($auth->registerSession($conn->insert_id)=='200')
                         {
                             echo '200';
                         }

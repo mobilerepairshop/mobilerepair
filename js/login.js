@@ -139,7 +139,7 @@ var firebaseConfig = {
                     {
                       $('#loginModal').modal('hide')
                       console.log("Successfully Registered")
-                      window.location.replace("./index2.html")
+                       window.location.replace("./index2.html")
                     }
                     else
                     {
@@ -568,7 +568,7 @@ function shakeModal(){
 
 var sid = getCookie("sid");
 var user_role = getCookie("role");
-console.log(sid)
+console.log("This is session sid - ",sid)
 console.log(user_role)
 $.ajax({
       url:'./login/api/checksession.php',
