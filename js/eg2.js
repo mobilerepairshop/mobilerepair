@@ -335,7 +335,7 @@ function setestimate(est)
   // alert("Sone")
     if(est==0)
     {
-       alert('Please select some problem')
+      //  alert('Please select some problem')
     }
     else
     {
