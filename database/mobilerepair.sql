@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2021 at 05:13 PM
+-- Generation Time: Mar 02, 2021 at 12:57 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -44,13 +44,14 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `admin_image`, `admin_contact`, `admin_address`, `admin_role`, `admin_rights`) VALUES
-(0, 'Vinod Kumbhar', 'vk@gmail.com', '123', 'admin.jpg', '8421208111', 'Plot 34, NavVinayak Society, Jijai Nagar', 'super_admin', ''),
+(0, 'Vinod Kumbhar', 'vk@gmail.com', '123', 'admin.jpg', '8421208111', 'Plot 34, NavVinayak Society, Jijai Nagar', 'super_admin', '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16'),
 (5, 'Atharva ', 'atharvadeshpande99@gmail.com', '123', 'bed-1-2.jpg', '7218340969', 'KESHAV NAGAR, NEAR GULMOHAR MARKET', 'system_manager', ''),
 (6, 'Atharva Santosh Deshpande', 'AtharvaSD_admin_5', '111', 'Photograph.jpg', '7563210245', 'Pune', 'delivery_boy', ''),
 (8, 'AAA', 'AAA_admin_6', '111', 'shivaji maharaj.jpg', '1111111111', '111', 'delivery_boy', ''),
 (9, 'Sarang K Barshikar', 'SarangKB_admin_8', '123', 'Blank diagram (3).jpeg', '9654102348', 'Viman Nagar', 'admin', '1,3,5,'),
-(11, 'ABC XYZ', 'ABCX_admin_9', '123', 'Blank diagram (3).jpeg', '312', '132', 'admin', '0,1,2,3,4,5,'),
-(12, 'q', 'q_admin_11', 'q', 'WhatsApp Image 2020-12-24 at 11.48.19 AM.jpeg', 'q', 'q', 'delivery_boy', '');
+(13, 'asd', 'asd_admin_9', '123', 'da.jpg', 'aaa', 'aaa', 'admin', '0,1,'),
+(14, 'ppp', 'ppp_admin_13', 'ppp', 'filter.png', 'ppp', 'ppp', 'delivery_boy', ''),
+(17, 'Santosh B Deshpande', 'SantoshBD_admin_16', '123', 'logo.JPG', '123', '123', 'delivery_boy', '');
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,8 @@ CREATE TABLE `carousel` (
 INSERT INTO `carousel` (`id`, `image`) VALUES
 (6, 'work-1.jpg'),
 (7, 'work-3.jpg'),
-(8, 'work-4.jpg');
+(8, 'work-4.jpg'),
+(10, 'abc.jpg');
 
 -- --------------------------------------------------------
 
@@ -291,7 +293,13 @@ CREATE TABLE `req` (
   `pay_method` varchar(20) NOT NULL,
   `pay_status` varchar(5) NOT NULL,
   `warranty` varchar(10) NOT NULL,
-  `inwarr` int(10) NOT NULL
+  `inwarr` int(10) NOT NULL,
+  `pincode` varchar(50) NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `phonenum` varchar(50) NOT NULL,
+  `pickupdate` varchar(50) NOT NULL,
+  `dropdate` varchar(50) NOT NULL,
+  `creason` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -319,6 +327,14 @@ CREATE TABLE `session` (
   `uid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `session`
+--
+
+INSERT INTO `session` (`sesid`, `uid`) VALUES
+('6abcf702fc79245b571f7dfd2bb28cdb', 1),
+('732f69f0fd6bbbaee9212aa1a1ea570f', 6);
+
 -- --------------------------------------------------------
 
 --
@@ -329,6 +345,19 @@ CREATE TABLE `session_admin` (
   `uid` int(10) NOT NULL,
   `sesid` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `session_admin`
+--
+
+INSERT INTO `session_admin` (`uid`, `sesid`) VALUES
+(0, '1094a1075e9bc99da8c953cc3c6e9720'),
+(0, '1f1f26aa192c4b7307976cce4afba8f0'),
+(0, '2c12b9d8c8397b4030ba4ed2d9a47c5f'),
+(0, '4e5d083135131bcfbe525a85cc4b7853'),
+(0, '4ff11a7d9cf3e4d7a6c1a6bf49d25568'),
+(0, 'a8d6df810eb4ade05c27d96282ea2fca'),
+(0, 'f70737950e1c5702ecd793ed9031285d');
 
 -- --------------------------------------------------------
 
@@ -382,29 +411,43 @@ CREATE TABLE `users` (
   `username` varchar(50) DEFAULT NULL,
   `pincode` varchar(50) NOT NULL,
   `phonenum` varchar(50) NOT NULL,
-  `address` varchar(500) NOT NULL
+  `address` varchar(500) NOT NULL,
+  `logtype` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, `pincode`, `phonenum`, `address`) VALUES
-(8, '202cb962ac59075b964b07152d234b70', 'skbarshikar@mitaoe.ac.in', '2020-09-12', 'Sarang Barshikar', '', '', ''),
-(9, '202cb962ac59075b964b07152d234b70', 'ss@gmail.com', '2020-10-15', 'Swati Barshikar', '', '', ''),
-(11, '0acff50219f19374cc9f5c63ee8b76b7', 'sarang.barshikar123@gmail.com', '2020-10-17', 'Sarang Barshikar', '', '', ''),
-(12, 'da4c0997c1d9ca360671294a41769b68', 'barshikarswati@gmail.com', '2020-10-18', 'Swati Barshikar', '', '', ''),
-(13, 'bd7b470fe545c8a3d9d73f91afdb42b2', 'skbarshikar@mitaoe.ac.in', '2020-10-18', 'sarang kumar barshikar', '', '', ''),
-(14, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2020-10-31', 'Atharva Deshpande', '411033', '7218340969', 'Keshav Nagar, Chinchwad, Pune'),
-(16, 'a370453431cea129c9fcf1778c79e9a1', 'asdeshpande@mitaoe.ac.in', '2020-10-31', 'atharva deshpande', '', '', ''),
-(17, 'b706835de79a2b4e80506f582af3676a', 'aa@gmail.com', '2020-11-04', 'qweryuioihgf', '', '', ''),
-(18, '202cb962ac59075b964b07152d234b70', 'ad@gmail.com', '2020-11-05', 'AD', '', '', ''),
-(19, '10f54dd835a02a70320e86e5bf25af5e', 'pristineacanditsolutions@gmail.com', '2020-11-15', 'Pristine Solutions', '', '', ''),
-(27, 'f27f6f1c7c5cbf4e3e192e0a47b85300', 'ppp', '2020-12-07', 'ppp', '', '', ''),
-(28, 'b3cd915d758008bd19d0f2428fbb354a', 'mm', '2020-12-07', 'mm', '411033', '11', '11'),
-(29, '5b54c0a045f179bcbbbc9abcb8b5cd4c', 'll', '2020-12-07', 'll', '', '', ''),
-(30, 'e4da3b7fbbce2345d7772b0674a318d5', '5', '2020-12-07', '5', '', '', ''),
-(31, '0cc175b9c0f1b6a831c399e269772661', 'a', '2020-12-17', 'a', '', '', '');
+INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, `pincode`, `phonenum`, `address`, `logtype`) VALUES
+(1, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2021-01-30', 'Atharva Deshpande', '411033', '9922934464', 'sainath society pimpri', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `verificationqa`
+--
+
+CREATE TABLE `verificationqa` (
+  `rid` int(10) NOT NULL,
+  `q1` varchar(20) NOT NULL,
+  `q2a` varchar(20) NOT NULL,
+  `q2b` varchar(20) NOT NULL,
+  `q2c` varchar(20) NOT NULL,
+  `q2d` varchar(20) NOT NULL,
+  `q2e` varchar(20) NOT NULL,
+  `q2f` varchar(20) NOT NULL,
+  `q2g` varchar(20) NOT NULL,
+  `q2h` varchar(20) NOT NULL,
+  `q2i` varchar(20) NOT NULL,
+  `q2j` varchar(20) NOT NULL,
+  `q2k` varchar(20) NOT NULL,
+  `q2l` varchar(20) NOT NULL,
+  `q2m` varchar(20) NOT NULL,
+  `q2n` varchar(20) NOT NULL,
+  `q3` varchar(20) NOT NULL,
+  `q4` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -505,13 +548,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `carousel`
 --
 ALTER TABLE `carousel`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -523,7 +566,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT for table `contactlocations`
 --
 ALTER TABLE `contactlocations`
-  MODIFY `clid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `clid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `mobilecompany`
@@ -565,7 +608,7 @@ ALTER TABLE `subproblem_master`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
