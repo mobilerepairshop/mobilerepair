@@ -26,7 +26,8 @@ else
                 inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
                 inner join users on users.uid = req.uid
                 inner join session on session.uid = scheduled_request.admin_id
-                where session.sesid = "'.$sid.'" AND req.status < 0';
+                where session.sesid = "'.$sid.'" AND req.status < 0
+                group by scheduled_request.rid';
     }
     // if($_POST['filter'] == "unavailable")
     // {
@@ -46,7 +47,8 @@ else
                 inner join mobilecompany on mobilecompany.mcid = mobilemodel.mcid
                 inner join users on users.uid = req.uid
                 inner join session on session.uid = scheduled_request.admin_id
-                where session.sesid = "'.$sid.'" AND (scheduled_request.delivery_status = 2 OR scheduled_request.delivery_status = 3)';
+                where session.sesid = "'.$sid.'" AND (scheduled_request.delivery_status = 2 OR scheduled_request.delivery_status = 3)
+                group by scheduled_request.rid';
     }
     $result = mysqli_query($con,$sql);
     $arr = [];
