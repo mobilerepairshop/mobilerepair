@@ -392,7 +392,7 @@ function registerAjax()
   }
   else
   {
-    alertdata("Please Choose Different Email/Mobile Number","")
+    alertdata("Please Choose Different Username Number","")
     $('#alert').modal('show')
   }
 }
@@ -496,7 +496,7 @@ function resetAjax()
 
                   $("#successsnote").show()
                 
-                  $("#successsnote").text("OTP sent successfully to registerd email/mobile number")
+                  $("#successsnote").text("OTP sent successfully to registerd mobile number")
                   $("#successsnote").css('color','green')
                 }
             })   

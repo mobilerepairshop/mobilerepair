@@ -7,9 +7,7 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel = "icon" href = "./public/logo/logo-name2.png" type = "image/x-icon"> 
 
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -142,6 +140,9 @@ a{
 @media only screen and (max-width: 600px) {
 
   .ct-socials{
+    display:none;
+  }
+  .footerbar{
     display:none;
   }
   .leftnavpane{
@@ -346,6 +347,7 @@ a{
       </div>
     </div>
   </section>
+  <br><br><br><br><br>
   <!--/ Section Blog-Single End /-->
 
 
@@ -363,7 +365,7 @@ a{
 
  
   <!--/ Section Contact-Footer Star for User /-->
-  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route footerbar" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
     <div class="overlay-mf"></div>
     <footer>
       <div class="container">
@@ -433,7 +435,7 @@ a{
   <a href="https://www.linkedin.com/company/75730215/" target="_blank"><i class="fab fa-linkedin" style="font-size:25px"></i></a>
  </li>
  <li>
-    <a href="https://api.whatsapp.com/send?phone=+919657245081&text=Hello Sir can I get some more info about mobile repair."  target="_blank" ><i class="fab fa-whatsapp" style="font-size:25px"></i></a>
+    <a href="https://api.whatsapp.com/send?phone=+917722070659&text=Hello Sir can I get some more info about mobile repair."  target="_blank" ><i class="fab fa-whatsapp" style="font-size:25px"></i></a>
  </li>
   <li >
       <a class="chat-btns"><i class="fas fa-robot" style="color:white;"></i></a>
@@ -519,9 +521,11 @@ a{
 
 
 function submitForm(){
-	 $.ajax({
+  if($("#customer_name").val() != "" && $("#customer_email").val() != "" &&$("#customer_subject").val() != "" &&$("#customer_phone").val() != "")
+  {
+    $.ajax({
 		type: "POST",
-		url: "api/savecontact.php",
+		url: "./api/savecontact.php",
 		cache:false,
     data: {
       "name" : $("#customer_name").val(),
@@ -545,6 +549,13 @@ function submitForm(){
       $('#alert').modal('show')
 		}
 	});
+  }
+  else
+  {
+    alertdata("Please Fill All the Details");
+      $('#alert').modal('show') 
+  }
+
 }
 
 </script>

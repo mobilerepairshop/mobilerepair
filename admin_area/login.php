@@ -12,6 +12,8 @@ include("includes/db.php");
 
 <title>Admin Login</title>
 
+<link rel = "icon" href = "../public/logo/logo-name2.png" type = "image/x-icon"> 
+
 <link rel="stylesheet" href="css/bootstrap.min.css" >
 
 <link rel="stylesheet" href="css/login.css" >
@@ -68,7 +70,7 @@ include("includes/db.php");
                 <div class="form">
                   <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
                     <h2 class="form-login-heading" >Admin Login</h2>
-                    <input id="userreset" class="form-control" type="text" placeholder="Email/Mobile Number" name="userreset"><br>
+                    <input id="userreset" class="form-control" type="text" placeholder="Username" name="userreset"><br>
                     <input class="btn btn-lg btn-primary btn-block" id="otp" type="button" value="Send OTP" name="commit" onclick="resetAjax()">
                   </form>
                   <br>
@@ -96,7 +98,7 @@ include("includes/db.php");
             <div class="content otppassword" style="display:none;">
               <div class="form">
                 <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                  <input id="user" class="form-control" type="text" placeholder="Email/Mobile Number" name="user">
+                  <input id="user" class="form-control" type="text" placeholder="Username" name="user">
                   <input id="passwordotp" class="form-control" type="password" placeholder="Password" name="passwordotp">
                   <input id="password_confirmationotp" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmationotp">
                   <p id="errnote" style="display:none;"></p>
@@ -215,7 +217,7 @@ function resetAjax()
                   $("#otp").hide()
                   $("#successsnote").show()
                 
-                  $("#successsnote").text("OTP sent successfully to registerd email/mobile number")
+                  $("#successsnote").text("OTP sent successfully to registerd mobile number")
                   $("#successsnote").css('color','green')
                 }
             })   

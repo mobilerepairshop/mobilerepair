@@ -83,7 +83,7 @@ height: 18px;
               <div class="error"></div>
                 <div class="form loginBox">
                   <form method="" action="" accept-charset="UTF-8">
-                    <input id="emaillog" class="form-control" type="text" placeholder="Email/Mobile Number" name="email">
+                    <input id="emaillog" class="form-control" type="text" placeholder="Username" name="email">
                     <input id="passwordlog" class="form-control" type="password" placeholder="Password" name="password">
                     
                     <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
@@ -99,7 +99,7 @@ height: 18px;
                 <div class="form">
                   <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
                     <input id="userreg" class="form-control" type="text" placeholder="Full Name" name="username" required>
-                    <input id="emailreg" class="form-control" type="text" placeholder="Email/Mobile Number" name="email" required onchange="checkusername()">
+                    <input id="emailreg" class="form-control" type="text" placeholder="Username" name="email" required onchange="checkusername()">
                     <input id="passwordreg" class="form-control" type="password" placeholder="Password" name="password" required>
                     <input id="password_confirmationreg" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation" required onkeyup="checkpasswordmatch()">
                     <p id="errornote" style="display:none;"></p><br>
@@ -113,7 +113,7 @@ height: 18px;
               <div class="content resetBox" style="display:none;">
                 <div class="form">
                   <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                    <input id="userreset" class="form-control" type="text" placeholder="Email/Mobile Number" name="userreset"><br>
+                    <input id="userreset" class="form-control" type="text" placeholder="Username" name="userreset"><br>
                     <input class="btn btn-default btn-login" id="otp" type="button" value="Send OTP" name="commit" onclick="resetAjax()">
                   </form>
                 </div>
@@ -135,7 +135,7 @@ height: 18px;
             <div class="content otppassword" style="display:none;">
               <div class="form">
                 <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                  <input id="user" class="form-control" type="text" placeholder="Email/Mobile Number" name="user">
+                  <input id="user" class="form-control" type="text" placeholder="Username" name="user">
                   <input id="passwordotp" class="form-control" type="password" placeholder="Password" name="passwordotp">
                   <input id="password_confirmationotp" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmationotp">
                   <p id="errnote" style="display:none;"></p>

@@ -276,7 +276,7 @@ ConvState.prototype.answerWith = function(answerText, answerObject) {
                         'mno': $('#mno').val(),
                     };
                     $.ajax({
-                        url:'http://localhost/mobilerepair/convForm-master/submitchat.php',
+                        url:'./convForm-master/submitchat.php',
                         type:'POST',
                         data:formData,
                         success:function(para)

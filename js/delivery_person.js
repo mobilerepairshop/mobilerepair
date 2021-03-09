@@ -194,7 +194,7 @@ $('#emailreg').change(function (){
         if(para=='400')
         {
           window.userexist = 1
-          alertdata("Please Choose Different Email/Mobile Number","Registration Status")
+          alertdata("Please Choose Different Username Number","Registration Status")
           $('#alert').modal({backdrop: 'static', keyboard: false})
           $('#alert').modal('show')
           $("#modalclose").click(function() {

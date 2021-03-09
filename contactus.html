@@ -6,10 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
-
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel = "icon" href = "./public/logo/logo-name2.png" type = "image/x-icon"> 
 
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -144,6 +141,9 @@ a{
   .ct-socials{
     display:none;
   }
+  .footerbar{
+    display:none;
+  }
   .botnavbar{
     display:block;
   }
@@ -254,9 +254,9 @@ a{
 <!-- Floating Div  -->
 
 
- 
+ <br><br><br>
   <!--/ Section Contact-Footer Star for User /-->
-  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route footerbar" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
     <div class="overlay-mf"></div>
     <footer>
       <div class="container">
@@ -326,7 +326,7 @@ a{
   <a href="https://www.linkedin.com/company/75730215/" target="_blank"><i class="fab fa-linkedin" style="font-size:25px"></i></a>
  </li>
  <li>
-    <a href="https://api.whatsapp.com/send?phone=+919657245081&text=Hello Sir can I get some more info about mobile repair."  target="_blank" ><i class="fab fa-whatsapp" style="font-size:25px"></i></a>
+    <a href="https://api.whatsapp.com/send?phone=+917722070659&text=Hello Sir can I get some more info about mobile repair."  target="_blank" ><i class="fab fa-whatsapp" style="font-size:25px"></i></a>
  </li>
   <li >
       <a class="chat-btns"><i class="fas fa-robot" style="color:white;" style="font-size:25px"></i></a>
@@ -418,10 +418,10 @@ $(document).ready(function()
       console.log(para)
       para = JSON.parse(para)
       var str = ''
-      str += '</div><div class="col-md-8"><div class="post-box"><table class="table-responsive"><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Name </p></blockquote></div></td><td><div class="article-content"><blockquote><b style="font-size: 120%;" id="admin_name">'+para[0][0]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin City </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_city">'+para[0][1]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Address </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_address">'+para[0][2]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Contact </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_contact">+91 '+para[0][3]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Email </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_email">'+para[0][4]+'</b></blockquote></div></td></tr></table></div>'
+      str += '</div><div class="col-md-8"><div class="post-box"><table class="table-responsive"><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Name </p></blockquote></div></td><td><div class="article-content"><blockquote><b style="font-size: 120%;" id="admin_name">'+para[0][0]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0"> City </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_city">'+para[0][1]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0"> Address </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_address">'+para[0][2]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0"> Contact </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_contact">+91 '+para[0][3]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0"> Email </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_email">'+para[0][4]+'</b></blockquote></div></td></tr></table></div>'
       for(let i=1;i<para.length;i++)
       {
-        str += '</div><div class="col-md-8" style="margin-left:33.5%;"><div class="post-box"><table class="table-responsive"><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Name </p></blockquote></div></td><td><div class="article-content"><blockquote><b style="font-size: 120%;" id="admin_name">'+para[i][0]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin City </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_city">'+para[i][1]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Address </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_address">'+para[i][2]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Contact </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_contact">+91 '+para[i][3]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0">Admin Email </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_email">'+para[i][4]+'</b></blockquote></div></td></tr></table></div>'
+        str += '</div><div class="col-md-8" style="margin-left:33.5%;"><div class="post-box"><table class="table-responsive"><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0"> Name </p></blockquote></div></td><td><div class="article-content"><blockquote><b style="font-size: 120%;" id="admin_name">'+para[i][0]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0"> City </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_city">'+para[i][1]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0"> Address </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_address">'+para[i][2]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0"> Contact </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_contact">+91 '+para[i][3]+'</b></blockquote></div></td></tr><tr><td><div class="article-content"><blockquote class="blockquote"><p class="mb-0"> Email </p></blockquote></div></td><td><div class="article-content"><blockquote ><b style="font-size: 120%;" id="admin_email">'+para[i][4]+'</b></blockquote></div></td></tr></table></div>'
       }
       $(".citywisecards").append(str)
       // $("#admin_name").append(para[0])

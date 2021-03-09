@@ -441,13 +441,21 @@ $(document).ready(function(){
         success:function(para)
         {
             para = JSON.parse(para)
+            newpara = para[1].split(",")
+            console.log(newpara)
+
             $("#username").html(para[0])
             for(let i=0;i<=16;i++)
             {
-                if(!(para[1].includes(i)))
+                i = i.toString()
+                if(!(newpara.includes(i)))
                 {
                     console.log("nahi hai : "+i)
                     $("#div"+i).hide()
+                }
+                else
+                {
+                    console.log(i)
                 }
             }
         }

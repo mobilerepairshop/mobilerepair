@@ -30,8 +30,6 @@ $admin_name = $row_admin['admin_name'];
 
 $admin_email = $row_admin['admin_email'];
 
-$admin_pass = $row_admin['admin_pass'];
-
 $admin_image = $row_admin['admin_image'];
 
 $new_admin_image = $row_admin['admin_image'];
@@ -42,7 +40,15 @@ $admin_role = $row_admin['admin_role'];
 
 $admin_contact = $row_admin['admin_contact'];
 
+$admin_rights = $row_admin['admin_rights'];
 
+$admin_rights = explode(",",$admin_rights);
+
+// echo "<script>alert(".count($admin_rights).")</script>";
+// for($i=0;$i<count($admin_rights);$i++)
+// {
+//     echo $admin_rights[$i];
+// }
 
 
 }
@@ -126,7 +132,7 @@ $admin_contact = $row_admin['admin_contact'];
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" name="admin_pass" class="form-control" required value="<?php echo $admin_address; ?>">
+<input type="text" name="admin_address" class="form-control" required value="<?php echo $admin_address; ?>">
 
 </div><!-- col-md-6 Ends -->
 
@@ -138,7 +144,7 @@ $admin_contact = $row_admin['admin_contact'];
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" name="admin_country" class="form-control" required value="<?php echo $admin_contact; ?>">
+<input type="text" name="admin_contact" class="form-control" required value="<?php echo $admin_contact; ?>">
 
 </div><!-- col-md-6 Ends -->
 
@@ -151,9 +157,51 @@ $admin_contact = $row_admin['admin_contact'];
 
 <div class="col-md-6"><!-- col-md-6 Starts -->
 
-<input type="text" name="admin_job" class="form-control" required disabled value="<?php echo $admin_role; ?>">
+<input type="text" name="admin_role" class="form-control" required disabled value="<?php echo $admin_role; ?>">
+
+
+<table class="table" style=<?php echo $admin_role == "admin" ? "display:block" : "display:none"; ?>>
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="0" <?php echo (in_array("0", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright"> Dashboard</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="1" <?php echo (in_array("1", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright"> Add User</label><br /></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="2" <?php echo (in_array("2", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright"> Add Mobile company</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="3" <?php echo (in_array("3", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">Add Mobile Model</label><br /></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="4" <?php echo (in_array("4", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">Add City</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="5" <?php echo (in_array("5", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">Add Pincode</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="6" <?php echo (in_array("6", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">Add Problem</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="7" <?php echo (in_array("7", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">Add Sub-Problem</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="8" <?php echo (in_array("8", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">Add Pricing</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="9" <?php echo (in_array("9", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">Add carousel Image</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="10" <?php echo (in_array("10", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">Track Enquiries</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="11" <?php echo (in_array("11", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">View History</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="12" <?php echo (in_array("12", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">View cancelled Request</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="13" <?php echo (in_array("13", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">View Chat Response</label><br /></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="14" <?php echo (in_array("14", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">View Contact Us Response</label><br /></td>
+    <td><input type="checkbox" class="userright" name="role[]" value="15" <?php echo (in_array("15", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">View Customers</label><br /></td>
+  </tr>
+</table>
+
 
 </div><!-- col-md-6 Ends -->
+
+
 
 </div><!-- form-group Ends -->
 
@@ -206,13 +254,25 @@ $admin_name = $_POST['admin_name'];
 
 $admin_email = $_POST['admin_email'];
 
-$admin_add = $_POST['admin_pass'];
+$admin_address = $_POST['admin_address'];
 
-$admin_con = $_POST['admin_country'];
+$admin_contact = $_POST['admin_contact'];
 
-$admin_job = $_POST['admin_job'];
+$admin_role = $_POST['admin_role'];
 
+$temp = $_POST['role'];
 
+$str1 = "";
+
+if($temp)
+{
+  $N = count($temp);
+  for($i=0; $i < $N; $i++)
+  {
+    //echo "<script>alert('$temp[$i]')</script>";
+    $str1=$str1.$temp[$i].",";
+  }
+}
 
 $admin_image = $_FILES['admin_image']['name'];
 
@@ -226,7 +286,7 @@ $admin_image = $new_admin_image;
 
 }
 
-$update_admin = "update admins set admin_name='$admin_name',admin_image='$admin_image',admin_contact='$admin_con' where admin_id='$admin_id'";
+$update_admin = "update admins set admin_name='$admin_name',admin_image='$admin_image',admin_contact='$admin_contact' ,admin_address='$admin_address' , admin_rights='$str1' where admin_id='$admin_id'";
 
 $run_admin = mysqli_query($con,$update_admin);
 

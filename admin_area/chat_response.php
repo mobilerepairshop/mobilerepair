@@ -56,6 +56,8 @@ else {
 
 <tr>
 
+<th>Customer Name</th>
+
 <th>Mobile Repair/Mobile Insuarance</th>
 
 <th>City</th>
@@ -89,10 +91,13 @@ $pin = $row_admin['pin'];
 
 $mobile = $row_admin['mobile'];
 
+$fname = $row_admin['fname'];
+
 ?>
 
 <tr>
 
+<td><?php echo $fname; ?></td>
 
 <td><?php echo $query; ?></td>
 

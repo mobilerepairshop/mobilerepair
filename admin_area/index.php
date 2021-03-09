@@ -54,7 +54,9 @@ $admin_contact = $row_admin['admin_contact'];
 <link href="css/style.css" rel="stylesheet">
 
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" >
-<link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/2484/9148/files/SDQSDSQ_32x32.png?v=1511436147" type="image/png">
+<link rel = "icon" href = "../public/logo/logo-name2.png" type = "image/x-icon"> 
+
+<!-- <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/2484/9148/files/SDQSDSQ_32x32.png?v=1511436147" type="image/png"> -->
 <link rel="stylesheet" href="../public/css/forms.css">
 
 

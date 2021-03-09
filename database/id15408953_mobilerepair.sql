@@ -414,7 +414,7 @@ INSERT INTO `users` (`uid`, `password`, `email`, `create_datetime`, `username`, 
 (1, 'd15925ef9fd1e3ef2d37efc94e8273ac', 'atharvadeshpande99@gmail.com', '2021-01-20', 'Atharva Deshpande', '', '', '', '1'),
 (2, 'bd7b470fe545c8a3d9d73f91afdb42b2', 'skbarshikar@mitaoe.ac.in', '2021-01-20', 'sarang kumar barshikar', '411033', '9527890083', 'Chinchwad', '1'),
 (3, 'a370453431cea129c9fcf1778c79e9a1', 'asdeshpande@mitaoe.ac.in', '2021-01-20', 'atharva deshpande', '', '', '', '1'),
-(4, '202cb962ac59075b964b07152d234b70', '9657245081', '2021-01-20', 'Vinod', '411017', 'N hcuc', 'Uguv', '0'),
+(4, '202cb962ac59075b964b07152d234b70', '7722070659', '2021-01-20', 'Vinod', '411017', 'N hcuc', 'Uguv', '0'),
 (5, 'f9edb88041a525f0601b57d02175014c', 'vinu.kumbhar01@gmail.com', '2021-01-24', 'Vinod Kumbhar', '411017', '5656', 'ftf', '1'),
 (6, 'fc067d4a16c3b045b1f5091f9461b0df', 'bodkeamit032@gmail.com', '2021-02-06', 'Amit Bodke', '', '', '', '1');
 
