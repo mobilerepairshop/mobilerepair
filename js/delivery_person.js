@@ -114,39 +114,55 @@ function SendOTPtoUser(rid,status)
 
 function verifyuserdelivery(rid)
 {
-  $.ajax({
-    url:'./api/submitanswers.php',
-    type:'POST',
-    data:{
-      'rid':rid,
-      'q1':$("input[name='phonelock']:checked").val(),
-      'q2A':$("input[name='display']:checked").val(),
-      'q2B':$("input[name='touchkey']:checked").val(),
-      'q2C':$("input[name='headphone']:checked").val(),
-      'q2D':$("input[name='charging']:checked").val(),
-      'q2E':$("input[name='vibration']:checked").val(),
-      'q2F':$("input[name='ringer']:checked").val(),
-      'q2G':$("input[name='loudspeaker']:checked").val(),
-      'q2H':$("input[name='mic']:checked").val(),
-      'q2I':$("input[name='earspeaker']:checked").val(),
-      'q2J':$("input[name='camera']:checked").val(),
-      'q2K':$("input[name='fintouch']:checked").val(),
-      'q2L':$("input[name='powerbtn']:checked").val(),
-      'q2M':$("input[name='volbutton']:checked").val(),
-      'q2N':$("input[name='netdetect']:checked").val(),
-      'q3':$("input[name='backup']:checked").val(),
-      'q4':$("input[name='simcard']:checked").val()
-    },
-    success:function(para)
-    {
-      // alert(para)
-      $('#verifyuserdelivery').modal('hide');
-      alertdata("Answers Submitted","Submission Status")
-      $('#alert').modal('show')
-      $('[name="sendotpbutton"]').prop('disabled','true');
-      window.location.reload()
-    }
-  })
+  if ($("input[name='phonelock']").prop("checked") && $("input[name='display']").prop("checked") && 
+      $("input[name='touchkey']").prop("checked") && $("input[name='headphone']").prop("checked") &&
+      $("input[name='charging']").prop("checked") && $("input[name='vibration']").prop("checked") &&
+      $("input[name='ringer']").prop("checked") && $("input[name='loudspeaker']").prop("checked") &&
+      $("input[name='mic']").prop("checked") && $("input[name='earspeaker']").prop("checked") &&
+      $("input[name='camera']").prop("checked") && $("input[name='fintouch']").prop("checked") &&
+      $("input[name='powerbtn']").prop("checked") && $("input[name='volbutton']").prop("checked") &&
+      $("input[name='netdetect']").prop("checked") && $("input[name='backup']").prop("checked") &&
+      $("input[name='simcard']").prop("checked"))
+  {
+    $.ajax({
+      url:'./api/submitanswers.php',
+      type:'POST',
+      data:{
+        'rid':rid,
+        'q1':$("input[name='phonelock']:checked").val(),
+        'q2A':$("input[name='display']:checked").val(),
+        'q2B':$("input[name='touchkey']:checked").val(),
+        'q2C':$("input[name='headphone']:checked").val(),
+        'q2D':$("input[name='charging']:checked").val(),
+        'q2E':$("input[name='vibration']:checked").val(),
+        'q2F':$("input[name='ringer']:checked").val(),
+        'q2G':$("input[name='loudspeaker']:checked").val(),
+        'q2H':$("input[name='mic']:checked").val(),
+        'q2I':$("input[name='earspeaker']:checked").val(),
+        'q2J':$("input[name='camera']:checked").val(),
+        'q2K':$("input[name='fintouch']:checked").val(),
+        'q2L':$("input[name='powerbtn']:checked").val(),
+        'q2M':$("input[name='volbutton']:checked").val(),
+        'q2N':$("input[name='netdetect']:checked").val(),
+        'q3':$("input[name='backup']:checked").val(),
+        'q4':$("input[name='simcard']:checked").val()
+      },
+      success:function(para)
+      {
+        // alert(para)
+        $('#verifyuserdelivery').modal('hide');
+        alertdata("Answers Submitted","Submission Status")
+        $('#alert').modal('show')
+        $('[name="sendotpbutton"]').prop('disabled','true');
+        window.location.reload()
+      }
+    })
+  }
+  else
+  {
+    alertdata("Please Answer All the Questions")
+    $('#alert').modal('show')
+  }
 }
 
 function cancelledreason(rid,status)

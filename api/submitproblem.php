@@ -44,7 +44,7 @@ if($success == '200')
             {
                 echo 'Your request has been submitted successfully,
 Our customer care executive shall be contact you soon,
-You can track your request status at “Track Device Repair Service” menu
+You can track your request status at “Track Repair Service” menu
 Price may vary if more problems found during repair”';
             }
             else
