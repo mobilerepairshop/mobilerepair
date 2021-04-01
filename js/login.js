@@ -302,7 +302,7 @@ function showRegisterForm(){
             $('.register-footer').fadeIn('fast');
             $('.google-btn').show()
         });
-        $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button><br>Register on our portal');
+        $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="margin-right:-20%;">&times;</button><br>Register on our portal');
     }); 
     $('.error').removeClass('alert alert-danger').html('');
        
@@ -317,7 +317,7 @@ function showResetForm(){
             $('.google-btn').hide()
            
         });
-        $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button><br>Reset Your Password');
+        $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="margin-right:-20%;">&times;</button><br>Reset Your Password');
     }); 
     $('.error').removeClass('alert alert-danger').html('');
        
@@ -334,7 +334,7 @@ function showLoginForm(){
             $('.login-footer').fadeIn('fast');    
         });
         $('.google-btn').show()
-        $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button><br>Login to your account');
+        $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="margin-right:-20%;">&times;</button><br>Login to your account');
     });       
      $('.error').removeClass('alert alert-danger').html(''); 
 }
@@ -490,7 +490,7 @@ function resetAjax()
                   $('.login-footer').fadeOut('fast',function(){
                   $('.register-footer').fadeIn('fast');
                   });
-                  $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button><br>Register on our portal');
+                  $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="margin-right:-20%;">&times;</button><br>Register on our portal');
                   }); 
                   $('.error').removeClass('alert alert-danger').html('');
 
@@ -508,7 +508,7 @@ function resetotp()
                   $('.login-footer').fadeOut('fast',function(){
                   $('.register-footer').fadeIn('fast');
                   });
-                  $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button><br>Reset Your Password');
+                  $('.modal-title').html('<button type="button" class="close" data-dismiss="modal" style="margin-right:-20%;">&times;</button><br>Reset Your Password');
                   $('.google-btn').hide()
                   }); 
                   $('.error').removeClass('alert alert-danger').html('');    

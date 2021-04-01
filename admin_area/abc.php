@@ -18,21 +18,15 @@ $(document).ready(function(){
         success:function(para)
         {
             para = JSON.parse(para)
-            var dashboard = 1
-            for(let i=0;i<=16;i++)
+
+            if(para[1].includes(0))
             {
-                if(!(para[1].includes(i)))
-                {
-                    console.log("nahi hai : "+i)
-                    dashboard = 0
-                }
-            }
-            if(dashboard == 1)
-            {
+                console.log("dash hai : ")
                 window.open('./index.php?dashboard','_self')
             }
             else
             {
+                console.log("dash nahi hai : ")
                 window.open('./index.php','_self')
             }
         }
