@@ -6,14 +6,13 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
-  <link rel = "icon" href = "./public/logo/logo.jpeg" type = "image/x-icon"> 
+  <link rel = "icon" href = "./public/logo/logo.png" type = "image/x-icon"> 
 
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  
   <link href="lib/animate/animate.min.css" rel="stylesheet">
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -24,30 +23,23 @@
   <meta name="google-signin-client_id" content="411937557386-8fdmnh35is2oo4bckud4bgmg8okeanql.apps.googleusercontent.com">
 
   <link href="css/style.css" rel="stylesheet">
-  <link href="chat/chat.css" rel="stylesheet">
   <link href="./login/css/login.css" rel="stylesheet">
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <link rel="stylesheet" type="text/css" href="./convForm-master/dist/jquery.convform.css">
  
   <link rel="stylesheet" type="text/css" href="./convForm-master/demo.css">
   <style>
-    i.fa {
-  -webkit-animation: show 1s 1;
-  /* any other properties to override from FontAwesome's default .fa rule */
+
+h4 {
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 20px;
 }
-@-webkit-keyframes show {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-      .chatbot {
+  .chatbot {
       margin-right: 25%;
-      background-color: #0078ff;
-      color: white;
-      margin-left: -25%;
-      height:3vw;
-      text-align: center;
-      border-radius: .25rem;
-      padding: 10px;
+background-color: #0078ff;
+color: white;
+margin-left: -25%;
 }
 
 .closebtn {
@@ -66,7 +58,7 @@
 }
     .ct-socials {
     position: fixed;
-    top: 54%;
+    top: 48%;
     right: 0;
     list-style: none;
     padding-left: 0;
@@ -97,7 +89,7 @@
     -ms-flex-pack: center;
     justify-content: center;
     color: #fff;
-    width: 44px;
+    width: 55px;
     height: 54px;
     -webkit-transition: all 0.15s ease-in-out;
     transition: all 0.15s ease-in-out;
@@ -148,64 +140,22 @@ a{
 
 @media only screen and (max-width: 600px) {
 
-.botnavbar{
-  display:block;
-}
-.botnavbar a{
-  width:25%;
-}
-a.float4.chat-btn{
-    top: 65%;
-    left: 50%;
+  .ct-socials{
+    display:none;
   }
-  a.float3{
-    top: 65%;
-    left: 25%;
+  .footerbar{
+    display:none;
   }
-  .widget-sidebar{
-    height:76vw;
+  .botnavbar{
+    display:block;
   }
-
-}
-.float3{
-	position: absolute;;
-	width:50px;
-	height:50px;
-	background-color:#25d366;
-  color:#FFF;
-  top: 66%;
-  right:58%;
-	border-radius:50px;
-	text-align:center;
-  font-size:30px;
-	box-shadow: 2px 2px 3px #999;
-  z-index:100;
- 
-}
-/* .leftnavpane{
+  .botnavbar a{
+    width:25%;
+  }
+  .leftnavpane{
     display: none;
-  } */
-.my-float3{
-	margin-top:11px;
+  }
 }
-.float4{
-	position: absolute;;
-	width:50px;
-	height:50px;
-	color:#FFF;
-  top: 66%;
-  right:40%;
-	border-radius:50px;
-	text-align:center;
-  font-size:30px;
-	box-shadow: 2px 2px 3px #999;
-  z-index:100;
-}
-
-.my-float4{
-	margin-top:11px;
-}
-
   </style>
 </head>
 
@@ -240,9 +190,9 @@ a.float4.chat-btn{
           <li class="nav-item" id="homenav">
             <a class="nav-link js-scroll" href="./index2.html">Home</a>
           </li>
-          <!-- <li class="nav-item" id="servicenav">
-            <a class="nav-link js-scroll" href="aboutus.html" style="font-weight: bold;text-decoration: underline;color:#0078ff;">About Us</a>
-          </li> -->
+          <li class="nav-item" id="servicenav">
+            <a class="nav-link js-scroll" href="aboutus.html">About Us</a>
+          </li>
           <li class="nav-item" id="contactnav">
             <a class="nav-link js-scroll" href="contactus.html">Contact Us</a>
           </li>
@@ -270,53 +220,64 @@ a.float4.chat-btn{
     </div>
   </nav>
   <!--/ Nav End /-->
-  <!-- Chatbot start msg -->
-
-
   <br><br>
-   <!--/ Section Blog-Single Star /-->
-  <section class="blog-wrapper sect-pt4" id="blog">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 leftnavpane" id="leftnavpane">
-          <div class="widget-sidebar">
-            <a href="./eg2.html" class="sidebar-title">Repairing Service</a> <br><br>
-            <a href="./myorders2.html" class="sidebar-title">Track Orders</a> <br><br>
-            <a href="./insurance.html" class="sidebar-title">Insurance Service</a> <br><br>
-            <a href="./enquiry.html" class="sidebar-title">Enquiry</a><br><br>
-        
-           
-            
-          </div>
-        </div>
-        <div class="col-md-8" id="servicerequestform">
-            <div class="form-comments">
-              <div class="title-box-2">
-                <h3 class="title-left">
-                  Admin Information Will Be Placed Here
-                </h3>
-              </div>
-            </div>
+  <!--/ Section Blog-Single Star /-->
+<section class="blog-wrapper sect-pt4" id="blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 leftnavpane" id="leftnavpane">
+        <div class="widget-sidebar">
+          <a href="./eg2.html" class="sidebar-title">Repairing Service</a> <br><br>
+          <a href="./myorders2.html" class="sidebar-title">Track Orders</a> <br><br>
+          <a href="./insurance.html" class="sidebar-title">Insurance Service</a> <br><br>
+          <a href="./enquiry.html" class="sidebar-title">Enquiry</a><br><br>
+      
+         
+          
         </div>
       </div>
+      <div class="col-md-8" id="servicerequestform">
+          <div class="form-comments">
+            <div class="title-box-2">
+              <h3 class="title-left">
+               <b>Admin Information</b>
+              </h3> <br><br>
+              <h4>
+                Welcome to IBOFIX, your number one doorstep all type of Smartphone & Tablet’s repair service. We're dedicated to giving you the very best Smartphone & Tablet repair service, with a focus on four characteristics, i.e. low cost, quality service, customer trust & customer satisfaction.
+                <br><br>
+
+Founded in 1st March, 2021 by Vinod Kumbhar, IBOFIX has come a long way from its beginnings in a starting location, i.e. home office and then bachelor room. When IBOFIX first started out, his passion for giving the best smartphone repair service with a very low cost and reach to every people, cities, and villages across the India. We now serve customers at Pune, Maharashtra but we will be reach soon across the India.
+<br><br>
+We hope you enjoy our service as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.
+
+Sincerely,
+Vinod Kumbhar, 
+Founder & Director.
+              </h4>
+            </div>
+          </div>
+      </div>
     </div>
-  </section>
-  <!--/ Section Blog-Single End /-->
+  </div>
+</section>
+<!--/ Section Blog-Single End /-->
+
 
 <!-- Floating Div  -->
 
 <div class="botnavbar">
-    <a href="./eg2.html" ><i class="fa fa-home fa-2x" aria-hidden="true"></i>Repairing</a>
-    <a href="./myorders2.html"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i>Orders</a>
-    <!-- <a href="#contact"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>Profile</a> -->
-    <a href="./insurance.html"><i class="fa fa-newspaper-o fa-2x" aria-hidden="true"></i>Insurance</a>
-    <a href="./enquiry.html"><i class="fa fa-question-circle fa-2x" aria-hidden="true"></i>Enquiry</a>
-  </div>
-  <!-- Floating Div  -->
+  <a href="./eg2.html" ><i class="fa fa-home fa-2x" aria-hidden="true"></i>Repairing</a>
+  <a href="./myorders2.html"><i class="fa fa-street-view fa-2x" aria-hidden="true"></i>Orders</a>
+  <!-- <a href="#contact"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>Profile</a> -->
+  <a href="./insurance.html"><i class="fa fa-newspaper-o fa-2x" aria-hidden="true"></i>Insurance</a>
+  <a href="./enquiry.html"><i class="fa fa-question-circle fa-2x" aria-hidden="true"></i>Enquiry</a>
+</div>
+<!-- Floating Div  -->
+
   
  
   <!--/ Section Contact-Footer Star for User /-->
-  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route footerbar" id="contactform-user" style="background-image: url(img/overlay-bg.jpg)">
     <div class="overlay-mf"></div>
     <footer>
       <div class="container">
@@ -372,29 +333,37 @@ a.float4.chat-btn{
 </section>
 
 <!--/ Section Contact-footer for Admin End /-->
-
 <ul class="ct-socials">
   <li>
-     <a href="https://www.facebook.com/Ibofix-102582161871151" target="_blank"><i class="fab fa-facebook" style="font-size:25px"></i></a>
-  </li>
-  <li>
-     <a href="https://www.instagram.com/ibofix01/" target="_blank"><i class="fab fa-instagram" style="font-size:25px"></i></a>
-  </li>
-  <li>
-     <a href="https://api.whatsapp.com/send?phone=+917722070659&text=Hello Sir can I get some more info about mobile repair."  target="_blank" ><i class="fab fa-whatsapp" style="font-size:25px"></i></a>
-  </li>
+    <a href="https://www.facebook.com/Ibofix-102582161871151" target="_blank"><i class="fab fa-facebook" style="font-size:25px"></i></a>
+ </li>
+ <li>
+    <a href="https://www.instagram.com/ibofix01/" target="_blank"><i class="fab fa-instagram" style="font-size:25px"></i></a>
+ </li>
+ <li>
+  <a href="https://www.youtube.com/channel/UC83APiFPf7H0x5q3w911HqA" target="_blank"><i class="fab fa-youtube" style="font-size:25px"></i></a>
+ </li>
+ <li>
+  <a href="https://www.linkedin.com/company/75730215/" target="_blank"><i class="fab fa-linkedin" style="font-size:25px"></i></a>
+ </li>
+ <li>
+    <a href="https://api.whatsapp.com/send?phone=+917722070659&text=Hello Sir can I get some more info about mobile repair."  target="_blank" ><i class="fab fa-whatsapp" style="font-size:25px"></i></a>
+ </li>
   <li >
       <a class="chat-btns"><i class="fas fa-robot" style="color:white;" style="font-size:25px"></i></a>
-      <div class="chatbot" style="display: none;">
+      <div class="alert" style="display: none;">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
         <strong>Hello</strong> I am here to help you !!
       </div>
    </li>
+   
 </ul>
 
 <div class="demo">
 
 </div>
+
+
   <a href="#carouselExampleIndicators" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
 
@@ -415,29 +384,22 @@ a.float4.chat-btn{
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
-
-  <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
-
-  <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
-
-
-  <script src="js/delivery_person.js"></script>
+ 
 
   <script type="text/javascript" src="./convForm-master/dist/autosize.min.js"></script>
   <script type="text/javascript" src="./convForm-master/dist/jquery.convform.js"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <script type = "text/javascript" 
-  src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
-</script>
-<script> 
-    jQuery(function($){
-    convForm = $('#chat').convform({selectInputStyle: 'disable'});
-    console.log(convForm);
-    });
-    
-
+         src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
+      </script>
+        <script src="./js/delivery_person.js"></script>
+        <script src="./js/main.js"></script>
+  <script> 
+  	jQuery(function($){
+			convForm = $('#chat').convform({selectInputStyle: 'disable'});
+			console.log(convForm);
+		});
+  
    
     $(function(){
       let myScript = document.createElement("script");
@@ -456,10 +418,11 @@ a.float4.chat-btn{
           $('.demo').toggle()
       })
     });
+	
+    </script>
 
-
-</script>
-
+	
+    </script> 
   <!-- loginmodals, alertmodal & delivery_personmodals will be loaded from here -->
 
 <script>

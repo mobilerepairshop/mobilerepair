@@ -12,7 +12,7 @@ include("includes/db.php");
 
 <title>Admin Login</title>
 
-<link rel = "icon" href = "../public/logo/logo.jpeg" type = "image/x-icon"> 
+<link rel = "icon" href = "../public/logo/logo.png" type = "image/x-icon"> 
 
 <link rel="stylesheet" href="css/bootstrap.min.css" >
 
