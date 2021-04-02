@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.ibofix.mrepair",
+               "sha256_cert_fingerprints": ["67:E7:A3:04:CE:C1:2E:F0:D7:6B:2C:0D:24:1E:E0:DD:98:E2:6C:D8:76:46:A0:64:79:1D:E8:40:87:0E:58:D1"] }
+}]
