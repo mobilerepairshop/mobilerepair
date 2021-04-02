@@ -17,14 +17,14 @@ else {
 if(isset($_GET['delete_pincode'])){
 $delete_id = $_GET['delete_pincode'];
 
-$delete_com = "delete from pincode  where pid=".$delete_id;
+$delete_com = "delete from pincode  where pincode=".$delete_id;
 
 $run_delete = mysqli_query($con,$delete_com);
 
 if($run_delete){
     
     
-    echo "<script>alert('Pinocde Has Been Removed')</script>";
+    echo "<script>alert('Pincode Has Been Removed')</script>";
     
     echo "<script>window.open('index.php?view_pincode','_self')</script>";
     

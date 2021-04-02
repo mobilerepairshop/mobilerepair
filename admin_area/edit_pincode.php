@@ -140,7 +140,7 @@ $mc_name = $row_edit['pincode'];
 if(isset($_POST['update'])){
 
 $cpin = $_POST['pincode'];
-$update_mc = "update pincode set pincode = '".$cpin."' where pid = ".$_GET['edit_pincode'];
+$update_mc = "update pincode set pincode = '".$cpin."' where pincode = ".$_GET['edit_pincode'];
 
 $run_mc = mysqli_query($con,$update_mc);
 
