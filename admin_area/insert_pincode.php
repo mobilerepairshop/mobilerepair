@@ -22,7 +22,7 @@
 
 <li class="active" >
 
-<i class="fa fa-dashboard" ></i> Dashboard / Insert Pincode
+<i class="fa fa-dashboard" ></i> Dashboard / Manage Pincodes / Insert Pincode
 
 </li>
 
