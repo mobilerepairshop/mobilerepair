@@ -470,7 +470,7 @@ function updateaddressdetails(id)
                {
                     // console.log(para[i].)
                     s2+='<tr><td class="ordhead">Person Name </td> <td>'+para[i].admin_name+'</td></tr>'
-                    s2+='<tr><td class="ordhead">Contact Number </td> <td>'+para[i].admin_contact+'</td></tr>'
+                    s2+='<tr><td class="ordhead">Contact Number </td> <td><a href="tel:'+para[i].admin_contact+'">'+para[i].admin_contact+'</a></td></tr>'
                     s2+='<tr><td class="ordhead">Arrival Date </td> <td>'+para[i].date+'</td></tr>'
                     s2+='<tr><td class="ordhead">Arrival Time</td> <td>'+para[i].time+'</td></tr>'
                     
