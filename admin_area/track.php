@@ -434,7 +434,7 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                             actionn="<input type='button' id='"+array[i].rid+"' name='warranty' value='Warranty Period' class='btn btn-primary form-control' data-toggle='modal' data-target='#warranty' onclick='modaldata(this.id)' >"
                           }
                           else{
-                            actionn="<input type='button' id='"+array[i].rid+"' name='assign' value='Assign' class='btn btn-primary form-control' data-toggle='modal' data-target='#exampleModal' onclick='modaldata(this.id)' "+disabled_assign+" style='font-weight:bold;color:black;'>"
+                            actionn="<input type='button' id='"+array[i].rid+","+array[i].pay_method+","+array[i].status+"' name='assign' value='Assign' class='btn btn-primary form-control' onclick='modaldata(this.id)' "+disabled_assign+" style='font-weight:bold;color:black;'>"
                           }
                          
                       Data.push({
@@ -455,7 +455,9 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                       brand:array[i].mcname,
                       model:array[i].mmname,
                       problems:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>',
-                      qna:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#verifyuserdelivery" onclick="verifyuserdelivery(this.id)">View Questions Answers</a>'
+                      qna:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#verifyuserdelivery" onclick="verifyuserdelivery(this.id)">View Questions Answers</a>',
+                      pay_status:array[i].pay_status==0?"Pending":"Paid",
+                      pay_method:array[i].pay_method==""?"Not Selected":array[i].pay_method
                   });           
                 }
                     
@@ -480,6 +482,8 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                          { field: "time", headerText: "Time", width: 100 },
                          { field: "status", headerText: "Status", width: 150 },
                          { field: "qna", headerText: "Question & Answers", width: 150 },
+                         { field: "pay_method", headerText: "Pay Method", width: 150 },
+                         { field: "pay_status", headerText: "Pay Status", width: 150 },
                          { field: "action", headerText: "Action", width: 150 },
                          { field: "pricing", headerText: "Confirm Pricing", width: 160 },
 
@@ -648,9 +652,20 @@ $(document).ready(function()
     }
     function modaldata(rid)
     {
+      var pay_method = rid.split(",")[1]
+      var status = rid.split(",")[2]
+      rid = rid.split(",")[0]
+      if(status >6 && pay_method=="")
+      {
+        alert("Customer did not Select Payment Method Yet")
+      }
+      else
+      {
         $("#exampleModalLabel").empty()
         $("#exampleModalLabel").append("Assign Delivery boy for Request No: "+rid)
         $('[name="quotes"]').attr("id",rid)
+        $('#exampleModal').modal('show')
+      }
     }
     function deliveryupdateModal(rid)
     {

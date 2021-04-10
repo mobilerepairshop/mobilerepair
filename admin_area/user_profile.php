@@ -196,6 +196,9 @@ $admin_rights = explode(",",$admin_rights);
     <td><input type="checkbox" class="userright" name="role[]" value="14" <?php echo (in_array("14", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">View Contact Us Response</label><br /></td>
     <td><input type="checkbox" class="userright" name="role[]" value="15" <?php echo (in_array("15", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">View Customers</label><br /></td>
   </tr>
+  <tr>
+    <td><input type="checkbox" class="userright" name="role[]" value="16" <?php echo (in_array("16", $admin_rights)? 'checked' : '');?>/>&nbsp;&nbsp;<label class="userright">View Contact Locations</label><br /></td>
+  </tr>
 </table>
 
 
