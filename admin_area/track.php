@@ -457,7 +457,9 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                       problems:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>',
                       qna:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#verifyuserdelivery" onclick="verifyuserdelivery(this.id)">View Questions Answers</a>',
                       pay_status:array[i].pay_status==0?"Pending":"Paid",
-                      pay_method:array[i].pay_method==""?"Not Selected":array[i].pay_method
+                      pay_method:array[i].pay_method==""?"Not Selected":array[i].pay_method,
+                      est_price:array[i].est_price,
+                      final_price:array[i].final_price
                   });           
                 }
                     
@@ -482,6 +484,8 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                          { field: "time", headerText: "Time", width: 100 },
                          { field: "status", headerText: "Status", width: 150 },
                          { field: "qna", headerText: "Question & Answers", width: 150 },
+                         { field: "est_price", headerText: "Estimated Price", width: 150 },
+                         { field: "final_price", headerText: "Final Price", width: 150 },
                          { field: "pay_method", headerText: "Pay Method", width: 150 },
                          { field: "pay_status", headerText: "Pay Status", width: 150 },
                          { field: "action", headerText: "Action", width: 150 },
