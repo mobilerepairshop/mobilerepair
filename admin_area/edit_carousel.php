@@ -93,7 +93,7 @@ $main_image = $row_edit['image'];
 <form method="post" enctype="multipart/form-data" id="mcompany">
     <div class="form-container">
         <p class="includedet">Select image</p><br>
-        <img width=150 src="./carousel_images/<?php echo $main_image; ?>">
+        <img width=150 src="../storage/<?php echo $main_image; ?>">
         <!-- <input type="text" id="cname1" name="cname1" placeholder="Enter Company 1 Name*" onfocus="addCompany()"><br><br> -->
         
         <input type="hidden" id="ids" value="<?php echo $problem_code; ?>" />
@@ -153,7 +153,7 @@ if(files.length > 0 ){
       contentType: false,
       processData: false,
       success: function(response){
-        alert(response)
+      //   alert(response)
          if(response != 0){
             alert("Image Updated Successfully")
             window.open('index.php?view_carousel','_self');

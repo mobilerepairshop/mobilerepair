@@ -14,7 +14,7 @@
             $filename = $_FILES['file']['name'];
          
             /* Location */
-            $location = "../carousel_images/".$filename;
+            $location = "../../storage/".$filename;
             $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
             $imageFileType = strtolower($imageFileType);
          
