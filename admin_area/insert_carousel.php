@@ -138,8 +138,17 @@ var fd = new FormData();
 var files = $('#file')[0].files;
 
 // Check file selected or not
-if(files.length > 0 ){
-   fd.append('file',files[0]);
+if(files.length > 0 )
+{
+  var maxSize = 200000;
+  var fileSize = files[0].size; // in bytes
+  if(fileSize>maxSize)
+  {
+    alert('file size is more than ' + maxSize/1000 + ' kb. Please select file upto 200kb size');
+  }
+  else
+  {
+    fd.append('file',files[0]);
 
    $.ajax({
       url: './api/submitcarousel.php',
@@ -157,6 +166,7 @@ if(files.length > 0 ){
          }
       },
    });
+  }
 }else{
    alert("Please select a file.");
 }
