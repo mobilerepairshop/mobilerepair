@@ -323,7 +323,7 @@ function groupArrayOfObjects(list, key) {
       }
       
         s1+='<div class="container padding-bottom-3x mb-1">'
-        s1+='<div class="modalcard card mb-3" style="width:100%;">'
+        s1+='<div class="modalcard mb-3" style="width:100%;">'
         s1+='<div class="p-4 text-center text-white text-lg bg-dark rounded-top"><span class="text-uppercase">Order No - </span><span class="text-medium">MR'+orderid+'</span></div>'
         s1+='<div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">'
         s1+='<div class="w-100 text-center py-1 px-2"><span class="text-medium">Current Status of Your Order</span></div>'
