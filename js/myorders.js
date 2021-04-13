@@ -344,14 +344,8 @@ function groupArrayOfObjects(list, key) {
            delivery_status=1
            str ='<b><a style="color:blue;cursor:pointer;font-size:10px;" id="'+rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></b>'; 
           }
-          
-          if(i==6)
-          {
-
-          }
           else if(i<=status)
           {
-            
             console.log("This is - "+str)
             s1+='<div class="step completed">'
             s1+='<div class="step-icon-wrap">'
@@ -371,7 +365,6 @@ function groupArrayOfObjects(list, key) {
           }
            
         } 
-      
           s1+='</div></div></div></div>'
           $('.status-content').append(s1)
     }
