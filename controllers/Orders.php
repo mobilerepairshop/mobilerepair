@@ -315,7 +315,7 @@
                 on r.rid=p.rid and p.subproblem=sp.subproblem_code 
                 and sp.problem_code=pm.problem_code 
                 and mm.mmid=pa.mmid and pa.subproblem_code=sp.subproblem_code
-                where r.uid=? AND r.rid=?';
+                where r.uid=? AND r.rid=? group by p.problem';
                 $stmt = $this->conn->prepare($query);
                 $stmt->bind_param('ii',$uid,$rid);
                 echo $this->conn->error;

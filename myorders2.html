@@ -220,6 +220,10 @@
       .ct-socials{
     display:none;
   }
+  .statmodal{
+    height: 100%;
+    padding-right: 0px;
+  }
   .footerbar{
     display:none;
   }
@@ -297,6 +301,10 @@ a{
 @media only screen and (max-width: 600px) {
   .problem-content{
     width: 250%;
+  }
+  .statmodal{
+    height: 100%;
+    padding-right: 0px;
   }
   .botnavbar{
     display:block;
@@ -407,6 +415,10 @@ a{
     .flex-sm-nowrap .step .step-icon-wrap::after {
         display: none
     }
+    .statmodal{
+    height: 100%;
+    padding-right: 0px;
+  }
     .modal-open .modal {
     overflow-x: auto;
     overflow-y: hidden;
@@ -422,6 +434,10 @@ a{
     .flex-md-nowrap .step .step-icon-wrap::after {
         display: none
     }
+    .statmodal{
+    height: 100%;
+    padding-right: 0px;
+  }
     .modal-open .modal {
     overflow-x: auto;
     overflow-y: hidden;
@@ -444,6 +460,10 @@ a{
     overflow-x: auto;
     overflow-y: hidden;
 }
+.statmodal{
+    height: 100%;
+    padding-right: 0px;
+  }
 .ordercard{
   width: 95%;
   margin-left:2%;
@@ -457,10 +477,14 @@ a{
         display: none
     }
     .modal-open .modal {
-    height:155vw;
+    height:100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.statmodal{
+    height: 100%;
+    padding-right: 0px;
+  }
 .modal .modal-content{
   width:100%;
 }
@@ -542,7 +566,7 @@ a{
 
 <!-- Status Modal -->
 
-<div class="modal fade" id="status">
+<div class="statmodal modal fade " id="status" >
   <div class="modal-dialog modal-dialog-centered modal-lg" >
   <div class="modal-content">
   <div class="modal-header">
