@@ -114,6 +114,7 @@
 	text-decoration: none;
 	background: #3c9bd9;
 }
+
     /* Bill Style start */
     .invoice-box {
         max-width: 800px;
@@ -220,6 +221,12 @@
       .ct-socials{
     display:none;
   }
+  .card-body{
+    overflow-x: scroll;
+  }
+  .steps .step{
+    padding-left: 10%;
+  }
   .statmodal{
     height: 100%;
     padding-right: 0px;
@@ -302,6 +309,12 @@ a{
   .problem-content{
     width: 250%;
   }
+  .card-body{
+    overflow-x: scroll;
+  }
+  .steps .step{
+    padding-left: 10%;
+  }
   .statmodal{
     height: 100%;
     padding-right: 0px;
@@ -343,7 +356,7 @@ a{
 .steps .step .step-icon-wrap {
     display: block;
     position: relative;
-    width: 100%;
+    width: 200%;
     height: 40px;
     text-align: center
 }
@@ -389,6 +402,7 @@ a{
     color: #606975;
     font-size: 12px;
     font-weight: 500;
+    padding-left: 80%;
 }
 
 .steps .step:first-child .step-icon-wrap::before {
@@ -411,9 +425,17 @@ a{
 }
 
 @media (max-width: 576px) {
+  .card-body{
+    overflow-x: scroll;
+  }
+
+  .steps .step{
+    padding-left: 10%;
+  }
     .flex-sm-nowrap .step .step-icon-wrap::before,
     .flex-sm-nowrap .step .step-icon-wrap::after {
-        display: none
+        display: none;
+        width : 200%;
     }
     .statmodal{
     height: 100%;
@@ -430,9 +452,16 @@ a{
 }
 
 @media (max-width: 768px) {
+  .card-body{
+    overflow-x: scroll;
+  }
+  .steps .step{
+    padding-left: 10%;
+  }
     .flex-md-nowrap .step .step-icon-wrap::before,
     .flex-md-nowrap .step .step-icon-wrap::after {
-        display: none
+        display: none;
+        width : 200%;
     }
     .statmodal{
     height: 100%;
@@ -452,9 +481,16 @@ a{
 }
 
 @media (max-width: 991px) {
+  .card-body{
+    overflow-x: scroll;
+  }
+  .steps .step{
+    padding-left: 10%;
+  }
     .flex-lg-nowrap .step .step-icon-wrap::before,
     .flex-lg-nowrap .step .step-icon-wrap::after {
-        display: none
+        display: none;
+        width : 200%;
     }
     .modal-open .modal {
     overflow-x: auto;
@@ -472,9 +508,16 @@ a{
 }
 
 @media (max-width: 1200px) {
+  .card-body{
+    overflow-x: scroll;
+  }
+  .steps .step{
+    padding-left: 10%;
+  }
     .flex-xl-nowrap .step .step-icon-wrap::before,
     .flex-xl-nowrap .step .step-icon-wrap::after {
-        display: none
+        display: none;
+        width : 200%;
     }
     .modal-open .modal {
     height:100%;

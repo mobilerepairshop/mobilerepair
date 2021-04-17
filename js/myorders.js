@@ -330,19 +330,19 @@ function groupArrayOfObjects(list, key) {
         // s1+='<div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span> Repair in progress</div>'
         s1+='</div>'
         s1+='<div class="card-body">'
-        s1+='<div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">'
+        s1+='<div class="steps d-flex justify-content-between padding-top-2x padding-bottom-1x">'
         for(let i=0;i<10;i++)
         {
           str=''
           if(i==1)
           {
             delivery_status=2
-            str = '<b><a style="color:blue;cursor:pointer;font-size:10px;" id="'+rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></b>'; 
+            str = '<b><a style="color:blue;cursor:pointer;font-size:10px;padding-left:80%;" id="'+rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View_Person</a></b>'; 
           }
           else if(i==8)
           {
            delivery_status=1
-           str ='<b><a style="color:blue;cursor:pointer;font-size:10px;" id="'+rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View Person</a></b>'; 
+           str ='<b><a style="color:blue;cursor:pointer;font-size:10px;padding-left:80%;" id="'+rid+'"  data-toggle="modal" data-target="#person" onclick="getperson(this.id,'+delivery_status+')">View_Person</a></b>'; 
           }
           
           if(i==6)
