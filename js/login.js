@@ -626,7 +626,7 @@ $.ajax({
                       str += '<tr><th>Customer Address </th><td>'+para[i].address+'</td><th>Customer Contact </th><td><a href="tel:'+para[i].phonenum+'">'+para[i].phonenum+'</td></tr>'
                       if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
                       {
-                        str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="paid(this.id,'+para[i].status+')">Amount Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')" '+disable_drop+'>'+status[para[i].status]+'</button></div></div></div></div>'
+                        str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="paid(this.id,'+para[i].status+')">Amount Paid</button></div></div></div></div>'
                       }
                       else if(para[i].status == "8")
                       {
@@ -711,7 +711,7 @@ $.ajax({
               }
               else if(para[i].delivery_status==1 && para[i].pay_method=="cod" && para[i].pay_status=="0")
               {
-                str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="paid(this.id,'+para[i].status+')">Amount Paid</button></div><div class="col-md-4"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="pickedup(this.id,'+para[i].status+')" '+disable_drop+'>'+status[para[i].status]+'</button></div></div></div></div>'
+                str += '</tbody></table></div><div class="col-md-3"><br><button id="'+para[i].rid+'" class="button btn-success button-small " onclick="paid(this.id,'+para[i].status+')">Amount Paid</button></div></div></div></div>'
               }
               else if(para[i].delivery_status==1 && para[i].pay_status=="1")
               {

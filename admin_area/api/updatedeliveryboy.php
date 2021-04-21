@@ -8,9 +8,11 @@ if(isset($_POST))
     $rid = $_POST['rid'];
     $sql ="INSERT INTO scheduled_request(rid,admin_id,date,time,delivery_status)VALUES('$rid','$boy_id','$boy_date','$boy_time','1')";
     $sql1 ="update req set status='8' where rid=$rid";
+    $sql2 ="delete from verificationqa where rid=$rid";
     $res = mysqli_query($con,$sql);
     $res1 = mysqli_query($con,$sql1);
-    if($res and $res1)
+    $res2 = mysqli_query($con,$sql2);
+    if($res and $res1 and $res2)
     {
         echo "success";
     }

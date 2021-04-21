@@ -806,25 +806,36 @@ function getproblems(rid)
             data:{'rid':rid},
             success:function(para)
             {
-              para = JSON.parse(para) 
-              var str = ''
-              for(let i=0;i<para[0].length;i++)
+              if(para.length > 2)
               {
-                if(para[0][i] == "yes")
+                para = JSON.parse(para) 
+                for(let i=0;i<para[0].length;i++)
                 {
-                  str = "Yes"
+                  $("#"+i).empty()
+                  var str = ''
+                  if(para[0][i] == "yes")
+                  {
+                    str = "Yes"
+                  }
+                  else if(para[0][i] == "no")
+                  {
+                    str = "No"
+                  }
+                  else if(para[0][i] == "notapplicable")
+                  {
+                    str = "Not Applicable"
+                  }
+                  $("#"+i).append(str)
+                  $("#"+i).css("color","blue")
                 }
-                else if(para[0][i] == "no")
-                {
-                  str = "No"
-                }
-                else if(para[0][i] == "notapplicable")
-                {
-                  str = "Not Applicable"
-                }
-                $("#"+i).append(str)
-                $("#"+i).css("color","blue")
               }     
+              else
+              {
+                for(i=0;i<17;i++)
+                {
+                  $("#"+i).html('')
+                }
+              }
             }
         })
     }

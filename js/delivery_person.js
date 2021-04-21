@@ -30,7 +30,8 @@ function pickedup(rid,status)
       url:'./api/checkquestions.php',
       type:'POST',
       data:{
-        "rid":rid
+        "rid":rid,
+        "status":status
       },
       success:function(para)
       {
@@ -92,7 +93,8 @@ function SendOTPtoUser(rid,status)
     url:'./api/checkquestions.php',
     type:'POST',
     data:{
-      "rid":rid
+      "rid":rid,
+      "status":status
     },
     success:function(para)
     {
@@ -114,15 +116,15 @@ function SendOTPtoUser(rid,status)
 
 function verifyuserdelivery(rid)
 {
-  if ($("input[name='phonelock']").prop("checked") && $("input[name='display']").prop("checked") && 
-      $("input[name='touchkey']").prop("checked") && $("input[name='headphone']").prop("checked") &&
-      $("input[name='charging']").prop("checked") && $("input[name='vibration']").prop("checked") &&
-      $("input[name='ringer']").prop("checked") && $("input[name='loudspeaker']").prop("checked") &&
-      $("input[name='mic']").prop("checked") && $("input[name='earspeaker']").prop("checked") &&
-      $("input[name='camera']").prop("checked") && $("input[name='fintouch']").prop("checked") &&
-      $("input[name='powerbtn']").prop("checked") && $("input[name='volbutton']").prop("checked") &&
-      $("input[name='netdetect']").prop("checked") && $("input[name='backup']").prop("checked") &&
-      $("input[name='simcard']").prop("checked"))
+  if ($("input[name='phonelock']:checked").val() && $("input[name='display']:checked").val() && 
+      $("input[name='touchkey']:checked").val() && $("input[name='headphone']:checked").val() &&
+      $("input[name='charging']:checked").val() && $("input[name='vibration']:checked").val() &&
+      $("input[name='ringer']:checked").val() && $("input[name='loudspeaker']:checked").val() &&
+      $("input[name='mic']:checked").val() && $("input[name='earspeaker']:checked").val() &&
+      $("input[name='camera']:checked").val() && $("input[name='fintouch']:checked").val() &&
+      $("input[name='powerbtn']:checked").val() && $("input[name='volbutton']:checked").val() &&
+      $("input[name='netdetect']:checked").val() && $("input[name='backup']:checked").val() &&
+      $("input[name='simcard']:checked").val())
   {
     $.ajax({
       url:'./api/submitanswers.php',
@@ -161,7 +163,11 @@ function verifyuserdelivery(rid)
   else
   {
     alertdata("Please Answer All the Questions")
+    $('#alert').modal({backdrop: 'static', keyboard: false})
     $('#alert').modal('show')
+    $("#modalclose").click(function() {
+      window.location.reload()
+    });
   }
 }
 
