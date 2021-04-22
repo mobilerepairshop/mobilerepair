@@ -455,7 +455,8 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                       brand:array[i].mcname,
                       model:array[i].mmname,
                       problems:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#problem" data-backdrop="static" data-keyboard="false" onclick="getproblems(this.id)">View Problem</a>',
-                      qna:'<a href="#" id="'+array[i].rid+'" data-toggle="modal" data-target="#verifyuserdelivery" onclick="verifyuserdelivery(this.id)">View Questions Answers</a>',
+                      qna1:'<a href="#" id="'+array[i].rid+',1" data-toggle="modal" data-target="#verifyuserdelivery" onclick="verifyuserdelivery(this.id)">View Questions Answers</a>',
+                      qna2:'<a href="#" id="'+array[i].rid+',8" data-toggle="modal" data-target="#verifyuserdelivery" onclick="verifyuserdelivery(this.id)">View Questions Answers</a>',
                       pay_status:array[i].pay_status==0?"Pending":"Paid",
                       pay_method:array[i].pay_method==""?"Not Selected":array[i].pay_method,
                       est_price:array[i].est_price,
@@ -483,7 +484,8 @@ $get_boys = "SELECT admin_name,admin_id FROM admins where admin_role='delivery_b
                          { field: "date", headerText: "Date ", width: 100 },
                          { field: "time", headerText: "Time", width: 100 },
                          { field: "status", headerText: "Status", width: 150 },
-                         { field: "qna", headerText: "Question & Answers", width: 150 },
+                         { field: "qna1", headerText: "Q & A for Pickup", width: 160 },
+                         { field: "qna2", headerText: "Q & A for Drop", width: 150 },
                          { field: "est_price", headerText: "Estimated Price", width: 150 },
                          { field: "final_price", headerText: "Final Price", width: 150 },
                          { field: "pay_method", headerText: "Pay Method", width: 150 },
@@ -800,10 +802,12 @@ function getproblems(rid)
 
     function verifyuserdelivery(rid)
     {
+      status = rid.split(",")[1]
+      rid = rid.split(",")[0]
       $.ajax({
             url:'./api/getqna.php',
             type:'POST',
-            data:{'rid':rid},
+            data:{'rid':rid , 'status':status},
             success:function(para)
             {
               if(para.length > 2)

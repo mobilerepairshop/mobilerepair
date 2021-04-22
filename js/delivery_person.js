@@ -88,7 +88,7 @@ function pickedup(rid,status)
 }
 function SendOTPtoUser(rid,status)
 {
-  $('[name="setridtoquestions"]').attr('id',rid);
+  $('[name="setridtoquestions"]').attr('id',rid+","+status);
   $.ajax({
     url:'./api/checkquestions.php',
     type:'POST',
@@ -116,6 +116,9 @@ function SendOTPtoUser(rid,status)
 
 function verifyuserdelivery(rid)
 {
+  alert(rid)
+  var status = rid.split(",")[1]
+  var rid = rid.split(",")[0]
   if ($("input[name='phonelock']:checked").val() && $("input[name='display']:checked").val() && 
       $("input[name='touchkey']:checked").val() && $("input[name='headphone']:checked").val() &&
       $("input[name='charging']:checked").val() && $("input[name='vibration']:checked").val() &&
@@ -131,6 +134,7 @@ function verifyuserdelivery(rid)
       type:'POST',
       data:{
         'rid':rid,
+        'status':status,
         'q1':$("input[name='phonelock']:checked").val(),
         'q2A':$("input[name='display']:checked").val(),
         'q2B':$("input[name='touchkey']:checked").val(),

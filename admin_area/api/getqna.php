@@ -2,7 +2,8 @@
 
 require_once("../includes/db.php");
 $rid = $_POST['rid'];
-$get_enquiries = "SELECT * FROM verificationqa where rid = $rid";
+$status = $_POST['status'];
+$get_enquiries = "SELECT * FROM verificationqa where rid = ".$rid." and status= ".$status;
 
 $arr = [];
 $run_admin = mysqli_query($con,$get_enquiries);

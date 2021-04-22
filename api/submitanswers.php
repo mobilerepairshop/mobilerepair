@@ -5,6 +5,7 @@ if(isset($_POST))
     require_once("../db.php");
 
     $rid = $_POST['rid'];
+    $status = $_POST['status'];
     $q1 = $_POST['q1'];
     $q2a = $_POST['q2A'];
     $q2b = $_POST['q2B'];
@@ -23,7 +24,7 @@ if(isset($_POST))
     $q3 = $_POST['q3'];
     $q4 = $_POST['q4'];
 
-    $sql = 'insert into verificationqa values('.$rid.',"'.$q1.'","'.$q2a.'","'.$q2b.'","'.$q2c.'","'.$q2d.'","'.$q2e.'","'.$q2f.'","'.$q2g.'","'.$q2h.'","'.$q2i.'","'.$q2j.'","'.$q2k.'","'.$q2l.'","'.$q2m.'","'.$q2n.'","'.$q3.'","'.$q4.'")';
+    $sql = 'insert into verificationqa values('.$rid.','.$status.',"'.$q1.'","'.$q2a.'","'.$q2b.'","'.$q2c.'","'.$q2d.'","'.$q2e.'","'.$q2f.'","'.$q2g.'","'.$q2h.'","'.$q2i.'","'.$q2j.'","'.$q2k.'","'.$q2l.'","'.$q2m.'","'.$q2n.'","'.$q3.'","'.$q4.'")';
     $res = mysqli_query($con,$sql);
 
 }
